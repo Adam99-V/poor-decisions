@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Carte Blanche — Poor Decisions Event Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0E0E0E;--cream:#F7F4EF;--warm:#EDE8DF;--accent:#C8A96E;--accent-dark:#8B6E3C;--muted:#8A8278;--card-bg:#FFFFFF;--border:#D9D3C9}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+nav{background:var(--ink);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.06)}
+.logo-wrap{text-decoration:none}
+.logo{font-family:'Playfair Display',serif;font-size:20px;color:#fff;letter-spacing:3px;text-transform:uppercase;font-style:italic;display:block}
+.logo-sub{font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{border:1px solid var(--accent);color:var(--accent);background:transparent;padding:9px 24px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:var(--accent);color:var(--ink)}
+
+.page-hero{background:var(--ink);padding:120px 48px 100px;position:relative;overflow:hidden;border-bottom:1px solid rgba(200,169,110,0.2)}
+.hero-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
+.hero-line2{position:absolute;top:0;right:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
+.hero-corner{position:absolute;bottom:40px;right:48px;font-family:'Playfair Display',serif;font-size:120px;color:rgba(200,169,110,0.05);font-style:italic;line-height:1;pointer-events:none}
+.breadcrumb{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:32px}
+.breadcrumb a{color:var(--accent);text-decoration:none;opacity:0.8}
+.breadcrumb a:hover{opacity:1}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,80px);color:#fff;line-height:1.05;font-weight:400;max-width:700px}
+.page-hero h1 em{color:var(--accent);font-style:italic}
+.hero-desc{font-size:18px;color:rgba(255,255,255,0.45);font-weight:300;max-width:560px;line-height:1.75;margin-top:28px}
+.hero-meta{display:flex;gap:48px;margin-top:56px;flex-wrap:wrap;padding-top:48px;border-top:1px solid rgba(255,255,255,0.08)}
+.hero-meta-item .label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:6px}
+.hero-meta-item .value{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent)}
+
+.content{max-width:1200px;margin:0 auto;padding:96px 48px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.big-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,44px);color:#fff;line-height:1.15;font-weight:400;margin-bottom:28px}
+.big-title em{font-style:italic;color:var(--accent)}
+.body-text{font-size:16px;color:rgba(255,255,255,0.45);line-height:1.8;font-weight:300;margin-bottom:24px}
+.divider{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0}
+.includes-list{list-style:none}
+.includes-list li{padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:flex-start;gap:16px}
+.includes-list li:first-child{border-top:1px solid rgba(255,255,255,0.08)}
+.includes-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:7px}
+.includes-text{font-size:15px;color:#fff;line-height:1.5}
+.includes-subtext{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:300}
+
+.booking-card{background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.25);padding:40px;position:sticky;top:88px}
+.booking-price{font-family:'Playfair Display',serif;font-size:52px;color:var(--accent);line-height:1}
+.booking-price-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:32px;margin-top:6px}
+.booking-divider{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:24px 0}
+.booking-detail{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+.booking-detail .key{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.booking-detail .val{font-size:14px;color:#fff;font-weight:500}
+.btn-book{display:block;width:100%;padding:18px;background:var(--accent);border:none;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);font-weight:500;cursor:pointer;transition:background 0.2s;margin-top:32px;text-align:center;text-decoration:none}
+.btn-book:hover{background:#D4B97E}
+.btn-enquire{display:block;width:100%;padding:16px;background:transparent;border:1px solid rgba(255,255,255,0.1);font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;margin-top:12px;text-align:center;text-decoration:none}
+.btn-enquire:hover{border-color:var(--accent);color:var(--accent)}
+.bespoke-note{margin-top:24px;padding:16px;border-left:2px solid var(--accent);background:rgba(200,169,110,0.05)}
+.bespoke-note p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+
+.process-section{padding:96px 48px;border-top:1px solid rgba(255,255,255,0.06)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);margin-top:56px}
+.process-step{padding:40px 32px}
+.step-num{font-family:'Playfair Display',serif;font-size:52px;color:rgba(200,169,110,0.2);line-height:1;margin-bottom:20px}
+.step-name{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:12px;font-weight:400}
+.step-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;font-weight:300}
+
+.other-packages{padding:80px 48px;border-top:1px solid rgba(255,255,255,0.06)}
+.other-packages .eyebrow{color:var(--accent)}
+.other-packages h2{font-family:'Playfair Display',serif;font-size:36px;color:#fff;font-weight:400;margin-bottom:48px}
+.other-packages h2 em{font-style:italic;color:var(--accent)}
+.pkg-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06)}
+.pkg-link-card{background:var(--ink);padding:40px 32px;text-decoration:none;display:block;transition:background 0.2s}
+.pkg-link-card:hover{background:#1a1a1a}
+.plc-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.plc-name{font-family:'Playfair Display',serif;font-size:28px;color:#fff;font-weight:400;margin-bottom:12px}
+.plc-price{font-family:'Playfair Display',serif;font-size:32px;color:rgba(255,255,255,0.3);margin-bottom:24px}
+.plc-arrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+
+footer{padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:#fff;letter-spacing:3px;font-style:italic}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links{display:none}
+  .page-hero{padding:80px 24px 60px}
+  .content{padding:60px 24px}
+  .two-col{grid-template-columns:1fr;gap:48px}
+  .booking-card{position:static}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .other-packages{padding:60px 24px}
+  .pkg-row{grid-template-columns:1fr}
+  footer{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <span class="logo">Poor Decisions</span>
+    <span class="logo-sub">Event Co.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#packages">Packages</a></li>
+    <li><a href="index.html#extras">Extras</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Enquire</a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-line"></div>
+  <div class="hero-line2"></div>
+  <div class="hero-corner">CB</div>
+  <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; <a href="index.html#packages">Packages</a> &nbsp;&rsaquo;&nbsp; The Carte Blanche</div>
+  <h1>The <em>Carte<br>Blanche</em></h1>
+  <p class="hero-desc">No limits, no compromises. You tell us the vision &mdash; we handle everything else. This is where extraordinary happens.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="label">Starting from</div><div class="value">&euro;1,899</div></div>
+    <div class="hero-meta-item"><div class="label">Guest capacity</div><div class="value">Unlimited</div></div>
+    <div class="hero-meta-item"><div class="label">Duration</div><div class="value">Your call</div></div>
+    <div class="hero-meta-item"><div class="label">Concept design</div><div class="value">Bespoke</div></div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="two-col">
+    <div>
+      <div class="eyebrow">About this package</div>
+      <h2 class="big-title">Designed entirely <em>around you.</em> Nothing less.</h2>
+      <p class="body-text">The Carte Blanche exists for those who don't want to choose from a menu. Every element &mdash; the venue, the concept, the entertainment, the catering, the finishing touches &mdash; is designed from scratch in collaboration with you.</p>
+      <p class="body-text">We've produced rooftop dinners with live orchestras, villa weekenders with celebrity DJs, themed warehouse parties for 500, and intimate suppers that felt like theatre. The common thread: nothing is off the table.</p>
+      <p class="body-text">This package starts at &euro;1,899 and scales with your vision. We'll give you a fully itemised proposal after our first conversation.</p>
+
+      <hr class="divider">
+
+      <div class="eyebrow">What's always included</div>
+      <ul class="includes-list">
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Bespoke concept and creative direction</div>
+            <div class="includes-subtext">We develop a unique visual and experiential concept built around your brief, aesthetic and personality.</div>
+          </div>
+        </li>
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Full venue sourcing and management</div>
+            <div class="includes-subtext">Access to our private network of extraordinary venues across Mallorca and beyond.</div>
+          </div>
+        </li>
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Premium catering and open bar</div>
+            <div class="includes-subtext">From canapé receptions to seated dinners and midnight feasts &mdash; menus created by our partner chefs.</div>
+          </div>
+        </li>
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Live entertainment (your choice)</div>
+            <div class="includes-subtext">Celebrity DJ, live band, string quartet, fire performers, comedians &mdash; we have the connections.</div>
+          </div>
+        </li>
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Grand finale moment</div>
+            <div class="includes-subtext">Fireworks, cold sparklers, confetti cannons &mdash; something to mark the end of an extraordinary night.</div>
+          </div>
+        </li>
+        <li>
+          <div class="includes-dot"></div>
+          <div>
+            <div class="includes-text">Personal event director</div>
+            <div class="includes-subtext">Your own dedicated director manages everything from first call to final clear-up.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="booking-card">
+        <div class="booking-price">&euro;1,899+</div>
+        <div class="booking-price-label">Starting price &mdash; fully bespoke</div>
+        <div class="booking-divider"></div>
+        <div class="booking-detail"><span class="key">Capacity</span><span class="val">Unlimited</span></div>
+        <div class="booking-detail"><span class="key">Duration</span><span class="val">Fully flexible</span></div>
+        <div class="booking-detail"><span class="key">Concept design</span><span class="val">Bespoke</span></div>
+        <div class="booking-detail"><span class="key">Entertainment</span><span class="val">Your choice</span></div>
+        <div class="booking-detail"><span class="key">Catering</span><span class="val">Premium included</span></div>
+        <div class="booking-detail"><span class="key">Event director</span><span class="val">Dedicated</span></div>
+        <div class="booking-divider"></div>
+        <a href="contact.html?package=carte-blanche" class="btn-book">Start the conversation</a>
+        <a href="contact.html" class="btn-enquire">Send us your brief</a>
+        <div class="bespoke-note">
+          <p>Pricing is confirmed after your free consultation. We'll provide a fully itemised proposal within 48 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="process-section">
+  <div class="eyebrow">How it works</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,44px);color:#fff;font-weight:400">From first call to <em style="color:var(--accent);font-style:italic">final curtain</em></h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-name">The brief</div>
+      <p class="step-desc">We sit down &mdash; in person or virtually &mdash; and you tell us everything. Your vision, your guests, your non-negotiables.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-name">The proposal</div>
+      <p class="step-desc">Within 48 hours you receive a full concept deck with venue options, entertainment, menus and a detailed quote.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-name">The build</div>
+      <p class="step-desc">We handle every supplier, every booking, every detail. You're updated throughout but never burdened.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-name">The night</div>
+      <p class="step-desc">You arrive. Everything is exactly as imagined &mdash; or better. You enjoy every moment. We handle the rest.</p>
+    </div>
+  </div>
+</div>
+
+<div class="other-packages">
+  <div class="eyebrow">Explore more</div>
+  <h2>Other <em>packages</em></h2>
+  <div class="pkg-row">
+    <a href="essential.html" class="pkg-link-card">
+      <div class="plc-tag">Entry &mdash; up to 30 guests</div>
+      <div class="plc-name">The Essential</div>
+      <div class="plc-price">&euro;349</div>
+      <div class="plc-arrow">View package &rarr;</div>
+    </a>
+    <a href="signature.html" class="pkg-link-card">
+      <div class="plc-tag">Most booked &mdash; up to 75 guests</div>
+      <div class="plc-name">The Signature</div>
+      <div class="plc-price">&euro;899</div>
+      <div class="plc-arrow">View package &rarr;</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Poor Decisions</div>
+  <div class="footer-copy">&copy; 2026 Poor Decisions Event Co. &mdash; Palma de Mallorca</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
