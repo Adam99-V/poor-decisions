@@ -3,242 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Poor Decisions Event Co.</title>
+<title>Book Now — Poor Decisions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--ink:#0E0E0E;--cream:#F7F4EF;--warm:#EDE8DF;--accent:#C8A96E;--accent-dark:#8B6E3C;--muted:#8A8278;--border:#D9D3C9}
+:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#ffffff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--purple:#B026FF;--green:#00FF88;--yellow:#FFE600}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
-nav{background:var(--ink);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
-.logo-wrap{text-decoration:none}
-.logo{font-family:'Playfair Display',serif;font-size:20px;color:#fff;letter-spacing:3px;text-transform:uppercase;font-style:italic;display:block}
-.logo-sub{font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-top:1px}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{border:1px solid var(--accent);color:var(--accent);background:transparent;padding:9px 24px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all 0.2s}
-.nav-cta:hover{background:var(--accent);color:var(--ink)}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.logo span{color:var(--pink)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--pink);color:var(--white);border:none;padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block}
 
-.page-hero{background:var(--ink);padding:100px 48px 80px;position:relative;overflow:hidden}
-.hero-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
-.hero-line2{position:absolute;top:0;right:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
-.breadcrumb{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:32px}
-.breadcrumb a{color:var(--accent);text-decoration:none}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,72px);color:#fff;line-height:1.05;font-weight:400}
-.page-hero h1 em{color:var(--accent);font-style:italic}
-.page-hero p{color:rgba(255,255,255,0.45);font-size:16px;line-height:1.75;font-weight:300;max-width:480px;margin-top:20px}
+.page-hero{background:var(--dark);padding:80px 48px 64px;border-bottom:1px solid var(--border)}
+.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:24px}
+.breadcrumb a{color:var(--pink);text-decoration:none}
+.page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,96px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:20px}
+.page-hero h1 span{color:var(--pink)}
+.page-hero p{font-size:17px;color:rgba(255,255,255,0.5);font-weight:300;max-width:480px;line-height:1.65}
 
-.contact-body{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px}
+.body{display:grid;grid-template-columns:1fr 400px;gap:0;min-height:600px}
 
-.form-side{padding:80px 64px 80px 48px;background:var(--cream)}
-.form-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-.form-title{font-family:'Playfair Display',serif;font-size:36px;color:var(--ink);font-weight:400;margin-bottom:40px;line-height:1.2}
-.form-title em{font-style:italic;color:var(--accent-dark)}
-
-.field{margin-bottom:24px}
-.field label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.field input,.field select,.field textarea{width:100%;background:#fff;border:1px solid var(--border);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);outline:none;transition:border-color 0.2s;appearance:none;border-radius:0}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
-.field textarea{height:140px;resize:vertical;line-height:1.6}
-.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8278' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.form-side{padding:72px 64px 72px 48px;border-right:1px solid var(--border)}
+.form-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);letter-spacing:1px;margin-bottom:40px;line-height:1}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;background:var(--card);border:1px solid var(--border);padding:14px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--white);outline:none;transition:border-color 0.2s;border-radius:0}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,0.2)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--pink)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-color:var(--card);cursor:pointer;color:var(--white)}
+.field select option{background:var(--card);color:var(--white)}
+.field textarea{height:120px;resize:vertical;line-height:1.6}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:background 0.2s;margin-top:8px}
+.submit-btn:hover{background:#ff0060}
+.success{display:none;padding:40px;background:var(--card);border:1px solid var(--pink);text-align:center;margin-top:24px}
+.success h3{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--pink);letter-spacing:1px;margin-bottom:12px}
+.success p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6}
 
-.submit-btn{width:100%;padding:18px;background:var(--ink);border:none;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:500;cursor:pointer;transition:background 0.2s;margin-top:8px}
-.submit-btn:hover{background:var(--accent-dark)}
-
-.success-msg{display:none;background:var(--warm);border:1px solid var(--border);padding:24px;margin-top:24px;text-align:center}
-.success-msg p{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);font-style:italic}
-.success-msg small{font-size:13px;color:var(--muted);margin-top:8px;display:block}
-
-.info-side{background:var(--ink);padding:80px 48px 80px 64px}
-.info-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-.info-title{font-family:'Playfair Display',serif;font-size:32px;color:#fff;font-weight:400;margin-bottom:48px;line-height:1.2}
-.info-title em{font-style:italic;color:var(--accent)}
-
-.info-block{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.info-side{padding:72px 48px;background:var(--dark)}
+.info-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--white);letter-spacing:1px;margin-bottom:40px;line-height:1}
+.info-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
 .info-block:last-of-type{border-bottom:none}
-.info-block-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px}
-.info-block-value{font-family:'Playfair Display',serif;font-size:20px;color:#fff;font-weight:400;line-height:1.4}
-.info-block-sub{font-size:13px;color:rgba(255,255,255,0.35);margin-top:6px;font-weight:300;line-height:1.6}
+.info-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.info-value{font-size:18px;color:var(--white);font-weight:500;margin-bottom:4px}
+.info-sub{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
+.pkg-links{margin-top:40px}
+.pkg-links-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.pkg-link{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--card);border:1px solid var(--border);text-decoration:none;margin-bottom:2px;transition:border-color 0.2s}
+.pkg-link:hover{border-color:var(--pink)}
+.pkg-link-name{font-size:14px;font-weight:600;color:var(--white)}
+.pkg-link-arrow{font-size:12px;color:var(--pink)}
 
-.pkg-quick{margin-top:48px}
-.pkg-quick-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
-.pkg-quick-links{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06)}
-.pkg-quick-link{background:var(--ink);padding:18px 20px;text-decoration:none;display:flex;justify-content:space-between;align-items:center;transition:background 0.2s}
-.pkg-quick-link:hover{background:#1a1a1a}
-.pql-name{font-size:14px;color:#fff}
-.pql-price{font-family:'Playfair Display',serif;font-size:18px;color:var(--accent)}
-
-footer{background:var(--ink);padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid rgba(255,255,255,0.08)}
-.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:#fff;letter-spacing:3px;font-style:italic}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.3)}
+footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.footer-logo span{color:var(--pink)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
 .footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
-.footer-links a:hover{color:var(--accent)}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--white)}
 
 @media(max-width:900px){
-  nav{padding:0 24px}.nav-links{display:none}
-  .page-hero{padding:80px 24px 60px}
-  .contact-body{grid-template-columns:1fr}
-  .form-side{padding:60px 24px}
-  .info-side{padding:60px 24px}
+  nav{padding:0 20px}.nav-links{display:none}
+  .page-hero{padding:60px 20px}
+  .body{grid-template-columns:1fr}
+  .form-side{padding:60px 20px;border-right:none;border-bottom:1px solid var(--border)}
+  .info-side{padding:60px 20px}
   .field-row{grid-template-columns:1fr}
-  footer{padding:32px 24px}
+  footer{padding:32px 20px}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="logo-wrap">
-    <span class="logo">Poor Decisions</span>
-    <span class="logo-sub">Event Co.</span>
-  </a>
+  <a href="index.html" class="logo">POOR<span>DECISIONS</span></a>
   <ul class="nav-links">
     <li><a href="index.html#packages">Packages</a></li>
-    <li><a href="index.html#extras">Extras</a></li>
+    <li><a href="index.html#destinations">Destinations</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Enquire</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
 </nav>
 
 <div class="page-hero">
-  <div class="hero-line"></div>
-  <div class="hero-line2"></div>
-  <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Contact</div>
-  <h1>Let's plan<br>something <em>extraordinary</em></h1>
-  <p>Tell us about your event and we'll come back to you within 24 hours with ideas, availability and a tailored quote.</p>
+  <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp; Book Now</div>
+  <h1>Book Your<br><span>Night Out</span></h1>
+  <p>Fill in the form and we'll get back to you within a few hours. Or just message us on WhatsApp &mdash; it's quicker.</p>
 </div>
 
-<div class="contact-body">
+<div class="body">
   <div class="form-side">
-    <div class="form-eyebrow">Get in touch</div>
-    <h2 class="form-title">Send us<br>your <em>brief</em></h2>
-
-    <div id="contact-form">
+    <div class="form-eyebrow">Enquiry form</div>
+    <div class="form-title">Let's Sort<br>Your Night</div>
+    <div id="the-form">
       <div class="field-row">
-        <div class="field">
-          <label>First name</label>
-          <input type="text" id="fname" placeholder="Sarah">
-        </div>
-        <div class="field">
-          <label>Last name</label>
-          <input type="text" id="lname" placeholder="Mitchell">
-        </div>
+        <div class="field"><label>First name</label><input type="text" id="fname" placeholder="Jamie"></div>
+        <div class="field"><label>Last name</label><input type="text" id="lname" placeholder="Smith"></div>
       </div>
+      <div class="field"><label>Email</label><input type="email" id="email" placeholder="jamie@example.com"></div>
+      <div class="field"><label>WhatsApp / Phone</label><input type="tel" id="phone" placeholder="+44 7700 000000"></div>
       <div class="field">
-        <label>Email address</label>
-        <input type="email" id="email" placeholder="sarah@example.com">
-      </div>
-      <div class="field">
-        <label>Phone number</label>
-        <input type="tel" id="phone" placeholder="+34 600 000 000">
-      </div>
-      <div class="field">
-        <label>Package of interest</label>
+        <label>Package</label>
         <select id="package">
           <option value="">Select a package...</option>
-          <option value="essential">The Essential — from €349</option>
-          <option value="signature">The Signature — from €899</option>
-          <option value="carte-blanche">The Carte Blanche — from €1,899</option>
+          <option value="bar-crawl">Bar Crawl &mdash; From &euro;25 / $35</option>
+          <option value="club-crawl">Club Crawl &mdash; From &euro;35 / $45</option>
+          <option value="vip-crawl">VIP Club Crawl &mdash; From &euro;75 / $90</option>
+          <option value="party-pass">Party Pass &mdash; From &euro;99 / $120</option>
           <option value="unsure">Not sure yet</option>
         </select>
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Approx. guest count</label>
-          <input type="number" id="guests" placeholder="50">
-        </div>
-        <div class="field">
-          <label>Event date (approx.)</label>
-          <input type="date" id="date">
-        </div>
-      </div>
       <div class="field">
-        <label>Tell us about your event</label>
-        <textarea id="message" placeholder="What's the occasion? Any ideas on theme, venue, or vibe? The more you share, the better we can tailor our response..."></textarea>
+        <label>Destination</label>
+        <select id="destination">
+          <option value="">Select destination...</option>
+          <option value="vegas">Las Vegas</option>
+          <option value="albufeira">Albufeira, Portugal</option>
+          <option value="ayia-napa">Ayia Napa, Cyprus</option>
+        </select>
       </div>
-      <button class="submit-btn" onclick="handleSubmit()">Send enquiry &rarr;</button>
+      <div class="field-row">
+        <div class="field"><label>Group size</label><input type="number" id="group" placeholder="8" min="1"></div>
+        <div class="field"><label>Date (approx.)</label><input type="date" id="date"></div>
+      </div>
+      <div class="field"><label>Anything else?</label><textarea id="msg" placeholder="Tell us anything else we should know &mdash; stag/hen do, birthday, first time, whatever..."></textarea></div>
+      <button class="submit-btn" onclick="submit()">Send Booking Enquiry &rarr;</button>
     </div>
-
-    <div class="success-msg" id="success">
-      <p>Thank you &mdash; we've received your enquiry.</p>
-      <small>We'll be in touch within 24 hours. In the meantime, feel free to browse our packages.</small>
+    <div class="success" id="success">
+      <h3>You're In!</h3>
+      <p>We've got your enquiry and we'll be in touch within a few hours. Check your inbox &mdash; or message us on WhatsApp if you need anything faster.</p>
     </div>
   </div>
 
   <div class="info-side">
-    <div class="info-eyebrow">Find us</div>
-    <h2 class="info-title">Always here<br>for a <em>conversation</em></h2>
-
+    <div class="info-title">Other Ways<br>to Reach Us</div>
     <div class="info-block">
-      <div class="info-block-label">Email</div>
-      <div class="info-block-value">hello@poordecisions.es</div>
-      <div class="info-block-sub">We respond to all enquiries within 24 hours, often sooner.</div>
+      <div class="info-label">WhatsApp (fastest)</div>
+      <div class="info-value">+XX XXX XXX XXXX</div>
+      <div class="info-sub">Drop us a message and we'll reply same day. Best for group bookings and last-minute questions.</div>
     </div>
-
     <div class="info-block">
-      <div class="info-block-label">Phone & WhatsApp</div>
-      <div class="info-block-value">+34 971 000 000</div>
-      <div class="info-block-sub">Available Monday to Saturday, 9am &ndash; 8pm CET.</div>
+      <div class="info-label">Email</div>
+      <div class="info-value">hello@poordecisions.com</div>
+      <div class="info-sub">We reply within a few hours during the day.</div>
     </div>
-
     <div class="info-block">
-      <div class="info-block-label">Based in</div>
-      <div class="info-block-value">Palma de Mallorca</div>
-      <div class="info-block-sub">We operate across the whole island and can travel for the right event.</div>
+      <div class="info-label">Instagram</div>
+      <div class="info-value">@poordecisions</div>
+      <div class="info-sub">DMs open. See what we've been up to &mdash; and what you're missing.</div>
     </div>
-
-    <div class="info-block">
-      <div class="info-block-label">Instagram</div>
-      <div class="info-block-value">@poordecisions.es</div>
-      <div class="info-block-sub">See our recent events and get inspired for your own.</div>
-    </div>
-
-    <div class="pkg-quick">
-      <div class="pkg-quick-label">Browse packages</div>
-      <div class="pkg-quick-links">
-        <a href="essential.html" class="pkg-quick-link">
-          <span class="pql-name">The Essential</span>
-          <span class="pql-price">&euro;349</span>
-        </a>
-        <a href="signature.html" class="pkg-quick-link">
-          <span class="pql-name">The Signature</span>
-          <span class="pql-price">&euro;899</span>
-        </a>
-        <a href="carte-blanche.html" class="pkg-quick-link">
-          <span class="pql-name">The Carte Blanche</span>
-          <span class="pql-price">&euro;1,899+</span>
-        </a>
-      </div>
+    <div class="pkg-links">
+      <div class="pkg-links-title">Browse packages first</div>
+      <a href="bar-crawl.html" class="pkg-link"><span class="pkg-link-name">Bar Crawl</span><span class="pkg-link-arrow">From &euro;25 &rarr;</span></a>
+      <a href="club-crawl.html" class="pkg-link"><span class="pkg-link-name">Club Crawl</span><span class="pkg-link-arrow">From &euro;35 &rarr;</span></a>
+      <a href="vip-crawl.html" class="pkg-link"><span class="pkg-link-name">VIP Club Crawl</span><span class="pkg-link-arrow">From &euro;75 &rarr;</span></a>
+      <a href="party-pass.html" class="pkg-link"><span class="pkg-link-name">Party Pass</span><span class="pkg-link-arrow">From &euro;99 &rarr;</span></a>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-logo">Poor Decisions</div>
-  <div class="footer-copy">&copy; 2026 Poor Decisions Event Co. &mdash; Palma de Mallorca</div>
+  <a href="index.html" class="footer-logo">POOR<span>DECISIONS</span></a>
+  <div class="footer-copy">&copy; 2026 Poor Decisions. Bad decisions. Great nights.</div>
   <div class="footer-links">
+    <a href="index.html">Home</a>
     <a href="#">Instagram</a>
-    <a href="contact.html">Contact</a>
-    <a href="#">Privacy</a>
+    <a href="contact.html">Book Now</a>
   </div>
 </footer>
 
 <script>
-function handleSubmit(){
-  const fname=document.getElementById('fname').value;
-  const email=document.getElementById('email').value;
-  if(!fname||!email){alert('Please fill in at least your name and email.');return;}
-  document.getElementById('contact-form').style.display='none';
+function submit(){
+  const n=document.getElementById('fname').value;
+  const e=document.getElementById('email').value;
+  if(!n||!e){alert('Please fill in your name and email at least.');return;}
+  document.getElementById('the-form').style.display='none';
   document.getElementById('success').style.display='block';
 }
-// Pre-select package if arriving from a package page
-const params=new URLSearchParams(window.location.search);
-const pkg=params.get('package');
-if(pkg){const sel=document.getElementById('package');if(sel)sel.value=pkg;}
+const p=new URLSearchParams(window.location.search).get('package');
+if(p){const s=document.getElementById('package');if(s)s.value=p;}
 </script>
 </body>
 </html>

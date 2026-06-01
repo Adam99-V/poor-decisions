@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albufeira Club Crawl — Poor Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#ffffff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.logo span{color:var(--pink)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--pink);color:var(--white);padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background 0.2s}
+.nav-cta:hover{background:#ff0060}
+
+.hero{min-height:88vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,rgba(8,8,8,0.7) 40%,rgba(8,8,8,0.2) 100%)}
+.hero-content{position:relative;z-index:1;padding:80px 48px 64px;max-width:900px}
+.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:28px}
+.breadcrumb a{color:var(--pink);text-decoration:none}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:24px}
+.hero h1 em{color:var(--pink);font-style:normal}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.55);font-weight:300;max-width:600px;line-height:1.65;margin-bottom:40px}
+.hero-meta{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap}
+.meta-item{padding:16px 28px;border-right:1px solid var(--border)}
+.meta-item:last-child{border-right:none}
+.meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.meta-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--white);letter-spacing:0.5px}
+.meta-val.pink{color:var(--pink)}
+
+.ticker{background:var(--pink);padding:12px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 22s linear infinite}
+.ti{display:inline;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;margin:0 28px}
+.td{display:inline;opacity:0.4;margin:0 4px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.photos-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-bottom:1px solid var(--border)}
+.photo-block{height:240px;overflow:hidden}
+.photo-block img{width:100%;height:100%;object-fit:cover;filter:brightness(0.55);transition:transform 0.4s}
+.photo-block:hover img{transform:scale(1.04)}
+
+.page-body{display:grid;grid-template-columns:1fr 400px;gap:0;border-top:1px solid var(--border)}
+.main-col{padding:72px 64px 72px 48px;border-right:1px solid var(--border)}
+.side-col{padding:48px 40px;background:var(--dark)}
+
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+.block-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:0.95;letter-spacing:1px;margin-bottom:24px}
+.body-text{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;margin-bottom:20px}
+.divider{border:none;border-top:1px solid var(--border);margin:48px 0}
+
+.night-flow{list-style:none;position:relative;padding-left:28px}
+.night-flow::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--border)}
+.nf-item{position:relative;padding-bottom:36px}
+.nf-item:last-child{padding-bottom:0}
+.nf-dot{position:absolute;left:-28px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--pink);border:2px solid var(--black)}
+.nf-time{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
+.nf-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px}
+.nf-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
+
+.clubs-row{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
+.club-card{background:var(--card);border:1px solid var(--border);padding:24px 20px}
+.club-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:1px;margin-bottom:4px}
+.club-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
+.club-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px;font-weight:300}
+
+.highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:8px}
+.highlight-item{background:var(--card);padding:22px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.hi-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.hi-text{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.55}
+
+.upgrade-box{background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:24px;margin-top:24px}
+.upgrade-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.upgrade-text{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;font-weight:300}
+.upgrade-price{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--pink);margin-top:10px}
+
+.booking-card{background:var(--black);border:1px solid var(--border);padding:36px;position:sticky;top:88px}
+.booking-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--pink);line-height:1}
+.booking-price-note{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;margin-bottom:28px}
+.booking-divider{border:none;border-top:1px solid var(--border);margin:18px 0}
+.booking-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;gap:12px}
+.bkey{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.bval{font-size:13px;color:var(--white);font-weight:600;text-align:right}
+.bval.green{color:var(--green)}
+.btn-book{display:block;width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:background 0.2s;margin-top:24px;text-align:center;text-decoration:none}
+.btn-book:hover{background:#ff0060}
+.btn-ask{display:block;width:100%;padding:14px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;margin-top:10px;text-align:center;text-decoration:none}
+.btn-ask:hover{border-color:var(--white);color:var(--white)}
+
+.days-list{list-style:none;margin-top:4px}
+.days-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.days-list li:last-child{border-bottom:none}
+.day-name{color:var(--muted);font-weight:500}
+.day-full{color:var(--green);font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase}
+
+.other-dest{padding:72px 48px;background:var(--dark);border-top:1px solid var(--border)}
+.other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
+.dest-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
+.dest-link{background:var(--card);padding:32px;text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;height:160px}
+.dest-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3);transition:transform 0.4s}
+.dest-link:hover img{transform:scale(1.04)}
+.dest-link-content{position:relative;z-index:1}
+.dest-link-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;line-height:1}
+.dest-link-arrow{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-top:6px}
+
+footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.footer-logo span{color:var(--pink)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--white)}
+
+@media(max-width:960px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero-content{padding:60px 20px 48px}
+  .hero-meta{flex-wrap:wrap}
+  .page-body{grid-template-columns:1fr}
+  .main-col{padding:48px 20px;border-right:none}
+  .side-col{padding:40px 20px}
+  .booking-card{position:static}
+  .highlights-grid,.clubs-row{grid-template-columns:1fr}
+  .photos-strip{grid-template-columns:1fr 1fr}
+  .other-dest{padding:60px 20px}
+  .dest-row{grid-template-columns:1fr}
+  footer{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">POOR<span>DECISIONS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#packages">Packages</a></li>
+    <li><a href="index.html#destinations">Destinations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</nav>
+
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&q=80" alt="Albufeira nightlife">
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp;
+      <a href="index.html#destinations">Destinations</a> &nbsp;&rsaquo;&nbsp;
+      Albufeira
+    </div>
+    <div class="hero-eyebrow">Albufeira, Algarve &mdash; May to October</div>
+    <h1>Albufeira<br><em>Club Crawl</em></h1>
+    <p class="hero-sub">The Strip. The clubs. The chaos. A fully hosted night through Albufeira's best bars and clubs &mdash; free shots, queue jump and a rep who knows every inch of the strip.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-label">From</div><div class="meta-val pink">From &euro;35</div></div>
+      <div class="meta-item"><div class="meta-label">Venues</div><div class="meta-val">4&ndash;6 stops</div></div>
+      <div class="meta-item"><div class="meta-label">Free shots</div><div class="meta-val">Every stop</div></div>
+      <div class="meta-item"><div class="meta-label">Season</div><div class="meta-val">May &ndash; Oct</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <span class="ticker-inner">
+    <span class="ti">The Strip</span><span class="td">●</span>
+    <span class="ti">Kiss Disco Club</span><span class="td">●</span>
+    <span class="ti">Club Heaven</span><span class="td">●</span>
+    <span class="ti">Libertos</span><span class="td">●</span>
+    <span class="ti">Club Vida</span><span class="td">●</span>
+    <span class="ti">Kadoc</span><span class="td">●</span>
+    <span class="ti">Free Shots</span><span class="td">●</span>
+    <span class="ti">Queue Jump</span><span class="td">●</span>
+    <span class="ti">The Strip</span><span class="td">●</span>
+    <span class="ti">Kiss Disco Club</span><span class="td">●</span>
+    <span class="ti">Club Heaven</span><span class="td">●</span>
+    <span class="ti">Libertos</span><span class="td">●</span>
+    <span class="ti">Club Vida</span><span class="td">●</span>
+    <span class="ti">Kadoc</span><span class="td">●</span>
+    <span class="ti">Free Shots</span><span class="td">●</span>
+    <span class="ti">Queue Jump</span><span class="td">●</span>
+  </span>
+</div>
+
+<div class="photos-strip">
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80" alt="Albufeira nightlife"></div>
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Club night"></div>
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80" alt="Party crowd"></div>
+</div>
+
+<div class="page-body">
+  <div class="main-col">
+
+    <div class="eyebrow">The experience</div>
+    <h2 class="block-title">Albufeira's Strip.<br>Start to Finish.</h2>
+    <p class="body-text">Albufeira is the party capital of Portugal &mdash; and the Strip (Avenida S&aacute; Carneiro) is where it all happens. 800 metres of neon-lit bars, clubs and chaos running until sunrise every night of the week in peak season. We know every inch of it.</p>
+    <p class="body-text">Your night starts at one of the Strip's best bars, where you check in with your host, meet the group and kick off with free shots and drinking games. From there, your rep leads the group through 4 to 6 of the best stops on the strip &mdash; bars, clubs and the kind of places you wouldn't find on your own &mdash; ending at one of Albufeira's top nightclubs.</p>
+    <p class="body-text">Free shots at every stop, queue jump entry throughout, and a rep who's done this enough times to know exactly when to move and where to go next. No planning, no getting lost, no paying over the odds at the door.</p>
+
+    <div class="upgrade-box">
+      <div class="upgrade-title">&#9650; Going for a big one?</div>
+      <p class="upgrade-text">Ask about our VIP upgrade &mdash; table service, bottle options and a dedicated host for your group all night. Perfect for stags, hens and birthdays.</p>
+      <div class="upgrade-price">Ask us</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">How the night runs</div>
+    <h2 class="block-title">Your Night,<br>Step by Step</h2>
+    <ul class="night-flow">
+      <li class="nf-item">
+        <div class="nf-dot"></div>
+        <div class="nf-time">Stop 1 &mdash; Meeting point on the Strip</div>
+        <div class="nf-title">Check in, free shots, games kick off</div>
+        <div class="nf-desc">Meet your host and the group at the first bar. Free shots straight away, drinking games to get everyone going. This is where the night starts properly.</div>
+      </li>
+      <li class="nf-item">
+        <div class="nf-dot"></div>
+        <div class="nf-time">Stops 2, 3 &amp; 4</div>
+        <div class="nf-title">Bar hopping down the Strip</div>
+        <div class="nf-desc">Your rep leads the group through the best bars on the strip. Free shots at each stop, queue jump entry, and the kind of energy that builds as the night goes on.</div>
+      </li>
+      <li class="nf-item">
+        <div class="nf-dot"></div>
+        <div class="nf-time">Stop 5 &mdash; Pre-club bar</div>
+        <div class="nf-title">Last drinks before the clubs open</div>
+        <div class="nf-desc">The clubs in Albufeira open around 2am. Your rep keeps the group going at one of the Strip's best late bars until it's time to move.</div>
+      </li>
+      <li class="nf-item">
+        <div class="nf-dot"></div>
+        <div class="nf-time">Final stop &mdash; The club</div>
+        <div class="nf-title">One of Albufeira's top nightclubs</div>
+        <div class="nf-desc">Queue jump entry into one of the Strip's best clubs &mdash; Kiss, Heaven, Libertos or Club Vida depending on the night. Entry included, no door surprises.</div>
+      </li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">Where you'll end up</div>
+    <h2 class="block-title">Albufeira's Best<br>Clubs on the Rotation</h2>
+    <p class="body-text">The final club changes by night, but it's always one of the Strip's top venues. Here's what's on the rotation:</p>
+    <div class="clubs-row">
+      <div class="club-card">
+        <div class="club-name">Kiss Disco Club</div>
+        <div class="club-tag">Rua Vasco da Gama &mdash; Portugal's 2nd oldest club</div>
+        <div class="club-desc">An Albufeira institution. Massive dancefloor, international DJs, live acts and the kind of late-night energy that keeps going until sunrise. A rite of passage.</div>
+      </div>
+      <div class="club-card">
+        <div class="club-name">Club Heaven</div>
+        <div class="club-tag">The Strip &mdash; Opens 2am</div>
+        <div class="club-desc">One of the Strip's biggest clubs. International DJs, live shows, cheap drinks and a crowd that's there for it. Famous for their Sunset Party and boat party events in summer.</div>
+      </div>
+      <div class="club-card">
+        <div class="club-name">Libertos</div>
+        <div class="club-tag">The Strip &mdash; Est. 1985</div>
+        <div class="club-desc">Albufeira's most glamorous club &mdash; outdoor terrace, VIP sky lounge, premium cocktails and a stylish crowd. More upscale than the rest of the strip and worth every minute.</div>
+      </div>
+      <div class="club-card">
+        <div class="club-name">Club Vida</div>
+        <div class="club-tag">The Strip &mdash; Multi-room</div>
+        <div class="club-desc">Multiple rooms playing house, techno, R&amp;B and hip-hop. Excellent VIP areas and a top choice for groups. One of the Strip's most popular venues night after night.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2px">
+      <div class="club-card" style="background:rgba(255,45,120,0.06);border-color:rgba(255,45,120,0.2)">
+        <div class="club-name">Kadoc</div>
+        <div class="club-tag">Outside Albufeira &mdash; 7,000 capacity, 5 dancefloors</div>
+        <div class="club-desc">Portugal's most famous superclub &mdash; a short ride from the Strip with capacity for 7,000 across 5 dancefloors and a sub-tropical garden terrace. Regularly hosts big-name international DJs. Available as an optional add-on or upgrade for groups.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">What's included</div>
+    <h2 class="block-title">Everything You<br>Get on the Night</h2>
+    <div class="highlights-grid">
+      <div class="highlight-item"><div class="hi-icon">&#127867;</div><div class="hi-text">Free shot at every bar stop throughout the night</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#9889;</div><div class="hi-text">Queue jump entry at every venue &mdash; no waiting around</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127970;</div><div class="hi-text">4&ndash;6 stops including the best bars and a top nightclub</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127775;</div><div class="hi-text">Professional rep leading the group all night</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127881;</div><div class="hi-text">Club entry included &mdash; no door fees on the night</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127928;</div><div class="hi-text">Drinking games and group atmosphere from the first stop</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127813;</div><div class="hi-text">Perfect for stags, hens, birthdays and groups of any size</div></div>
+      <div class="highlight-item"><div class="hi-icon">&#127758;</div><div class="hi-text">The best of the Strip &mdash; none of the tourist traps</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">Perfect for</div>
+    <h2 class="block-title">Who's This<br>Built For?</h2>
+    <p class="body-text">Stag and hen parties, birthday groups, solo travellers who want to meet people, and anyone who wants to actually experience Albufeira's nightlife rather than wander the strip hoping for the best. The Strip is brilliant &mdash; but knowing where to go and when makes the difference between a good night and a great one.</p>
+    <p class="body-text">All club entry is included. No door surprises, no getting turned away, no paying over the odds. Your rep handles everything so you can just enjoy the night.</p>
+
+  </div>
+
+  <div class="side-col">
+    <div class="booking-card">
+      <div class="booking-price">From &euro;35</div>
+      <div class="booking-price-note">Per person &mdash; group discounts available</div>
+      <div class="booking-divider"></div>
+      <div class="booking-row"><span class="bkey">Free shots</span><span class="bval green">Every stop</span></div>
+      <div class="booking-row"><span class="bkey">Queue jump</span><span class="bval green">All venues</span></div>
+      <div class="booking-row"><span class="bkey">Club entry</span><span class="bval green">Included</span></div>
+      <div class="booking-row"><span class="bkey">Stops</span><span class="bval">4&ndash;6 per night</span></div>
+      <div class="booking-row"><span class="bkey">Rep</span><span class="bval">All night</span></div>
+      <div class="booking-row"><span class="bkey">Season</span><span class="bval">May &mdash; October</span></div>
+      <div class="booking-row"><span class="bkey">Age</span><span class="bval">18+</span></div>
+      <div class="booking-divider"></div>
+      <a href="contact.html?package=albufeira-club-crawl" class="btn-book">Book This Now</a>
+      <a href="contact.html" class="btn-ask">Got a question?</a>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="eyebrow">Availability</div>
+      <ul class="days-list">
+        <li><span class="day-name">Monday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Tuesday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Wednesday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Thursday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Friday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Saturday</span><span class="day-full">Running</span></li>
+        <li><span class="day-name">Sunday</span><span class="day-full">Running</span></li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px;background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:20px">
+      <div class="eyebrow" style="margin-bottom:8px">Group booking?</div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;font-weight:300">Got 8 or more? Message us on WhatsApp for group rates and VIP upgrade options. We'll sort you out.</p>
+    </div>
+
+    <div style="margin-top:16px;background:var(--card);border:1px solid var(--border);padding:20px">
+      <div class="eyebrow" style="margin-bottom:12px">Also in Albufeira</div>
+      <a href="contact.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none">
+        <span style="font-size:13px;color:var(--white);font-weight:500">Party Passport</span>
+        <span style="font-size:11px;color:var(--pink);font-weight:600">Coming Soon &rarr;</span>
+      </a>
+      <a href="contact.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;text-decoration:none">
+        <span style="font-size:13px;color:var(--white);font-weight:500">VIP Club Crawl</span>
+        <span style="font-size:11px;color:var(--pink);font-weight:600">Ask us &rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="other-dest">
+  <div class="eyebrow">Also available</div>
+  <h2>Other Destinations</h2>
+  <div class="dest-row">
+    <a href="las-vegas.html" class="dest-link">
+      <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=800&q=80" alt="Las Vegas">
+      <div class="dest-link-content">
+        <div class="dest-link-name">Las Vegas</div>
+        <div class="dest-link-arrow">View destination &rarr;</div>
+      </div>
+    </a>
+    <a href="ayia-napa.html" class="dest-link">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80" alt="Ayia Napa">
+      <div class="dest-link-content">
+        <div class="dest-link-name">Ayia Napa</div>
+        <div class="dest-link-arrow">View destination &rarr;</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">POOR<span>DECISIONS</span></a>
+  <div class="footer-copy">&copy; 2026 Poor Decisions. Bad decisions. Great nights.</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Book Now</a>
+    <a href="#">@poordecisions</a>
+  </div>
+</footer>
+
+</body>
+</html>

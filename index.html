@@ -3,349 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poor Decisions — Event Co.</title>
+<title>Poor Decisions — Bar Crawls & Club Nights in Vegas, Albufeira & Ayia Napa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --ink:#0E0E0E;
-  --cream:#F7F4EF;
-  --warm:#EDE8DF;
-  --accent:#C8A96E;
-  --accent-dark:#8B6E3C;
-  --muted:#8A8278;
-  --card-bg:#FFFFFF;
-  --border:#D9D3C9;
+  --black:#080808;
+  --dark:#111111;
+  --card:#181818;
+  --border:#2a2a2a;
+  --white:#ffffff;
+  --off-white:#e8e8e8;
+  --muted:#888888;
+  --pink:#FF2D78;
+  --purple:#B026FF;
+  --green:#00FF88;
+  --yellow:#FFE600;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
 
-/* NAV */
-nav{background:var(--ink);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
-.logo-wrap{text-decoration:none}
-.logo{font-family:'Playfair Display',serif;font-size:20px;color:#fff;letter-spacing:3px;text-transform:uppercase;font-style:italic;display:block}
-.logo-sub{font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-top:1px}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{border:1px solid var(--accent);color:var(--accent);background:transparent;padding:9px 24px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
-.nav-cta:hover{background:var(--accent);color:var(--ink)}
+nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:2px}
+.logo span{color:var(--pink)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--pink);color:var(--white);border:none;padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
+.nav-cta:hover{background:#ff0060;transform:translateY(-1px)}
 
-/* HERO */
-.hero{background:var(--ink);padding:120px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;min-height:520px;position:relative;overflow:hidden}
-.hero-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
-.hero-line2{position:absolute;top:0;right:48px;width:1px;height:100%;background:rgba(200,169,110,0.15)}
-.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,80px);color:#fff;line-height:1.05;font-weight:400}
-.hero h1 em{color:var(--accent);font-style:italic}
-.hero-desc{color:rgba(255,255,255,0.55);font-size:16px;line-height:1.75;font-weight:300;margin-bottom:40px;max-width:380px}
+.hero{min-height:92vh;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=1600&q=80') center/cover no-repeat;opacity:0.25}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top, var(--black) 0%, rgba(8,8,8,0.6) 50%, rgba(8,8,8,0.2) 100%)}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-locations{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.location-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:var(--off-white);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);line-height:0.9;letter-spacing:2px;margin-bottom:28px}
+.hero h1 .line1{color:var(--white);display:block}
+.hero h1 .line2{color:var(--pink);display:block}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.6);font-weight:300;max-width:520px;line-height:1.65;margin-bottom:40px}
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
-.btn-gold{background:var(--accent);color:var(--ink);border:none;padding:15px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-weight:500;text-decoration:none;display:inline-block}
-.btn-gold:hover{background:#D4B97E}
-.btn-ghost{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:15px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-primary{background:var(--pink);color:var(--white);border:none;padding:16px 36px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
+.btn-primary:hover{background:#ff0060;transform:translateY(-2px)}
+.dest-block{min-height:400px}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.25);padding:16px 36px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--white)}
 
-/* TICKER */
-.ticker{background:var(--accent);padding:12px 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:ticker 24s linear infinite}
-.ticker-item{display:inline;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);margin:0 40px;font-weight:500}
-.ticker-dot{display:inline;margin:0 8px;opacity:0.4}
+.ticker{background:var(--pink);padding:14px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:ticker 20s linear infinite}
+.ticker-item{display:inline;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin:0 32px}
+.ticker-dot{display:inline;margin:0 4px;opacity:0.5}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* STATS */
-.stats-row{display:flex;justify-content:space-around;padding:64px 48px;background:var(--warm);flex-wrap:wrap;gap:32px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stat-item{text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:52px;color:var(--ink);line-height:1;font-weight:400}
-.stat-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.destinations{padding:100px 48px;background:var(--black)}
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);color:var(--white);line-height:0.95;letter-spacing:1px;margin-bottom:56px}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.dest-card{position:relative;height:400px;overflow:hidden;cursor:pointer}
+.dest-card:hover .dest-img{transform:scale(1.05)}
+.dest-img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.5)}
+.dest-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.45)}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(8,8,8,0.9) 0%, transparent 60%);padding:32px;display:flex;flex-direction:column;justify-content:flex-end}
+.dest-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);letter-spacing:1px;line-height:1}
+.dest-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-top:6px}
 
-/* SECTIONS */
-section{padding:96px 48px}
-.section-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,52px);color:var(--ink);margin-bottom:56px;line-height:1.1;font-weight:400}
-.section-title em{font-style:italic;color:var(--accent-dark)}
+.packages-section{padding:100px 48px;background:var(--dark)}
+.packages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
+.pkg-card{background:var(--card);padding:48px 40px;border:1px solid var(--border);position:relative;transition:border-color 0.2s;display:flex;flex-direction:column}
+.pkg-card:hover{border-color:var(--pink)}
+.pkg-card.featured{border-color:var(--pink);background:#1a0a10}
+.pkg-number{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:24px;right:32px}
+.pkg-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
+.pkg-name{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:1;letter-spacing:1px;margin-bottom:16px}
+.pkg-desc{font-size:15px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:32px;flex:1}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--white);line-height:1;margin-bottom:6px}
+.pkg-price-note{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
+.pkg-includes{list-style:none;margin-bottom:32px;border-top:1px solid var(--border);padding-top:24px}
+.pkg-includes li{font-size:13px;color:rgba(255,255,255,0.55);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
+.pkg-includes li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pink);flex-shrink:0}
+.pkg-cta{display:block;width:100%;padding:16px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:all 0.2s;text-align:center;text-decoration:none;margin-top:auto}
+.pkg-card.featured .pkg-cta{background:var(--pink);border-color:var(--pink)}
+.pkg-cta:hover{background:var(--pink);border-color:var(--pink)}
+.hot-badge{position:absolute;top:24px;right:24px;background:var(--pink);color:var(--white);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 10px}
 
-/* PACKAGES */
-.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.pkg-card{background:var(--card-bg);padding:40px 32px;position:relative;display:flex;flex-direction:column}
-.pkg-card.featured{background:var(--ink)}
-.pkg-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-.pkg-card.featured .pkg-tag{color:var(--accent)}
-.pkg-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:var(--ink);margin-bottom:12px;line-height:1.2}
-.pkg-card.featured .pkg-name{color:#fff}
-.pkg-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;font-weight:300;flex:1}
-.pkg-card.featured .pkg-desc{color:rgba(255,255,255,0.5)}
-.pkg-price{font-family:'Playfair Display',serif;font-size:38px;color:var(--ink);margin-bottom:4px}
-.pkg-card.featured .pkg-price{color:var(--accent)}
-.pkg-price-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
-.pkg-includes{list-style:none;border-top:1px solid var(--border);padding-top:24px;margin-bottom:28px}
-.pkg-card.featured .pkg-includes{border-color:rgba(255,255,255,0.1)}
-.pkg-includes li{font-size:13px;color:var(--muted);padding:7px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-.pkg-card.featured .pkg-includes li{color:rgba(255,255,255,0.55);border-color:rgba(255,255,255,0.08)}
-.pkg-includes li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
-.pkg-cta{display:block;width:100%;padding:14px;border:1px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:all 0.2s;text-align:center;text-decoration:none}
-.pkg-card.featured .pkg-cta{border-color:var(--accent);color:var(--accent)}
-.pkg-cta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
-.best-badge{position:absolute;top:24px;right:24px;background:var(--accent);color:var(--ink);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;font-weight:500}
+.social-proof{padding:80px 48px;background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat-card{padding:48px 32px;text-align:center;border-right:1px solid var(--border)}
+.stat-card:last-child{border-right:none}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--white);line-height:1}
+.stat-num span{color:var(--pink)}
+.stat-label{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
 
-/* ADD-ONS */
-.addons-section{background:var(--warm)}
-.addons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
-.addon-card{background:var(--cream);padding:32px 24px;transition:background 0.2s}
-.addon-card:hover{background:#fff}
-.addon-icon{font-size:28px;margin-bottom:16px;color:var(--accent);display:block}
-.addon-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:8px}
-.addon-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;font-weight:300}
-.addon-price{font-size:22px;font-family:'Playfair Display',serif;color:var(--accent-dark)}
+.vibes-section{padding:100px 48px;background:var(--dark)}
+.vibes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+.vibe-card{background:var(--card);padding:40px 32px;border:1px solid var(--border)}
+.vibe-icon{font-size:36px;margin-bottom:20px}
+.vibe-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:12px;letter-spacing:1px}
+.vibe-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
 
-/* TESTIMONIALS */
-.testi-section{background:var(--ink)}
-.testi-section .section-title{color:#fff}
-.testi-section .section-eyebrow{color:var(--accent)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08)}
-.testi-card{background:var(--ink);padding:40px 32px}
-.testi-stars{color:var(--accent);letter-spacing:2px;font-size:14px;margin-bottom:20px}
-.testi-text{font-family:'Playfair Display',serif;font-size:17px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:28px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:14px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08)}
-.testi-initials{width:40px;height:40px;border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--accent);font-family:'Playfair Display',serif;flex-shrink:0}
-.testi-name{font-size:13px;color:#fff;font-weight:500}
-.testi-event{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.testimonials{padding:100px 48px;background:var(--black)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px}
+.testi-card{background:var(--card);padding:36px 32px;border:1px solid var(--border)}
+.testi-stars{color:var(--yellow);font-size:14px;letter-spacing:2px;margin-bottom:16px}
+.testi-text{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px;font-style:italic;font-weight:300}
+.testi-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--border)}
+.testi-initials{width:40px;height:40px;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--white);flex-shrink:0}
+.testi-name{font-size:14px;font-weight:600;color:var(--white)}
+.testi-where{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:0.5px}
 
-/* CTA STRIP */
-.cta-strip{background:var(--accent);padding:80px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px}
-.cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);color:var(--ink);font-weight:400;line-height:1.2}
-.cta-strip h2 em{font-style:italic}
-.btn-dark{background:var(--ink);color:#fff;border:none;padding:16px 40px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity 0.2s;font-weight:500;text-decoration:none;display:inline-block}
-.btn-dark:hover{opacity:0.8}
+.cta-strip{background:var(--pink);padding:80px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px}
+.cta-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--white);line-height:0.95;letter-spacing:1px}
+.btn-white{background:var(--white);color:var(--black);border:none;padding:18px 44px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:all 0.2s}
+.btn-white:hover{background:var(--off-white)}
 
-/* FOOTER */
-footer{background:var(--ink);padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
-.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:#fff;letter-spacing:3px;font-style:italic}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:1px}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
-.footer-links a:hover{color:var(--accent)}
+footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:2px;margin-bottom:16px}
+.footer-logo span{color:var(--pink)}
+.footer-tagline{font-size:14px;color:var(--muted);line-height:1.6;font-weight:300;max-width:280px}
+.footer-col-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.5px}
 
 @media(max-width:900px){
-  .packages-grid{grid-template-columns:1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .hero{grid-template-columns:1fr;padding:80px 24px 60px;gap:40px}
-  .cta-strip{grid-template-columns:1fr;padding:60px 24px}
-  nav{padding:0 24px}
-  .nav-links{display:none}
-  section{padding:72px 24px}
-  .stats-row{padding:48px 24px}
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{padding:60px 20px;min-height:80vh}
+  .packages-grid,.dest-grid,.stats-row,.vibes-grid,.testi-grid{grid-template-columns:1fr}
+  .cta-strip{grid-template-columns:1fr;padding:60px 20px}
+  section,.destinations,.packages-section,.social-proof,.vibes-section,.testimonials{padding:72px 20px}
+  .stat-card{border-right:none;border-bottom:1px solid var(--border)}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:48px 20px}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="logo-wrap">
-    <span class="logo">Poor Decisions</span>
-    <span class="logo-sub">Event Co.</span>
-  </a>
+  <a href="index.html" class="logo">POOR<span>DECISIONS</span></a>
   <ul class="nav-links">
     <li><a href="#packages">Packages</a></li>
-    <li><a href="#extras">Extras</a></li>
+    <li><a href="#destinations">Destinations</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Enquire</a>
+  <a href="#packages" class="nav-cta">Book Now</a>
 </nav>
 
 <div class="hero">
-  <div class="hero-line"></div>
-  <div class="hero-line2"></div>
-  <div>
-    <div class="hero-eyebrow">Palma de Mallorca &mdash; Est. 2020</div>
-    <h1>The best nights<br>start with <em>poor<br>decisions.</em></h1>
-  </div>
-  <div>
-    <p class="hero-desc">We craft private events and parties that people actually remember. Sophisticated, seamless, and a little bit dangerous.</p>
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-locations">
+      <span class="location-pill">&#127922; Las Vegas</span>
+      <span class="location-pill">&#127774; Albufeira</span>
+      <span class="location-pill">&#127796; Ayia Napa</span>
+    </div>
+    <h1>
+      <span class="line1">Bad Decisions.</span>
+      <span class="line2">Great Nights.</span>
+    </h1>
+    <p class="hero-sub">Bar crawls, club nights and VIP experiences for people who want the night everyone talks about tomorrow.</p>
     <div class="hero-btns">
-      <a href="#packages" class="btn-gold">View packages</a>
-      <a href="contact.html" class="btn-ghost">Get in touch</a>
+      <a href="#packages" class="btn-primary">See Packages</a>
+      <a href="#destinations" class="btn-outline">Our Destinations</a>
     </div>
   </div>
 </div>
 
 <div class="ticker">
   <span class="ticker-inner">
-    <span class="ticker-item">Private events</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Birthday celebrations</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Bridal parties</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Corporate evenings</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Bespoke experiences</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Mallorca specialists</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Private events</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Birthday celebrations</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Bridal parties</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Corporate evenings</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Bespoke experiences</span><span class="ticker-dot">&#9679;</span>
-    <span class="ticker-item">Mallorca specialists</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Las Vegas</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Albufeira</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Ayia Napa</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Bar Crawls</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Club Nights</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">VIP Access</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Party Pass</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Las Vegas</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Albufeira</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Ayia Napa</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Bar Crawls</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Club Nights</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">VIP Access</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-item">Party Pass</span><span class="ticker-dot">&#9679;</span>
   </span>
 </div>
 
-<div class="stats-row">
-  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Events hosted</div></div>
-  <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Client satisfaction</div></div>
-  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Event formats</div></div>
-  <div class="stat-item"><div class="stat-num">6yr</div><div class="stat-label">In the industry</div></div>
+<div class="social-proof">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">10<span>k</span>+</div><div class="stat-label">People on our crawls</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Party destinations</div></div>
+    <div class="stat-card"><div class="stat-num">4<span>.9</span></div><div class="stat-label">Average rating</div></div>
+    <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Bad nights. Guaranteed.</div></div>
+  </div>
 </div>
 
-<section id="packages">
-  <div class="section-eyebrow">Our packages</div>
-  <h2 class="section-title">Choose your<br><em>level of indulgence</em></h2>
-  <div class="packages-grid">
+<!-- DESTINATION SECTIONS -->
+<div id="destinations">
 
-    <div class="pkg-card">
-      <div class="pkg-tag">Entry &mdash; up to 30 guests</div>
-      <div class="pkg-name">The Essential</div>
-      <p class="pkg-desc">A refined foundation &mdash; venue styling, welcome drinks and a curated playlist to set the tone for the evening.</p>
-      <div class="pkg-price">&euro;349</div>
-      <div class="pkg-price-label">Per event</div>
-      <ul class="pkg-includes">
-        <li>Full venue styling</li>
-        <li>Welcome drinks on arrival</li>
-        <li>Curated music playlist</li>
-        <li>Event coordinator on-site</li>
-      </ul>
-      <a href="essential.html" class="pkg-cta">View full details &rarr;</a>
-    </div>
-
-    <div class="pkg-card featured">
-      <div class="best-badge">Most booked</div>
-      <div class="pkg-tag">Signature &mdash; up to 75 guests</div>
-      <div class="pkg-name">The Signature</div>
-      <p class="pkg-desc">Our most popular experience. Everything you need for a night that earns its own chapter in the story.</p>
-      <div class="pkg-price">&euro;899</div>
-      <div class="pkg-price-label">Per event</div>
-      <ul class="pkg-includes">
-        <li>Full venue transformation</li>
-        <li>DJ and live lighting rig</li>
-        <li>Catering for up to 75</li>
-        <li>Photo experience station</li>
-        <li>Dedicated event team</li>
-        <li>Setup and full breakdown</li>
-      </ul>
-      <a href="signature.html" class="pkg-cta">View full details &rarr;</a>
-    </div>
-
-    <div class="pkg-card">
-      <div class="pkg-tag">Bespoke &mdash; unlimited guests</div>
-      <div class="pkg-name">The Carte Blanche</div>
-      <p class="pkg-desc">No limits, no compromises. We design your event from the ground up, entirely around you.</p>
-      <div class="pkg-price">&euro;1,899+</div>
-      <div class="pkg-price-label">From &mdash; fully bespoke</div>
-      <ul class="pkg-includes">
-        <li>Fully bespoke concept design</li>
-        <li>Live entertainment options</li>
-        <li>Premium catering &amp; open bar</li>
-        <li>Celebrity DJ / live act</li>
-        <li>Fireworks or grand finale</li>
-        <li>Personal event director</li>
-      </ul>
-      <a href="carte-blanche.html" class="pkg-cta">View full details &rarr;</a>
-    </div>
-
-  </div>
-</section>
-
-<section class="addons-section" id="extras">
-  <div class="section-eyebrow">Extras</div>
-  <h2 class="section-title">Add something<br><em>unexpected</em></h2>
-  <div class="addons-grid">
-    <div class="addon-card">
-      <span class="addon-icon">&#9679;&#9675;</span>
-      <div class="addon-name">Photo experience</div>
-      <p class="addon-desc">Manned photo station, props, and a digital gallery delivered same night.</p>
-      <div class="addon-price">+&euro;149</div>
-    </div>
-    <div class="addon-card">
-      <span class="addon-icon">&#9835;</span>
-      <div class="addon-name">Live musician</div>
-      <p class="addon-desc">Acoustic guitarist, saxophonist or jazz duo for arrivals and dinner.</p>
-      <div class="addon-price">+&euro;299</div>
-    </div>
-    <div class="addon-card">
-      <span class="addon-icon">&#9670;</span>
-      <div class="addon-name">Grazing table</div>
-      <p class="addon-desc">Artisanal charcuterie, cheese and seasonal fruits styled to impress.</p>
-      <div class="addon-price">+&euro;189</div>
-    </div>
-    <div class="addon-card">
-      <span class="addon-icon">&#9676;</span>
-      <div class="addon-name">Cocktail station</div>
-      <p class="addon-desc">Mixologist-led bar with bespoke signature cocktail created for your event.</p>
-      <div class="addon-price">+&euro;229</div>
-    </div>
-    <div class="addon-card">
-      <span class="addon-icon">&#9672;</span>
-      <div class="addon-name">Bespoke cake</div>
-      <p class="addon-desc">Custom designed and baked to match your event's palette and theme.</p>
-      <div class="addon-price">+&euro;95</div>
-    </div>
-    <div class="addon-card">
-      <span class="addon-icon">&#10022;</span>
-      <div class="addon-name">Grand finale</div>
-      <p class="addon-desc">Confetti cannons, indoor sparklers, or a cold fireworks send-off.</p>
-      <div class="addon-price">+&euro;349</div>
+  <!-- LAS VEGAS -->
+  <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
+    <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1600&q=80" alt="Las Vegas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <div style="position:relative;z-index:1;padding:72px 48px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 01 &mdash; Year Round</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:32px">Las Vegas</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
+        <a href="las-vegas.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Club Crawl</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">VIP Club Crawl</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Open bar, party bus &amp; VIP entry to Vegas&rsquo; top clubs including Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From $49</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
+        </a>
+        <a href="las-vegas.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Daytime</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">VIP Pool Crawl</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Vegas&rsquo; best pool parties in style. VIP cabanas, bottle service options and access to the Strip&rsquo;s most iconic daytime scenes.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From $69</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
+        </a>
+      </div>
     </div>
   </div>
-</section>
 
-<section class="testi-section">
-  <div class="section-eyebrow">What people say</div>
-  <h2 class="section-title">Spoken about<br><em>for months after</em></h2>
+  <!-- AYIA NAPA -->
+  <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
+    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80" alt="Ayia Napa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <div style="position:relative;z-index:1;padding:72px 48px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 02 &mdash; May to October</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:32px">Ayia Napa</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
+        <a href="bar-crawl.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">The Classic</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">Bar Crawl</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit the best bars on the Napa strip with a hosted group. Free shots, queue jump entry and a rep who knows every shortcut.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From &euro;25</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
+        </a>
+        <a href="ayia-napa.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Best Value</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">Party Passport</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Choose any 3 clubs or pool parties from Ayia Napa&rsquo;s top venues. Castle Club, Pambos Pool Party, Carwash Disco and more. Valid 7 days.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From &euro;49</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALBUFEIRA -->
+  <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Albufeira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <div style="position:relative;z-index:1;padding:72px 48px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 03 &mdash; May to October</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:32px">Albufeira</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
+        <a href="contact.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Coming Soon</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">Club Crawl</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Albufeira&rsquo;s legendary Strip from top to bottom. Bars, clubs and a rep who knows exactly where the night goes next.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From &euro;35</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">Get in touch &rarr;</div>
+        </a>
+        <a href="contact.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Coming Soon</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:10px">Party Passport</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Your flexible pass to Albufeira&rsquo;s best nights. Choose your venues, pick your nights, and let us handle the rest.</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:16px">From &euro;49</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">Get in touch &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="testimonials">
+  <div class="section-label">Don't take our word for it</div>
+  <h2 class="section-title">They Said<br>What?!</h2>
   <div class="testi-grid">
     <div class="testi-card">
       <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testi-text">"They took our vague idea and turned it into something we could never have imagined ourselves. Flawless from start to finish."</p>
+      <p class="testi-text">"Genuinely the best night of the whole holiday. Our rep was hilarious and got us into places we never would've found on our own. Already booked for next summer."</p>
       <div class="testi-author">
-        <div class="testi-initials">SM</div>
+        <div class="testi-initials">JB</div>
         <div>
-          <div class="testi-name">Sarah M.</div>
-          <div class="testi-event">The Signature &mdash; Birthday</div>
+          <div class="testi-name">Jamie B.</div>
+          <div class="testi-where">Club Crawl &mdash; Ayia Napa</div>
         </div>
       </div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testi-text">"Genuinely the best party I have ever attended, let alone hosted. The team are exceptional. Worth every single euro."</p>
+      <p class="testi-text">"Did the VIP crawl in Vegas and honestly it was worth every penny. Table service, no queues, the whole thing. We felt like we owned the place."</p>
       <div class="testi-author">
-        <div class="testi-initials">JT</div>
+        <div class="testi-initials">SK</div>
         <div>
-          <div class="testi-name">Jake T.</div>
-          <div class="testi-event">The Carte Blanche &mdash; Private</div>
+          <div class="testi-name">Sophie K.</div>
+          <div class="testi-where">VIP Crawl &mdash; Las Vegas</div>
         </div>
       </div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testi-text">"I was in tears &mdash; happy ones. The attention to detail was extraordinary. My guests are still talking about it."</p>
+      <p class="testi-text">"Got the Party Pass for our lads week in Albufeira. Five nights, every single one was electric. Best stag trip anyone's ever been on. The name says it all."</p>
       <div class="testi-author">
-        <div class="testi-initials">AK</div>
+        <div class="testi-initials">MR</div>
         <div>
-          <div class="testi-name">Amara K.</div>
-          <div class="testi-event">The Signature &mdash; Bridal</div>
+          <div class="testi-name">Marcus R.</div>
+          <div class="testi-where">Party Pass &mdash; Albufeira</div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <div class="cta-strip">
-  <h2>Ready to make<br><em>your best poor decision?</em></h2>
-  <a href="contact.html" class="btn-dark">Request a consultation</a>
+  <h2>Your Best Bad<br>Decision Starts Here</h2>
+  <a href="contact.html" class="btn-white">Book Now</a>
 </div>
 
 <footer>
-  <div class="footer-logo">Poor Decisions</div>
-  <div class="footer-copy">&copy; 2026 Poor Decisions Event Co. &mdash; Palma de Mallorca</div>
-  <div class="footer-links">
-    <a href="#">Instagram</a>
-    <a href="contact.html">Contact</a>
-    <a href="#">Privacy</a>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">POOR<span>DECISIONS</span></div>
+      <p class="footer-tagline">Bar crawls, club nights and VIP experiences in Las Vegas, Albufeira and Ayia Napa. Your best bad decision abroad.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Packages</div>
+      <ul class="footer-links">
+        <li><a href="bar-crawl.html">Bar Crawl</a></li>
+        <li><a href="club-crawl.html">Club Crawl</a></li>
+        <li><a href="vip-crawl.html">VIP Club Crawl</a></li>
+        <li><a href="party-pass.html">Party Pass</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Destinations</div>
+      <ul class="footer-links">
+        <li><a href="#">Las Vegas</a></li>
+        <li><a href="#">Albufeira</a></li>
+        <li><a href="#">Ayia Napa</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Get In Touch</div>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@poordecisions.com">hello@poordecisions.com</a></li>
+        <li><a href="#">WhatsApp: +XX XXX XXX XXXX</a></li>
+        <li><a href="#">@poordecisions</a></li>
+        <li><a href="contact.html">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 Poor Decisions. All rights reserved.</div>
+    <div class="footer-copy">Bad decisions. Great nights.</div>
   </div>
 </footer>
 

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayia Napa Party Passport — Poor Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#ffffff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88;--purple:#B026FF}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.logo span{color:var(--pink)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--pink);color:var(--white);padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background 0.2s}
+.nav-cta:hover{background:#ff0060}
+
+.hero{min-height:88vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,rgba(8,8,8,0.65) 45%,rgba(8,8,8,0.15) 100%)}
+.hero-content{position:relative;z-index:1;padding:80px 48px 64px;max-width:960px}
+.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:28px}
+.breadcrumb a{color:var(--pink);text-decoration:none}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:24px}
+.hero h1 em{color:var(--pink);font-style:normal}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.55);font-weight:300;max-width:620px;line-height:1.65;margin-bottom:40px}
+.hero-meta{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap}
+.meta-item{padding:16px 28px;border-right:1px solid var(--border)}
+.meta-item:last-child{border-right:none}
+.meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.meta-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--white);letter-spacing:0.5px}
+.meta-val.pink{color:var(--pink)}
+
+.ticker{background:var(--pink);padding:12px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 24s linear infinite}
+.ti{display:inline;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;margin:0 28px}
+.td{display:inline;opacity:0.4;margin:0 4px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.photos-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-bottom:1px solid var(--border)}
+.photo-block{height:240px;overflow:hidden}
+.photo-block img{width:100%;height:100%;object-fit:cover;filter:brightness(0.55);transition:transform 0.4s}
+.photo-block:hover img{transform:scale(1.04)}
+
+.page-body{display:grid;grid-template-columns:1fr 400px;gap:0;border-top:1px solid var(--border)}
+.main-col{padding:72px 64px 72px 48px;border-right:1px solid var(--border)}
+.side-col{padding:48px 40px;background:var(--dark)}
+
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+.block-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:0.95;letter-spacing:1px;margin-bottom:24px}
+.body-text{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;margin-bottom:20px}
+.divider{border:none;border-top:1px solid var(--border);margin:48px 0}
+
+/* PASSPORT CARD */
+.passport-card{background:linear-gradient(135deg,#1a0a10 0%,#0d0d1a 100%);border:1px solid rgba(255,45,120,0.3);padding:36px;margin-bottom:32px;position:relative;overflow:hidden}
+.passport-card::before{content:'PARTY PASSPORT';position:absolute;top:20px;right:20px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(255,45,120,0.2);text-transform:uppercase}
+.passport-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;margin-bottom:6px}
+.passport-sub{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;font-weight:300;margin-bottom:24px}
+.passport-slots{display:flex;gap:12px;margin-bottom:20px}
+.slot{width:64px;height:64px;border:2px dashed rgba(255,45,120,0.4);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,45,120,0.3)}
+.slot.active{border-color:var(--pink);color:var(--pink);background:rgba(255,45,120,0.08)}
+.passport-note{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.5px}
+
+/* VENUE CARDS */
+.venues-list{display:flex;flex-direction:column;gap:2px}
+.venue-card{background:var(--card);border:1px solid var(--border);padding:28px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:start;transition:border-color 0.2s;cursor:pointer}
+.venue-card:hover{border-color:var(--pink)}
+.venue-card.pool{border-left:3px solid var(--purple)}
+.venue-card.club{border-left:3px solid var(--pink)}
+.venue-card.boat{border-left:3px solid var(--green)}
+.venue-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:rgba(255,255,255,0.06);line-height:1;width:48px;text-align:center}
+.venue-info{}
+.venue-type{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.venue-type.club-tag{color:var(--pink)}
+.venue-type.pool-tag{color:var(--purple)}
+.venue-type.boat-tag{color:var(--green)}
+.venue-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:1px;line-height:1;margin-bottom:8px}
+.venue-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;font-weight:300}
+.venue-free{text-align:right;flex-shrink:0}
+.free-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.free-time{font-size:12px;color:var(--green);font-weight:600;line-height:1.4;max-width:140px;text-align:right}
+
+/* HIGHLIGHTS */
+.highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:8px}
+.hi-item{background:var(--card);padding:22px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.hi-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.hi-text{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.55}
+
+/* BOOKING CARD */
+.booking-card{background:var(--black);border:1px solid var(--border);padding:36px;position:sticky;top:88px}
+.booking-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--pink);line-height:1}
+.booking-price-note{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;margin-bottom:28px}
+.booking-divider{border:none;border-top:1px solid var(--border);margin:18px 0}
+.booking-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;gap:12px}
+.bkey{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.bval{font-size:13px;color:var(--white);font-weight:600;text-align:right}
+.bval.green{color:var(--green)}
+.btn-book{display:block;width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:background 0.2s;margin-top:24px;text-align:center;text-decoration:none}
+.btn-book:hover{background:#ff0060}
+.btn-ask{display:block;width:100%;padding:14px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;margin-top:10px;text-align:center;text-decoration:none}
+.btn-ask:hover{border-color:var(--white);color:var(--white)}
+
+/* HOW IT WORKS */
+.steps{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.step{background:var(--card);border:1px solid var(--border);padding:24px;display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:rgba(255,45,120,0.25);line-height:1}
+.step-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* LEGEND */
+.legend{display:flex;gap:20px;margin-bottom:24px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);font-weight:500}
+.legend-dot{width:10px;height:10px;border-radius:1px;flex-shrink:0}
+
+/* OTHER DESTINATIONS */
+.other-dest{padding:72px 48px;background:var(--dark);border-top:1px solid var(--border)}
+.other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
+.dest-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
+.dest-link{background:var(--card);padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
+.dest-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3);transition:transform 0.4s}
+.dest-link:hover img{transform:scale(1.04)}
+.dest-link-content{position:relative;z-index:1}
+.dest-link-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;line-height:1}
+.dest-link-arrow{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-top:6px}
+
+footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.footer-logo span{color:var(--pink)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--white)}
+
+@media(max-width:960px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero-content{padding:60px 20px 48px}
+  .hero-meta{flex-wrap:wrap}
+  .page-body{grid-template-columns:1fr}
+  .main-col{padding:48px 20px;border-right:none}
+  .side-col{padding:40px 20px}
+  .booking-card{position:static}
+  .highlights-grid{grid-template-columns:1fr}
+  .photos-strip{grid-template-columns:1fr 1fr}
+  .venue-card{grid-template-columns:1fr;gap:12px}
+  .venue-num{display:none}
+  .venue-free{text-align:left}
+  .free-time{text-align:left}
+  .other-dest{padding:60px 20px}
+  .dest-row{grid-template-columns:1fr}
+  footer{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">POOR<span>DECISIONS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#packages">Packages</a></li>
+    <li><a href="index.html#destinations">Destinations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</nav>
+
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80" alt="Ayia Napa">
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp;
+      <a href="index.html#destinations">Destinations</a> &nbsp;&rsaquo;&nbsp;
+      Ayia Napa
+    </div>
+    <div class="hero-eyebrow">Ayia Napa, Cyprus &mdash; May to October</div>
+    <h1>Ayia Napa<br><em>Party Passport</em></h1>
+    <p class="hero-sub">Choose any 3 clubs or pool parties. Your pass, your nights, your way &mdash; valid for 7 days from first use.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-label">From</div><div class="meta-val pink">From &euro;49</div></div>
+      <div class="meta-item"><div class="meta-label">Venues included</div><div class="meta-val">Pick any 3</div></div>
+      <div class="meta-item"><div class="meta-label">Valid for</div><div class="meta-val">7 days</div></div>
+      <div class="meta-item"><div class="meta-label">Clubs &amp; pool parties</div><div class="meta-val">10 to choose from</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <span class="ticker-inner">
+    <span class="ti">Castle Club</span><span class="td">●</span>
+    <span class="ti">Pambos Pool Party</span><span class="td">●</span>
+    <span class="ti">Carwash Disco</span><span class="td">●</span>
+    <span class="ti">Sunset Sessions</span><span class="td">●</span>
+    <span class="ti">Club Ice</span><span class="td">●</span>
+    <span class="ti">Fantasy Boat Party</span><span class="td">●</span>
+    <span class="ti">Soho Club</span><span class="td">●</span>
+    <span class="ti">Vice on the Roof</span><span class="td">●</span>
+    <span class="ti">Castle Club</span><span class="td">●</span>
+    <span class="ti">Pambos Pool Party</span><span class="td">●</span>
+    <span class="ti">Carwash Disco</span><span class="td">●</span>
+    <span class="ti">Sunset Sessions</span><span class="td">●</span>
+    <span class="ti">Club Ice</span><span class="td">●</span>
+    <span class="ti">Fantasy Boat Party</span><span class="td">●</span>
+    <span class="ti">Soho Club</span><span class="td">●</span>
+    <span class="ti">Vice on the Roof</span><span class="td">●</span>
+  </span>
+</div>
+
+<div class="photos-strip">
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80" alt="Club night"></div>
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Pool party"></div>
+  <div class="photo-block"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Ayia Napa"></div>
+</div>
+
+<div class="page-body">
+  <div class="main-col">
+
+    <div class="eyebrow">What is it?</div>
+    <h2 class="block-title">One Pass.<br>Three Nights. Your Pick.</h2>
+    <p class="body-text">The Ayia Napa Party Passport gives you free entry to any 3 venues from our list of the island's best clubs, pool parties and boat parties. Day or night, spread out across the week or stacked back-to-back &mdash; your passport, your plan.</p>
+    <p class="body-text">Skip the stress of booking individually, skip the door fees, and stop missing out because you didn't plan ahead. One passport covers it all. Valid for 7 days from first use so you've got the whole trip to use it.</p>
+
+    <div style="margin:32px 0">
+      <div class="passport-card">
+        <div class="passport-title">Poor Decisions Party Passport</div>
+        <div class="passport-sub">Ayia Napa, Cyprus &mdash; Choose any 3 of the venues below. Valid 7 days from first use.</div>
+        <div class="passport-slots">
+          <div class="slot active">1</div>
+          <div class="slot active">2</div>
+          <div class="slot active">3</div>
+        </div>
+        <div class="passport-note">Present your passport at the door. Entry included. No extra charges.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">Venues included</div>
+    <h2 class="block-title">Pick Any 3 &mdash;<br>Day or Night</h2>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div>Nightclub</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Pool party</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Boat party</div>
+    </div>
+
+    <div class="venues-list">
+
+      <div class="venue-card club">
+        <div class="venue-num">01</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Ayia Napa Strip</div>
+          <div class="venue-name">Castle Club</div>
+          <div class="venue-desc">Ayia Napa's biggest superclub &mdash; ranked in DJ Mag's top 100 in the world. Five arenas, each with its own vibe: pop, R&B/hip-hop, house/techno, a chillout terrace, and a luxury VIP section. Capacity 4,000+. The anchor of any Napa nightlife week.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Free entry before</div>
+          <div class="free-time">Check with host on the night</div>
+        </div>
+      </div>
+
+      <div class="venue-card pool">
+        <div class="venue-num">02</div>
+        <div class="venue-info">
+          <div class="venue-type pool-tag">Pool party &mdash; Pambos Napa Rocks Hotel</div>
+          <div class="venue-name">Pambos Pool Party</div>
+          <div class="venue-desc">The biggest and longest-running pool party in Ayia Napa. Top DJs playing house, R&B and classics every Thursday afternoon &mdash; sip cocktails in the sunshine, cool off in the pool, and understand why the strip goes quiet on Thursday evenings. VIP tables available.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Runs every</div>
+          <div class="free-time">Thursday from 2pm</div>
+        </div>
+      </div>
+
+      <div class="venue-card club">
+        <div class="venue-num">03</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Main Square</div>
+          <div class="venue-name">Carwash Disco</div>
+          <div class="venue-desc">The largest club in Cyprus and a Napa institution since 1996. Carwash plays cheesy hits from the 70s, 80s, 90s and beyond &mdash; the crowd is everyone, the vibe is anything goes, and it runs until 5&ndash;6am. Iconic. Non-negotiable.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Opens</div>
+          <div class="free-time">Daily from 1:30am</div>
+        </div>
+      </div>
+
+      <div class="venue-card pool">
+        <div class="venue-num">04</div>
+        <div class="venue-info">
+          <div class="venue-type pool-tag">Pool party &mdash; Pambos Napa Rocks Hotel</div>
+          <div class="venue-name">Sunset Sessions</div>
+          <div class="venue-desc">Ayia Napa's newest and fastest-growing pool party. Think Ibiza pool party energy on a Sunday afternoon &mdash; sick beats, great vibes, and a crowd that's there for it. Swimwear, sunglasses and good energy only. VIP cabanas available on the day.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Runs every</div>
+          <div class="free-time">Sunday afternoon</div>
+        </div>
+      </div>
+
+      <div class="venue-card club">
+        <div class="venue-num">05</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Ayia Napa Strip</div>
+          <div class="venue-name">Club Ice</div>
+          <div class="venue-desc">One of Napa's busiest clubs &mdash; two arenas with state-of-the-art sound and lighting plus a signature ice wall. Famous for its themed nights: foam parties, paint parties, popcorn nights. Always packed, always a laugh. Monday foam party is a rite of passage.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Open</div>
+          <div class="free-time">Nightly, peak season</div>
+        </div>
+      </div>
+
+      <div class="venue-card boat">
+        <div class="venue-num">06</div>
+        <div class="venue-info">
+          <div class="venue-type boat-tag">Boat party &mdash; Ayia Napa Harbour</div>
+          <div class="venue-name">Fantasy Boat Party</div>
+          <div class="venue-desc">Ayia Napa's most popular boat party &mdash; running multiple times a week from the harbour. DJ, drinks, swimming stops in the Mediterranean and a crowd that's there to party. One of the best daytime experiences on the island, full stop.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Runs</div>
+          <div class="free-time">Multiple days per week</div>
+        </div>
+      </div>
+
+      <div class="venue-card club">
+        <div class="venue-num">07</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Ayia Napa Square</div>
+          <div class="venue-name">Soho Club</div>
+          <div class="venue-desc">Sleek underground club just off the main square. Multiple floors, each playing a different genre &mdash; dance, R&B and pop. VIP booths, bottle service and a crowd that shows up dressed. One of Napa's more upscale club experiences.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Open</div>
+          <div class="free-time">Nightly, peak season</div>
+        </div>
+      </div>
+
+      <div class="venue-card pool">
+        <div class="venue-num">08</div>
+        <div class="venue-info">
+          <div class="venue-type pool-tag">Rooftop party &mdash; Aqua Club / Various</div>
+          <div class="venue-name">Vice Parties on the Roof</div>
+          <div class="venue-desc">An open-air rooftop party experience that's become one of Ayia Napa's most talked-about nights. Friday and Saturday events with guest DJs, a view over the strip, and the kind of atmosphere that's hard to find anywhere else on the island.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Runs</div>
+          <div class="free-time">Fri &amp; Sat nights</div>
+        </div>
+      </div>
+
+      <div class="venue-card club">
+        <div class="venue-num">09</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Ayia Napa Square</div>
+          <div class="venue-name">Club Sin</div>
+          <div class="venue-desc">Small, energetic and always busy in peak season. Club Sin ditches the generic chart music in favour of urban hits &mdash; hip-hop, bashment, dancehall, grime and Afrobeats. Small VIP area at the back. Open June to August only &mdash; peak season exclusive.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Open</div>
+          <div class="free-time">June &mdash; August only</div>
+        </div>
+      </div>
+
+      <div class="venue-card club">
+        <div class="venue-num">10</div>
+        <div class="venue-info">
+          <div class="venue-type club-tag">Nightclub &mdash; Ayia Napa Strip</div>
+          <div class="venue-name">Black N White</div>
+          <div class="venue-desc">One of Ayia Napa's most consistent clubs &mdash; open from June through to the end of October, and one of the few venues that keeps going into the shoulder season. A solid, reliable night out with a mix of dance, urban and party anthems.</div>
+        </div>
+        <div class="venue-free">
+          <div class="free-label">Open</div>
+          <div class="free-time">June &mdash; October</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">How it works</div>
+    <h2 class="block-title">Simple as That</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Book your passport</div>
+          <div class="step-desc">Book online or through our team. You'll receive your passport details before you arrive in Ayia Napa.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Choose your 3 nights</div>
+          <div class="step-desc">Pick any 3 venues from the list above. Day or night, mix clubs and pool parties, spread them out however you want.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Turn up and get in</div>
+          <div class="step-desc">Show your passport at the door. Entry included, no extra charges, no waiting around. Just go straight in and enjoy.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="eyebrow">Highlights</div>
+    <h2 class="block-title">What You Get</h2>
+    <div class="highlights-grid">
+      <div class="hi-item"><div class="hi-icon">&#127513;</div><div class="hi-text">Free entry to any 3 top clubs or pool parties</div></div>
+      <div class="hi-item"><div class="hi-icon">&#128197;</div><div class="hi-text">Valid for 7 days from first use &mdash; use it your way</div></div>
+      <div class="hi-item"><div class="hi-icon">&#127911;</div><div class="hi-text">Ayia Napa's biggest venues all in one passport</div></div>
+      <div class="hi-item"><div class="hi-icon">&#9728;</div><div class="hi-text">Mix clubs and pool parties &mdash; day or night</div></div>
+      <div class="hi-item"><div class="hi-icon">&#9889;</div><div class="hi-text">Skip the door stress &mdash; it's already sorted</div></div>
+      <div class="hi-item"><div class="hi-icon">&#127867;</div><div class="hi-text">Beats booking individually every single time</div></div>
+    </div>
+  </div>
+
+  <!-- BOOKING SIDEBAR -->
+  <div class="side-col">
+    <div class="booking-card">
+      <div class="booking-price">From &euro;49</div>
+      <div class="booking-price-note">Per person &mdash; includes 3 venues</div>
+      <div class="booking-divider"></div>
+      <div class="booking-row"><span class="bkey">Venues</span><span class="bval green">Any 3 from the list</span></div>
+      <div class="booking-row"><span class="bkey">Valid</span><span class="bval">7 days from first use</span></div>
+      <div class="booking-row"><span class="bkey">Clubs</span><span class="bval">6 included</span></div>
+      <div class="booking-row"><span class="bkey">Pool &amp; boat parties</span><span class="bval">4 included</span></div>
+      <div class="booking-row"><span class="bkey">Entry charges</span><span class="bval green">All included</span></div>
+      <div class="booking-row"><span class="bkey">Season</span><span class="bval">May &mdash; October</span></div>
+      <div class="booking-row"><span class="bkey">Age</span><span class="bval">18+</span></div>
+      <div class="booking-divider"></div>
+      <a href="contact.html?package=ayia-napa-passport" class="btn-book">Book Your Passport</a>
+      <a href="contact.html" class="btn-ask">Got a question?</a>
+    </div>
+
+    <div style="margin-top:24px;background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.2);padding:24px">
+      <div class="eyebrow" style="margin-bottom:10px">Group booking?</div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300">Got a group of 8 or more? Message us on WhatsApp for group rates &mdash; we'll sort you out with a deal.</p>
+    </div>
+
+    <div style="margin-top:16px;background:var(--card);border:1px solid var(--border);padding:24px">
+      <div class="eyebrow" style="margin-bottom:10px">Also in Ayia Napa</div>
+      <a href="bar-crawl.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none">
+        <span style="font-size:13px;color:var(--white);font-weight:500">Bar Crawl</span>
+        <span style="font-size:11px;color:var(--pink);font-weight:600">From &euro;25 &rarr;</span>
+      </a>
+      <a href="club-crawl.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none">
+        <span style="font-size:13px;color:var(--white);font-weight:500">Club Crawl</span>
+        <span style="font-size:11px;color:var(--pink);font-weight:600">From &euro;35 &rarr;</span>
+      </a>
+      <a href="vip-crawl.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;text-decoration:none">
+        <span style="font-size:13px;color:var(--white);font-weight:500">VIP Club Crawl</span>
+        <span style="font-size:11px;color:var(--pink);font-weight:600">From &euro;75 &rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- OTHER DESTINATIONS -->
+<div class="other-dest">
+  <div class="eyebrow">Also available</div>
+  <h2>Other Destinations</h2>
+  <div class="dest-row">
+    <a href="las-vegas.html" class="dest-link">
+      <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=800&q=80" alt="Las Vegas">
+      <div class="dest-link-content">
+        <div class="dest-link-name">Las Vegas</div>
+        <div class="dest-link-arrow">View destination &rarr;</div>
+      </div>
+    </a>
+    <a href="albufeira.html" class="dest-link">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Albufeira">
+      <div class="dest-link-content">
+        <div class="dest-link-name">Albufeira</div>
+        <div class="dest-link-arrow">View destination &rarr;</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">POOR<span>DECISIONS</span></a>
+  <div class="footer-copy">&copy; 2026 Poor Decisions. Bad decisions. Great nights.</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Book Now</a>
+    <a href="#">@poordecisions</a>
+  </div>
+</footer>
+
+</body>
+</html>
