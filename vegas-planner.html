@@ -6,12 +6,49 @@
 <title>Build Your Vegas Nights — Poor Decisions</title>
 <link rel="icon" href="poor-decisions-favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://js.stripe.com/v3/"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--pk:#FF2D78;--black:#111111;--white:#ffffff;--grey:#f5f5f5;--border:#e8e8e8;--mid:#888}
-html,body{height:100%;background:var(--white);font-family:'Inter',sans-serif;color:var(--black);overflow:hidden}
-#app{height:100%;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;overflow:hidden;background:var(--white)}
+html,body{height:100%;background:#f0f0f0;font-family:'Inter',sans-serif;color:var(--black)}
+
+/* DESKTOP WRAPPER */
+#app{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  background:var(--white);
+  box-shadow:0 0 60px rgba(0,0,0,0.12);
+}
+
+/* DESKTOP: side-by-side layout */
+@media(min-width:900px){
+  body{display:flex;align-items:stretch;background:#f0f0f0}
+  #app{
+    max-width:none;
+    width:460px;
+    flex-shrink:0;
+    height:100vh;
+    box-shadow:2px 0 20px rgba(0,0,0,0.08);
+  }
+  #desktop-preview{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:48px;
+    background:#f8f8f8;
+  }
+  #desktop-preview.hidden{display:none}
+}
+@media(max-width:899px){
+  #desktop-preview{display:none}
+}
+
 .screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;flex-direction:column;background:var(--white)}
 .screen.on{display:flex}
 
@@ -27,19 +64,19 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;height:
 .btn-main{width:100%;background:var(--pk);border:none;border-radius:12px;padding:16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;cursor:pointer}
 .btn-main:disabled{background:var(--border);color:var(--mid);cursor:default}
 
-/* SCREEN 1 - DATES */
+/* S1 DATES */
 #s1 .body{padding:24px 20px;display:flex;flex-direction:column;gap:20px}
 .kicker{font:600 10px/1 'Inter';letter-spacing:3px;text-transform:uppercase;color:var(--pk)}
 h1{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:.9;color:var(--black)}
 h1 em{color:var(--pk);font-style:normal;display:block}
 .pill{align-self:flex-start;background:var(--pk);border-radius:999px;padding:7px 14px;font:600 11px/1.25 'Inter';color:#fff}
 .cal-hd{display:flex;align-items:baseline;gap:10px}
-.cal-month{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);letter-spacing:.04em}
+.cal-month{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black)}
 .cal-line{flex:1;height:1px;background:var(--border)}
 .cal-label{font:600 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--pk)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow{text-align:center;font:600 9.5px/1 'Inter';letter-spacing:.1em;color:var(--mid);padding:4px 0}
-.cal-day{height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:600 14px/1 'Inter';cursor:pointer;color:var(--mid);background:transparent;transition:all .15s}
+.cal-day{height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:600 14px/1 'Inter';cursor:pointer;color:var(--mid);background:transparent;transition:all .15s;border:none}
 .cal-day:hover:not(.past):not(.pad){background:rgba(255,45,120,.08)}
 .cal-day.pad{visibility:hidden}
 .cal-day.past{color:#ccc;cursor:default}
@@ -47,7 +84,6 @@ h1 em{color:var(--pk);font-style:normal;display:block}
 .cal-day.end{background:var(--pk);color:#fff;border-radius:0 10px 10px 0}
 .cal-day.start.end{border-radius:10px}
 .cal-day.inrange{background:rgba(255,45,120,.12);color:var(--black);border-radius:0}
-.cal-day.today{font-weight:800;color:var(--pk)}
 .cal-hint{font:400 11px/1.4 'Inter';color:var(--mid)}
 .guests-card{border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .guests-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
@@ -58,7 +94,7 @@ h1 em{color:var(--pk);font-style:normal;display:block}
 .g-btn.p{background:var(--pk);color:#fff}
 .g-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);min-width:28px;text-align:center}
 
-/* SCREEN 2 - ITINERARY */
+/* S2 ITINERARY */
 #s2 .body{display:flex;flex-direction:column;gap:0;padding-bottom:80px}
 .s2-intro{padding:20px 20px 0}
 h2.stitle{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:.9;color:var(--black);margin-bottom:3px}
@@ -66,13 +102,11 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .ssub{font:400 12px/1.5 'Inter';color:var(--mid);margin-bottom:16px}
 .day-block{border-bottom:1px solid var(--border);padding:16px 20px}
 .day-hd{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
-.day-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black);letter-spacing:.04em}
+.day-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
 .day-date{font:600 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
 .day-line{flex:1;height:1px;background:var(--border)}
-.day-count{font:600 9.5px/1 'Inter';letter-spacing:.14em;color:var(--mid)}
+.day-count{font:600 9.5px/1 'Inter';color:var(--mid)}
 .slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-/* Tiles */
 .tile{height:140px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid var(--border)}
 .tile.night-filled{border-color:var(--pk)}
 .tile.day-filled{border-color:#2D9BFF}
@@ -81,17 +115,12 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .tile-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 40%,rgba(0,0,0,.1))}
 .tile-kind-pill{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);border-radius:999px;padding:3px 8px;font:700 9px/1 'Inter';letter-spacing:.12em;color:var(--black)}
 .tile-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:#fff}
-.tile-check.n{background:var(--pk)}
-.tile-check.d{background:#2D9BFF}
-.tile-check.b{background:#f0a500}
-.tile-info{position:absolute;left:0;right:0;bottom:0;padding:10px 10px 8px}
-.tile-logo{height:20px;margin-bottom:4px;background-size:contain;background-repeat:no-repeat;background-position:left bottom}
+.tile-check.n{background:var(--pk)}.tile-check.d{background:#2D9BFF}.tile-check.b{background:#f0a500}
+.tile-info{position:absolute;left:0;right:0;bottom:0;padding:10px}
 .tile-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;line-height:1}
 .tile-venue{font:400 9px/1.3 'Inter';color:rgba(255,255,255,.75)}
 .tile-genre{font:700 8px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:#FF7FAC}
-.tile-genre.d{color:#7FC4FF}
-.tile-genre.b{color:#f0a500}
-/* Empty tile */
+.tile-genre.d{color:#7FC4FF}.tile-genre.b{color:#f0a500}
 .tile-empty{height:140px;border-radius:14px;border:1.5px dashed var(--border);background:var(--grey);padding:12px;display:flex;flex-direction:column;cursor:pointer}
 .tile-empty:hover{border-color:var(--pk);background:rgba(255,45,120,.03)}
 .tile-empty-top{display:flex;align-items:center;justify-content:space-between}
@@ -100,7 +129,6 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .tile-empty-bot{margin-top:auto}
 .tile-empty-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#bbb;line-height:1}
 .tile-empty-hint{font:400 9.5px/1.2 'Inter';color:#ccc;margin-top:3px}
-/* Unavail tile */
 .tile-na{height:140px;border-radius:14px;border:1px dashed #eee;background:#fafafa;padding:12px;display:flex;flex-direction:column}
 .tile-na-kind{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:#ddd;text-align:right}
 .tile-na-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#ddd;margin-top:auto}
@@ -114,25 +142,25 @@ h2.stitle em{color:var(--pk);font-style:normal}
 #pbtn:disabled{background:var(--border);color:var(--mid);cursor:default}
 
 /* SHEET */
-.sheet-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end}
+.sheet-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;justify-content:center}
 .sheet-ov.open{display:flex}
-.sheet{background:#fff;width:100%;max-height:82vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(28px + env(safe-area-inset-bottom))}
+.sheet{background:#fff;width:100%;max-width:480px;max-height:82vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(28px + env(safe-area-inset-bottom))}
 .sheet-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);margin-bottom:14px}
 .sheet-row{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:8px}
 .sheet-row:active{opacity:.8}
 .sheet-logo-box{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--grey)}
-.sheet-logo-box img{width:100%;height:100%;object-fit:cover}
+.sheet-logo-box img{width:100%;height:100%;object-fit:contain}
 .sheet-name{font:700 15px/1.1 'Inter';color:var(--black)}
 .sheet-venue{font:400 10.5px/1.2 'Inter';color:var(--mid);margin-top:2px}
 .sheet-genre{font:700 9.5px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:var(--pk);text-align:right;flex-shrink:0;max-width:80px}
 .sheet-clear{text-align:center;padding:12px;font:600 11px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mid);cursor:pointer;margin-top:4px}
 
-/* SCREEN 3 - OPEN BAR */
+/* S3 OPEN BAR */
 #s3 .body{padding:20px;display:flex;flex-direction:column;gap:16px}
 .bar-card{border:1.5px solid rgba(240,165,0,.4);background:rgba(240,165,0,.05);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .bar-top{display:flex;align-items:center;gap:12px}
 .bar-icon{width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
-.bar-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#c47900;letter-spacing:.03em}
+.bar-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#c47900}
 .bar-sub{font:600 10.5px/1 'Inter';color:var(--mid);margin-top:3px}
 .bar-time-row{display:flex;gap:10px;align-items:flex-start}
 .bar-time{font:700 9.5px/1.5 'Inter';letter-spacing:.1em;color:#c47900;width:52px;flex-shrink:0}
@@ -143,18 +171,18 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .bar-night{border:2px solid var(--border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:10px;background:#fff}
 .bar-night:hover{border-color:rgba(240,165,0,.5)}
 .bar-night.sel{border-color:#f0a500;background:rgba(240,165,0,.05)}
-.bar-night-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black);letter-spacing:.03em}
+.bar-night-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
 .bar-night-venue{font:400 11px/1.2 'Inter';color:var(--mid);margin-top:4px}
 .bar-check{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font:700 12px/1 'Inter'}
 .bar-check.e{border:1.5px solid var(--border);color:var(--mid)}
 .bar-check.f{background:#f0a500;color:#fff}
 .bar-incl{font:700 10px/1 'Inter';letter-spacing:.1em;color:#f0a500;flex-shrink:0}
 
-/* SCREEN 4 - CHECKOUT */
+/* S4 CHECKOUT */
 #s4 .body{padding:20px;display:flex;flex-direction:column;gap:14px;padding-bottom:80px}
 .lineup-hd{display:flex;align-items:baseline;gap:8px}
-.lineup-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;color:var(--black)}
-.lineup-divider{flex:1;height:1px;background:var(--border)}
+.lineup-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--black)}
+.lineup-div{flex:1;height:1px;background:var(--border)}
 .lineup-dates{font:600 9.5px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--pk)}
 .lineup-days{display:flex;flex-direction:column;gap:10px}
 .lineup-day{display:flex;align-items:flex-start;gap:8px}
@@ -177,565 +205,498 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .val-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:.85}
 .val-pp{font:600 11px/1 'Inter';color:var(--mid);vertical-align:top;margin-top:4px;display:inline-block}
 
-/* STRIPE PAYMENT */
-#s5 .body{padding:20px;display:flex;flex-direction:column;gap:16px;padding-bottom:80px}
+/* S5 PAYMENT */
+#s5 .body{padding:20px;display:flex;flex-direction:column;gap:16px}
 .pay-title{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:.9;color:var(--black)}
 .pay-title em{color:var(--pk);font-style:normal;display:block}
-.pay-amount{background:var(--grey);border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center}
-.pay-amount-label{font:600 10px/1 'Inter';letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
-.pay-amount-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--pk);line-height:1}
-.pay-form{display:flex;flex-direction:column;gap:12px}
-.pay-field label{display:block;font:700 9.5px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
-.pay-field input{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font:400 15px/1 'Inter';color:var(--black);outline:none}
+.pay-summary{background:var(--grey);border-radius:14px;padding:16px}
+.pay-summary-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font:400 12px/1 'Inter';color:var(--black)}
+.pay-summary-row:last-child{border-bottom:none;font-weight:700;font-size:14px;padding-top:12px}
+.pay-summary-row span:last-child{color:var(--pk);font-weight:700}
+.pay-field{display:flex;flex-direction:column;gap:6px}
+.pay-field label{font:700 9.5px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
+.pay-field input{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font:400 15px/1 'Inter';color:var(--black);outline:none;width:100%}
 .pay-field input:focus{border-color:var(--pk)}
 .pay-field input::placeholder{color:#ccc}
-#card-element{border:1.5px solid var(--border);border-radius:10px;padding:14px;background:#fff}
-#card-element.focused{border-color:var(--pk)}
-#pay-error{color:#e00;font:600 12px/1.4 'Inter';min-height:18px}
-.pay-secure{display:flex;align-items:center;gap:8px;font:400 11px/1 'Inter';color:var(--mid);justify-content:center}
+.pay-notice{font:400 11px/1.5 'Inter';color:var(--mid);text-align:center}
+.pay-secure{display:flex;align-items:center;justify-content:center;gap:6px;font:400 11px/1 'Inter';color:var(--mid)}
 
-/* SCREEN 6 - CONFIRMED */
+/* S6 CONFIRMED */
 #s6{background:#fff;align-items:center;justify-content:center;padding:0 28px;text-align:center}
 .conf-icon{width:64px;height:64px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 26px/1 'Inter';color:#fff;margin:0 auto 16px}
 .conf-h{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:.9;margin-bottom:12px}
 .conf-h em{color:var(--pk);font-style:normal}
 .conf-p{font:400 13px/1.6 'Inter';color:var(--mid);margin-bottom:28px}
 .again-btn{border:1.5px solid var(--border);border-radius:999px;padding:12px 22px;font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--black);cursor:pointer;background:#fff}
+
+/* DESKTOP PREVIEW PANEL */
+#desktop-preview{background:#f8f8f8}
+.dp-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--black);line-height:.9;margin-bottom:8px}
+.dp-title em{color:var(--pk);font-style:normal;display:block}
+.dp-sub{font:400 14px/1.6 'Inter';color:var(--mid);max-width:400px;margin-bottom:32px}
+.dp-steps{display:flex;flex-direction:column;gap:14px;max-width:400px}
+.dp-step{display:flex;align-items:center;gap:14px}
+.dp-step-num{width:32px;height:32px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 14px/1 'Inter';color:#fff;flex-shrink:0}
+.dp-step-text{font:400 13px/1.4 'Inter';color:var(--black)}
+.dp-step-text b{font-weight:700}
+.dp-pill{display:inline-block;background:var(--pk);border-radius:999px;padding:10px 22px;font:700 12px/1 'Inter';letter-spacing:1px;color:#fff;margin-top:32px}
 </style>
 </head>
 <body>
+
 <div id="app">
-
-<!-- S1: DATES -->
-<div class="screen" id="s1">
-  <nav><a href="index.html" class="logo">POOR<em>DECISIONS</em></a></nav>
-  <div class="body">
-    <div>
-      <div class="kicker">Poor Decisions · Las Vegas</div>
-      <h1>Build your <em>Vegas nights.</em></h1>
-    </div>
-    <div class="pill">$49 per person — your entire trip</div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="cal-hd">
-        <span class="cal-month">OCTOBER 2026</span>
-        <div class="cal-line"></div>
-        <span class="cal-label" id="cal-label">Select dates</span>
-      </div>
-      <div class="cal-grid">
-        <div class="cal-dow">S</div><div class="cal-dow">M</div><div class="cal-dow">T</div>
-        <div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div>
-      </div>
-      <div class="cal-grid" id="cal-days"></div>
-      <div class="cal-hint">Tap your arrival date, then your departure date.</div>
-    </div>
-    <div class="guests-card">
+  <!-- S1 -->
+  <div class="screen" id="s1">
+    <nav><a href="index.html" class="logo">POOR<em>DECISIONS</em></a></nav>
+    <div class="body">
       <div>
-        <div class="guests-title">How many of you?</div>
-        <div class="guests-sub" id="g-sub">4 × $49 = $196</div>
+        <div class="kicker">Poor Decisions · Las Vegas</div>
+        <h1>Build your <em>Vegas nights.</em></h1>
       </div>
-      <div class="g-ctrl">
-        <button class="g-btn m" id="g-minus">−</button>
-        <span class="g-num" id="g-num">4</span>
-        <button class="g-btn p" id="g-plus">+</button>
+      <div class="pill">$49 per person — your entire trip</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="cal-hd">
+          <span class="cal-month">OCTOBER 2026</span>
+          <div class="cal-line"></div>
+          <span class="cal-label" id="cal-label">Select dates</span>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-dow">S</div><div class="cal-dow">M</div><div class="cal-dow">T</div>
+          <div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div>
+        </div>
+        <div class="cal-grid" id="cal-days"></div>
+        <div class="cal-hint">Tap your arrival, then departure date. Everything in between is selected.</div>
       </div>
-    </div>
-  </div>
-  <div class="footer">
-    <button class="btn-main" id="btn-s1" disabled>Select your dates first</button>
-  </div>
-</div>
-
-<!-- S2: ITINERARY -->
-<div class="screen" id="s2">
-  <nav>
-    <button class="nav-back" id="back-s2">‹</button>
-    <span class="step-label">Step 2 of 4 · Your itinerary</span>
-    <div style="width:34px"></div>
-  </nav>
-  <div class="body">
-    <div class="s2-intro">
-      <h2 class="stitle">Fill your <em>slots.</em></h2>
-      <p class="ssub">Tap each day to pick your dayclub and nightclub.</p>
-    </div>
-    <div id="itinerary"></div>
-  </div>
-  <div id="pbar">
-    <div>
-      <div class="pb-price" id="pb-price">$49</div>
-      <div class="pb-note" id="pb-note">0 events planned</div>
-    </div>
-    <button id="pbtn" disabled>Next: open bar →</button>
-  </div>
-</div>
-
-<!-- S3: OPEN BAR -->
-<div class="screen" id="s3">
-  <nav>
-    <button class="nav-back" id="back-s3">‹</button>
-    <span class="step-label">Step 3 of 4 · Open bar</span>
-    <div style="width:34px"></div>
-  </nav>
-  <div class="body">
-    <h2 class="stitle">One <em style="color:#c47900">open bar</em> is on us.</h2>
-    <div class="bar-card">
-      <div class="bar-top">
-        <div class="bar-icon">🍹</div>
+      <div class="guests-card">
         <div>
-          <div class="bar-title">Open bar · 9–11pm</div>
-          <div class="bar-sub">Two hours, included with your ticket</div>
+          <div class="guests-title">How many of you?</div>
+          <div class="guests-sub" id="g-sub">4 × $49 = $196</div>
+        </div>
+        <div class="g-ctrl">
+          <button class="g-btn m" id="g-minus">−</button>
+          <span class="g-num" id="g-num">4</span>
+          <button class="g-btn p" id="g-plus">+</button>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div class="bar-time-row"><span class="bar-time">9:00PM</span><span class="bar-time-text">Unlimited pours — beer, wine, well cocktails and shots.</span></div>
-        <div class="bar-time-row"><span class="bar-time">11:00PM</span><span class="bar-time-text">Bar closes, make your own way to your club.</span></div>
-      </div>
     </div>
-    <div class="sec-hd">
-      <span class="sec-lbl">Pick your night</span>
-      <span class="sec-note">One night included</span>
+    <div class="footer">
+      <button class="btn-main" id="btn-s1" disabled>Select your dates first</button>
     </div>
-    <div id="bar-nights"></div>
   </div>
-  <div class="footer">
-    <button class="btn-main" id="btn-s3">Review &amp; pay →</button>
-  </div>
-</div>
 
-<!-- S4: CHECKOUT SUMMARY -->
-<div class="screen" id="s4">
-  <nav>
-    <button class="nav-back" id="back-s4">‹</button>
-    <span class="step-label">Step 4 of 4 · Checkout</span>
-    <div style="width:34px"></div>
-  </nav>
-  <div class="body">
-    <h2 class="stitle">Your Vegas week <em>is ready.</em></h2>
-    <p style="font:500 12px/1.4 Inter,sans-serif;color:var(--mid);margin-top:-8px">One package. Everything sorted.</p>
-    <div class="lineup-hd">
-      <span class="lineup-title">The lineup</span>
-      <div class="lineup-divider"></div>
-      <span class="lineup-dates" id="lineup-dates"></span>
-    </div>
-    <div class="lineup-days" id="lineup-days"></div>
-    <div class="perks-card">
-      <div class="perks-title">What's in your package</div>
-      <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Entry to every nightclub &amp; pool party you picked</span></div>
-      <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">2-hour unlimited open bar for pre-drinks</span></div>
-      <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">No chasing promoters or buying separate tickets</span></div>
-      <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Your entire Vegas party week in one place</span></div>
-    </div>
-    <div class="value-card">
-      <div class="val-sep"><span>Booked separately, est.</span><span id="sep-price">$350+</span></div>
-      <div class="val-div"></div>
-      <div class="val-bot">
-        <div><div class="val-pkg">Your package</div><div class="val-note" id="val-note">4 × $49</div></div>
-        <div class="val-price">$49<span class="val-pp">/pp</span></div>
+  <!-- S2 -->
+  <div class="screen" id="s2">
+    <nav>
+      <button class="nav-back" id="back-s2">‹</button>
+      <span class="step-label">Step 2 of 4 · Your itinerary</span>
+      <div style="width:34px"></div>
+    </nav>
+    <div class="body">
+      <div class="s2-intro">
+        <h2 class="stitle">Fill your <em>slots.</em></h2>
+        <p class="ssub">Tap each day to pick your dayclub and nightclub.</p>
       </div>
+      <div id="itinerary"></div>
     </div>
-  </div>
-  <div class="footer">
-    <button class="btn-main" id="btn-s4">Pay now →</button>
-  </div>
-</div>
-
-<!-- S5: PAYMENT -->
-<div class="screen" id="s5">
-  <nav>
-    <button class="nav-back" id="back-s5">‹</button>
-    <span class="step-label">Secure payment</span>
-    <div style="width:34px"></div>
-  </nav>
-  <div class="body">
-    <div>
-      <div class="pay-title">Almost <em>there.</em></div>
-    </div>
-    <div class="pay-amount">
+    <div id="pbar">
       <div>
-        <div class="pay-amount-label">Total due today</div>
-        <div class="pay-amount-num" id="pay-total">$196</div>
+        <div class="pb-price">$49</div>
+        <div class="pb-note" id="pb-note">0 events planned</div>
       </div>
-      <div style="font:400 11px/1.4 Inter,sans-serif;color:var(--mid);text-align:right">4 guests<br>$49 each</div>
+      <button id="pbtn" disabled>Next: open bar →</button>
     </div>
-    <div class="pay-form">
+  </div>
+
+  <!-- S3 -->
+  <div class="screen" id="s3">
+    <nav>
+      <button class="nav-back" id="back-s3">‹</button>
+      <span class="step-label">Step 3 of 4 · Open bar</span>
+      <div style="width:34px"></div>
+    </nav>
+    <div class="body">
+      <h2 class="stitle">One <em style="color:#c47900">open bar</em> is on us.</h2>
+      <div class="bar-card">
+        <div class="bar-top">
+          <div class="bar-icon">🍹</div>
+          <div>
+            <div class="bar-title">Open bar · 9–11pm</div>
+            <div class="bar-sub">Two hours, included with your ticket</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="bar-time-row"><span class="bar-time">9:00PM</span><span class="bar-time-text">Unlimited pours — beer, wine, well cocktails and shots.</span></div>
+          <div class="bar-time-row"><span class="bar-time">11:00PM</span><span class="bar-time-text">Bar closes, make your own way to your club.</span></div>
+        </div>
+      </div>
+      <div class="sec-hd">
+        <span class="sec-lbl">Pick your night</span>
+        <span class="sec-note">One night included</span>
+      </div>
+      <div id="bar-nights"></div>
+    </div>
+    <div class="footer">
+      <button class="btn-main" id="btn-s3">Review &amp; pay →</button>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="screen" id="s4">
+    <nav>
+      <button class="nav-back" id="back-s4">‹</button>
+      <span class="step-label">Step 4 of 4 · Checkout</span>
+      <div style="width:34px"></div>
+    </nav>
+    <div class="body">
+      <h2 class="stitle">Your Vegas week <em>is ready.</em></h2>
+      <p style="font:500 12px/1.4 Inter,sans-serif;color:var(--mid);margin-top:-8px">One package. Everything sorted.</p>
+      <div class="lineup-hd">
+        <span class="lineup-title">The lineup</span>
+        <div class="lineup-div"></div>
+        <span class="lineup-dates" id="lineup-dates"></span>
+      </div>
+      <div class="lineup-days" id="lineup-days"></div>
+      <div class="perks-card">
+        <div class="perks-title">What's included</div>
+        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Entry to every nightclub &amp; pool party you picked</span></div>
+        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">2-hour unlimited open bar for pre-drinks</span></div>
+        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">No chasing promoters or separate tickets</span></div>
+        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Your entire Vegas week in one place</span></div>
+      </div>
+      <div class="value-card">
+        <div class="val-sep"><span>Booked separately, est.</span><span id="sep-price">$350+</span></div>
+        <div class="val-div"></div>
+        <div class="val-bot">
+          <div><div class="val-pkg">Your package</div><div class="val-note" id="val-note">4 × $49</div></div>
+          <div class="val-price">$49<span class="val-pp">/pp</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <button class="btn-main" id="btn-s4">Book it →</button>
+    </div>
+  </div>
+
+  <!-- S5 PAYMENT DETAILS -->
+  <div class="screen" id="s5">
+    <nav>
+      <button class="nav-back" id="back-s5">‹</button>
+      <span class="step-label">Payment details</span>
+      <div style="width:34px"></div>
+    </nav>
+    <div class="body">
+      <div>
+        <div class="pay-title">Almost <em>there.</em></div>
+      </div>
+      <div class="pay-summary" id="pay-summary"></div>
       <div class="pay-field">
         <label>Your name</label>
-        <input type="text" id="pay-name" placeholder="Jamie Smith">
+        <input type="text" id="pay-name" placeholder="Jamie Smith" autocomplete="name">
       </div>
       <div class="pay-field">
-        <label>Email</label>
-        <input type="email" id="pay-email" placeholder="jamie@example.com">
+        <label>Email address</label>
+        <input type="email" id="pay-email" placeholder="jamie@example.com" autocomplete="email">
       </div>
       <div class="pay-field">
-        <label>Card details</label>
-        <div id="card-element"></div>
+        <label>WhatsApp number</label>
+        <input type="tel" id="pay-phone" placeholder="+44 7700 000000" autocomplete="tel">
       </div>
-      <div id="pay-error"></div>
+      <p class="pay-notice">You'll be redirected to Stripe's secure checkout page to complete your payment.</p>
+      <div class="pay-secure">🔒 Powered by Stripe</div>
     </div>
-    <div class="pay-secure">🔒 Payments secured by Stripe</div>
+    <div class="footer">
+      <button class="btn-main" id="btn-pay">Pay $<span id="pay-total">196</span> now →</button>
+    </div>
   </div>
-  <div class="footer">
-    <button class="btn-main" id="btn-pay">Pay now →</button>
+
+  <!-- S6 CONFIRMED -->
+  <div class="screen" id="s6">
+    <div class="conf-icon">✓</div>
+    <h2 class="conf-h">You're on the <em>list.</em></h2>
+    <p class="conf-p">Check your email for confirmation. Show it at the door each night — your open bar starts at 9pm sharp.</p>
+    <button class="again-btn" id="btn-again">Plan another trip</button>
+  </div>
+
+  <!-- SHEET -->
+  <div class="sheet-ov" id="sheet-ov">
+    <div class="sheet">
+      <div class="sheet-title" id="sheet-title">Pick your club</div>
+      <div id="sheet-opts"></div>
+      <div class="sheet-clear" id="sheet-clear" style="display:none">✕ Remove this slot</div>
+    </div>
   </div>
 </div>
 
-<!-- S6: CONFIRMED -->
-<div class="screen" id="s6">
-  <div class="conf-icon">✓</div>
-  <h2 class="conf-h">You're on the <em>list.</em></h2>
-  <p class="conf-p">Check your email for your booking confirmation. Show it at the door each night — your open bar starts at 9pm.</p>
-  <button class="again-btn" id="btn-again">Plan another trip</button>
-</div>
-
-<!-- SHEET -->
-<div class="sheet-ov" id="sheet-ov">
-  <div class="sheet">
-    <div class="sheet-title" id="sheet-title">Pick your club</div>
-    <div id="sheet-opts"></div>
-    <div class="sheet-clear" id="sheet-clear" style="display:none">✕ Remove this slot</div>
+<!-- DESKTOP PREVIEW PANEL -->
+<div id="desktop-preview">
+  <div class="dp-title">Build your<em>Vegas nights.</em></div>
+  <p class="dp-sub">Pick your clubs, choose your open bar night, and lock in your whole Vegas week in one go. $49 per person — everything included.</p>
+  <div class="dp-steps">
+    <div class="dp-step"><div class="dp-step-num">1</div><div class="dp-step-text"><b>Pick your dates</b> — tap arrival and departure on the calendar</div></div>
+    <div class="dp-step"><div class="dp-step-num">2</div><div class="dp-step-text"><b>Fill your slots</b> — choose a dayclub and nightclub for each night</div></div>
+    <div class="dp-step"><div class="dp-step-num">3</div><div class="dp-step-text"><b>Add your open bar</b> — one night of unlimited drinks included</div></div>
+    <div class="dp-step"><div class="dp-step-num">4</div><div class="dp-step-text"><b>Pay once</b> — redirected to secure Stripe checkout</div></div>
   </div>
-</div>
-
+  <div class="dp-pill">$49 per person · Your entire trip</div>
 </div>
 
 <script>
-const STRIPE_KEY = 'pk_live_51U8NwmRK8vCIee0U5LUH5KfrZPS0H3p0XksXJ5UyddZImZwZYz3dLPj1YKy0JjLY2vTibuyt2JkKqWSzILTgYW19005b1dEms1';
-const PHOTOS = {"0": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-0.jpg", "1": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-1.jpg", "2": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-2.jpg", "3": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-3.jpg", "4": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-4.jpg", "5": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-5.jpg", "6": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-6.jpg", "7": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-7.jpg", "8": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-8.jpg", "9": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-9.jpg", "10": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-10.jpg", "11": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-11.jpg", "12": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg", "13": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-13.jpg", "14": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-14.jpg"};
-const LOGOS = {"omnia": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-omnia.png", "hakkasan": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-hakkasan.png", "xs": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-xs.png", "tao": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-tao.png", "marquee": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-marquee.png", "zouk": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-zouk.png", "drais": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-drais.png", "encore-bc": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-encore-bc.png", "tao-beach": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-tao-beach.png", "liv": "https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/logo-hakkasan.png"};
+const BASE = 'https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/';
+const PHOTOS = {"0":BASE+"vp-0.jpg","1":BASE+"vp-1.jpg","2":BASE+"vp-2.jpg","3":BASE+"vp-3.jpg","4":BASE+"vp-4.jpg","5":BASE+"vp-5.jpg","6":BASE+"vp-6.jpg","7":BASE+"vp-7.jpg","8":BASE+"vp-8.jpg","9":BASE+"vp-9.jpg","10":BASE+"vp-10.jpg","11":BASE+"vp-11.jpg","12":BASE+"vp-12.jpg","13":BASE+"vp-13.jpg","14":BASE+"vp-14.jpg"};
+const LOGOS = {"omnia":BASE+"logo-omnia.png","hakkasan":BASE+"logo-hakkasan.png","xs":BASE+"logo-xs.png","tao":BASE+"logo-tao.png","marquee":BASE+"logo-marquee.png","zouk":BASE+"logo-zouk.png","drais":BASE+"logo-drais.png","encore-bc":BASE+"logo-encore-bc.png","tao-beach":BASE+"logo-tao-beach.png"};
+const STRIPE_LINK = 'https://book.stripe.com/00weVf67u0useWAgMJcMM00';
+const SHEET_URL = 'https://script.google.com/macros/s/PASTE_YOUR_SCRIPT_ID_HERE/exec';
 
 const NC = [
-  {id:'omnia',    name:'Omnia',         hotel:'Caesars Palace',   genre:'EDM · House',     days:[0,2,4,5,6], logo:'omnia',    photo: PHOTOS[7]},
-  {id:'hakkasan', name:'Hakkasan',      hotel:'MGM Grand',        genre:'House · Hip Hop', days:[3,4,5,6],   logo:'hakkasan', photo: PHOTOS[1]},
-  {id:'xs',       name:'XS',            hotel:'Encore',           genre:'EDM · House',     days:[0,1,3,4,5,6],logo:'xs',      photo: PHOTOS[0]},
-  {id:'tao',      name:'TAO Nightclub', hotel:'The Venetian',     genre:'Open Format',     days:[0,4,5,6],   logo:'tao',      photo: PHOTOS[2]},
-  {id:'marquee',  name:'Marquee',       hotel:'The Cosmopolitan', genre:'Open + House',    days:[0,1,3,5,6], logo:'marquee',  photo: PHOTOS[14]},
-  {id:'liv',      name:'LIV',           hotel:'Fontainebleau',    genre:'Hip Hop · R&B',   days:[4,5,6],     logo:'liv',      photo: PHOTOS[6]},
-  {id:'zouk',     name:'Zouk',          hotel:'Resorts World',    genre:'EDM · House',     days:[4,5,6],     logo:'zouk',     photo: PHOTOS[11]},
-  {id:'jewel',    name:'Jewel',         hotel:'Aria',             genre:'Hip Hop · R&B',   days:[5,6],       logo:'hakkasan', photo: PHOTOS[8]},
-  {id:'drais',    name:"Drai's",        hotel:'The Cromwell',     genre:'Hip Hop · Live',  days:[3,4,5,6],   logo:'drais',    photo: PHOTOS[10]}
+  {id:'omnia',    name:'Omnia',         hotel:'Caesars Palace',   genre:'EDM · House',     days:[0,2,4,5,6], logo:'omnia',    photo:PHOTOS[7]},
+  {id:'hakkasan', name:'Hakkasan',      hotel:'MGM Grand',        genre:'House · Hip Hop', days:[3,4,5,6],   logo:'hakkasan', photo:PHOTOS[1]},
+  {id:'xs',       name:'XS',            hotel:'Encore',           genre:'EDM · House',     days:[0,1,3,4,5,6],logo:'xs',      photo:PHOTOS[0]},
+  {id:'tao',      name:'TAO Nightclub', hotel:'The Venetian',     genre:'Open Format',     days:[0,4,5,6],   logo:'tao',      photo:PHOTOS[2]},
+  {id:'marquee',  name:'Marquee',       hotel:'The Cosmopolitan', genre:'Open + House',    days:[0,1,3,5,6], logo:'marquee',  photo:PHOTOS[14]},
+  {id:'liv',      name:'LIV',           hotel:'Fontainebleau',    genre:'Hip Hop · R&B',   days:[4,5,6],     logo:'hakkasan', photo:PHOTOS[6]},
+  {id:'zouk',     name:'Zouk',          hotel:'Resorts World',    genre:'EDM · House',     days:[4,5,6],     logo:'zouk',     photo:PHOTOS[11]},
+  {id:'jewel',    name:'Jewel',         hotel:'Aria',             genre:'Hip Hop · R&B',   days:[5,6],       logo:'hakkasan', photo:PHOTOS[8]},
+  {id:'drais',    name:"Drai's",        hotel:'The Cromwell',     genre:'Hip Hop · Live',  days:[3,4,5,6],   logo:'drais',    photo:PHOTOS[10]}
 ];
 const DC = [
-  {id:'mq-day',    name:'Marquee Dayclub',   hotel:'The Cosmopolitan', genre:'House · Tech House', days:[0,1,4,5,6], logo:'marquee',    photo: PHOTOS[4]},
-  {id:'tao-beach', name:'TAO Beach',         hotel:'The Venetian',     genre:'Hip Hop · Open',     days:[0,4,5,6],   logo:'tao-beach',  photo: PHOTOS[5]},
-  {id:'omnia-day', name:'Omnia Dayclub',     hotel:'Caesars Palace',   genre:'EDM · House',        days:[0,5,6],     logo:'omnia',      photo: PHOTOS[3]},
-  {id:'encore-bc', name:'Encore Beach Club', hotel:'Encore at Wynn',   genre:'EDM · House',        days:[0,4,5,6],   logo:'encore-bc',  photo: PHOTOS[9]},
-  {id:'wet-rep',   name:'Wet Republic',      hotel:'MGM Grand',        genre:'EDM · House',        days:[0,1,4,5,6], logo:'hakkasan',   photo: PHOTOS[12]}
+  {id:'mq-day',    name:'Marquee Dayclub',   hotel:'The Cosmopolitan', genre:'House · Tech House', days:[0,1,4,5,6], logo:'marquee',   photo:PHOTOS[4]},
+  {id:'tao-beach', name:'TAO Beach',         hotel:'The Venetian',     genre:'Hip Hop · Open',     days:[0,4,5,6],   logo:'tao-beach', photo:PHOTOS[5]},
+  {id:'omnia-day', name:'Omnia Dayclub',     hotel:'Caesars Palace',   genre:'EDM · House',        days:[0,5,6],     logo:'omnia',     photo:PHOTOS[3]},
+  {id:'encore-bc', name:'Encore Beach Club', hotel:'Encore at Wynn',   genre:'EDM · House',        days:[0,4,5,6],   logo:'encore-bc', photo:PHOTOS[9]},
+  {id:'wet-rep',   name:'Wet Republic',      hotel:'MGM Grand',        genre:'EDM · House',        days:[0,1,4,5,6], logo:'hakkasan',  photo:PHOTOS[12]}
 ];
 
 const WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-let state = { start:null, end:null, guests:4, slots:{}, openBarNight:null };
-let curPicker = null;
-let stripe, cardElement;
+let S = {start:null, end:null, guests:4, slots:{}, openBarNight:null};
 
-// STRIPE INIT
-stripe = Stripe(STRIPE_KEY);
-const elements = stripe.elements();
-cardElement = elements.create('card', {
-  style: {
-    base: { fontFamily:'Inter,sans-serif', fontSize:'15px', color:'#111111', '::placeholder':{color:'#ccc'} },
-    invalid: { color:'#e00' }
-  }
-});
-cardElement.on('focus', () => document.getElementById('card-element').classList.add('focused'));
-cardElement.on('blur', () => document.getElementById('card-element').classList.remove('focused'));
+function getDOW(d){return (4+d-1)%7;}
+function venueById(k,id){return(k==='day'?DC:NC).find(v=>v.id===id)||null;}
+function nights(){const n=[];if(S.start&&S.end)for(let d=S.start;d<S.end;d++)n.push(d);return n;}
+function totalAmt(){return S.guests*49;}
 
-// HELPERS
-function getDOW(d) { return (4 + d - 1) % 7; } // Oct 2026 starts Thursday
-function venueById(kind, id) { return (kind==='day'?DC:NC).find(v=>v.id===id)||null; }
-function totalAmount() { return state.guests * 49; }
-
-// SCREEN NAV
-function show(id) {
+function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  document.getElementById(id).scrollTop = 0;
-  if (id==='s5') { setTimeout(()=>cardElement.mount('#card-element'), 100); }
-  if (id==='s4') { renderCheckout(); }
-  if (id==='s3') { renderBarScreen(); }
-  if (id==='s2') { renderItinerary(); document.getElementById('pbar').className='show'; }
-  else { document.getElementById('pbar').className=''; }
+  document.getElementById(id).scrollTop=0;
+  document.getElementById('pbar').className=(id==='s2')?'show':'';
+  if(id==='s2')renderItinerary();
+  if(id==='s3')renderBar();
+  if(id==='s4')renderCheckout();
+  if(id==='s5')renderPaySummary();
+  // Hide desktop panel when on later screens
+  const dp = document.getElementById('desktop-preview');
+  if(dp) dp.className = (id==='s1')?'':'hidden';
 }
 
 // CALENDAR
-function renderCal() {
-  const grid = document.getElementById('cal-days');
-  grid.innerHTML = '';
-  for (let p=0; p<4; p++) { const d=document.createElement('div'); d.className='cal-day pad'; grid.appendChild(d); }
-  for (let d=1; d<=31; d++) {
-    const el = document.createElement('div');
-    let cls = 'cal-day';
-    const isPast = d < new Date().getDate() && new Date().getMonth()===9 && new Date().getFullYear()===2026;
-    if (isPast) cls += ' past';
-    else {
-      if (state.start && state.end && d > state.start && d < state.end) cls += ' inrange';
-      if (d === state.start) cls += ' start';
-      if (d === state.end) cls += ' end';
-      if (!state.start && !state.end) el.addEventListener('click',()=>pickDate(d));
-      else if (state.start && !state.end && d > state.start) el.addEventListener('click',()=>pickDate(d));
-      else if (state.start && !state.end && d < state.start) el.addEventListener('click',()=>pickDate(d));
-      else if (state.start && state.end) el.addEventListener('click',()=>pickDate(d));
+function renderCal(){
+  const g=document.getElementById('cal-days');
+  g.innerHTML='';
+  for(let p=0;p<4;p++){const d=document.createElement('button');d.className='cal-day pad';g.appendChild(d);}
+  for(let d=1;d<=31;d++){
+    const el=document.createElement('button');
+    let cls='cal-day';
+    const isPast=false;
+    if(isPast)cls+=' past';
+    else{
+      if(S.start&&S.end&&d>S.start&&d<S.end)cls+=' inrange';
+      if(d===S.start)cls+=(S.end&&S.end>S.start?' start':' start end');
+      if(d===S.end)cls+=' end';
+      el.addEventListener('click',()=>pickDate(d));
     }
-    el.className = cls;
-    el.textContent = d;
-    grid.appendChild(el);
+    el.className=cls;el.textContent=d;
+    g.appendChild(el);
   }
-  const lbl = document.getElementById('cal-label');
-  if (!state.start) lbl.textContent = 'Select arrival date';
-  else if (!state.end) lbl.textContent = 'Oct ' + state.start + ' → select departure';
-  else lbl.textContent = 'Oct ' + state.start + ' – ' + state.end + ' (' + (state.end - state.start) + ' nights)';
-  const btn = document.getElementById('btn-s1');
-  btn.disabled = !(state.start && state.end);
-  btn.textContent = (state.start && state.end) ? 'Plan my nights →' : (!state.start ? 'Select your arrival date' : 'Select your departure date');
+  const lbl=document.getElementById('cal-label');
+  if(!S.start)lbl.textContent='Select arrival date';
+  else if(!S.end)lbl.textContent='Oct '+S.start+' → select departure';
+  else lbl.textContent='Oct '+S.start+' – '+S.end+' ('+nights().length+' nights)';
+  const btn=document.getElementById('btn-s1');
+  btn.disabled=!(S.start&&S.end&&nights().length>0);
+  btn.textContent=(S.start&&S.end&&nights().length>0)?'Plan my nights →':(!S.start?'Select your arrival date':'Select your departure date');
 }
 
-function pickDate(d) {
-  if (!state.start || (state.start && state.end)) { state.start=d; state.end=null; }
-  else if (d > state.start) { state.end=d; }
-  else { state.start=d; state.end=null; }
-  // clear slots when dates change
-  state.slots={}; state.openBarNight=null;
+function pickDate(d){
+  if(!S.start||(S.start&&S.end)){S.start=d;S.end=null;}
+  else if(d>S.start){S.end=d;}
+  else{S.start=d;S.end=null;}
+  S.slots={};S.openBarNight=null;
   renderCal();
 }
 
-function getNights() {
-  const nights = [];
-  for (let d=state.start; d<state.end; d++) nights.push(d);
-  return nights;
-}
-
-// GUESTS
-function updateGuests() {
-  document.getElementById('g-num').textContent = state.guests;
-  document.getElementById('g-sub').textContent = state.guests + ' × $49 = $' + (state.guests*49);
-}
-document.getElementById('g-minus').addEventListener('click',()=>{if(state.guests>1){state.guests--;updateGuests();}});
-document.getElementById('g-plus').addEventListener('click',()=>{if(state.guests<20){state.guests++;updateGuests();}});
+document.getElementById('g-minus').addEventListener('click',()=>{if(S.guests>1){S.guests--;document.getElementById('g-num').textContent=S.guests;document.getElementById('g-sub').textContent=S.guests+' × $49 = $'+totalAmt();}});
+document.getElementById('g-plus').addEventListener('click',()=>{if(S.guests<20){S.guests++;document.getElementById('g-num').textContent=S.guests;document.getElementById('g-sub').textContent=S.guests+' × $49 = $'+totalAmt();}});
 document.getElementById('btn-s1').addEventListener('click',()=>show('s2'));
 document.getElementById('back-s2').addEventListener('click',()=>show('s1'));
 document.getElementById('back-s3').addEventListener('click',()=>show('s2'));
 document.getElementById('back-s4').addEventListener('click',()=>show('s3'));
 document.getElementById('back-s5').addEventListener('click',()=>show('s4'));
 document.getElementById('btn-s3').addEventListener('click',()=>show('s4'));
-document.getElementById('btn-s4').addEventListener('click',()=>{
-  document.getElementById('pay-total').textContent='$'+totalAmount();
-  document.getElementById('pay-amount').querySelector('div:last-child').innerHTML=state.guests+' guests<br>$49 each';
-  show('s5');
-});
-document.getElementById('btn-again').addEventListener('click',()=>{state={start:null,end:null,guests:4,slots:{},openBarNight:null};renderCal();updateGuests();show('s1');});
+document.getElementById('btn-s4').addEventListener('click',()=>show('s5'));
 document.getElementById('pbtn').addEventListener('click',()=>show('s3'));
+document.getElementById('btn-again').addEventListener('click',()=>{S={start:null,end:null,guests:4,slots:{},openBarNight:null};renderCal();show('s1');});
 
 // ITINERARY
-function renderItinerary() {
-  const el = document.getElementById('itinerary');
-  el.innerHTML = '';
-  getNights().forEach(d => {
-    const dow = getDOW(d);
-    const slot = state.slots[d] || {};
-    const nv = slot.night ? venueById('night',slot.night) : null;
-    const dv = slot.day ? venueById('day',slot.day) : null;
-    const isBar = state.openBarNight === d;
-    const hasDay = DC.some(v=>v.days.includes(dow));
-    const set = (dv?1:0) + (nv||isBar?1:0);
-    const block = document.createElement('div');
-    block.className = 'day-block';
-    block.innerHTML = `<div class="day-hd">
-      <span class="day-name">${WD[dow].toUpperCase()}</span>
-      <span class="day-date">OCT ${d}</span>
-      <div class="day-line"></div>
-      <span class="day-count">${set}/2 set</span>
-    </div>
-    <div class="slots">
-      ${dayTileHTML(d, dow, dv, hasDay)}
-      ${nightTileHTML(d, dow, nv, isBar)}
-    </div>`;
-    block.querySelectorAll('[data-slot]').forEach(el=>{
-      el.addEventListener('click',()=>openSheet(parseInt(el.dataset.i),el.dataset.slot));
-    });
+function tileDay(d,dow,dv,hasDay){
+  if(!hasDay)return`<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
+  if(dv)return`<div class="tile day-filled" data-i="${d}" data-slot="day"><img class="tile-photo" src="${dv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel}</div><div class="tile-genre d">${dv.genre}</div></div></div>`;
+  return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 12pm–6pm</div></div></div>`;
+}
+function tileNight(d,dow,nv,isBar){
+  if(isBar&&!nv)return`<div class="tile bar-filled" data-i="${d}" data-slot="night"><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">🍹</div><div class="tile-kind-pill">NIGHT</div><div class="tile-check b">✓</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div><div class="tile-venue">9–11pm included</div></div></div>`;
+  if(nv)return`<div class="tile night-filled" data-i="${d}" data-slot="night"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel}</div><div class="tile-genre">${nv.genre}</div></div></div>`;
+  return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10pm · tap to add</div></div></div>`;
+}
+
+function renderItinerary(){
+  const el=document.getElementById('itinerary');el.innerHTML='';
+  nights().forEach(d=>{
+    const dow=getDOW(d);const slot=S.slots[d]||{};
+    const nv=slot.night?venueById('night',slot.night):null;
+    const dv=slot.day?venueById('day',slot.day):null;
+    const isBar=S.openBarNight===d;
+    const hasDay=DC.some(v=>v.days.includes(dow));
+    const set=(dv?1:0)+(nv||isBar?1:0);
+    const block=document.createElement('div');block.className='day-block';
+    block.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,hasDay)}${tileNight(d,dow,nv,isBar)}</div>`;
+    block.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>openSheet(+el.dataset.i,el.dataset.slot)));
     el.appendChild(block);
   });
   updatePbar();
 }
 
-function dayTileHTML(d, dow, dv, hasDay) {
-  if (!hasDay) return `<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
-  if (dv) return `<div class="tile day-filled" data-i="${d}" data-slot="day">
-    <img class="tile-photo" src="${dv.photo}"/>
-    <div class="tile-grad"></div>
-    <div class="tile-kind-pill">DAY</div>
-    <div class="tile-check d">✓</div>
-    <div class="tile-info">
-      <div class="tile-name">${dv.name}</div>
-      <div class="tile-venue">${dv.hotel}</div>
-      <div class="tile-genre d">${dv.genre}</div>
-    </div>
-  </div>`;
-  return `<div class="tile-empty" data-i="${d}" data-slot="day">
-    <div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div>
-    <div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 12pm – 6pm</div></div>
-  </div>`;
-}
-
-function nightTileHTML(d, dow, nv, isBar) {
-  if (isBar && !nv) return `<div class="tile bar-filled" data-i="${d}" data-slot="night">
-    <div class="tile-grad" style="background:rgba(20,14,0,.85)"></div>
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">🍹</div>
-    <div class="tile-kind-pill">NIGHT</div>
-    <div class="tile-check b">✓</div>
-    <div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div><div class="tile-venue">9–11pm included</div></div>
-  </div>`;
-  if (nv) return `<div class="tile night-filled" data-i="${d}" data-slot="night">
-    <img class="tile-photo" src="${nv.photo}"/>
-    <div class="tile-grad"></div>
-    ${isBar?'<div class="tile-bar-tag" style="position:absolute;top:34px;left:8px;background:#f0a500;border-radius:999px;padding:3px 7px;font:700 8px/1 Inter,sans-serif;letter-spacing:.1em;color:#191400">OPEN BAR 9–11PM</div>':''}
-    <div class="tile-kind-pill">NIGHT</div>
-    <div class="tile-check n">✓</div>
-    <div class="tile-info">
-      <div class="tile-name">${nv.name}</div>
-      <div class="tile-venue">${nv.hotel}</div>
-      <div class="tile-genre">${nv.genre}</div>
-    </div>
-  </div>`;
-  return `<div class="tile-empty" data-i="${d}" data-slot="night">
-    <div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div>
-    <div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10pm · tap to add</div></div>
-  </div>`;
-}
-
-function updatePbar() {
-  const n = getNights();
-  const cnt = n.reduce((t,d)=>{const s=state.slots[d]||{};return t+(s.day?1:0)+(s.night?1:0);},0)+(state.openBarNight?1:0);
-  document.getElementById('pb-note').textContent = cnt + ' event'+(cnt!==1?'s':'')+' planned · $49 pp';
-  document.getElementById('pbtn').disabled = cnt===0;
+function updatePbar(){
+  const cnt=nights().reduce((t,d)=>{const s=S.slots[d]||{};return t+(s.day?1:0)+(s.night?1:0);},0)+(S.openBarNight?1:0);
+  document.getElementById('pb-note').textContent=cnt+' event'+(cnt!==1?'s':'')+' planned · $49 pp';
+  document.getElementById('pbtn').disabled=cnt===0;
 }
 
 // SHEET
-function openSheet(d, slot) {
-  curPicker = {d, slot};
-  const dow = getDOW(d);
-  const slotData = state.slots[d]||{};
-  const isDay = slot==='day';
-  const isBar = !isDay && state.openBarNight===d;
-  const obUsed = !isDay && getNights().some(n=>state.openBarNight===n && n!==d);
-  document.getElementById('sheet-title').textContent = isDay ? 'Pick your dayclub' : 'Pick your night';
-  const opts = document.getElementById('sheet-opts');
-  opts.innerHTML = '';
-  if (!isDay && (!obUsed || isBar)) {
-    const row = document.createElement('div');
-    row.className = 'sheet-row' + (isBar?' selected':'');
-    row.style.cssText = 'border-color:'+(isBar?'#f0a500':'')+(isBar?';background:rgba(240,165,0,.05)':'');
-    row.innerHTML = `<div class="sheet-logo-box" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px">🍹</div>
-      <div style="flex:1"><div class="sheet-name" style="color:#c47900">Open bar night</div><div class="sheet-venue">Once per trip · 9–11pm · included in $49</div></div>
-      <span class="sheet-genre" style="color:#f0a500">INCLUDED</span>`;
-    row.addEventListener('click',()=>{state.openBarNight=isBar?null:d;closeSheet();renderItinerary();});
-    opts.appendChild(row);
+function openSheet(d,slot){
+  const dow=getDOW(d);const slotData=S.slots[d]||{};
+  const isDay=slot==='day';const isBar=!isDay&&S.openBarNight===d;
+  const obUsed=!isDay&&nights().some(n=>S.openBarNight===n&&n!==d);
+  document.getElementById('sheet-title').textContent=isDay?'Pick your dayclub':'Pick your night';
+  const opts=document.getElementById('sheet-opts');opts.innerHTML='';
+  if(!isDay&&(!obUsed||isBar)){
+    const r=document.createElement('div');r.className='sheet-row';
+    if(isBar)r.style.cssText='border-color:#f0a500;background:rgba(240,165,0,.05)';
+    r.innerHTML=`<div class="sheet-logo-box" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px">🍹</div><div style="flex:1"><div class="sheet-name" style="color:#c47900">Open bar night</div><div class="sheet-venue">Once per trip · 9–11pm · included in $49</div></div><span class="sheet-genre" style="color:#f0a500">INCLUDED</span>`;
+    r.addEventListener('click',()=>{S.openBarNight=isBar?null:d;closeSheet();renderItinerary();});
+    opts.appendChild(r);
   }
-  const list = isDay?DC:NC;
-  const avail = list.filter(v=>v.days.includes(dow));
-  avail.forEach(v=>{
-    const sel = (isDay ? slotData.day===v.id : slotData.night===v.id && !isBar);
-    const row = document.createElement('div');
-    row.className = 'sheet-row';
-    if (sel) row.style.cssText = 'border-color:var(--pk);background:rgba(255,45,120,.03)';
-    const logoSrc = LOGOS[v.logo]||'';
-    row.innerHTML = `<div class="sheet-logo-box">${logoSrc?`<img src="${logoSrc}"/>`:v.name.slice(0,2)}</div>
-      <div style="flex:1"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel}</div></div>
-      <span class="sheet-genre">${v.genre}</span>`;
-    row.addEventListener('click',()=>{
-      if(!state.slots[d])state.slots[d]={};
-      if(isDay)state.slots[d].day=v.id;
-      else{state.slots[d].night=v.id;}
-      closeSheet();renderItinerary();
-    });
-    opts.appendChild(row);
+  (isDay?DC:NC).filter(v=>v.days.includes(dow)).forEach(v=>{
+    const sel=isDay?slotData.day===v.id:(slotData.night===v.id&&!isBar);
+    const r=document.createElement('div');r.className='sheet-row';
+    if(sel)r.style.cssText='border-color:var(--pk);background:rgba(255,45,120,.03)';
+    r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGOS[v.logo]||''}" onerror="this.style.display='none'"/></div><div style="flex:1"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel}</div></div><span class="sheet-genre">${v.genre}</span>`;
+    r.addEventListener('click',()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=v.id;else S.slots[d].night=v.id;closeSheet();renderItinerary();});
+    opts.appendChild(r);
   });
-  const clr = document.getElementById('sheet-clear');
-  const hasSel = isDay?!!slotData.day:!!slotData.night||isBar;
-  clr.style.display = hasSel?'block':'none';
-  clr.onclick = ()=>{
-    if(!state.slots[d])state.slots[d]={};
-    if(isDay)state.slots[d].day=null;
-    else{state.slots[d].night=null;if(isBar)state.openBarNight=null;}
-    closeSheet();renderItinerary();
-  };
+  const clr=document.getElementById('sheet-clear');
+  const hasSel=isDay?!!slotData.day:(!!slotData.night||isBar);
+  clr.style.display=hasSel?'block':'none';
+  clr.onclick=()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=null;else{S.slots[d].night=null;if(isBar)S.openBarNight=null;}closeSheet();renderItinerary();};
   document.getElementById('sheet-ov').classList.add('open');
 }
 function closeSheet(){document.getElementById('sheet-ov').classList.remove('open');}
 document.getElementById('sheet-ov').addEventListener('click',e=>{if(e.target===document.getElementById('sheet-ov'))closeSheet();});
 
-// BAR SCREEN
-function renderBarScreen() {
-  const el = document.getElementById('bar-nights');
-  el.innerHTML = '';
-  getNights().forEach(d=>{
-    const dow = getDOW(d);
-    const slot = state.slots[d]||{};
-    const nv = slot.night?venueById('night',slot.night):null;
-    const isSel = state.openBarNight===d;
-    const row = document.createElement('div');
-    row.className = 'bar-night' + (isSel?' sel':'');
-    row.innerHTML = `<div style="flex:1">
-      <div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div>
-      <div class="bar-night-venue">${nv?'Then into '+nv.name:'No club picked yet'}</div>
-    </div>
-    ${isSel?'<span class="bar-incl">INCLUDED</span>':''}
-    <div class="bar-check ${isSel?'f':'e'}">${isSel?'✓':'+'}</div>`;
-    row.addEventListener('click',()=>{state.openBarNight=isSel?null:d;renderBarScreen();renderItinerary();});
-    el.appendChild(row);
+// BAR
+function renderBar(){
+  const el=document.getElementById('bar-nights');el.innerHTML='';
+  nights().forEach(d=>{
+    const dow=getDOW(d);const slot=S.slots[d]||{};
+    const nv=slot.night?venueById('night',slot.night):null;
+    const isSel=S.openBarNight===d;
+    const r=document.createElement('div');r.className='bar-night'+(isSel?' sel':'');
+    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${nv?'Then into '+nv.name:'No club picked yet'}</div></div>${isSel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${isSel?'f':'e'}">${isSel?'✓':'+'}</div>`;
+    r.addEventListener('click',()=>{S.openBarNight=isSel?null:d;renderBar();renderItinerary();});
+    el.appendChild(r);
   });
 }
 
 // CHECKOUT
-function renderCheckout() {
-  const nights = getNights();
-  if (nights.length) document.getElementById('lineup-dates').textContent = 'Vegas · Oct '+state.start+'–'+state.end;
-  const el = document.getElementById('lineup-days');
-  el.innerHTML='';
-  nights.forEach(d=>{
-    const dow=getDOW(d);
-    const slot=state.slots[d]||{};
+function renderCheckout(){
+  const ns=nights();
+  if(ns.length)document.getElementById('lineup-dates').textContent='Vegas · Oct '+S.start+'–'+S.end;
+  const el=document.getElementById('lineup-days');el.innerHTML='';
+  ns.forEach(d=>{
+    const dow=getDOW(d);const slot=S.slots[d]||{};
     const nv=slot.night?venueById('night',slot.night):null;
     const dv=slot.day?venueById('day',slot.day):null;
-    const isBar=state.openBarNight===d;
-    const row=document.createElement('div');
-    row.className='lineup-day';
-    const dayTile=dv?`<div class="tile day-filled" style="height:110px"><img class="tile-photo" src="${dv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div></div></div>`:'<div style="height:110px"></div>';
-    let nightTile='<div style="height:110px"></div>';
-    if(isBar&&!nv)nightTile=`<div class="tile bar-filled" style="height:110px"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:32px">🍹</div><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div></div></div>`;
-    else if(nv)nightTile=`<div class="tile night-filled" style="height:110px"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name">${nv.name}</div></div></div>`;
-    row.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].slice(0,3).toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dayTile}${nightTile}</div>`;
-    el.appendChild(row);
+    const isBar=S.openBarNight===d;
+    const r=document.createElement('div');r.className='lineup-day';
+    const dt=dv?`<div class="tile day-filled" style="height:110px"><img class="tile-photo" src="${dv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div></div></div>`:'<div style="height:110px"></div>';
+    let nt='<div style="height:110px"></div>';
+    if(isBar&&!nv)nt=`<div class="tile bar-filled" style="height:110px"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px">🍹</div><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div></div></div>`;
+    else if(nv)nt=`<div class="tile night-filled" style="height:110px"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name">${nv.name}</div></div></div>`;
+    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].slice(0,3).toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dt}${nt}</div>`;
+    el.appendChild(r);
   });
-  document.getElementById('val-note').textContent=state.guests+' × $49 = $'+totalAmount();
-  document.getElementById('sep-price').textContent='$'+(nights.length*75+60)+'+';
+  document.getElementById('val-note').textContent=S.guests+' × $49 = $'+totalAmt();
+  document.getElementById('sep-price').textContent='$'+(ns.length*75+60)+'+';
 }
 
-// STRIPE PAYMENT
-document.getElementById('btn-pay').addEventListener('click', async ()=>{
-  const name=document.getElementById('pay-name').value;
-  const email=document.getElementById('pay-email').value;
-  const errEl=document.getElementById('pay-error');
-  errEl.textContent='';
-  if(!name||!email){errEl.textContent='Please fill in your name and email.';return;}
-  const btn=document.getElementById('btn-pay');
-  btn.disabled=true;btn.textContent='Processing...';
-  try {
-    // Create PaymentIntent via Stripe
-    const amount = totalAmount() * 100; // cents
-    const resp = await fetch('https://api.stripe.com/v1/payment_intents', {
-      method:'POST',
-      headers:{'Authorization':'Bearer '+STRIPE_KEY,'Content-Type':'application/x-www-form-urlencoded'},
-      body:new URLSearchParams({amount:amount,currency:'usd',description:'Poor Decisions Vegas Package - '+state.guests+' guests',receipt_email:email})
-    });
-    // Note: in production this should come from your server
-    // For now redirect to Stripe Checkout link
-    const lineItems = encodeURIComponent(JSON.stringify([{price_data:{currency:'usd',product_data:{name:'Poor Decisions Vegas Package'},unit_amount:4900},quantity:state.guests}]));
-    // Use Stripe payment link as fallback
-    window.location.href = 'https://buy.stripe.com/test_placeholder?prefilled_email='+encodeURIComponent(email)+'&client_reference_id=vegas-'+state.start+'-'+state.end+'-'+state.guests+'pax';
-  } catch(e) {
-    const {error} = await stripe.createPaymentMethod({type:'card',card:cardElement,billing_details:{name,email}});
-    if(error){errEl.textContent=error.message;btn.disabled=false;btn.textContent='Pay now →';return;}
-    show('s6');
-  }
+// PAY SUMMARY
+function renderPaySummary(){
+  const ns=nights();
+  let rows=`<div class="pay-summary-row"><span>Dates</span><span>Oct ${S.start} – ${S.end}</span></div>`;
+  rows+=`<div class="pay-summary-row"><span>Guests</span><span>${S.guests} people</span></div>`;
+  ns.forEach(d=>{
+    const dow=getDOW(d);const slot=S.slots[d]||{};
+    const nv=slot.night?venueById('night',slot.night):null;
+    const dv=slot.day?venueById('day',slot.day):null;
+    const isBar=S.openBarNight===d;
+    if(dv)rows+=`<div class="pay-summary-row"><span>${WD[dow]} day</span><span>${dv.name}</span></div>`;
+    if(isBar)rows+=`<div class="pay-summary-row"><span>${WD[dow]} night</span><span>🍹 Open bar</span></div>`;
+    else if(nv)rows+=`<div class="pay-summary-row"><span>${WD[dow]} night</span><span>${nv.name}</span></div>`;
+  });
+  rows+=`<div class="pay-summary-row"><span>Total</span><span>$${totalAmt()}</span></div>`;
+  document.getElementById('pay-summary').innerHTML=rows;
+  document.getElementById('pay-total').textContent=totalAmt();
+}
+
+// SUBMIT
+document.getElementById('btn-pay').addEventListener('click',()=>{
+  const name=document.getElementById('pay-name').value.trim();
+  const email=document.getElementById('pay-email').value.trim();
+  const phone=document.getElementById('pay-phone').value.trim();
+  if(!name||!email){alert('Please fill in your name and email.');return;}
+
+  // Build booking summary
+  const ns=nights();
+  let summary='';
+  ns.forEach(d=>{
+    const dow=getDOW(d);const slot=S.slots[d]||{};
+    const nv=slot.night?venueById('night',slot.night):null;
+    const dv=slot.day?venueById('day',slot.day):null;
+    const isBar=S.openBarNight===d;
+    if(dv)summary+=WD[dow]+' day: '+dv.name+'\n';
+    if(isBar)summary+=WD[dow]+' night: Open bar\n';
+    else if(nv)summary+=WD[dow]+' night: '+nv.name+'\n';
+  });
+
+  // Send to Google Sheet
+  const payload = {
+    timestamp: new Date().toISOString(),
+    name, email, phone,
+    dates: 'Oct '+S.start+' - Oct '+S.end,
+    nights: ns.length,
+    guests: S.guests,
+    total: '$'+totalAmt(),
+    openBarNight: S.openBarNight ? 'Oct '+S.openBarNight : 'None',
+    itinerary: summary.trim(),
+    status: 'Pending payment'
+  };
+
+  // Fire and forget to Google Sheet
+  fetch(SHEET_URL, {method:'POST', mode:'no-cors', body:JSON.stringify(payload)}).catch(()=>{});
+
+  // Redirect to Stripe with prefilled email and quantity
+  const stripeUrl = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email) + '&quantity=' + S.guests + '&client_reference_id=' + encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
+  window.location.href = stripeUrl;
 });
 
 // INIT
