@@ -4,22 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Las Vegas VIP Club Crawl — Poor Decisions</title>
-<link rel="icon" href="poor-decisions-favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#ffffff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88}
+:root{--black:#ffffff;--dark:#f5f5f5;--card:#181818;--border:#cccccc;--white:#111111fff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#111111;overflow-x:hidden}
 
 nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#111111;letter-spacing:2px;text-decoration:none}
 .logo span{color:var(--pink)}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--pink);color:var(--white);padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background 0.2s}
+.nav-links a:hover{color:#111111}
+.nav-cta{background:#FF2D78;color:#ffffff;padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background 0.2s}
 .nav-cta:hover{background:#ff0060}
 
 /* HERO */
@@ -32,38 +31,38 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .breadcrumb a{color:var(--pink);text-decoration:none;transition:opacity 0.2s}
 .breadcrumb a:hover{opacity:0.8}
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:24px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:24px}
 .hero h1 em{color:var(--pink);font-style:normal}
 .hero-sub{font-size:18px;color:rgba(255,255,255,0.55);font-weight:300;max-width:600px;line-height:1.65;margin-bottom:40px}
 .hero-meta{display:flex;gap:0;border:1px solid var(--border);width:fit-content}
 .meta-item{padding:16px 28px;border-right:1px solid var(--border)}
 .meta-item:last-child{border-right:none}
 .meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.meta-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--white);letter-spacing:0.5px}
+.meta-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#111111;letter-spacing:0.5px}
 .meta-val.pink{color:var(--pink)}
 
 /* TICKER */
 .ticker{background:var(--pink);padding:12px 0;overflow:hidden;white-space:nowrap}
 .ticker-inner{display:inline-block;animation:tick 22s linear infinite}
-.ti{display:inline;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;margin:0 28px}
+.ti{display:inline;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111111;margin:0 28px}
 .td{display:inline;opacity:0.4;margin:0 4px}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* MAIN CONTENT */
 .page-body{display:grid;grid-template-columns:1fr 400px;gap:0;max-width:100%;border-top:1px solid var(--border)}
 .main-col{padding:72px 64px 72px 48px;border-right:1px solid var(--border)}
-.side-col{padding:48px 40px;background:var(--dark);position:relative}
+.side-col{padding:48px 40px;background:#f5f5f5;position:relative}
 
 .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
-.block-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:0.95;letter-spacing:1px;margin-bottom:24px}
+.block-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#111111;line-height:0.95;letter-spacing:1px;margin-bottom:24px}
 .body-text{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;margin-bottom:20px}
 .divider{border:none;border-top:1px solid var(--border);margin:48px 0}
 
 /* HIGHLIGHTS */
 .highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:8px}
-.highlight-item{background:var(--card);padding:24px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.highlight-item{background:#ffffff;padding:24px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
 .hi-icon{font-size:22px;flex-shrink:0;margin-top:2px}
-.hi-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.55;font-weight:400}
+.hi-text{font-size:13px;color:rgba(0,0,0,0.6);line-height:1.55;font-weight:400}
 
 /* SCHEDULE / NIGHT BREAKDOWN */
 .night-flow{list-style:none;position:relative;padding-left:28px}
@@ -72,19 +71,19 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .nf-item:last-child{padding-bottom:0}
 .nf-dot{position:absolute;left:-28px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--pink);border:2px solid var(--black);flex-shrink:0}
 .nf-time{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
-.nf-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px}
+.nf-title{font-size:16px;font-weight:600;color:#111111;margin-bottom:6px}
 .nf-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
 
 /* CLUBS */
 .clubs-row{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
-.club-card{background:var(--card);border:1px solid var(--border);padding:24px 20px}
-.club-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:1px;margin-bottom:4px}
+.club-card{background:#ffffff;border:1px solid var(--border);padding:24px 20px}
+.club-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#111111;letter-spacing:1px;margin-bottom:4px}
 .club-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
 
 /* TUESDAY NOTE */
 .note-box{background:rgba(255,230,0,0.05);border:1px solid rgba(255,230,0,0.2);border-left:3px solid var(--yellow);padding:20px 20px;margin-top:24px}
 .note-box-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
-.note-box-text{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;font-weight:300}
+.note-box-text{font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300}
 
 /* UPGRADE BOX */
 .upgrade-box{background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:24px;margin-top:24px}
@@ -99,12 +98,12 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .booking-divider{border:none;border-top:1px solid var(--border);margin:18px 0}
 .booking-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
 .bkey{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.bval{font-size:13px;color:var(--white);font-weight:600;text-align:right;max-width:180px}
+.bval{font-size:13px;color:#111111;font-weight:600;text-align:right;max-width:180px}
 .bval.green{color:var(--green)}
-.btn-book{display:block;width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:background 0.2s;margin-top:24px;text-align:center;text-decoration:none}
+.btn-book{display:block;width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111111;cursor:pointer;transition:background 0.2s;margin-top:24px;text-align:center;text-decoration:none}
 .btn-book:hover{background:#ff0060}
 .btn-ask{display:block;width:100%;padding:14px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;margin-top:10px;text-align:center;text-decoration:none}
-.btn-ask:hover{border-color:var(--white);color:var(--white)}
+.btn-ask:hover{border-color:#111111;color:#111111}
 
 .days-list{list-style:none;margin-top:4px}
 .days-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
@@ -121,24 +120,24 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .photo-block:hover img{transform:scale(1.04)}
 
 /* OTHER DESTINATIONS */
-.other-dest{padding:72px 48px;background:var(--dark);border-top:1px solid var(--border)}
-.other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
+.other-dest{padding:72px 48px;background:#f5f5f5;border-top:1px solid var(--border)}
+.other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#111111;letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
 .dest-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
-.dest-link{background:var(--card);padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background 0.2s;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
+.dest-link{background:#ffffff;padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background 0.2s;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
 .dest-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3);transition:transform 0.4s}
 .dest-link:hover img{transform:scale(1.04)}
-.dest-link:hover{background:var(--card)}
+.dest-link:hover{background:#ffffff}
 .dest-link-content{position:relative;z-index:1}
-.dest-link-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;line-height:1}
+.dest-link-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;line-height:1}
 .dest-link-arrow{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-top:6px}
 
-footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;text-decoration:none}
+footer{background:#f5f5f5;padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#111111;letter-spacing:2px;text-decoration:none}
 .footer-logo span{color:var(--pink)}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
 .footer-links{display:flex;gap:24px}
 .footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
-.footer-links a:hover{color:var(--white)}
+.footer-links a:hover{color:#111111}
 
 @media(max-width:960px){
   nav{padding:0 20px}.nav-links{display:none}
@@ -348,7 +347,7 @@ footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:spa
     <!-- UPGRADE -->
     <div style="margin-top:24px;background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:20px">
       <div class="eyebrow" style="margin-bottom:8px">Upgrade on the night</div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;font-weight:300">Add whiskey, tequila &amp; rum to your open bar for just <strong style="color:var(--white)">+$15</strong>. Available from your host at the first venue.</p>
+      <p style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.6;font-weight:300">Add whiskey, tequila &amp; rum to your open bar for just <strong style="color:#111111">+$15</strong>. Available from your host at the first venue.</p>
     </div>
   </div>
 </div>
@@ -381,7 +380,7 @@ footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:spa
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="contact.html">Book Now</a>
-    <a href="https://instagram.com/poordecisions">@poordecisions</a>
+    <a href="#">@poordecisions</a>
   </div>
 </footer>
 
