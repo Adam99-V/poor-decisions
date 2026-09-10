@@ -21,10 +21,10 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .nav-cta{background:var(--pink);color:#fff !important;opacity:1 !important;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
 
 /* HERO */
-.hero{background:var(--white);padding:0;border-bottom:3px solid var(--black);display:grid;grid-template-columns:1fr 1fr;min-height:90vh}
-.hero-content{padding:80px 48px;display:flex;flex-direction:column;justify-content:center}
-.hero-image{position:relative;overflow:hidden}
-.hero-image img{width:100%;height:100%;object-fit:cover;display:block}
+.hero{background:var(--white);padding:0;border-bottom:3px solid var(--black);position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+.hero-content{padding:80px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;max-width:680px}
+.hero-image{position:absolute;inset:0;z-index:0}
+.hero-image img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.18}
 .hero-eyebrow{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
 .hero-pill{background:var(--grey);border:1px solid var(--border);padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,10vw,140px);line-height:0.88;letter-spacing:-1px;color:var(--black);margin-bottom:32px}
@@ -107,9 +107,8 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
 @media(max-width:768px){
   nav{padding:0 20px}
   .nav-links{display:none}
-  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero{min-height:70vh}
   .hero-content{padding:48px 20px}
-  .hero-image{height:260px}
   .stats{grid-template-columns:1fr 1fr}
   .stat{padding:32px 20px}
   .destinations{padding:48px 20px}
@@ -133,6 +132,7 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
     <a href="#destinations">Packages</a>
     <a href="#destinations">Destinations</a>
     <a href="contact.html">Contact</a>
+    <a href="vegas-planner.html" style="color:#FF2D78 !important;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:1 !important;text-decoration:none">&#9733; Plan Vegas</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
 </nav>
