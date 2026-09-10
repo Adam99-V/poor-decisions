@@ -241,6 +241,23 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .dp-step-text b{font-weight:700}
 .dp-pill{display:inline-block;background:var(--pk);border-radius:999px;padding:10px 22px;font:700 12px/1 'Inter';letter-spacing:1px;color:#fff;margin-top:32px}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3589603211187590');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -480,10 +497,10 @@ function show(id){
   document.getElementById(id).classList.add('on');
   document.getElementById(id).scrollTop=0;
   document.getElementById('pbar').className=(id==='s2')?'show':'';
-  if(id==='s2')renderItinerary();
+  if(id==='s2'){renderItinerary();if(typeof fbq!=='undefined')fbq('track','ViewContent',{content_name:'Vegas Planner',content_category:'Nightlife'});}
   if(id==='s3')renderBar();
   if(id==='s4')renderCheckout();
-  if(id==='s5')renderPaySummary();
+  if(id==='s5'){renderPaySummary();if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{value:totalAmt(),currency:'USD',num_items:S.guests});}
   // Hide desktop panel when on later screens
   const dp = document.getElementById('desktop-preview');
   if(dp) dp.className = (id==='s1')?'':'hidden';
@@ -696,6 +713,7 @@ document.getElementById('btn-pay').addEventListener('click',()=>{
 
   // Redirect to Stripe with prefilled email and quantity
   const stripeUrl = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email) + '&quantity=' + S.guests + '&client_reference_id=' + encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
+  if(typeof fbq!=='undefined')fbq('track','Purchase',{value:totalAmt(),currency:'USD',num_items:S.guests});
   window.location.href = stripeUrl;
 });
 

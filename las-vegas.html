@@ -154,6 +154,23 @@ footer{background:#f5f5f5;padding:40px 48px;display:flex;justify-content:space-b
   footer{padding:32px 20px}
 }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3589603211187590');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -316,7 +333,13 @@ footer{background:#f5f5f5;padding:40px 48px;display:flex;justify-content:space-b
 
   <!-- BOOKING SIDEBAR -->
   <div class="side-col">
-    <div class="booking-card">
+    <div style="background:#FF2D78;padding:20px;text-align:center;margin-bottom:3px">
+  <a href="vegas-planner.html" style="text-decoration:none;display:block">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1">&#9733; Build your Vegas nights</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:6px;font-weight:600;letter-spacing:1px">Pick your clubs &middot; Add your open bar &middot; $49 per person &rarr;</div>
+  </a>
+</div>
+<div class="booking-card">
       <div class="booking-price">From $120</div>
       <div class="booking-price-note">Per person &mdash; group discounts available</div>
       <div class="booking-divider"></div>
