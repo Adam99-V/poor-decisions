@@ -8,11 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#ffffff;--dark:#f5f5f5;--card:#181818;--border:#cccccc;--white:#111111fff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88;--purple:#B026FF}
+:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#111111fff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88;--purple:#B026FF}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--black);color:#111111;overflow-x:hidden}
 
-nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+nav{background:rgba(255,255,255,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#111111;letter-spacing:2px;text-decoration:none}
 .logo span{color:var(--pink)}
 .nav-links{display:flex;gap:32px;list-style:none}
@@ -25,7 +25,7 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3)}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,rgba(8,8,8,0.65) 45%,rgba(8,8,8,0.15) 100%)}
 .hero-content{position:relative;z-index:1;padding:80px 48px 64px;max-width:960px}
-.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:28px}
+.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,0.35);margin-bottom:28px}
 .breadcrumb a{color:var(--pink);text-decoration:none}
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:24px}
@@ -62,15 +62,15 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .passport-card{background:linear-gradient(135deg,#1a0a10 0%,#0d0d1a 100%);border:1px solid rgba(255,45,120,0.3);padding:36px;margin-bottom:32px;position:relative;overflow:hidden}
 .passport-card::before{content:'PARTY PASSPORT';position:absolute;top:20px;right:20px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(255,45,120,0.2);text-transform:uppercase}
 .passport-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:6px}
-.passport-sub{font-size:13px;color:rgba(0,0,0,0.4);line-height:1.6;font-weight:300;margin-bottom:24px}
+.passport-sub{font-size:13px;color:rgba(0,0,0,0.5);line-height:1.6;font-weight:300;margin-bottom:24px}
 .passport-slots{display:flex;gap:12px;margin-bottom:20px}
 .slot{width:64px;height:64px;border:2px dashed rgba(255,45,120,0.4);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,45,120,0.3)}
-.slot.active{border-color:var(--pink);color:var(--pink);background:rgba(255,45,120,0.06)}
-.passport-note{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.5px}
+.slot.active{border-color:var(--pink);color:var(--pink);background:rgba(255,45,120,0.08)}
+.passport-note{font-size:12px;color:rgba(0,0,0,0.4);letter-spacing:0.5px}
 
 /* VENUE CARDS */
 .venues-list{display:flex;flex-direction:column;gap:2px}
-.venue-card{background:#ffffff;border:1px solid var(--border);padding:28px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:start;transition:border-color 0.2s;cursor:pointer}
+.venue-card{background:#f9f9f9;border:1px solid var(--border);padding:28px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:start;transition:border-color 0.2s;cursor:pointer}
 .venue-card:hover{border-color:var(--pink)}
 .venue-card.pool{border-left:3px solid var(--purple)}
 .venue-card.club{border-left:3px solid var(--pink)}
@@ -82,14 +82,14 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 .venue-type.pool-tag{color:var(--purple)}
 .venue-type.boat-tag{color:var(--green)}
 .venue-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;letter-spacing:1px;line-height:1;margin-bottom:8px}
-.venue-desc{font-size:13px;color:rgba(0,0,0,0.4);line-height:1.6;font-weight:300}
+.venue-desc{font-size:13px;color:rgba(0,0,0,0.5);line-height:1.6;font-weight:300}
 .venue-free{text-align:right;flex-shrink:0}
 .free-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .free-time{font-size:12px;color:var(--green);font-weight:600;line-height:1.4;max-width:140px;text-align:right}
 
 /* HIGHLIGHTS */
 .highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:8px}
-.hi-item{background:#ffffff;padding:22px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.hi-item{background:#f9f9f9;padding:22px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
 .hi-icon{font-size:22px;flex-shrink:0;margin-top:1px}
 .hi-text{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.55}
 
@@ -109,21 +109,21 @@ nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;j
 
 /* HOW IT WORKS */
 .steps{display:flex;flex-direction:column;gap:2px;margin-top:8px}
-.step{background:#ffffff;border:1px solid var(--border);padding:24px;display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+.step{background:#f9f9f9;border:1px solid var(--border);padding:24px;display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
 .step-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:rgba(255,45,120,0.25);line-height:1}
 .step-title{font-size:15px;font-weight:600;color:#111111;margin-bottom:6px}
 .step-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
 
 /* LEGEND */
 .legend{display:flex;gap:20px;margin-bottom:24px;flex-wrap:wrap}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(0,0,0,0.45);font-weight:500}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(0,0,0,0.5);font-weight:500}
 .legend-dot{width:10px;height:10px;border-radius:1px;flex-shrink:0}
 
 /* OTHER DESTINATIONS */
 .other-dest{padding:72px 48px;background:#f5f5f5;border-top:1px solid var(--border)}
 .other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#111111;letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
 .dest-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
-.dest-link{background:#ffffff;padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
+.dest-link{background:#f9f9f9;padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
 .dest-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3);transition:transform 0.4s}
 .dest-link:hover img{transform:scale(1.04)}
 .dest-link-content{position:relative;z-index:1}
@@ -135,7 +135,7 @@ footer{background:#f5f5f5;padding:40px 48px;display:flex;justify-content:space-b
 .footer-logo span{color:var(--pink)}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
 .footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
+.footer-links a{font-size:12px;color:rgba(0,0,0,0.4);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
 .footer-links a:hover{color:#111111}
 
 @media(max-width:960px){
@@ -446,10 +446,10 @@ footer{background:#f5f5f5;padding:40px 48px;display:flex;justify-content:space-b
 
     <div style="margin-top:24px;background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.2);padding:24px">
       <div class="eyebrow" style="margin-bottom:10px">Group booking?</div>
-      <p style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300">Got a group of 8 or more? Message us on WhatsApp for group rates &mdash; we'll sort you out with a deal.</p>
+      <p style="font-size:13px;color:rgba(0,0,0,0.5);line-height:1.65;font-weight:300">Got a group of 8 or more? Message us on WhatsApp for group rates &mdash; we'll sort you out with a deal.</p>
     </div>
 
-    <div style="margin-top:16px;background:#ffffff;border:1px solid var(--border);padding:24px">
+    <div style="margin-top:16px;background:#f9f9f9;border:1px solid var(--border);padding:24px">
       <div class="eyebrow" style="margin-bottom:10px">Also in Ayia Napa</div>
       <a href="bar-crawl.html" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none">
         <span style="font-size:13px;color:#111111;font-weight:500">Bar Crawl</span>

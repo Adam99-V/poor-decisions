@@ -9,10 +9,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --black:#ffffff;
-  --dark:#f5f5f5;
+  --black:#080808;
+  --dark:#111111;
   --card:#181818;
-  --border:#cccccc;
+  --border:#2a2a2a;
   --white:#111111fff;
   --off-white:#e8e8e8;
   --muted:#888888;
@@ -42,7 +42,7 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);line-height:0.9;letter-spacing:2px;margin-bottom:28px}
 .hero h1 .line1{color:#111111;display:block}
 .hero h1 .line2{color:var(--pink);display:block}
-.hero-sub{font-size:18px;color:rgba(0,0,0,0.5);font-weight:300;max-width:520px;line-height:1.65;margin-bottom:40px}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.6);font-weight:300;max-width:520px;line-height:1.65;margin-bottom:40px}
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
 .btn-primary{background:#FF2D78;color:#ffffff;border:none;padding:16px 36px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
 .btn-primary:hover{background:#ff0060;transform:translateY(-2px)}
@@ -64,13 +64,13 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .dest-card:hover .dest-img{transform:scale(1.05)}
 .dest-img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.5)}
 .dest-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.45)}
-.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(255,255,255,0.92) 0%, transparent 60%);padding:32px;display:flex;flex-direction:column;justify-content:flex-end}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(8,8,8,0.9) 0%, transparent 60%);padding:32px;display:flex;flex-direction:column;justify-content:flex-end}
 .dest-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#111111;letter-spacing:1px;line-height:1}
 .dest-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-top:6px}
 
-.packages-section{padding:100px 48px;background:#f5f5f5}
+.packages-section{padding:100px 48px;background:var(--dark)}
 .packages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
-.pkg-card{background:#ffffff;padding:48px 40px;border:1px solid var(--border);position:relative;transition:border-color 0.2s;display:flex;flex-direction:column}
+.pkg-card{background:var(--card);padding:48px 40px;border:1px solid var(--border);position:relative;transition:border-color 0.2s;display:flex;flex-direction:column}
 .pkg-card:hover{border-color:var(--pink)}
 .pkg-card.featured{border-color:var(--pink);background:#1a0a10}
 .pkg-number{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:24px;right:32px}
@@ -95,16 +95,16 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .stat-num span{color:var(--pink)}
 .stat-label{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
 
-.vibes-section{padding:100px 48px;background:#f5f5f5}
+.vibes-section{padding:100px 48px;background:var(--dark)}
 .vibes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
-.vibe-card{background:#ffffff;padding:40px 32px;border:1px solid var(--border)}
+.vibe-card{background:var(--card);padding:40px 32px;border:1px solid var(--border)}
 .vibe-icon{font-size:36px;margin-bottom:20px}
 .vibe-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:12px;letter-spacing:1px}
 .vibe-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
 
 .testimonials{padding:100px 48px;background:var(--black)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px}
-.testi-card{background:#ffffff;padding:36px 32px;border:1px solid var(--border)}
+.testi-card{background:var(--card);padding:36px 32px;border:1px solid var(--border)}
 .testi-stars{color:var(--yellow);font-size:14px;letter-spacing:2px;margin-bottom:16px}
 .testi-text{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px;font-style:italic;font-weight:300}
 .testi-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--border)}
@@ -117,7 +117,7 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .btn-white{background:var(--white);color:var(--black);border:none;padding:18px 44px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:all 0.2s}
 .btn-white:hover{background:var(--off-white)}
 
-footer{background:#f5f5f5;padding:64px 48px;border-top:1px solid var(--border)}
+footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--border)}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:2px;margin-bottom:16px}
 .footer-logo span{color:var(--pink)}
@@ -214,17 +214,17 @@ footer{background:#f5f5f5;padding:64px 48px;border-top:1px solid var(--border)}
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 01 &mdash; Year Round</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Las Vegas</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="las-vegas.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#cccccc'">
+        <a href="las-vegas.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Club Crawl</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">VIP Club Crawl</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Open bar, party bus &amp; VIP entry to Vegas&rsquo; top clubs including Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Open bar, party bus &amp; VIP entry to Vegas&rsquo; top clubs including Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From $49</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
         </a>
         <a href="las-vegas.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Daytime</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">VIP Pool Crawl</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Vegas&rsquo; best pool parties in style. VIP cabanas, bottle service options and access to the Strip&rsquo;s most iconic daytime scenes.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Vegas&rsquo; best pool parties in style. VIP cabanas, bottle service options and access to the Strip&rsquo;s most iconic daytime scenes.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From $69</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
         </a>
@@ -240,17 +240,17 @@ footer{background:#f5f5f5;padding:64px 48px;border-top:1px solid var(--border)}
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 02 &mdash; May to October</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Ayia Napa</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="bar-crawl.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#cccccc'">
+        <a href="bar-crawl.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">The Classic</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Bar Crawl</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Hit the best bars on the Napa strip with a hosted group. Free shots, queue jump entry and a rep who knows every shortcut.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit the best bars on the Napa strip with a hosted group. Free shots, queue jump entry and a rep who knows every shortcut.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From &euro;25</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
         </a>
         <a href="ayia-napa.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Best Value</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Party Passport</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Choose any 3 clubs or pool parties from Ayia Napa&rsquo;s top venues. Castle Club, Pambos Pool Party, Carwash Disco and more. Valid 7 days.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Choose any 3 clubs or pool parties from Ayia Napa&rsquo;s top venues. Castle Club, Pambos Pool Party, Carwash Disco and more. Valid 7 days.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From &euro;49</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
         </a>
@@ -266,17 +266,17 @@ footer{background:#f5f5f5;padding:64px 48px;border-top:1px solid var(--border)}
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 03 &mdash; May to October</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Albufeira</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="contact.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#cccccc'">
+        <a href="contact.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Coming Soon</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Club Crawl</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Albufeira&rsquo;s legendary Strip from top to bottom. Bars, clubs and a rep who knows exactly where the night goes next.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Albufeira&rsquo;s legendary Strip from top to bottom. Bars, clubs and a rep who knows exactly where the night goes next.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From &euro;35</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">Get in touch &rarr;</div>
         </a>
         <a href="contact.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Coming Soon</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Party Passport</div>
-          <div style="font-size:13px;color:rgba(0,0,0,0.4);line-height:1.65;font-weight:300;margin-bottom:20px">Your flexible pass to Albufeira&rsquo;s best nights. Choose your venues, pick your nights, and let us handle the rest.</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Your flexible pass to Albufeira&rsquo;s best nights. Choose your venues, pick your nights, and let us handle the rest.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From &euro;49</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">Get in touch &rarr;</div>
         </a>
