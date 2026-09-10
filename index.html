@@ -9,6 +9,13 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
+  --black:#ffffff;
+  --white:#111111;
+  --dark:#f5f5f5;
+  --card:#ffffff;
+  --border:#e0e0e0;
+  --off-white:#333333;
+
   --black:#080808;
   --dark:#111111;
   --card:#181818;
@@ -22,9 +29,9 @@
   --yellow:#FFE600;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--black);color:#111111;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#ffffff;color:#111111;overflow-x:hidden}
 
-nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+nav{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#111111;letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:2px}
 .logo span{color:var(--pink)}
 .nav-links{display:flex;gap:32px;list-style:none}
@@ -33,12 +40,12 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .nav-cta{background:#FF2D78;color:#ffffff;border:none;padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
 .nav-cta:hover{background:#ff0060;transform:translateY(-1px)}
 
-.hero{min-height:92vh;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=1600&q=80') center/cover no-repeat;opacity:0.25}
-.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top, var(--black) 0%, rgba(8,8,8,0.6) 50%, rgba(8,8,8,0.2) 100%)}
+.hero{min-height:92vh;background:#ffffff;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-bg{position:absolute;inset:0;opacity:0.12!important;background:url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=1600&q=80') center/cover no-repeat;opacity:0.25}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%)}
 .hero-content{position:relative;z-index:1;max-width:900px}
 .hero-locations{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
-.location-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:var(--off-white);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px}
+.location-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:#111111;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);line-height:0.9;letter-spacing:2px;margin-bottom:28px}
 .hero h1 .line1{color:#111111;display:block}
 .hero h1 .line2{color:var(--pink);display:block}
@@ -50,13 +57,13 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .btn-outline{background:transparent;color:#111111;border:1px solid rgba(255,255,255,0.25);padding:16px 36px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s}
 .btn-outline:hover{border-color:#111111}
 
-.ticker{background:var(--pink);padding:14px 0;overflow:hidden;white-space:nowrap}
+.ticker{background:#FF2D78;padding:14px 0;overflow:hidden;white-space:nowrap}
 .ticker-inner{display:inline-block;animation:ticker 20s linear infinite}
 .ticker-item{display:inline;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111111;margin:0 32px}
 .ticker-dot{display:inline;margin:0 4px;opacity:0.5}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.destinations{padding:100px 48px;background:var(--black)}
+.destinations{padding:100px 48px;background:#ffffff}
 .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);color:#111111;line-height:0.95;letter-spacing:1px;margin-bottom:56px}
 .dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -68,11 +75,11 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .dest-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#111111;letter-spacing:1px;line-height:1}
 .dest-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-top:6px}
 
-.packages-section{padding:100px 48px;background:var(--dark)}
+.packages-section{padding:100px 48px;background:#f5f5f5}
 .packages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
-.pkg-card{background:var(--card);padding:48px 40px;border:1px solid var(--border);position:relative;transition:border-color 0.2s;display:flex;flex-direction:column}
+.pkg-card{background:#ffffff;padding:48px 40px;border:1px solid #e0e0e0;position:relative;transition:border-color 0.2s;display:flex;flex-direction:column}
 .pkg-card:hover{border-color:var(--pink)}
-.pkg-card.featured{border-color:var(--pink);background:#1a0a10}
+.pkg-card.featured{border-color:var(--pink);background:#fff0f5}
 .pkg-number{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:24px;right:32px}
 .pkg-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
 .pkg-name{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#111111;line-height:1;letter-spacing:1px;margin-bottom:16px}
@@ -81,13 +88,13 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .pkg-price-note{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
 .pkg-includes{list-style:none;margin-bottom:32px;border-top:1px solid var(--border);padding-top:24px}
 .pkg-includes li{font-size:13px;color:rgba(255,255,255,0.55);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
-.pkg-includes li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pink);flex-shrink:0}
-.pkg-cta{display:block;width:100%;padding:16px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111111;cursor:pointer;transition:all 0.2s;text-align:center;text-decoration:none;margin-top:auto}
-.pkg-card.featured .pkg-cta{background:var(--pink);border-color:var(--pink)}
-.pkg-cta:hover{background:var(--pink);border-color:var(--pink)}
+.pkg-includes li::before{content:'';width:4px;height:4px;border-radius:50%;background:#FF2D78;flex-shrink:0}
+.pkg-cta{display:block;width:100%;padding:16px;background:transparent;border:1px solid #e0e0e0;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#111111;cursor:pointer;transition:all 0.2s;text-align:center;text-decoration:none;margin-top:auto}
+.pkg-card.featured .pkg-cta{background:#FF2D78;border-color:var(--pink)}
+.pkg-cta:hover{background:#FF2D78;border-color:var(--pink)}
 .hot-badge{position:absolute;top:24px;right:24px;background:#FF2D78;color:#ffffff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 10px}
 
-.social-proof{padding:80px 48px;background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.social-proof{padding:80px 48px;background:#ffffff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
 .stat-card{padding:48px 32px;text-align:center;border-right:1px solid var(--border)}
 .stat-card:last-child{border-right:none}
@@ -95,29 +102,29 @@ nav{background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);padding:0 48px;displa
 .stat-num span{color:var(--pink)}
 .stat-label{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
 
-.vibes-section{padding:100px 48px;background:var(--dark)}
+.vibes-section{padding:100px 48px;background:#f5f5f5}
 .vibes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
-.vibe-card{background:var(--card);padding:40px 32px;border:1px solid var(--border)}
+.vibe-card{background:#ffffff;padding:40px 32px;border:1px solid #e0e0e0}
 .vibe-icon{font-size:36px;margin-bottom:20px}
 .vibe-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:12px;letter-spacing:1px}
 .vibe-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
 
-.testimonials{padding:100px 48px;background:var(--black)}
+.testimonials{padding:100px 48px;background:#ffffff}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px}
-.testi-card{background:var(--card);padding:36px 32px;border:1px solid var(--border)}
+.testi-card{background:#ffffff;padding:36px 32px;border:1px solid #e0e0e0}
 .testi-stars{color:var(--yellow);font-size:14px;letter-spacing:2px;margin-bottom:16px}
 .testi-text{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px;font-style:italic;font-weight:300}
 .testi-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--border)}
-.testi-initials{width:40px;height:40px;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#111111;flex-shrink:0}
+.testi-initials{width:40px;height:40px;background:#FF2D78;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#ffffff;flex-shrink:0}
 .testi-name{font-size:14px;font-weight:600;color:#111111}
 .testi-where{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:0.5px}
 
-.cta-strip{background:var(--pink);padding:80px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px}
+.cta-strip{background:#FF2D78;padding:80px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px}
 .cta-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:#111111;line-height:0.95;letter-spacing:1px}
 .btn-white{background:var(--white);color:var(--black);border:none;padding:18px 44px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:all 0.2s}
 .btn-white:hover{background:var(--off-white)}
 
-footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--border)}
+footer{background:#f5f5f5;padding:64px 48px;border-top:1px solid var(--border)}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:2px;margin-bottom:16px}
 .footer-logo span{color:var(--pink)}
@@ -140,6 +147,25 @@ footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--borde
   .footer-top{grid-template-columns:1fr 1fr;gap:32px}
   footer{padding:48px 20px}
 }
+</style>
+<style>
+nav { background: #ffffff !important; border-bottom: 1px solid #e8e8e8 !important; }
+nav a, nav span, .nav-link { color: #111111 !important; }
+.logo { color: #111111 !important; }
+body { background: #ffffff !important; color: #111111 !important; }
+.hero { background: #ffffff !important; }
+.hero-bg { opacity: 0.06 !important; filter: grayscale(100%) !important; }
+.hero-gradient { background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.2) 100%) !important; }
+.destinations { background: #f5f5f5 !important; }
+.destinations > div[style*="position:relative"] { background: #ffffff !important; }
+.destinations img { display: none !important; }
+.destinations > div > div[style*="position:absolute;inset:0;background:linear"] { display: none !important; }
+.social-proof, .testimonials { background: #ffffff !important; }
+.packages-section, .vibes-section, footer { background: #f5f5f5 !important; }
+.testi-card, .pkg-card, .vibe-card { background: #ffffff !important; border-color: #e8e8e8 !important; }
+h1, h2, h3, h4, p, span, li, a:not(.btn-primary):not(.nav-cta):not(.btn-white) { color: #111111 !important; }
+.nav-cta, .btn-primary { color: #ffffff !important; }
+.btn-white { color: #111111 !important; background: #ffffff !important; }
 </style>
 </head>
 <body>
@@ -208,19 +234,20 @@ footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--borde
 
   <!-- LAS VEGAS -->
   <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
-    <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1600&q=80" alt="Las Vegas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1600&q=80" alt="Las Vegas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.15) saturate(0.3)">
+    
     <div style="position:relative;z-index:1;padding:72px 48px">
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 01 &mdash; Year Round</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Las Vegas</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="las-vegas.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+        <a href="las-vegas.html" style="background:#f9f9f9;border:1px solid #e0e0e0;padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Club Crawl</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">VIP Club Crawl</div>
           <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Open bar, party bus &amp; VIP entry to Vegas&rsquo; top clubs including Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#111111;margin-bottom:16px">From $49</div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)">View Package &rarr;</div>
         </a>
+        <a href="vegas-planner.html" style="display:block;background:#FF2D78;padding:14px 20px;text-decoration:none;margin-top:3px;text-align:center"><span style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff">&#9733; Plan your Vegas nights &rarr;</span></a>
         <a href="las-vegas.html" style="background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.25);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='rgba(255,45,120,0.25)'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Daytime</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">VIP Pool Crawl</div>
@@ -234,13 +261,13 @@ footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--borde
 
   <!-- AYIA NAPA -->
   <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
-    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80" alt="Ayia Napa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80" alt="Ayia Napa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.15) saturate(0.3)">
+    
     <div style="position:relative;z-index:1;padding:72px 48px">
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 02 &mdash; May to October</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Ayia Napa</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="bar-crawl.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+        <a href="bar-crawl.html" style="background:#f9f9f9;border:1px solid #e0e0e0;padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">The Classic</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Bar Crawl</div>
           <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit the best bars on the Napa strip with a hosted group. Free shots, queue jump entry and a rep who knows every shortcut.</div>
@@ -260,13 +287,13 @@ footer{background:var(--dark);padding:64px 48px;border-top:1px solid var(--borde
 
   <!-- ALBUFEIRA -->
   <div class="dest-block" style="position:relative;border-bottom:1px solid var(--border)">
-    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Albufeira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.2)">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.98) 0%,rgba(8,8,8,0.85) 50%,rgba(8,8,8,0.5) 100%)"></div>
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Albufeira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.15) saturate(0.3)">
+    
     <div style="position:relative;z-index:1;padding:72px 48px">
       <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px">Destination 03 &mdash; May to October</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);color:#111111;line-height:0.9;letter-spacing:2px;margin-bottom:32px">Albufeira</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px">
-        <a href="contact.html" style="background:#f9f9f9;border:1px solid var(--border);padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
+        <a href="contact.html" style="background:#f9f9f9;border:1px solid #e0e0e0;padding:32px;text-decoration:none;display:block;transition:border-color 0.2s" onmouseover="this.style.borderColor='#FF2D78'" onmouseout="this.style.borderColor='#2a2a2a'">
           <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px">Coming Soon</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#111111;letter-spacing:1px;margin-bottom:10px">Club Crawl</div>
           <div style="font-size:13px;color:rgba(0,0,0,0.45);line-height:1.65;font-weight:300;margin-bottom:20px">Hit Albufeira&rsquo;s legendary Strip from top to bottom. Bars, clubs and a rep who knows exactly where the night goes next.</div>
