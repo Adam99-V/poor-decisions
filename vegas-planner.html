@@ -270,7 +270,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
         <div class="kicker">Poor Decisions · Las Vegas</div>
         <h1>Build your <em>Vegas nights.</em></h1>
       </div>
-      <div class="pill">$49 per person — your entire trip</div>
+      
       <div style="display:flex;flex-direction:column;gap:10px">
         <div class="cal-hd">
           <span class="cal-month">OCTOBER 2026</span>
@@ -337,13 +337,18 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
         <div class="bar-top">
           <div class="bar-icon">🍹</div>
           <div>
-            <div class="bar-title">Open bar · 9–11pm</div>
-            <div class="bar-sub">Two hours, included with your ticket</div>
+            <div class="bar-title">Open bar · 8–10pm</div>
+            <div class="bar-sub">2 hours unlimited drinks — included in your $49</div>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="bar-time-row"><span class="bar-time">9:00PM</span><span class="bar-time-text">Unlimited pours — beer, wine, well cocktails and shots.</span></div>
-          <div class="bar-time-row"><span class="bar-time">11:00PM</span><span class="bar-time-text">Bar closes, make your own way to your club.</span></div>
+          <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in, get your wristband, meet your group. Unlimited mixed drinks, beer, wine and shots begin.</span></div>
+          <div class="bar-time-row"><span class="bar-time">8–10PM</span><span class="bar-time-text">Party games running all night — beer pong, flip cup and group challenges. Join in or just drink. Up to you.</span></div>
+          <div class="bar-time-row"><span class="bar-time">10:00PM</span><span class="bar-time-text">Bar wraps up. Head to your nightclub independently by cab or Uber — your entry is pre-arranged at check-in.</span></div>
+        </div>
+        <div style="background:rgba(240,165,0,.12);border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start">
+          <span style="font-size:14px">✓</span>
+          <span style="font:600 11px/1.5 Inter,sans-serif;color:#c47900">All guests must be 21+. Valid photo ID required. Smart nightlife attire only — dress code strictly enforced at the club.</span>
         </div>
       </div>
       <div class="sec-hd">
@@ -469,11 +474,9 @@ const NC = [
   {id:'hakkasan', name:'Hakkasan',      hotel:'MGM Grand',        genre:'House · Hip Hop', days:[3,4,5,6],   logo:'hakkasan', photo:PHOTOS[1]},
   {id:'xs',       name:'XS',            hotel:'Encore',           genre:'EDM · House',     days:[0,1,3,4,5,6],logo:'xs',      photo:PHOTOS[0]},
   {id:'tao',      name:'TAO Nightclub', hotel:'The Venetian',     genre:'Open Format',     days:[0,4,5,6],   logo:'tao',      photo:PHOTOS[2]},
-  {id:'marquee',  name:'Marquee',       hotel:'The Cosmopolitan', genre:'Open + House',    days:[0,1,3,5,6], logo:'marquee',  photo:PHOTOS[14]},
-  {id:'liv',      name:'LIV',           hotel:'Fontainebleau',    genre:'Hip Hop · R&B',   days:[4,5,6],     logo:'hakkasan', photo:PHOTOS[6]},
-  {id:'zouk',     name:'Zouk',          hotel:'Resorts World',    genre:'EDM · House',     days:[4,5,6],     logo:'zouk',     photo:PHOTOS[11]},
+  {id:'marquee',  name:'Marquee',       hotel:'The Cosmopolitan', genre:'Open + House',    days:[1,3,5,6],   logo:'marquee',  photo:PHOTOS[14]},
   {id:'jewel',    name:'Jewel',         hotel:'Aria',             genre:'Hip Hop · R&B',   days:[5,6],       logo:'hakkasan', photo:PHOTOS[8]},
-  {id:'drais',    name:"Drai's",        hotel:'The Cromwell',     genre:'Hip Hop · Live',  days:[3,4,5,6],   logo:'drais',    photo:PHOTOS[10]}
+  {id:'zouk',     name:'Zouk',          hotel:'Resorts World',    genre:'EDM · House',     days:[4,5,6],     logo:'zouk',     photo:PHOTOS[11]},
 ];
 const DC = [
   {id:'mq-day',    name:'Marquee Dayclub',   hotel:'The Cosmopolitan', genre:'House · Tech House', days:[0,1,4,5,6], logo:'marquee',   photo:PHOTOS[4]},
@@ -482,6 +485,16 @@ const DC = [
   {id:'encore-bc', name:'Encore Beach Club', hotel:'Encore at Wynn',   genre:'EDM · House',        days:[0,4,5,6],   logo:'encore-bc', photo:PHOTOS[9]},
   {id:'wet-rep',   name:'Wet Republic',      hotel:'MGM Grand',        genre:'EDM · House',        days:[0,1,4,5,6], logo:'hakkasan',  photo:PHOTOS[12]}
 ];
+
+
+// Live guest-list schedule - refreshed weekly by GitHub Action
+fetch(BASE + 'schedule.json', {cache:'no-store'})
+  .then(r => r.json())
+  .then(sch => {
+    NC.forEach(v => { if (Array.isArray(sch[v.id])) v.days = sch[v.id]; });
+    DC.forEach(v => { if (Array.isArray(sch[v.id])) v.days = sch[v.id]; });
+  })
+  .catch(() => {}); // offline/fallback: hardcoded days above still apply
 
 const WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -561,7 +574,7 @@ function tileDay(d,dow,dv,hasDay){
   return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 12pm–6pm</div></div></div>`;
 }
 function tileNight(d,dow,nv,isBar){
-  if(isBar&&!nv)return`<div class="tile bar-filled" data-i="${d}" data-slot="night"><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">🍹</div><div class="tile-kind-pill">NIGHT</div><div class="tile-check b">✓</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div><div class="tile-venue">9–11pm included</div></div></div>`;
+  if(isBar&&!nv)return`<div class="tile bar-filled" data-i="${d}" data-slot="night"><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">🍹</div><div class="tile-kind-pill">NIGHT</div><div class="tile-check b">✓</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div><div class="tile-venue">8–10pm included</div></div></div>`;
   if(nv)return`<div class="tile night-filled" data-i="${d}" data-slot="night"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel}</div><div class="tile-genre">${nv.genre}</div></div></div>`;
   return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10pm · tap to add</div></div></div>`;
 }
@@ -599,7 +612,7 @@ function openSheet(d,slot){
   if(!isDay&&(!obUsed||isBar)){
     const r=document.createElement('div');r.className='sheet-row';
     if(isBar)r.style.cssText='border-color:#f0a500;background:rgba(240,165,0,.05)';
-    r.innerHTML=`<div class="sheet-logo-box" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px">🍹</div><div style="flex:1"><div class="sheet-name" style="color:#c47900">Open bar night</div><div class="sheet-venue">Once per trip · 9–11pm · included in $49</div></div><span class="sheet-genre" style="color:#f0a500">INCLUDED</span>`;
+    r.innerHTML=`<div class="sheet-logo-box" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px">🍹</div><div style="flex:1"><div class="sheet-name" style="color:#c47900">Open bar night</div><div class="sheet-venue">Once per trip · 8–10pm · free drinks + games</div></div><span class="sheet-genre" style="color:#f0a500">INCLUDED</span>`;
     r.addEventListener('click',()=>{S.openBarNight=isBar?null:d;closeSheet();renderItinerary();});
     opts.appendChild(r);
   }
