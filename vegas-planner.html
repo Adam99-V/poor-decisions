@@ -6,77 +6,61 @@
 <title>Build Your Vegas Nights — Poor Decisions</title>
 <link rel="icon" href="poor-decisions-favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3589603211187590');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--pk:#FF2D78;--black:#111111;--white:#ffffff;--grey:#f5f5f5;--border:#e8e8e8;--mid:#888}
+:root{--pk:#FF2D78;--black:#111;--white:#fff;--grey:#f5f5f5;--border:#e8e8e8;--mid:#888;--gold:#c47900;--goldbg:rgba(240,165,0,.08);--goldline:#f0a500}
 html,body{height:100%;background:#f0f0f0;font-family:'Inter',sans-serif;color:var(--black)}
-
-/* DESKTOP WRAPPER */
-#app{
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  max-width:480px;
-  margin:0 auto;
-  position:relative;
-  overflow:hidden;
-  background:var(--white);
-  box-shadow:0 0 60px rgba(0,0,0,0.12);
-}
-
-/* DESKTOP: side-by-side layout */
+#app{height:100%;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;overflow:hidden;background:#fff;box-shadow:0 0 60px rgba(0,0,0,.12)}
 @media(min-width:900px){
-  body{display:flex;align-items:stretch;background:#f0f0f0}
-  #app{
-    max-width:none;
-    width:460px;
-    flex-shrink:0;
-    height:100vh;
-    box-shadow:2px 0 20px rgba(0,0,0,0.08);
-  }
-  #desktop-preview{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:48px;
-    background:#f8f8f8;
-  }
-  #desktop-preview.hidden{display:none}
+  body{display:flex;background:#f8f8f8}
+  #app{max-width:none;width:470px;flex-shrink:0;height:100vh;box-shadow:2px 0 20px rgba(0,0,0,.08)}
+  #side{flex:1;display:flex;flex-direction:column;justify-content:center;padding:64px;background:#f8f8f8}
 }
-@media(max-width:899px){
-  #desktop-preview{display:none}
-}
-
-.screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;flex-direction:column;background:var(--white)}
+@media(max-width:899px){#side{display:none}}
+.screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;flex-direction:column;background:#fff}
 .screen.on{display:flex}
 
-/* NAV */
-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;text-decoration:none;color:var(--black)}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50;gap:10px}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;text-decoration:none;color:var(--black);white-space:nowrap}
 .logo em{color:var(--pk);font-style:normal}
-.nav-back{width:34px;height:34px;border-radius:50%;background:var(--grey);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--black)}
-.step-label{font:500 10px/1 'Inter';letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
+.nav-back{width:34px;height:34px;border-radius:50%;background:var(--grey);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--black);flex-shrink:0}
+.nav-mid{font:600 9.5px/1 'Inter';letter-spacing:.22em;text-transform:uppercase;color:var(--mid);text-align:center;flex:1}
+.site-link{font:700 10px/1 'Inter';letter-spacing:1px;text-transform:uppercase;color:var(--mid);text-decoration:none;white-space:nowrap;border:1px solid var(--border);padding:8px 10px;border-radius:999px}
+.site-link:hover{color:var(--pk);border-color:var(--pk)}
 
-/* FOOTER */
 .footer{flex-shrink:0;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--border)}
-.btn-main{width:100%;background:var(--pk);border:none;border-radius:12px;padding:16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;cursor:pointer}
+.btn-main{width:100%;background:var(--pk);border:none;border-radius:12px;padding:16px;font:800 13px/1 'Inter';letter-spacing:2px;text-transform:uppercase;color:#fff;cursor:pointer}
 .btn-main:disabled{background:var(--border);color:var(--mid);cursor:default}
+.btn-ghost{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:14px;font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--black);cursor:pointer;text-decoration:none;display:block;text-align:center}
 
-/* S1 DATES */
-#s1 .body{padding:24px 20px;display:flex;flex-direction:column;gap:20px}
-.kicker{font:600 10px/1 'Inter';letter-spacing:3px;text-transform:uppercase;color:var(--pk)}
-h1{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:.9;color:var(--black)}
+/* typography spacing */
+.body{padding:24px 20px 32px;display:flex;flex-direction:column;gap:24px}
+.kicker{font:700 10px/1 'Inter';letter-spacing:3px;text-transform:uppercase;color:var(--pk);margin-bottom:12px}
+h1{font-family:'Bebas Neue',sans-serif;font-size:50px;line-height:.92;color:var(--black)}
 h1 em{color:var(--pk);font-style:normal;display:block}
-.pill{align-self:flex-start;background:var(--pk);border-radius:999px;padding:7px 14px;font:600 11px/1.25 'Inter';color:#fff}
+h2.stitle{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:.95;color:var(--black);margin-bottom:8px}
+h2.stitle em{color:var(--pk);font-style:normal}
+.ssub{font:400 13px/1.6 'Inter';color:var(--mid)}
+.sec-hd{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.sec-lbl{font:700 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.sec-note{font:600 10.5px/1 'Inter';color:var(--gold)}
+
+/* calendar */
+.cal{display:flex;flex-direction:column;gap:12px}
 .cal-hd{display:flex;align-items:baseline;gap:10px}
 .cal-month{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black)}
 .cal-line{flex:1;height:1px;background:var(--border)}
-.cal-label{font:600 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--pk)}
+.cal-label{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--pk)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow{text-align:center;font:600 9.5px/1 'Inter';letter-spacing:.1em;color:var(--mid);padding:4px 0}
-.cal-day{height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:600 14px/1 'Inter';cursor:pointer;color:var(--mid);background:transparent;transition:all .15s;border:none}
+.cal-day{height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:600 14px/1 'Inter';cursor:pointer;color:var(--mid);background:transparent;border:none;transition:all .15s}
 .cal-day:hover:not(.past):not(.pad){background:rgba(255,45,120,.08)}
 .cal-day.pad{visibility:hidden}
 .cal-day.past{color:#ccc;cursor:default}
@@ -84,655 +68,563 @@ h1 em{color:var(--pk);font-style:normal;display:block}
 .cal-day.end{background:var(--pk);color:#fff;border-radius:0 10px 10px 0}
 .cal-day.start.end{border-radius:10px}
 .cal-day.inrange{background:rgba(255,45,120,.12);color:var(--black);border-radius:0}
-.cal-hint{font:400 11px/1.4 'Inter';color:var(--mid)}
-.guests-card{border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.cal-hint{font:400 11.5px/1.5 'Inter';color:var(--mid)}
+.guests-card{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:space-between}
 .guests-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
-.guests-sub{font:400 10.5px/1 'Inter';color:var(--mid);margin-top:3px}
+.guests-sub{font:400 11px/1 'Inter';color:var(--mid);margin-top:4px}
 .g-ctrl{display:flex;align-items:center;gap:12px}
 .g-btn{width:36px;height:36px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font:400 20px/1 'Inter';cursor:pointer}
-.g-btn.m{background:var(--grey);color:var(--black)}
-.g-btn.p{background:var(--pk);color:#fff}
+.g-btn.m{background:var(--grey);color:var(--black)}.g-btn.p{background:var(--pk);color:#fff}
 .g-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);min-width:28px;text-align:center}
 
-/* S2 ITINERARY */
-#s2 .body{display:flex;flex-direction:column;gap:0;padding-bottom:80px}
-.s2-intro{padding:20px 20px 0}
-h2.stitle{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:.9;color:var(--black);margin-bottom:3px}
-h2.stitle em{color:var(--pk);font-style:normal}
-.ssub{font:400 12px/1.5 'Inter';color:var(--mid);margin-bottom:16px}
-.day-block{border-bottom:1px solid var(--border);padding:16px 20px}
+/* itinerary */
+.day-block{border-bottom:1px solid var(--border);padding:18px 20px}
 .day-hd{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
 .day-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
 .day-date{font:600 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
 .day-line{flex:1;height:1px;background:var(--border)}
 .day-count{font:600 9.5px/1 'Inter';color:var(--mid)}
 .slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{height:140px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid var(--border)}
-.tile.night-filled{border-color:var(--pk)}
-.tile.day-filled{border-color:#2D9BFF}
-.tile.bar-filled{border-color:#f0a500}
+.tile{height:150px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid var(--border);background:#111}
+.tile.night-filled{border-color:var(--pk)}.tile.day-filled{border-color:#2D9BFF}.tile.bar-filled{border-color:var(--goldline)}
 .tile-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tile-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 40%,rgba(0,0,0,.1))}
-.tile-kind-pill{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);border-radius:999px;padding:3px 8px;font:700 9px/1 'Inter';letter-spacing:.12em;color:var(--black)}
+.tile-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 45%,rgba(0,0,0,.1))}
+.tile-kind-pill{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:3px 8px;font:700 9px/1 'Inter';letter-spacing:.12em;color:var(--black)}
 .tile-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:#fff}
-.tile-check.n{background:var(--pk)}.tile-check.d{background:#2D9BFF}.tile-check.b{background:#f0a500}
+.tile-check.n{background:var(--pk)}.tile-check.d{background:#2D9BFF}.tile-check.b{background:var(--goldline)}
+.tile-bar-tag{position:absolute;top:34px;left:8px;background:var(--goldline);border-radius:999px;padding:3px 7px;font:800 8px/1 'Inter';letter-spacing:.1em;color:#191400}
 .tile-info{position:absolute;left:0;right:0;bottom:0;padding:10px}
-.tile-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;line-height:1}
+.tile-name{font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;line-height:1}
 .tile-venue{font:400 9px/1.3 'Inter';color:rgba(255,255,255,.75)}
-.tile-genre{font:700 8px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:#FF7FAC}
-.tile-genre.d{color:#7FC4FF}.tile-genre.b{color:#f0a500}
-.tile-empty{height:140px;border-radius:14px;border:1.5px dashed var(--border);background:var(--grey);padding:12px;display:flex;flex-direction:column;cursor:pointer}
+.tile-dj{font:700 9px/1.3 'Inter';color:#fff;margin-top:2px}
+.tile-genre{font:700 8px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:#FF7FAC;margin-top:3px}
+.tile-genre.d{color:#7FC4FF}
+.tile-empty{height:150px;border-radius:14px;border:1.5px dashed var(--border);background:var(--grey);padding:12px;display:flex;flex-direction:column;cursor:pointer}
 .tile-empty:hover{border-color:var(--pk);background:rgba(255,45,120,.03)}
 .tile-empty-top{display:flex;align-items:center;justify-content:space-between}
 .tile-empty-plus{width:28px;height:28px;border-radius:8px;border:1.5px solid rgba(255,45,120,.4);display:flex;align-items:center;justify-content:center;font:300 18px/1 'Inter';color:var(--pk)}
-.tile-empty-kind{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:#ccc}
+.tile-empty-kind{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:#bbb}
 .tile-empty-bot{margin-top:auto}
-.tile-empty-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#bbb;line-height:1}
-.tile-empty-hint{font:400 9.5px/1.2 'Inter';color:#ccc;margin-top:3px}
-.tile-na{height:140px;border-radius:14px;border:1px dashed #eee;background:#fafafa;padding:12px;display:flex;flex-direction:column}
+.tile-empty-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#999;line-height:1}
+.tile-empty-hint{font:400 9.5px/1.3 'Inter';color:#bbb;margin-top:4px}
+.tile-na{height:150px;border-radius:14px;border:1px dashed #eee;background:#fafafa;padding:12px;display:flex;flex-direction:column}
 .tile-na-kind{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:#ddd;text-align:right}
-.tile-na-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#ddd;margin-top:auto}
+.tile-na-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#ccc;margin-top:auto}
 
-/* PBAR */
-#pbar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border);padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:space-between;z-index:40;flex-shrink:0}
+#pbar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border);padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:space-between;z-index:40;flex-shrink:0;gap:12px}
 #pbar.show{display:flex}
-.pb-price{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--pk);line-height:1}
-.pb-note{font:400 9px/1 'Inter';letter-spacing:.1em;color:var(--mid);margin-top:2px}
-#pbtn{background:var(--pk);color:#fff;padding:12px 20px;font:800 10px/1 'Inter';letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;border-radius:10px}
+.pb-big{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);line-height:1}
+.pb-note{font:400 10px/1.3 'Inter';color:var(--mid);margin-top:2px}
+#pbtn{background:var(--pk);color:#fff;padding:13px 18px;font:800 10px/1 'Inter';letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;border-radius:10px;white-space:nowrap}
 #pbtn:disabled{background:var(--border);color:var(--mid);cursor:default}
 
-/* SHEET */
+/* sheet */
 .sheet-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;justify-content:center}
 .sheet-ov.open{display:flex}
-.sheet{background:#fff;width:100%;max-width:480px;max-height:82vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(28px + env(safe-area-inset-bottom))}
-.sheet-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);margin-bottom:14px}
-.sheet-row{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:8px}
+.sheet{background:#fff;width:100%;max-width:480px;max-height:82vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:20px 16px calc(28px + env(safe-area-inset-bottom))}
+.sheet-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);margin-bottom:4px}
+.sheet-sub{font:400 12px/1.4 'Inter';color:var(--mid);margin-bottom:16px}
+.sheet-row{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:8px}
+.sheet-row.sel{border-color:var(--pk);background:rgba(255,45,120,.03)}
 .sheet-row:active{opacity:.8}
-.sheet-logo-box{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--grey)}
+.sheet-logo-box{width:48px;height:48px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#111;display:flex;align-items:center;justify-content:center}
 .sheet-logo-box img{width:100%;height:100%;object-fit:contain}
 .sheet-name{font:700 15px/1.1 'Inter';color:var(--black)}
-.sheet-venue{font:400 10.5px/1.2 'Inter';color:var(--mid);margin-top:2px}
-.sheet-genre{font:700 9.5px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:var(--pk);text-align:right;flex-shrink:0;max-width:80px}
-.sheet-clear{text-align:center;padding:12px;font:600 11px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mid);cursor:pointer;margin-top:4px}
+.sheet-venue{font:400 11px/1.3 'Inter';color:var(--mid);margin-top:2px}
+.sheet-dj{font:700 11px/1.3 'Inter';color:var(--pk);margin-top:2px}
+.sheet-genre{font:700 9px/1.2 'Inter';letter-spacing:.1em;text-transform:uppercase;color:var(--mid);text-align:right;flex-shrink:0;max-width:80px}
+.sheet-clear{text-align:center;padding:12px;font:700 11px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mid);cursor:pointer;margin-top:4px}
 
-/* S3 OPEN BAR */
-#s3 .body{padding:20px;display:flex;flex-direction:column;gap:16px}
-.bar-card{border:1.5px solid rgba(240,165,0,.4);background:rgba(240,165,0,.05);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+/* open bar */
+.bar-card{border:1.5px solid rgba(240,165,0,.45);background:var(--goldbg);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
 .bar-top{display:flex;align-items:center;gap:12px}
-.bar-icon{width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
-.bar-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#c47900}
-.bar-sub{font:600 10.5px/1 'Inter';color:var(--mid);margin-top:3px}
-.bar-time-row{display:flex;gap:10px;align-items:flex-start}
-.bar-time{font:700 9.5px/1.5 'Inter';letter-spacing:.1em;color:#c47900;width:52px;flex-shrink:0}
-.bar-time-text{font:400 11.5px/1.4 'Inter';color:var(--black)}
-.sec-hd{display:flex;align-items:baseline;justify-content:space-between}
-.sec-lbl{font:600 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
-.sec-note{font:400 10.5px/1 'Inter';color:#c47900}
+.bar-icon{width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.bar-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);line-height:1}
+.bar-sub{font:600 11px/1.3 'Inter';color:var(--mid);margin-top:4px}
+.bar-time-row{display:flex;gap:12px;align-items:flex-start}
+.bar-time{font:800 9.5px/1.6 'Inter';letter-spacing:.1em;color:var(--gold);width:54px;flex-shrink:0}
+.bar-time-text{font:400 12px/1.55 'Inter';color:var(--black)}
+.bar-rules{background:rgba(240,165,0,.14);border-radius:10px;padding:10px 12px;font:600 11px/1.5 'Inter';color:var(--gold)}
 .bar-night{border:2px solid var(--border);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:10px;background:#fff}
 .bar-night:hover{border-color:rgba(240,165,0,.5)}
-.bar-night.sel{border-color:#f0a500;background:rgba(240,165,0,.05)}
+.bar-night.sel{border-color:var(--goldline);background:var(--goldbg)}
 .bar-night-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
-.bar-night-venue{font:400 11px/1.2 'Inter';color:var(--mid);margin-top:4px}
+.bar-night-venue{font:400 11.5px/1.3 'Inter';color:var(--mid);margin-top:4px}
 .bar-check{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font:700 12px/1 'Inter'}
-.bar-check.e{border:1.5px solid var(--border);color:var(--mid)}
-.bar-check.f{background:#f0a500;color:#fff}
-.bar-incl{font:700 10px/1 'Inter';letter-spacing:.1em;color:#f0a500;flex-shrink:0}
+.bar-check.e{border:1.5px solid var(--border);color:var(--mid)}.bar-check.f{background:var(--goldline);color:#fff}
+.bar-incl{font:800 10px/1 'Inter';letter-spacing:.1em;color:var(--gold);flex-shrink:0}
 
-/* S4 CHECKOUT */
-#s4 .body{padding:20px;display:flex;flex-direction:column;gap:14px;padding-bottom:80px}
+/* checkout */
+.ob-banner{border:2px solid var(--goldline);background:var(--goldbg);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center}
+.ob-banner .ic{font-size:26px;flex-shrink:0}
+.ob-banner .t{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);line-height:1}
+.ob-banner .s{font:600 11.5px/1.5 'Inter';color:var(--black);margin-top:3px}
 .lineup-hd{display:flex;align-items:baseline;gap:8px}
 .lineup-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--black)}
 .lineup-div{flex:1;height:1px;background:var(--border)}
-.lineup-dates{font:600 9.5px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--pk)}
-.lineup-days{display:flex;flex-direction:column;gap:10px}
-.lineup-day{display:flex;align-items:flex-start;gap:8px}
-.lineup-day-lbl{width:44px;flex-shrink:0;padding-top:4px}
+.lineup-dates{font:700 9.5px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--pk)}
+.lineup-days{display:flex;flex-direction:column;gap:12px}
+.lineup-day{display:flex;align-items:flex-start;gap:10px}
+.lineup-day-lbl{width:52px;flex-shrink:0;padding-top:4px}
 .lineup-day-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--black)}
-.lineup-day-date{font:500 9px/1.3 'Inter';letter-spacing:.1em;color:var(--mid)}
+.lineup-day-date{font:600 9px/1.3 'Inter';letter-spacing:.1em;color:var(--mid)}
+.lineup-day-ob{font:800 8.5px/1.3 'Inter';color:var(--gold);margin-top:4px;letter-spacing:.05em}
 .lineup-slots{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.perks-card{border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
-.perks-title{font:700 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
-.perk-row{display:flex;align-items:flex-start;gap:10px}
-.perk-check{width:20px;height:20px;border-radius:50%;background:rgba(255,45,120,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font:700 10px/1 'Inter';color:var(--pk)}
-.perk-text{font:400 12px/1.4 'Inter';color:var(--black)}
-.value-card{border:1px solid var(--border);border-radius:14px;padding:14px}
-.val-sep{display:flex;justify-content:space-between;font:400 11px/1 'Inter';color:var(--mid);margin-bottom:10px}
-.val-sep span:last-child{text-decoration:line-through;font-weight:600}
-.val-div{height:1px;background:var(--border);margin-bottom:10px}
-.val-bot{display:flex;align-items:flex-end;justify-content:space-between}
-.val-pkg{font:700 9.5px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--pk)}
-.val-note{font:400 10.5px/1 'Inter';color:var(--mid);margin-top:3px}
-.val-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:.85}
-.val-pp{font:600 11px/1 'Inter';color:var(--mid);vertical-align:top;margin-top:4px;display:inline-block}
+.reveal{border:2px solid var(--pk);border-radius:16px;overflow:hidden}
+.reveal-hd{background:var(--pk);padding:12px 16px;font:800 10px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.reveal-body{padding:16px}
+.rv-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font:500 12px/1.4 'Inter';color:var(--black)}
+.rv-row span:last-child{color:var(--mid);white-space:nowrap}
+.rv-sep{display:flex;justify-content:space-between;padding:12px 0 6px;font:700 12px/1 'Inter';color:var(--mid)}
+.rv-sep span:last-child{text-decoration:line-through;font-size:14px}
+.rv-pkg{display:flex;justify-content:space-between;align-items:flex-end;padding-top:10px;border-top:2px solid var(--black);margin-top:6px}
+.rv-pkg-l .a{font:800 10px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--pk)}
+.rv-pkg-l .b{font:500 11px/1.3 'Inter';color:var(--mid);margin-top:4px}
+.rv-price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--black);line-height:.85}
+.rv-price span{font:700 11px/1 'Inter';color:var(--mid);vertical-align:top;display:inline-block;margin-top:6px}
+.rv-save{margin-top:12px;background:#111;color:#fff;border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+.rv-save .l{font:800 10px/1 'Inter';letter-spacing:.15em;text-transform:uppercase;color:#FF7FAC}
+.rv-save .v{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1}
+.perks{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.perk{display:flex;gap:10px;align-items:flex-start;font:400 12.5px/1.45 'Inter';color:var(--black)}
+.perk i{width:20px;height:20px;border-radius:50%;background:rgba(255,45,120,.1);display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:var(--pk);font-style:normal;flex-shrink:0}
+.share{border:1.5px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.share-t{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black);line-height:1}
+.share-s{font:400 12px/1.5 'Inter';color:var(--mid)}
+.share-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.share-btn{border:1.5px solid var(--border);border-radius:10px;padding:12px;font:700 11px/1 'Inter';letter-spacing:.5px;color:var(--black);background:#fff;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.share-btn.wa{background:#25D366;border-color:#25D366;color:#fff}
+.toast{font:700 11px/1 'Inter';color:var(--pk);text-align:center;min-height:12px}
 
-/* S5 PAYMENT */
-#s5 .body{padding:20px;display:flex;flex-direction:column;gap:16px}
-.pay-title{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:.9;color:var(--black)}
-.pay-title em{color:var(--pk);font-style:normal;display:block}
+/* payment */
 .pay-summary{background:var(--grey);border-radius:14px;padding:16px}
-.pay-summary-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font:400 12px/1 'Inter';color:var(--black)}
-.pay-summary-row:last-child{border-bottom:none;font-weight:700;font-size:14px;padding-top:12px}
-.pay-summary-row span:last-child{color:var(--pk);font-weight:700}
-.pay-field{display:flex;flex-direction:column;gap:6px}
-.pay-field label{font:700 9.5px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
-.pay-field input{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font:400 15px/1 'Inter';color:var(--black);outline:none;width:100%}
-.pay-field input:focus{border-color:var(--pk)}
-.pay-field input::placeholder{color:#ccc}
-.pay-notice{font:400 11px/1.5 'Inter';color:var(--mid);text-align:center}
-.pay-secure{display:flex;align-items:center;justify-content:center;gap:6px;font:400 11px/1 'Inter';color:var(--mid)}
+.pay-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font:400 12px/1.4 'Inter';color:var(--black);gap:10px}
+.pay-row:last-child{border-bottom:none;font-weight:800;font-size:15px;padding-top:12px}
+.pay-row span:last-child{color:var(--pk);font-weight:700;text-align:right}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font:700 9.5px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
+.field input{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font:400 15px/1 'Inter';color:var(--black);outline:none;width:100%}
+.field input:focus{border-color:var(--pk)}
+.pay-note{font:400 11.5px/1.5 'Inter';color:var(--mid);text-align:center}
 
-/* S6 CONFIRMED */
-#s6{background:#fff;align-items:center;justify-content:center;padding:0 28px;text-align:center}
-.conf-icon{width:64px;height:64px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 26px/1 'Inter';color:#fff;margin:0 auto 16px}
-.conf-h{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:.9;margin-bottom:12px}
+/* confirmed */
+#s6{background:#fff;padding:0 28px;text-align:center;justify-content:center}
+.conf-icon{width:64px;height:64px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 26px/1 'Inter';color:#fff;margin:0 auto 18px}
+.conf-h{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:.92;margin-bottom:14px}
 .conf-h em{color:var(--pk);font-style:normal}
-.conf-p{font:400 13px/1.6 'Inter';color:var(--mid);margin-bottom:28px}
-.again-btn{border:1.5px solid var(--border);border-radius:999px;padding:12px 22px;font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--black);cursor:pointer;background:#fff}
+.conf-p{font:400 13px/1.65 'Inter';color:var(--mid);margin-bottom:24px}
 
-/* DESKTOP PREVIEW PANEL */
-#desktop-preview{background:#f8f8f8}
-.dp-title{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--black);line-height:.9;margin-bottom:8px}
-.dp-title em{color:var(--pk);font-style:normal;display:block}
-.dp-sub{font:400 14px/1.6 'Inter';color:var(--mid);max-width:400px;margin-bottom:32px}
-.dp-steps{display:flex;flex-direction:column;gap:14px;max-width:400px}
-.dp-step{display:flex;align-items:center;gap:14px}
-.dp-step-num{width:32px;height:32px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 14px/1 'Inter';color:#fff;flex-shrink:0}
-.dp-step-text{font:400 13px/1.4 'Inter';color:var(--black)}
-.dp-step-text b{font-weight:700}
-.dp-pill{display:inline-block;background:var(--pk);border-radius:999px;padding:10px 22px;font:700 12px/1 'Inter';letter-spacing:1px;color:#fff;margin-top:32px}
+/* side panel */
+.side-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--black);text-decoration:none;margin-bottom:40px;display:inline-block}
+.side-logo em{color:var(--pk);font-style:normal}
+.side-t{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--black);line-height:.9;margin-bottom:16px}
+.side-t em{color:var(--pk);font-style:normal;display:block}
+.side-s{font:400 15px/1.7 'Inter';color:var(--mid);max-width:440px;margin-bottom:36px}
+.side-steps{display:flex;flex-direction:column;gap:16px;max-width:440px;margin-bottom:40px}
+.side-step{display:flex;align-items:flex-start;gap:14px}
+.side-num{width:32px;height:32px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font:700 14px/1 'Inter';color:#fff;flex-shrink:0}
+.side-txt{font:400 14px/1.5 'Inter';color:var(--black);padding-top:6px}
+.side-txt b{font-weight:700}
+.side-back{font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);text-decoration:none}
+.side-back:hover{color:var(--pk)}
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3589603211187590');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
 
 <div id="app">
-  <!-- S1 -->
-  <div class="screen" id="s1">
-    <nav><a href="index.html" class="logo">POOR<em>DECISIONS</em></a></nav>
-    <div class="body">
+
+<!-- S1 DATES -->
+<div class="screen on" id="s1">
+  <nav>
+    <a href="index.html" class="logo">POOR<em>DECISIONS</em></a>
+    <a href="index.html" class="site-link">← Back to site</a>
+  </nav>
+  <div class="body">
+    <div>
+      <div class="kicker">Poor Decisions · Las Vegas</div>
+      <h1>Build your <em>Vegas nights.</em></h1>
+    </div>
+    <div class="cal">
+      <div class="cal-hd">
+        <span class="cal-month">OCTOBER 2026</span>
+        <div class="cal-line"></div>
+        <span class="cal-label" id="cal-label">Select dates</span>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-dow">S</div><div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div>
+      </div>
+      <div class="cal-grid" id="cal-days"></div>
+      <div class="cal-hint">Tap your arrival, then your departure date. Everything in between is your week.</div>
+    </div>
+    <div class="guests-card">
       <div>
-        <div class="kicker">Poor Decisions · Las Vegas</div>
-        <h1>Build your <em>Vegas nights.</em></h1>
+        <div class="guests-title">How many of you?</div>
+        <div class="guests-sub" id="g-sub">4 people in your group</div>
       </div>
-      
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="cal-hd">
-          <span class="cal-month">OCTOBER 2026</span>
-          <div class="cal-line"></div>
-          <span class="cal-label" id="cal-label">Select dates</span>
-        </div>
-        <div class="cal-grid">
-          <div class="cal-dow">S</div><div class="cal-dow">M</div><div class="cal-dow">T</div>
-          <div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div>
-        </div>
-        <div class="cal-grid" id="cal-days"></div>
-        <div class="cal-hint">Tap your arrival, then departure date. Everything in between is selected.</div>
+      <div class="g-ctrl">
+        <button class="g-btn m" id="g-minus">−</button>
+        <span class="g-num" id="g-num">4</span>
+        <button class="g-btn p" id="g-plus">+</button>
       </div>
-      <div class="guests-card">
-        <div>
-          <div class="guests-title">How many of you?</div>
-          <div class="guests-sub" id="g-sub">4 × $49 = $196</div>
-        </div>
-        <div class="g-ctrl">
-          <button class="g-btn m" id="g-minus">−</button>
-          <span class="g-num" id="g-num">4</span>
-          <button class="g-btn p" id="g-plus">+</button>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <button class="btn-main" id="btn-s1" disabled>Select your dates first</button>
     </div>
   </div>
+  <div class="footer"><button class="btn-main" id="btn-s1" disabled>Select your arrival date</button></div>
+</div>
 
-  <!-- S2 -->
-  <div class="screen" id="s2">
-    <nav>
-      <button class="nav-back" id="back-s2">‹</button>
-      <span class="step-label">Step 2 of 4 · Your itinerary</span>
-      <div style="width:34px"></div>
-    </nav>
-    <div class="body">
-      <div class="s2-intro">
-        <h2 class="stitle">Fill your <em>slots.</em></h2>
-        <p class="ssub">Tap each day to pick your dayclub and nightclub.</p>
-      </div>
-      <div id="itinerary"></div>
-    </div>
-    <div id="pbar">
-      <div>
-        <div class="pb-price">$49</div>
-        <div class="pb-note" id="pb-note">0 events planned</div>
-      </div>
-      <button id="pbtn" disabled>Next: open bar →</button>
-    </div>
+<!-- S2 ITINERARY -->
+<div class="screen" id="s2">
+  <nav>
+    <button class="nav-back" id="back-s2">‹</button>
+    <span class="nav-mid">Step 2 of 4 · Your nights</span>
+    <a href="index.html" class="site-link">Site</a>
+  </nav>
+  <div style="padding:24px 20px 8px">
+    <h2 class="stitle">Fill your <em>slots.</em></h2>
+    <p class="ssub">Tap each day to pick a dayclub and a nightclub. Only venues with guest list availability that night are shown.</p>
   </div>
-
-  <!-- S3 -->
-  <div class="screen" id="s3">
-    <nav>
-      <button class="nav-back" id="back-s3">‹</button>
-      <span class="step-label">Step 3 of 4 · Open bar</span>
-      <div style="width:34px"></div>
-    </nav>
-    <div class="body">
-      <h2 class="stitle">One <em style="color:#c47900">open bar</em> is on us.</h2>
-      <div class="bar-card">
-        <div class="bar-top">
-          <div class="bar-icon">🍹</div>
-          <div>
-            <div class="bar-title">Open bar · 8–10pm</div>
-            <div class="bar-sub">2 hours unlimited drinks — included in your $49</div>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in, get your wristband, meet your group. Unlimited mixed drinks, beer, wine and shots begin.</span></div>
-          <div class="bar-time-row"><span class="bar-time">8–10PM</span><span class="bar-time-text">Party games running all night — beer pong, flip cup and group challenges. Join in or just drink. Up to you.</span></div>
-          <div class="bar-time-row"><span class="bar-time">10:00PM</span><span class="bar-time-text">Bar wraps up. Head to your nightclub independently by cab or Uber — your entry is pre-arranged at check-in.</span></div>
-        </div>
-        <div style="background:rgba(240,165,0,.12);border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start">
-          <span style="font-size:14px">✓</span>
-          <span style="font:600 11px/1.5 Inter,sans-serif;color:#c47900">All guests must be 21+. Valid photo ID required. Smart nightlife attire only — dress code strictly enforced at the club.</span>
-        </div>
-      </div>
-      <div class="sec-hd">
-        <span class="sec-lbl">Pick your night</span>
-        <span class="sec-note">One night included</span>
-      </div>
-      <div id="bar-nights"></div>
-    </div>
-    <div class="footer">
-      <button class="btn-main" id="btn-s3">Review &amp; pay →</button>
-    </div>
-  </div>
-
-  <!-- S4 -->
-  <div class="screen" id="s4">
-    <nav>
-      <button class="nav-back" id="back-s4">‹</button>
-      <span class="step-label">Step 4 of 4 · Checkout</span>
-      <div style="width:34px"></div>
-    </nav>
-    <div class="body">
-      <h2 class="stitle">Your Vegas week <em>is ready.</em></h2>
-      <p style="font:500 12px/1.4 Inter,sans-serif;color:var(--mid);margin-top:-8px">One package. Everything sorted.</p>
-      <div class="lineup-hd">
-        <span class="lineup-title">The lineup</span>
-        <div class="lineup-div"></div>
-        <span class="lineup-dates" id="lineup-dates"></span>
-      </div>
-      <div class="lineup-days" id="lineup-days"></div>
-      <div class="perks-card">
-        <div class="perks-title">What's included</div>
-        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Entry to every nightclub &amp; pool party you picked</span></div>
-        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">2-hour unlimited open bar for pre-drinks</span></div>
-        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">No chasing promoters or separate tickets</span></div>
-        <div class="perk-row"><div class="perk-check">✓</div><span class="perk-text">Your entire Vegas week in one place</span></div>
-      </div>
-      <div class="value-card">
-        <div class="val-sep"><span>Booked separately, est.</span><span id="sep-price">$350+</span></div>
-        <div class="val-div"></div>
-        <div class="val-bot">
-          <div><div class="val-pkg">Your package</div><div class="val-note" id="val-note">4 × $49</div></div>
-          <div class="val-price">$49<span class="val-pp">/pp</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <button class="btn-main" id="btn-s4">Book it →</button>
-    </div>
-  </div>
-
-  <!-- S5 PAYMENT DETAILS -->
-  <div class="screen" id="s5">
-    <nav>
-      <button class="nav-back" id="back-s5">‹</button>
-      <span class="step-label">Payment details</span>
-      <div style="width:34px"></div>
-    </nav>
-    <div class="body">
-      <div>
-        <div class="pay-title">Almost <em>there.</em></div>
-      </div>
-      <div class="pay-summary" id="pay-summary"></div>
-      <div class="pay-field">
-        <label>Your name</label>
-        <input type="text" id="pay-name" placeholder="Jamie Smith" autocomplete="name">
-      </div>
-      <div class="pay-field">
-        <label>Email address</label>
-        <input type="email" id="pay-email" placeholder="jamie@example.com" autocomplete="email">
-      </div>
-      <div class="pay-field">
-        <label>WhatsApp number</label>
-        <input type="tel" id="pay-phone" placeholder="+44 7700 000000" autocomplete="tel">
-      </div>
-      <p class="pay-notice">You'll be redirected to Stripe's secure checkout page to complete your payment.</p>
-      <div class="pay-secure">🔒 Powered by Stripe</div>
-    </div>
-    <div class="footer">
-      <button class="btn-main" id="btn-pay">Pay $<span id="pay-total">196</span> now →</button>
-    </div>
-  </div>
-
-  <!-- S6 CONFIRMED -->
-  <div class="screen" id="s6">
-    <div class="conf-icon">✓</div>
-    <h2 class="conf-h">You're on the <em>list.</em></h2>
-    <p class="conf-p">Check your email for confirmation. Show it at the door each night — your open bar starts at 9pm sharp.</p>
-    <button class="again-btn" id="btn-again">Plan another trip</button>
-  </div>
-
-  <!-- SHEET -->
-  <div class="sheet-ov" id="sheet-ov">
-    <div class="sheet">
-      <div class="sheet-title" id="sheet-title">Pick your club</div>
-      <div id="sheet-opts"></div>
-      <div class="sheet-clear" id="sheet-clear" style="display:none">✕ Remove this slot</div>
-    </div>
+  <div id="itinerary" style="padding-bottom:20px"></div>
+  <div id="pbar">
+    <div><div class="pb-big" id="pb-big">0 events</div><div class="pb-note" id="pb-note">Add at least one to continue</div></div>
+    <button id="pbtn" disabled>Next: open bar →</button>
   </div>
 </div>
 
-<!-- DESKTOP PREVIEW PANEL -->
-<div id="desktop-preview">
-  <div class="dp-title">Build your<em>Vegas nights.</em></div>
-  <p class="dp-sub">Pick your clubs, choose your open bar night, and lock in your whole Vegas week in one go. $49 per person — everything included.</p>
-  <div class="dp-steps">
-    <div class="dp-step"><div class="dp-step-num">1</div><div class="dp-step-text"><b>Pick your dates</b> — tap arrival and departure on the calendar</div></div>
-    <div class="dp-step"><div class="dp-step-num">2</div><div class="dp-step-text"><b>Fill your slots</b> — choose a dayclub and nightclub for each night</div></div>
-    <div class="dp-step"><div class="dp-step-num">3</div><div class="dp-step-text"><b>Add your open bar</b> — one night of unlimited drinks included</div></div>
-    <div class="dp-step"><div class="dp-step-num">4</div><div class="dp-step-text"><b>Pay once</b> — redirected to secure Stripe checkout</div></div>
+<!-- S3 OPEN BAR -->
+<div class="screen" id="s3">
+  <nav>
+    <button class="nav-back" id="back-s3">‹</button>
+    <span class="nav-mid">Step 3 of 4 · Open bar</span>
+    <a href="index.html" class="site-link">Site</a>
+  </nav>
+  <div class="body">
+    <div>
+      <h2 class="stitle">One <em style="color:var(--gold)">open bar</em> night is on us.</h2>
+      <p class="ssub">Every package includes a hosted 2-hour open bar with party games. Pick which night you want it.</p>
+    </div>
+    <div class="bar-card">
+      <div class="bar-top">
+        <div class="bar-icon">🍹</div>
+        <div><div class="bar-title">Open bar · 8–10pm</div><div class="bar-sub">Unlimited drinks · party games · hosted</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in at the venue, grab your wristband and meet your host and the group. Unlimited mixed drinks, beer, wine and shots start pouring.</span></div>
+        <div class="bar-time-row"><span class="bar-time">8–10PM</span><span class="bar-time-text">Beer pong, flip cup and group games running the whole time. Join in or just drink — your call.</span></div>
+        <div class="bar-time-row"><span class="bar-time">10:00PM</span><span class="bar-time-text">Bar wraps. Head to your nightclub by cab or Uber — your entry is already sorted from check-in.</span></div>
+      </div>
+      <div class="bar-rules">21+ only with valid photo ID. Smart nightlife dress code strictly enforced at the clubs.</div>
+    </div>
+    <div class="sec-hd"><span class="sec-lbl">Pick your open bar night</span><span class="sec-note">One night included</span></div>
+    <div id="bar-nights"></div>
   </div>
-  <div class="dp-pill">$49 per person · Your entire trip</div>
+  <div class="footer"><button class="btn-main" id="btn-s3" disabled>Pick a night to continue</button></div>
+</div>
+
+<!-- S4 CHECKOUT -->
+<div class="screen" id="s4">
+  <nav>
+    <button class="nav-back" id="back-s4">‹</button>
+    <span class="nav-mid">Step 4 of 4 · Your package</span>
+    <a href="index.html" class="site-link">Site</a>
+  </nav>
+  <div class="body">
+    <div>
+      <h2 class="stitle">Your Vegas week <em>is ready.</em></h2>
+      <p class="ssub">Here's everything you picked, in one package.</p>
+    </div>
+    <div class="ob-banner" id="ob-banner"></div>
+    <div>
+      <div class="lineup-hd" style="margin-bottom:14px"><span class="lineup-title">The lineup</span><div class="lineup-div"></div><span class="lineup-dates" id="lineup-dates"></span></div>
+      <div class="lineup-days" id="lineup-days"></div>
+    </div>
+    <div class="reveal">
+      <div class="reveal-hd">Individual tickets vs your package</div>
+      <div class="reveal-body" id="reveal-body"></div>
+    </div>
+    <div class="perks">
+      <div class="perk"><i>✓</i>Guest list entry to every nightclub &amp; dayclub you picked</div>
+      <div class="perk"><i>✓</i>2-hour hosted open bar with party games</div>
+      <div class="perk"><i>✓</i>No promoters, no queues, no separate tickets</div>
+      <div class="perk"><i>✓</i>One payment. Your whole week sorted.</div>
+    </div>
+    <div class="share">
+      <div><div class="share-t">Share with your friends</div><div class="share-s">Send the lineup to the group chat so everyone's in.</div></div>
+      <div class="share-btns">
+        <a class="share-btn wa" id="share-wa" href="#" target="_blank">WhatsApp</a>
+        <button class="share-btn" id="share-copy">Copy lineup</button>
+      </div>
+      <div class="toast" id="share-toast"></div>
+    </div>
+  </div>
+  <div class="footer"><button class="btn-main" id="btn-s4">Lock in my week →</button></div>
+</div>
+
+<!-- S5 PAYMENT -->
+<div class="screen" id="s5">
+  <nav>
+    <button class="nav-back" id="back-s5">‹</button>
+    <span class="nav-mid">Secure checkout</span>
+    <a href="index.html" class="site-link">Site</a>
+  </nav>
+  <div class="body">
+    <div><h2 class="stitle">Almost <em>there.</em></h2><p class="ssub">Your details, then straight to Stripe to pay.</p></div>
+    <div class="pay-summary" id="pay-summary"></div>
+    <div class="field"><label>Your name</label><input type="text" id="pay-name" placeholder="Jamie Smith" autocomplete="name"></div>
+    <div class="field"><label>Email address</label><input type="email" id="pay-email" placeholder="jamie@example.com" autocomplete="email"></div>
+    <div class="field"><label>WhatsApp number</label><input type="tel" id="pay-phone" placeholder="+44 7700 000000" autocomplete="tel"></div>
+    <p class="pay-note">🔒 You'll be redirected to Stripe's secure checkout to pay.</p>
+  </div>
+  <div class="footer"><button class="btn-main" id="btn-pay">Pay $<span id="pay-total">196</span> now →</button></div>
+</div>
+
+<!-- S6 CONFIRMED -->
+<div class="screen" id="s6">
+  <div class="conf-icon">✓</div>
+  <h2 class="conf-h">You're on the <em>list.</em></h2>
+  <p class="conf-p">Check your email for confirmation. Show it at each door — your open bar check-in is 8pm sharp.</p>
+  <div class="share" style="text-align:left;margin-bottom:16px">
+    <div><div class="share-t">Tell the group</div><div class="share-s">Send everyone the lineup.</div></div>
+    <div class="share-btns"><a class="share-btn wa" id="share-wa2" href="#" target="_blank">WhatsApp</a><button class="share-btn" id="share-copy2">Copy lineup</button></div>
+  </div>
+  <a href="index.html" class="btn-ghost">Back to poordecisions.co</a>
+</div>
+
+<div class="sheet-ov" id="sheet-ov">
+  <div class="sheet">
+    <div class="sheet-title" id="sheet-title">Pick your club</div>
+    <div class="sheet-sub" id="sheet-sub"></div>
+    <div id="sheet-opts"></div>
+    <div class="sheet-clear" id="sheet-clear" style="display:none">✕ Remove this slot</div>
+  </div>
+</div>
+</div>
+
+<div id="side">
+  <a href="index.html" class="side-logo">POOR<em>DECISIONS</em></a>
+  <div class="side-t">Build your<em>Vegas nights.</em></div>
+  <p class="side-s">Pick your dayclubs and nightclubs for every night you're in town, choose your hosted open bar night, and lock the whole week in with one payment.</p>
+  <div class="side-steps">
+    <div class="side-step"><div class="side-num">1</div><div class="side-txt"><b>Pick your dates</b> — arrival and departure on the calendar</div></div>
+    <div class="side-step"><div class="side-num">2</div><div class="side-txt"><b>Fill your slots</b> — a dayclub and nightclub for each night, with who's playing</div></div>
+    <div class="side-step"><div class="side-num">3</div><div class="side-txt"><b>Choose your open bar night</b> — 2 hours hosted, unlimited drinks, party games</div></div>
+    <div class="side-step"><div class="side-num">4</div><div class="side-txt"><b>See your package</b> — then pay once through Stripe</div></div>
+  </div>
+  <a href="index.html" class="side-back">← Back to poordecisions.co</a>
 </div>
 
 <script>
-const BASE = 'https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/';
-const PHOTOS = {"0":BASE+"vp-0.jpg","1":BASE+"vp-1.jpg","2":BASE+"vp-2.jpg","3":BASE+"vp-3.jpg","4":BASE+"vp-4.jpg","5":BASE+"vp-5.jpg","6":BASE+"vp-6.jpg","7":BASE+"vp-7.jpg","8":BASE+"vp-8.jpg","9":BASE+"vp-9.jpg","10":BASE+"vp-10.jpg","11":BASE+"vp-11.jpg","12":BASE+"vp-12.jpg","13":BASE+"vp-13.jpg","14":BASE+"vp-14.jpg"};
-const LOGOS = {"omnia":BASE+"logo-omnia.png","hakkasan":BASE+"logo-hakkasan.png","xs":BASE+"logo-xs.png","tao":BASE+"logo-tao.png","marquee":BASE+"logo-marquee.png","zouk":BASE+"logo-zouk.png","drais":BASE+"logo-drais.png","encore-bc":BASE+"logo-encore-bc.png","tao-beach":BASE+"logo-tao-beach.png"};
-const STRIPE_LINK = 'https://book.stripe.com/00weVf67u0useWAgMJcMM00';
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
+const BASE='https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/';
+const STRIPE_LINK='https://book.stripe.com/00weVf67u0useWAgMJcMM00';
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
+const PLANNER_URL='https://poordecisions.co/vegas-planner.html';
+const PRICE=49;
+const EST={night:60,day:50,bar:49}; // "booked separately" estimates per person
 
-const NC = [
-  {id:'omnia',    name:'Omnia',         hotel:'Caesars Palace',   genre:'EDM · House',     days:[0,2,4,5,6], logo:'omnia',    photo:PHOTOS[7]},
-  {id:'hakkasan', name:'Hakkasan',      hotel:'MGM Grand',        genre:'House · Hip Hop', days:[3,4,5,6],   logo:'hakkasan', photo:PHOTOS[1]},
-  {id:'xs',       name:'XS',            hotel:'Encore',           genre:'EDM · House',     days:[0,1,3,4,5,6],logo:'xs',      photo:PHOTOS[0]},
-  {id:'tao',      name:'TAO Nightclub', hotel:'The Venetian',     genre:'Open Format',     days:[0,4,5,6],   logo:'tao',      photo:PHOTOS[2]},
-  {id:'marquee',  name:'Marquee',       hotel:'The Cosmopolitan', genre:'Open + House',    days:[1,3,5,6],   logo:'marquee',  photo:PHOTOS[14]},
-  {id:'jewel',    name:'Jewel',         hotel:'Aria',             genre:'Hip Hop · R&B',   days:[5,6],       logo:'hakkasan', photo:PHOTOS[8]},
-  {id:'zouk',     name:'Zouk',          hotel:'Resorts World',    genre:'EDM · House',     days:[4,5,6],     logo:'zouk',     photo:PHOTOS[11]},
+const P=n=>BASE+'vp-'+n+'.jpg';
+// photo = new organised image (upload these), fb = fallback photo currently in repo
+const NC=[
+  {id:'omnia',   name:'Omnia',        hotel:'Caesars Palace',  genre:'EDM · House',    days:[0,2,4,5,6], logo:'omnia',    photo:BASE+'night-omnia.jpg',    fb:P(7)},
+  {id:'hakkasan',name:'Hakkasan',     hotel:'MGM Grand',       genre:'House · Hip Hop',days:[3,4,5,6],   logo:'hakkasan', photo:BASE+'night-hakkasan.jpg', fb:P(1)},
+  {id:'xs',      name:'XS',           hotel:'Encore',          genre:'EDM · House',    days:[0,1,3,4,5,6],logo:'xs',      photo:BASE+'night-xs.jpg',       fb:P(0)},
+  {id:'tao',     name:'TAO Nightclub',hotel:'The Venetian',    genre:'Open Format',    days:[0,4,5,6],   logo:'tao',      photo:BASE+'night-tao.jpg',      fb:P(2)},
+  {id:'marquee', name:'Marquee',      hotel:'The Cosmopolitan',genre:'Open + House',   days:[1,3,5,6],   logo:'marquee',  photo:BASE+'night-marquee.jpg',  fb:P(14)},
+  {id:'jewel',   name:'Jewel',        hotel:'Aria',            genre:'Hip Hop · R&B',  days:[5,6],       logo:'jewel',    photo:BASE+'night-jewel.jpg',    fb:P(8)},
+  {id:'zouk',    name:'Zouk',         hotel:'Resorts World',   genre:'EDM · House',    days:[4,5,6],     logo:'zouk',     photo:BASE+'night-zouk.jpg',     fb:P(11)}
 ];
-const DC = [
-  {id:'mq-day',    name:'Marquee Dayclub',   hotel:'The Cosmopolitan', genre:'House · Tech House', days:[0,1,4,5,6], logo:'marquee',   photo:PHOTOS[4]},
-  {id:'tao-beach', name:'TAO Beach',         hotel:'The Venetian',     genre:'Hip Hop · Open',     days:[0,4,5,6],   logo:'tao-beach', photo:PHOTOS[5]},
-  {id:'omnia-day', name:'Omnia Dayclub',     hotel:'Caesars Palace',   genre:'EDM · House',        days:[0,5,6],     logo:'omnia',     photo:PHOTOS[3]},
-  {id:'encore-bc', name:'Encore Beach Club', hotel:'Encore at Wynn',   genre:'EDM · House',        days:[0,4,5,6],   logo:'encore-bc', photo:PHOTOS[9]},
-  {id:'wet-rep',   name:'Wet Republic',      hotel:'MGM Grand',        genre:'EDM · House',        days:[0,1,4,5,6], logo:'hakkasan',  photo:PHOTOS[12]}
+const DC=[
+  {id:'mq-day',   name:'Marquee Dayclub',  hotel:'The Cosmopolitan',genre:'House · Tech House',days:[0,1,4,5,6],logo:'mq-day',   photo:BASE+'day-mq-day.jpg',   fb:P(4)},
+  {id:'tao-beach',name:'TAO Beach',        hotel:'The Venetian',    genre:'Hip Hop · Open',    days:[0,4,5,6],  logo:'tao-beach',photo:BASE+'day-tao-beach.jpg',fb:P(5)},
+  {id:'omnia-day',name:'Omnia Dayclub',    hotel:'Caesars Palace',  genre:'EDM · House',       days:[0,4,5,6],  logo:'omnia-day',photo:BASE+'day-omnia-day.jpg',fb:P(3)},
+  {id:'encore-bc',name:'Encore Beach Club',hotel:'Encore at Wynn',  genre:'EDM · House',       days:[0,4,5,6],  logo:'encore-bc',photo:BASE+'day-encore-bc.jpg',fb:P(9)},
+  {id:'wet-rep',  name:'Wet Republic',     hotel:'MGM Grand',       genre:'EDM · House',       days:[0,1,4,5,6],logo:'wet-rep',  photo:BASE+'day-wet-rep.jpg',  fb:P(12)}
 ];
+const LOGO=id=>BASE+'logo-'+id+'.png';
+const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let S={start:null,end:null,guests:4,slots:{},openBarNight:null};
+let EVENTS={}; // {"2026-10-14":{"omnia":"DJ Name"}}
 
+// Live schedule + DJs (refreshed daily by GitHub Action)
+fetch(BASE+'schedule.json',{cache:'no-store'}).then(r=>r.json()).then(sch=>{
+  NC.forEach(v=>{if(Array.isArray(sch[v.id]))v.days=sch[v.id];});
+  DC.forEach(v=>{if(Array.isArray(sch[v.id]))v.days=sch[v.id];});
+  if(sch.events)EVENTS=sch.events;
+}).catch(()=>{});
 
-// Live guest-list schedule - refreshed weekly by GitHub Action
-fetch(BASE + 'schedule.json', {cache:'no-store'})
-  .then(r => r.json())
-  .then(sch => {
-    NC.forEach(v => { if (Array.isArray(sch[v.id])) v.days = sch[v.id]; });
-    DC.forEach(v => { if (Array.isArray(sch[v.id])) v.days = sch[v.id]; });
-  })
-  .catch(() => {}); // offline/fallback: hardcoded days above still apply
-
-const WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-let S = {start:null, end:null, guests:4, slots:{}, openBarNight:null};
-
-function getDOW(d){return (4+d-1)%7;}
-function venueById(k,id){return(k==='day'?DC:NC).find(v=>v.id===id)||null;}
-function nights(){const n=[];if(S.start&&S.end)for(let d=S.start;d<S.end;d++)n.push(d);return n;}
-function totalAmt(){return S.guests*49;}
+const getDOW=d=>(4+d-1)%7;                        // Oct 2026 starts Thursday
+const iso=d=>'2026-10-'+String(d).padStart(2,'0');
+const dj=(d,id)=>(EVENTS[iso(d)]||{})[id]||'';
+const byId=(k,id)=>(k==='day'?DC:NC).find(v=>v.id===id)||null;
+const nights=()=>{const n=[];if(S.start&&S.end)for(let d=S.start;d<S.end;d++)n.push(d);return n;};
+const total=()=>S.guests*PRICE;
+const img=v=>`<img class="tile-photo" src="${v.photo}" onerror="this.onerror=null;this.src='${v.fb}'"/>`;
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  document.getElementById(id).scrollTop=0;
-  document.getElementById('pbar').className=(id==='s2')?'show':'';
-  if(id==='s2'){renderItinerary();if(typeof fbq!=='undefined')fbq('track','ViewContent',{content_name:'Vegas Planner',content_category:'Nightlife'});}
+  const el=document.getElementById(id);el.classList.add('on');el.scrollTop=0;
+  document.getElementById('pbar').className=id==='s2'?'show':'';
+  if(id==='s2'){renderItinerary();fbq&&fbq('track','ViewContent',{content_name:'Vegas Planner'});}
   if(id==='s3')renderBar();
   if(id==='s4')renderCheckout();
-  if(id==='s5'){renderPaySummary();if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{value:totalAmt(),currency:'USD',num_items:S.guests});}
-  // Hide desktop panel when on later screens
-  const dp = document.getElementById('desktop-preview');
-  if(dp) dp.className = (id==='s1')?'':'hidden';
+  if(id==='s5'){renderPay();fbq&&fbq('track','InitiateCheckout',{value:total(),currency:'USD',num_items:S.guests});}
+  const side=document.getElementById('side');if(side)side.style.display=id==='s1'?'':'none';
 }
 
-// CALENDAR
+/* ---------- S1 ---------- */
 function renderCal(){
-  const g=document.getElementById('cal-days');
-  g.innerHTML='';
-  for(let p=0;p<4;p++){const d=document.createElement('button');d.className='cal-day pad';g.appendChild(d);}
+  const g=document.getElementById('cal-days');g.innerHTML='';
+  for(let p=0;p<4;p++){const e=document.createElement('button');e.className='cal-day pad';g.appendChild(e);}
   for(let d=1;d<=31;d++){
-    const el=document.createElement('button');
-    let cls='cal-day';
-    const isPast=false;
-    if(isPast)cls+=' past';
-    else{
-      if(S.start&&S.end&&d>S.start&&d<S.end)cls+=' inrange';
-      if(d===S.start)cls+=(S.end&&S.end>S.start?' start':' start end');
-      if(d===S.end)cls+=' end';
-      el.addEventListener('click',()=>pickDate(d));
-    }
-    el.className=cls;el.textContent=d;
-    g.appendChild(el);
+    const e=document.createElement('button');let c='cal-day';
+    if(S.start&&S.end&&d>S.start&&d<S.end)c+=' inrange';
+    if(d===S.start)c+=(S.end?' start':' start end');
+    if(d===S.end)c+=' end';
+    e.className=c;e.textContent=d;e.addEventListener('click',()=>pickDate(d));g.appendChild(e);
   }
-  const lbl=document.getElementById('cal-label');
-  if(!S.start)lbl.textContent='Select arrival date';
-  else if(!S.end)lbl.textContent='Oct '+S.start+' → select departure';
-  else lbl.textContent='Oct '+S.start+' – '+S.end+' ('+nights().length+' nights)';
-  const btn=document.getElementById('btn-s1');
-  btn.disabled=!(S.start&&S.end&&nights().length>0);
-  btn.textContent=(S.start&&S.end&&nights().length>0)?'Plan my nights →':(!S.start?'Select your arrival date':'Select your departure date');
+  const l=document.getElementById('cal-label');
+  l.textContent=!S.start?'Select arrival date':(!S.end?'Oct '+S.start+' → select departure':'Oct '+S.start+' – '+S.end+' · '+nights().length+' nights');
+  const b=document.getElementById('btn-s1');const ok=S.start&&S.end&&nights().length>0;
+  b.disabled=!ok;b.textContent=ok?'Plan my nights →':(!S.start?'Select your arrival date':'Select your departure date');
 }
-
 function pickDate(d){
   if(!S.start||(S.start&&S.end)){S.start=d;S.end=null;}
-  else if(d>S.start){S.end=d;}
-  else{S.start=d;S.end=null;}
-  S.slots={};S.openBarNight=null;
-  renderCal();
+  else if(d>S.start)S.end=d;else{S.start=d;S.end=null;}
+  S.slots={};S.openBarNight=null;renderCal();
 }
+const gsub=()=>document.getElementById('g-sub').textContent=S.guests+(S.guests===1?' person':' people')+' in your group';
+document.getElementById('g-minus').onclick=()=>{if(S.guests>1){S.guests--;document.getElementById('g-num').textContent=S.guests;gsub();}};
+document.getElementById('g-plus').onclick=()=>{if(S.guests<20){S.guests++;document.getElementById('g-num').textContent=S.guests;gsub();}};
+document.getElementById('btn-s1').onclick=()=>show('s2');
+document.getElementById('back-s2').onclick=()=>show('s1');
+document.getElementById('back-s3').onclick=()=>show('s2');
+document.getElementById('back-s4').onclick=()=>show('s3');
+document.getElementById('back-s5').onclick=()=>show('s4');
+document.getElementById('pbtn').onclick=()=>show('s3');
+document.getElementById('btn-s3').onclick=()=>show('s4');
+document.getElementById('btn-s4').onclick=()=>show('s5');
 
-document.getElementById('g-minus').addEventListener('click',()=>{if(S.guests>1){S.guests--;document.getElementById('g-num').textContent=S.guests;document.getElementById('g-sub').textContent=S.guests+' × $49 = $'+totalAmt();}});
-document.getElementById('g-plus').addEventListener('click',()=>{if(S.guests<20){S.guests++;document.getElementById('g-num').textContent=S.guests;document.getElementById('g-sub').textContent=S.guests+' × $49 = $'+totalAmt();}});
-document.getElementById('btn-s1').addEventListener('click',()=>show('s2'));
-document.getElementById('back-s2').addEventListener('click',()=>show('s1'));
-document.getElementById('back-s3').addEventListener('click',()=>show('s2'));
-document.getElementById('back-s4').addEventListener('click',()=>show('s3'));
-document.getElementById('back-s5').addEventListener('click',()=>show('s4'));
-document.getElementById('btn-s3').addEventListener('click',()=>show('s4'));
-document.getElementById('btn-s4').addEventListener('click',()=>show('s5'));
-document.getElementById('pbtn').addEventListener('click',()=>show('s3'));
-document.getElementById('btn-again').addEventListener('click',()=>{S={start:null,end:null,guests:4,slots:{},openBarNight:null};renderCal();show('s1');});
-
-// ITINERARY
-function tileDay(d,dow,dv,hasDay){
-  if(!hasDay)return`<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
-  if(dv)return`<div class="tile day-filled" data-i="${d}" data-slot="day"><img class="tile-photo" src="${dv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel}</div><div class="tile-genre d">${dv.genre}</div></div></div>`;
-  return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 12pm–6pm</div></div></div>`;
+/* ---------- S2 ---------- */
+function tileDay(d,dow,dv,has){
+  if(!has)return`<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
+  if(dv){const x=dj(d,dv.id);return`<div class="tile day-filled" data-i="${d}" data-slot="day">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre d">${dv.genre}</div>`}</div></div>`;}
+  return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 11am–6pm</div></div></div>`;
 }
-function tileNight(d,dow,nv,isBar){
-  if(isBar&&!nv)return`<div class="tile bar-filled" data-i="${d}" data-slot="night"><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">🍹</div><div class="tile-kind-pill">NIGHT</div><div class="tile-check b">✓</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div><div class="tile-venue">8–10pm included</div></div></div>`;
-  if(nv)return`<div class="tile night-filled" data-i="${d}" data-slot="night"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel}</div><div class="tile-genre">${nv.genre}</div></div></div>`;
-  return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10pm · tap to add</div></div></div>`;
+function tileNight(d,dow,nv,bar){
+  if(nv){const x=dj(d,nv.id);return`<div class="tile night-filled" data-i="${d}" data-slot="night">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div>${bar?'<div class="tile-bar-tag">OPEN BAR 8–10PM FIRST</div>':''}<div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre">${nv.genre}</div>`}</div></div>`;}
+  return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10:30pm · tap to add</div></div></div>`;
 }
-
 function renderItinerary(){
   const el=document.getElementById('itinerary');el.innerHTML='';
   nights().forEach(d=>{
-    const dow=getDOW(d);const slot=S.slots[d]||{};
-    const nv=slot.night?venueById('night',slot.night):null;
-    const dv=slot.day?venueById('day',slot.day):null;
-    const isBar=S.openBarNight===d;
-    const hasDay=DC.some(v=>v.days.includes(dow));
-    const set=(dv?1:0)+(nv||isBar?1:0);
-    const block=document.createElement('div');block.className='day-block';
-    block.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,hasDay)}${tileNight(d,dow,nv,isBar)}</div>`;
-    block.querySelectorAll('[data-slot]').forEach(el=>el.addEventListener('click',()=>openSheet(+el.dataset.i,el.dataset.slot)));
-    el.appendChild(block);
+    const dow=getDOW(d),s=S.slots[d]||{};
+    const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
+    const has=DC.some(v=>v.days.includes(dow));const set=(dv?1:0)+(nv?1:0);
+    const b=document.createElement('div');b.className='day-block';
+    b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,S.openBarNight===d)}</div>`;
+    b.querySelectorAll('[data-slot]').forEach(t=>t.onclick=()=>openSheet(+t.dataset.i,t.dataset.slot));
+    el.appendChild(b);
   });
-  updatePbar();
-}
-
-function updatePbar(){
-  const cnt=nights().reduce((t,d)=>{const s=S.slots[d]||{};return t+(s.day?1:0)+(s.night?1:0);},0)+(S.openBarNight?1:0);
-  document.getElementById('pb-note').textContent=cnt+' event'+(cnt!==1?'s':'')+' planned · $49 pp';
+  const cnt=nights().reduce((t,d)=>{const s=S.slots[d]||{};return t+(s.day?1:0)+(s.night?1:0);},0);
+  document.getElementById('pb-big').textContent=cnt+(cnt===1?' event':' events');
+  document.getElementById('pb-note').textContent=cnt?'across '+nights().length+' nights':'Add at least one to continue';
   document.getElementById('pbtn').disabled=cnt===0;
 }
-
-// SHEET
 function openSheet(d,slot){
-  const dow=getDOW(d);const slotData=S.slots[d]||{};
-  const isDay=slot==='day';const isBar=!isDay&&S.openBarNight===d;
-  const obUsed=!isDay&&nights().some(n=>S.openBarNight===n&&n!==d);
-  document.getElementById('sheet-title').textContent=isDay?'Pick your dayclub':'Pick your night';
-  const opts=document.getElementById('sheet-opts');opts.innerHTML='';
-  if(!isDay&&(!obUsed||isBar)){
-    const r=document.createElement('div');r.className='sheet-row';
-    if(isBar)r.style.cssText='border-color:#f0a500;background:rgba(240,165,0,.05)';
-    r.innerHTML=`<div class="sheet-logo-box" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px">🍹</div><div style="flex:1"><div class="sheet-name" style="color:#c47900">Open bar night</div><div class="sheet-venue">Once per trip · 8–10pm · free drinks + games</div></div><span class="sheet-genre" style="color:#f0a500">INCLUDED</span>`;
-    r.addEventListener('click',()=>{S.openBarNight=isBar?null:d;closeSheet();renderItinerary();});
-    opts.appendChild(r);
-  }
+  const dow=getDOW(d),s=S.slots[d]||{},isDay=slot==='day';
+  document.getElementById('sheet-title').textContent=isDay?'Pick your dayclub':'Pick your nightclub';
+  document.getElementById('sheet-sub').textContent=WD[dow]+' Oct '+d+' · guest list available at these venues';
+  const o=document.getElementById('sheet-opts');o.innerHTML='';
   (isDay?DC:NC).filter(v=>v.days.includes(dow)).forEach(v=>{
-    const sel=isDay?slotData.day===v.id:(slotData.night===v.id&&!isBar);
-    const r=document.createElement('div');r.className='sheet-row';
-    if(sel)r.style.cssText='border-color:var(--pk);background:rgba(255,45,120,.03)';
-    r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGOS[v.logo]||''}" onerror="this.style.display='none'"/></div><div style="flex:1"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel}</div></div><span class="sheet-genre">${v.genre}</span>`;
-    r.addEventListener('click',()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=v.id;else S.slots[d].night=v.id;closeSheet();renderItinerary();});
-    opts.appendChild(r);
+    const sel=isDay?s.day===v.id:s.night===v.id;const x=dj(d,v.id);
+    const r=document.createElement('div');r.className='sheet-row'+(sel?' sel':'');
+    r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGO(v.logo)}" onerror="this.style.display='none'"/></div><div style="flex:1;min-width:0"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel}</div>${x?`<div class="sheet-dj">🎧 ${x}</div>`:''}</div><span class="sheet-genre">${v.genre}</span>`;
+    r.onclick=()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=v.id;else S.slots[d].night=v.id;closeSheet();renderItinerary();};
+    o.appendChild(r);
   });
-  const clr=document.getElementById('sheet-clear');
-  const hasSel=isDay?!!slotData.day:(!!slotData.night||isBar);
-  clr.style.display=hasSel?'block':'none';
-  clr.onclick=()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=null;else{S.slots[d].night=null;if(isBar)S.openBarNight=null;}closeSheet();renderItinerary();};
+  const c=document.getElementById('sheet-clear');const hasSel=isDay?!!s.day:!!s.night;
+  c.style.display=hasSel?'block':'none';
+  c.onclick=()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=null;else S.slots[d].night=null;closeSheet();renderItinerary();};
   document.getElementById('sheet-ov').classList.add('open');
 }
-function closeSheet(){document.getElementById('sheet-ov').classList.remove('open');}
-document.getElementById('sheet-ov').addEventListener('click',e=>{if(e.target===document.getElementById('sheet-ov'))closeSheet();});
+const closeSheet=()=>document.getElementById('sheet-ov').classList.remove('open');
+document.getElementById('sheet-ov').onclick=e=>{if(e.target.id==='sheet-ov')closeSheet();};
 
-// BAR
+/* ---------- S3 ---------- */
 function renderBar(){
   const el=document.getElementById('bar-nights');el.innerHTML='';
   nights().forEach(d=>{
-    const dow=getDOW(d);const slot=S.slots[d]||{};
-    const nv=slot.night?venueById('night',slot.night):null;
-    const isSel=S.openBarNight===d;
-    const r=document.createElement('div');r.className='bar-night'+(isSel?' sel':'');
-    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${nv?'Then into '+nv.name:'No club picked yet'}</div></div>${isSel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${isSel?'f':'e'}">${isSel?'✓':'+'}</div>`;
-    r.addEventListener('click',()=>{S.openBarNight=isSel?null:d;renderBar();renderItinerary();});
+    const dow=getDOW(d),s=S.slots[d]||{},nv=s.night?byId('night',s.night):null,sel=S.openBarNight===d;
+    const r=document.createElement('div');r.className='bar-night'+(sel?' sel':'');
+    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${nv?'8–10pm open bar, then into '+nv.name:'8–10pm open bar · no nightclub picked'}</div></div>${sel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${sel?'f':'e'}">${sel?'✓':'+'}</div>`;
+    r.onclick=()=>{S.openBarNight=sel?null:d;renderBar();};
     el.appendChild(r);
   });
+  const b=document.getElementById('btn-s3');b.disabled=!S.openBarNight;b.textContent=S.openBarNight?'See my package →':'Pick a night to continue';
 }
 
-// CHECKOUT
+/* ---------- S4 ---------- */
+function lineupText(){
+  let t='';nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=S.openBarNight===d;
+    if(dv||nv||bar){t+=WD[dow]+' '+d+': ';const parts=[];if(dv)parts.push('☀️ '+dv.name+(dj(d,dv.id)?' ('+dj(d,dv.id)+')':''));if(bar)parts.push('🍹 Open bar 8–10pm');if(nv)parts.push('🌙 '+nv.name+(dj(d,nv.id)?' ('+dj(d,nv.id)+')':''));t+=parts.join(' → ')+'\n';}});
+  return t.trim();
+}
+function shareText(){return 'Our Vegas week 🎰 Oct '+S.start+'–'+S.end+'\n\n'+lineupText()+'\n\n'+S.guests+' of us. Build yours: '+PLANNER_URL;}
+function wireShare(waId,copyId,toastId){
+  document.getElementById(waId).href='https://wa.me/?text='+encodeURIComponent(shareText());
+  document.getElementById(copyId).onclick=async()=>{
+    if(navigator.share){try{await navigator.share({title:'Our Vegas week',text:shareText()});return;}catch(e){}}
+    try{await navigator.clipboard.writeText(shareText());if(toastId)document.getElementById(toastId).textContent='Copied — paste it in the group chat';}catch(e){}
+  };
+}
 function renderCheckout(){
   const ns=nights();
-  if(ns.length)document.getElementById('lineup-dates').textContent='Vegas · Oct '+S.start+'–'+S.end;
+  document.getElementById('lineup-dates').textContent='Vegas · Oct '+S.start+'–'+S.end;
+  // open bar banner
+  const ob=S.openBarNight,obs=S.slots[ob]||{},obv=obs.night?byId('night',obs.night):null;
+  document.getElementById('ob-banner').innerHTML=`<div class="ic">🍹</div><div><div class="t">Your open bar night: ${WD[getDOW(ob)].toUpperCase()} OCT ${ob}</div><div class="s">Check in 8:00pm · unlimited drinks + games until 10:00pm${obv?' · then into '+obv.name:''}</div></div>`;
+  // lineup
   const el=document.getElementById('lineup-days');el.innerHTML='';
-  ns.forEach(d=>{
-    const dow=getDOW(d);const slot=S.slots[d]||{};
-    const nv=slot.night?venueById('night',slot.night):null;
-    const dv=slot.day?venueById('day',slot.day):null;
-    const isBar=S.openBarNight===d;
+  ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
+    if(!nv&&!dv&&!bar)return;
     const r=document.createElement('div');r.className='lineup-day';
-    const dt=dv?`<div class="tile day-filled" style="height:110px"><img class="tile-photo" src="${dv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div></div></div>`:'<div style="height:110px"></div>';
-    let nt='<div style="height:110px"></div>';
-    if(isBar&&!nv)nt=`<div class="tile bar-filled" style="height:110px"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px">🍹</div><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar</div></div></div>`;
-    else if(nv)nt=`<div class="tile night-filled" style="height:110px"><img class="tile-photo" src="${nv.photo}"/><div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name">${nv.name}</div></div></div>`;
-    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].slice(0,3).toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dt}${nt}</div>`;
+    const dt=dv?`<div class="tile day-filled" style="height:118px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div>${dj(d,dv.id)?`<div class="tile-dj">🎧 ${dj(d,dv.id)}</div>`:''}</div></div>`:'<div></div>';
+    let nt='<div></div>';
+    if(nv)nt=`<div class="tile night-filled" style="height:118px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div>${bar?'<div class="tile-bar-tag">OPEN BAR 8–10PM FIRST</div>':''}<div class="tile-info"><div class="tile-name">${nv.name}</div>${dj(d,nv.id)?`<div class="tile-dj">🎧 ${dj(d,nv.id)}</div>`:''}</div></div>`;
+    else if(bar)nt=`<div class="tile bar-filled" style="height:118px;cursor:default"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px">🍹</div><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar 8–10pm</div></div></div>`;
+    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div>${bar?'<div class="lineup-day-ob">🍹 OPEN BAR<br>8–10PM</div>':''}</div><div class="lineup-slots">${dt}${nt}</div>`;
     el.appendChild(r);
   });
-  document.getElementById('val-note').textContent=S.guests+' × $49 = $'+totalAmt();
-  document.getElementById('sep-price').textContent='$'+(ns.length*75+60)+'+';
-}
-
-// PAY SUMMARY
-function renderPaySummary(){
-  const ns=nights();
-  let rows=`<div class="pay-summary-row"><span>Dates</span><span>Oct ${S.start} – ${S.end}</span></div>`;
-  rows+=`<div class="pay-summary-row"><span>Guests</span><span>${S.guests} people</span></div>`;
-  ns.forEach(d=>{
-    const dow=getDOW(d);const slot=S.slots[d]||{};
-    const nv=slot.night?venueById('night',slot.night):null;
-    const dv=slot.day?venueById('day',slot.day):null;
-    const isBar=S.openBarNight===d;
-    if(dv)rows+=`<div class="pay-summary-row"><span>${WD[dow]} day</span><span>${dv.name}</span></div>`;
-    if(isBar)rows+=`<div class="pay-summary-row"><span>${WD[dow]} night</span><span>🍹 Open bar</span></div>`;
-    else if(nv)rows+=`<div class="pay-summary-row"><span>${WD[dow]} night</span><span>${nv.name}</span></div>`;
+  // reveal: individual vs package
+  let rows='',sep=0;
+  ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
+    if(dv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${dv.name} dayclub</span><span>~$${EST.day}</span></div>`;sep+=EST.day;}
+    if(ob===d){rows+=`<div class="rv-row"><span>${WD[dow]} · 2-hour hosted open bar</span><span>~$${EST.bar}</span></div>`;sep+=EST.bar;}
+    if(nv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${nv.name} nightclub</span><span>~$${EST.night}</span></div>`;sep+=EST.night;}
   });
-  rows+=`<div class="pay-summary-row"><span>Total</span><span>$${totalAmt()}</span></div>`;
-  document.getElementById('pay-summary').innerHTML=rows;
-  document.getElementById('pay-total').textContent=totalAmt();
+  const save=Math.max(sep-PRICE,0),pct=sep?Math.round(save/sep*100):0;
+  document.getElementById('reveal-body').innerHTML=rows+
+    `<div class="rv-sep"><span>Booked separately, per person</span><span>$${sep}</span></div>`+
+    `<div class="rv-pkg"><div class="rv-pkg-l"><div class="a">Your package</div><div class="b">${S.guests} × $${PRICE} = $${total()} for the group</div></div><div class="rv-price">$${PRICE}<span>/person</span></div></div>`+
+    `<div class="rv-save"><span class="l">You save</span><span class="v">$${save} · ${pct}%</span></div>`;
+  wireShare('share-wa','share-copy','share-toast');
 }
 
-// SUBMIT
-document.getElementById('btn-pay').addEventListener('click',()=>{
-  const name=document.getElementById('pay-name').value.trim();
-  const email=document.getElementById('pay-email').value.trim();
-  const phone=document.getElementById('pay-phone').value.trim();
+/* ---------- S5 ---------- */
+function renderPay(){
+  let r=`<div class="pay-row"><span>Dates</span><span>Oct ${S.start} – ${S.end}</span></div><div class="pay-row"><span>Group</span><span>${S.guests} people</span></div><div class="pay-row"><span>Open bar night</span><span>${WD[getDOW(S.openBarNight)]} Oct ${S.openBarNight} · 8–10pm</span></div>`;
+  nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
+    if(dv)r+=`<div class="pay-row"><span>${WD[dow]} day</span><span>${dv.name}</span></div>`;if(nv)r+=`<div class="pay-row"><span>${WD[dow]} night</span><span>${nv.name}</span></div>`;});
+  r+=`<div class="pay-row"><span>Total</span><span>$${total()}</span></div>`;
+  document.getElementById('pay-summary').innerHTML=r;document.getElementById('pay-total').textContent=total();
+}
+document.getElementById('btn-pay').onclick=()=>{
+  const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}
-
-  // Build booking summary
-  const ns=nights();
-  let summary='';
-  ns.forEach(d=>{
-    const dow=getDOW(d);const slot=S.slots[d]||{};
-    const nv=slot.night?venueById('night',slot.night):null;
-    const dv=slot.day?venueById('day',slot.day):null;
-    const isBar=S.openBarNight===d;
-    if(dv)summary+=WD[dow]+' day: '+dv.name+'\n';
-    if(isBar)summary+=WD[dow]+' night: Open bar\n';
-    else if(nv)summary+=WD[dow]+' night: '+nv.name+'\n';
-  });
-
-  // Send to Google Sheet
-  const payload = {
-    timestamp: new Date().toISOString(),
-    name, email, phone,
-    dates: 'Oct '+S.start+' - Oct '+S.end,
-    nights: ns.length,
-    guests: S.guests,
-    total: '$'+totalAmt(),
-    openBarNight: S.openBarNight ? 'Oct '+S.openBarNight : 'None',
-    itinerary: summary.trim(),
-    status: 'Pending payment'
-  };
-
-  // Fire and forget to Google Sheet
-  fetch(SHEET_URL, {method:'POST', mode:'no-cors', body:JSON.stringify(payload)}).catch(()=>{});
-
-  // Redirect to Stripe with prefilled email and quantity
-  const stripeUrl = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email) + '&quantity=' + S.guests + '&client_reference_id=' + encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
-  if(typeof fbq!=='undefined')fbq('track','Purchase',{value:totalAmt(),currency:'USD',num_items:S.guests});
-  window.location.href = stripeUrl;
-});
-
-// INIT
-renderCal();
-show('s1');
+  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:'Oct '+S.start+' - Oct '+S.end+' 2026',nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:'Oct '+S.openBarNight+' (8-10pm)',itinerary:lineupText(),status:'Pending payment'};
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
+  fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
+  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
+};
+wireShare('share-wa2','share-copy2',null);
+renderCal();show('s1');
 </script>
 </body>
 </html>

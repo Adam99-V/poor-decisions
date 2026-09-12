@@ -1,387 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Las Vegas VIP Pool Crawl — Poor Decisions</title>
-<link rel="icon" href="poor-decisions-favicon.ico" type="image/x-icon">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Las Vegas VIP Pool Crawl — Poor Decisions</title><link rel="icon" href="poor-decisions-favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#080808;--dark:#111111;--card:#181818;--border:#2a2a2a;--white:#ffffff;--off-white:#e8e8e8;--muted:#888888;--pink:#FF2D78;--yellow:#FFE600;--green:#00FF88}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
-
-nav{background:rgba(8,8,8,0.97);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:2px;text-decoration:none}
-.logo span{color:var(--pink)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--pink);color:var(--white);padding:10px 24px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background 0.2s}
-.nav-cta:hover{background:#ff0060}
-
-/* HERO */
-.hero{min-height:88vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.35)}
-.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,rgba(8,8,8,0.7) 40%,rgba(8,8,8,0.2) 100%)}
-.hero-side-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:rgba(255,45,120,0.15)}
-.hero-content{position:relative;z-index:1;padding:80px 48px 64px;max-width:900px}
-.breadcrumb{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:28px}
-.breadcrumb a{color:var(--pink);text-decoration:none;transition:opacity 0.2s}
-.breadcrumb a:hover{opacity:0.8}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);color:var(--white);line-height:0.9;letter-spacing:2px;margin-bottom:24px}
-.hero h1 em{color:var(--pink);font-style:normal}
-.hero-sub{font-size:18px;color:rgba(255,255,255,0.55);font-weight:300;max-width:600px;line-height:1.65;margin-bottom:40px}
-.hero-meta{display:flex;gap:0;border:1px solid var(--border);width:fit-content}
-.meta-item{padding:16px 28px;border-right:1px solid var(--border)}
-.meta-item:last-child{border-right:none}
-.meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.meta-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--white);letter-spacing:0.5px}
-.meta-val.pink{color:var(--pink)}
-
-/* TICKER */
-.ticker{background:var(--pink);padding:12px 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:tick 22s linear infinite}
-.ti{display:inline;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;margin:0 28px}
-.td{display:inline;opacity:0.4;margin:0 4px}
+:root{--pink:#FF2D78;--black:#111;--white:#fff;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--gold:#c47900}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);overflow-x:hidden}
+a{color:inherit}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}
+.logo em{color:var(--pink);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:var(--black);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:.7}
+.nav-links a:hover{opacity:1;color:var(--pink)}
+.nav-plan{color:var(--pink)!important;opacity:1!important;font-weight:700!important}
+.nav-cta{background:var(--pink);color:#fff!important;opacity:1!important;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
+.hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;border-bottom:3px solid var(--black);background:#fff}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.16;display:block}
+.hero-in{position:relative;z-index:2;padding:80px 48px;max-width:820px}
+.crumb{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--mid);margin-bottom:22px}
+.crumb a{text-decoration:none;color:var(--pink)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,128px);line-height:.9;color:var(--black);margin-bottom:24px}
+.hero h1 em{color:var(--pink);font-style:normal;display:block}
+.hero-sub{font-size:18px;line-height:1.6;color:var(--mid);max-width:600px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn{display:inline-block;padding:18px 36px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;cursor:pointer;border:2px solid var(--pink);background:var(--pink);color:#fff}
+.btn.outline{background:transparent;color:var(--black);border-color:var(--black)}
+.btn.outline:hover{background:var(--black);color:#fff}
+.stats{display:inline-grid;grid-template-columns:repeat(4,auto);border:1px solid var(--border);background:#fff}
+.stat{padding:18px 26px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-l{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.stat-v{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
+.stat-v.pk{color:var(--pink)}
+.ticker{background:var(--pink);padding:14px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 30s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* MAIN CONTENT */
-.page-body{display:grid;grid-template-columns:1fr 400px;gap:0;max-width:100%;border-top:1px solid var(--border)}
-.main-col{padding:72px 64px 72px 48px;border-right:1px solid var(--border)}
-.side-col{padding:48px 40px;background:var(--dark);position:relative}
-
-.eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
-.block-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:0.95;letter-spacing:1px;margin-bottom:24px}
-.body-text{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;margin-bottom:20px}
-.divider{border:none;border-top:1px solid var(--border);margin:48px 0}
-
-/* HIGHLIGHTS */
-.highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:8px}
-.highlight-item{background:var(--card);padding:24px 20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
-.hi-icon{font-size:22px;flex-shrink:0;margin-top:2px}
-.hi-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.55;font-weight:400}
-
-/* SCHEDULE / NIGHT BREAKDOWN */
-.night-flow{list-style:none;position:relative;padding-left:28px}
-.night-flow::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--border)}
-.nf-item{position:relative;padding:0 0 36px 0}
-.nf-item:last-child{padding-bottom:0}
-.nf-dot{position:absolute;left:-28px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--pink);border:2px solid var(--black);flex-shrink:0}
-.nf-time{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:5px}
-.nf-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px}
-.nf-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
-
-/* CLUBS */
-.clubs-row{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:8px}
-.club-card{background:var(--card);border:1px solid var(--border);padding:24px 20px}
-.club-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:1px;margin-bottom:4px}
-.club-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
-
-/* TUESDAY NOTE */
-.note-box{background:rgba(255,230,0,0.05);border:1px solid rgba(255,230,0,0.2);border-left:3px solid var(--yellow);padding:20px 20px;margin-top:24px}
-.note-box-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
-.note-box-text{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;font-weight:300}
-
-/* UPGRADE BOX */
-.upgrade-box{background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:24px;margin-top:24px}
-.upgrade-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
-.upgrade-text{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;font-weight:300}
-.upgrade-price{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--pink);margin-top:10px}
-
-/* BOOKING CARD */
-.booking-card{background:var(--black);border:1px solid var(--border);padding:36px;position:sticky;top:88px}
-.booking-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--pink);line-height:1}
-.booking-price-note{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;margin-bottom:28px}
-.booking-divider{border:none;border-top:1px solid var(--border);margin:18px 0}
-.booking-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
-.bkey{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.bval{font-size:13px;color:var(--white);font-weight:600;text-align:right;max-width:180px}
-.bval.green{color:var(--green)}
-.btn-book{display:block;width:100%;padding:18px;background:var(--pink);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;transition:background 0.2s;margin-top:24px;text-align:center;text-decoration:none}
-.btn-book:hover{background:#ff0060}
-.btn-ask{display:block;width:100%;padding:14px;background:transparent;border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;margin-top:10px;text-align:center;text-decoration:none}
-.btn-ask:hover{border-color:var(--white);color:var(--white)}
-
-.days-list{list-style:none;margin-top:4px}
-.days-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
-.days-list li:last-child{border-bottom:none}
-.day-name{color:var(--muted);font-weight:500;letter-spacing:0.5px}
-.day-status{font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase}
-.day-status.full{color:var(--green)}
-.day-status.limited{color:var(--yellow)}
-
-/* PHOTOS STRIP */
-.photos-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.photo-block{height:240px;overflow:hidden;position:relative}
-.photo-block img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6);transition:transform 0.4s}
-.photo-block:hover img{transform:scale(1.04)}
-
-/* OTHER DESTINATIONS */
-.other-dest{padding:72px 48px;background:var(--dark);border-top:1px solid var(--border)}
-.other-dest h2{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--white);letter-spacing:1px;margin-bottom:32px;line-height:1;margin-top:10px}
-.dest-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
-.dest-link{background:var(--card);padding:32px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background 0.2s;height:160px;display:flex;flex-direction:column;justify-content:flex-end}
-.dest-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.3);transition:transform 0.4s}
-.dest-link:hover img{transform:scale(1.04)}
-.dest-link:hover{background:var(--card)}
-.dest-link-content{position:relative;z-index:1}
-.dest-link-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);letter-spacing:1px;line-height:1}
-.dest-link-arrow{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-top:6px}
-
-footer{background:var(--dark);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;text-decoration:none}
-.footer-logo span{color:var(--pink)}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s}
-.footer-links a:hover{color:var(--white)}
-
-@media(max-width:960px){
-  nav{padding:0 20px}.nav-links{display:none}
-  .hero-content{padding:60px 20px 48px}
-  .hero-meta{flex-wrap:wrap}
-  .page-body{grid-template-columns:1fr}
-  .main-col{padding:48px 20px;border-right:none}
-  .side-col{padding:40px 20px}
-  .booking-card{position:static}
-  .highlights-grid,.clubs-row{grid-template-columns:1fr}
-  .photos-strip{grid-template-columns:1fr 1fr}
-  .other-dest{padding:60px 20px}
-  .dest-row{grid-template-columns:1fr}
-  footer{padding:32px 20px}
+.ti{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#fff;margin:0 22px}
+.td{color:rgba(255,255,255,.5)}
+.wrap{padding:96px 48px;display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:start;max-width:1400px;margin:0 auto}
+.sec-eye{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
+.sec-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);line-height:.92;color:var(--black);margin-bottom:28px}
+.sec-h em{color:var(--pink);font-style:normal;display:block}
+.prose p{font-size:16px;line-height:1.75;color:#444;margin-bottom:18px}
+.callout{border:2px solid var(--pink);background:rgba(255,45,120,.05);padding:24px 28px;margin-top:28px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.callout .t{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.callout .d{font-size:14px;line-height:1.6;color:#444}
+.callout .p{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--pink)}
+.card{position:sticky;top:96px;border:1px solid var(--border);background:#fff}
+.planner-banner{background:var(--pink);padding:22px 24px;text-align:center;text-decoration:none;display:block}
+.planner-banner .a{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;color:#fff;line-height:1}
+.planner-banner .b{font-size:11px;font-weight:600;color:rgba(255,255,255,.85);margin-top:6px;letter-spacing:.5px}
+.card-in{padding:32px 28px}
+.price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--pink);line-height:.9}
+.price-s{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:8px 0 24px}
+.inc{border-top:1px solid var(--border);padding-top:20px;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.inc-r{display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.inc-r span:first-child{font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);font-size:10px;padding-top:2px}
+.inc-r span:last-child{font-weight:700;color:var(--black);text-align:right}
+.inc-r.ok span:last-child{color:#0a8f4a}
+.card .btn{width:100%;text-align:center}
+.card .wa{display:block;text-align:center;margin-top:10px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mid);text-decoration:none}
+.steps{padding:96px 48px;background:var(--grey)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:40px}
+.step{background:#fff;padding:32px 28px;border:1px solid var(--border)}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--pink);line-height:1;margin-bottom:14px}
+.step-t{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
+.step-h{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);line-height:1;margin-bottom:12px}
+.step-d{font-size:13.5px;line-height:1.65;color:#555}
+.venues{padding:96px 48px}
+.venues-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:40px}
+.venue{border:1px solid var(--border);padding:26px 24px;background:#fff}
+.venue-n{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);line-height:1;margin-bottom:6px}
+.venue-d{font-size:12.5px;line-height:1.5;color:var(--mid)}
+.venue-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.cta-strip{background:var(--black);padding:80px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px}
+.cta-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);color:#fff;line-height:.9}
+.cta-strip h2 em{color:var(--pink);font-style:normal}
+footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:13px;color:var(--mid);line-height:1.7;margin-top:16px;max-width:280px}
+.footer-col h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--black);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--mid);text-decoration:none;margin-bottom:8px}
+.footer-col a:hover{color:var(--pink)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mid)}
+.footer-bottom a{color:var(--mid);text-decoration:none}
+/* contact */
+.form-wrap{padding:96px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:64px;max-width:1400px;margin:0 auto}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f{display:flex;flex-direction:column;gap:8px}
+.f.full{grid-column:1/-1}
+.f label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
+.f input,.f select,.f textarea{border:1.5px solid var(--border);background:#fff;padding:14px 16px;font:400 15px/1.3 'Inter';color:var(--black);outline:none;border-radius:0;width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--pink)}
+.f textarea{min-height:120px;resize:vertical}
+.other{border:1px solid var(--border);padding:32px 28px;background:#fff}
+.other h3{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:.95;color:var(--black);margin-bottom:24px}
+.o{padding:18px 0;border-top:1px solid var(--border)}
+.o .l{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.o .v{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);text-decoration:none;display:block;margin-bottom:6px}
+.o .d{font-size:12.5px;line-height:1.5;color:var(--mid)}
+.success{display:none;border:2px solid var(--pink);padding:40px;text-align:center}
+.success h3{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--pink);margin-bottom:12px}
+@media(max-width:900px){
+  nav{padding:0 20px}.nav-links a:not(.nav-cta){display:none}
+  .hero{min-height:auto}.hero-in{padding:56px 20px}
+  .stats{grid-template-columns:1fr 1fr;display:grid;width:100%}
+  .wrap,.form-wrap{grid-template-columns:1fr;padding:56px 20px;gap:40px}
+  .card{position:static}
+  .steps,.venues{padding:56px 20px}.steps-grid,.venues-grid{grid-template-columns:1fr}
+  .cta-strip{flex-direction:column;padding:56px 20px;text-align:center}
+  footer{padding:48px 20px}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .f-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="logo">POOR<span>DECISIONS</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html#packages">Packages</a></li>
-    <li><a href="index.html#destinations">Destinations</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="contact.html" class="nav-cta">Book Now</a>
+</style><!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3589603211187590');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code --></head><body><nav>
+  <a href="index.html" class="logo">POOR<em>DECISIONS</em></a>
+  <div class="nav-links">
+    <a href="index.html#destinations">Packages</a>
+    <a href="index.html#destinations">Destinations</a>
+    <a href="contact.html">Contact</a>
+    <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas</a>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+  </div>
 </nav>
-
-<div class="hero">
-  <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1600&q=80" alt="Las Vegas nightlife">
-  <div class="hero-grad"></div>
-  <div class="hero-side-line"></div>
-  <div class="hero-content">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a> &nbsp;&rsaquo;&nbsp;
-      <a href="index.html#destinations">Destinations</a> &nbsp;&rsaquo;&nbsp;
-      Las Vegas
-    </div>
-    <div class="hero-eyebrow">Las Vegas, Nevada &mdash; Daytime Experience</div>
-    <h1>Las Vegas<br><em>VIP Pool Crawl</em></h1>
-    <p class="hero-sub">Vegas&rsquo; best pool parties in style &mdash; VIP cabanas, bottle service, daytime DJs and access to the Strip&rsquo;s most iconic pool scenes.</p>
-    <div class="hero-meta">
-      <div class="meta-item"><div class="meta-label">From</div><div class="meta-val pink">From $120</div></div>
-      <div class="meta-item"><div class="meta-label">Venues</div><div class="meta-val">3&ndash;4 per night</div></div>
-      <div class="meta-item"><div class="meta-label">Bottle service</div><div class="meta-val">Available</div></div>
-      <div class="meta-item"><div class="meta-label">Season</div><div class="meta-val">Year Round</div></div>
-    </div>
+<section class="hero">
+  <div class="hero-bg"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-5.jpg" alt=""></div>
+  <div class="hero-in">
+    <div class="crumb"><a href="index.html">Home</a> › <a href="index.html#destinations">Destinations</a> › Las Vegas</div>
+    <div class="eyebrow">Las Vegas, Nevada — Daytime experience</div>
+    <h1>Las Vegas <em>VIP Pool Crawl</em></h1>
+    <p class="hero-sub">Vegas' best pool parties in style — VIP cabanas, bottle service, daytime DJs and access to the Strip's most iconic pool scenes.</p>
+    <div class="hero-btns"><a href="contact.html" class="btn">Book this now</a><a href="https://wa.me/447849871895" class="btn outline">WhatsApp us</a></div>
+    <div class="stats"><div class="stat"><div class="stat-l">From</div><div class="stat-v pk">$120</div></div><div class="stat"><div class="stat-l">Venues</div><div class="stat-v">3–4 per day</div></div><div class="stat"><div class="stat-l">Bottle service</div><div class="stat-v">Available</div></div><div class="stat"><div class="stat-l">Season</div><div class="stat-v">Year round</div></div></div>
   </div>
-</div>
-
-<div class="ticker">
-  <span class="ticker-inner">
-    <span class="ti">VIP Cabanas</span><span class="td">●</span>
-    <span class="ti">Bottle Service</span><span class="td">●</span>
-    <span class="ti">Daytime DJs</span><span class="td">●</span>
-    <span class="ti">Wet Republic</span><span class="td">●</span>
-    <span class="ti">Encore Beach Club</span><span class="td">●</span>
-    <span class="ti">Marquee Dayclub</span><span class="td">●</span>
-    <span class="ti">Tao Beach</span><span class="td">●</span>
-    <span class="ti">VIP Cabanas</span><span class="td">●</span>
-    <span class="ti">Bottle Service</span><span class="td">●</span>
-    <span class="ti">Daytime DJs</span><span class="td">●</span>
-    <span class="ti">Wet Republic</span><span class="td">●</span>
-    <span class="ti">Encore Beach Club</span><span class="td">●</span>
-    <span class="ti">Marquee Dayclub</span><span class="td">●</span>
-    <span class="ti">Tao Beach</span><span class="td">●</span>
-  </span>
-</div>
-
-<!-- PHOTO STRIP -->
-<div class="photos-strip">
-  <div class="photo-block"><img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80" alt="Vegas nightlife"></div>
-  <div class="photo-block"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Vegas party"></div>
-  <div class="photo-block"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Vegas club"></div>
-</div>
-
-<div class="page-body">
-  <div class="main-col">
-
-    <!-- ABOUT -->
-    <div class="eyebrow">The experience</div>
-    <h2 class="block-title">Vegas Pool Parties.<br>Done Properly.</h2>
-    <p class="body-text">Get ready for a full Las Vegas nightlife experience without the hassle of planning the night yourself. Your evening starts at a buzzing bar on the Strip, where you'll check in with your professional party host and meet the rest of the group.</p>
-    <p class="body-text">Las Vegas isn't just a nighttime city. The dayclubs and pool parties on the Strip are world-class &mdash; and most people either don't know about them or can't get into the best ones without connections. We fix both problems.</p>
-    <p class="body-text">Your VIP Pool Crawl hits 2 to 3 of Vegas's best pool parties across the day, with VIP cabana access, bottle service options and a host who gets you in and set up. No queuing in the sun, no turning up and being told the cabanas are sold out.</p>
-
-    <div class="upgrade-box">
-      <div class="upgrade-title">&#9650; Bottle service available</div>
-      <p class="upgrade-text">Upgrade to a full bottle package at any of the pool venues. Speak to your host when booking and we'll get it arranged in advance.</p>
-      <div class="upgrade-price">Ask us</div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- HOW THE NIGHT FLOWS -->
-    <div class="eyebrow">How the night runs</div>
-    <h2 class="block-title">Your Night,<br>Step by Step</h2>
-    <ul class="night-flow">
-      <li class="nf-item">
-        <div class="nf-dot"></div>
-        <div class="nf-time">Stop 1 &mdash; First pool venue</div>
-        <div class="nf-title">Check in, cabana sorted, drinks flowing</div>
-        <div class="nf-desc">Your host meets the group, gets you checked in and set up in your VIP area. Bottle service or poolside drinks &mdash; your call. Music, sun and the best crowd on the Strip.</div>
-      </li>
-      <li class="nf-item">
-        <div class="nf-dot"></div>
-        <div class="nf-time">Between venues</div>
-        <div class="nf-title">Party bus through the Strip</div>
-        <div class="nf-desc">Everyone boards the party bus. Music, lights, drinks and games as you cruise through Las Vegas between stops. This is where the group really gets going.</div>
-      </li>
-      <li class="nf-item">
-        <div class="nf-dot"></div>
-        <div class="nf-time">Stop 2 &amp; 3</div>
-        <div class="nf-title">Second &amp; third pool venue</div>
-        <div class="nf-desc">VIP access at each stop. Depending on the day and season your host picks the best combination from the rotation &mdash; always the right call.</div>
-      </li>
-      <li class="nf-item">
-        <div class="nf-dot"></div>
-        <div class="nf-time">Optional evening extension</div>
-        <div class="nf-title">Keep going into the night</div>
-        <div class="nf-desc">Want to carry it on? Your host can get the group priority access into the evening club scene. Ask when booking and we'll sort it.</div>
-      </li>
-    </ul>
-
-    <div class="divider"></div>
-
-    <!-- NIGHTCLUBS -->
-    <div class="eyebrow">The venues</div>
-    <h2 class="block-title">Vegas Pool Parties<br>on the Rotation</h2>
-    <p class="body-text">The pool venues rotate based on the day, season and availability. Your host always picks the best combination. Regular venues include:</p>
-    <div class="clubs-row">
-      <div class="club-card">
-        <div class="club-name">Wet Republic</div>
-        <div class="club-tag">MGM Grand &mdash; One of Vegas&rsquo; biggest dayclubs</div>
-      </div>
-      <div class="club-card">
-        <div class="club-name">Encore Beach Club</div>
-        <div class="club-tag">Encore &mdash; Iconic Vegas pool party scene</div>
-      </div>
-      <div class="club-card">
-        <div class="club-name">Marquee Dayclub</div>
-        <div class="club-tag">The Cosmopolitan &mdash; World-famous dayclub</div>
-      </div>
-      <div class="club-card">
-        <div class="club-name">Tao Beach</div>
-        <div class="club-tag">The Venetian &mdash; Rooftop pool party</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- HIGHLIGHTS -->
-    <div class="eyebrow">What's included</div>
-    <h2 class="block-title">Everything You<br>Get on the Night</h2>
-    <div class="highlights-grid">
-      <div class="highlight-item"><div class="hi-icon">&#9728;</div><div class="hi-text">VIP cabana access at every pool venue</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#127863;</div><div class="hi-text">Bottle service options at every stop</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#9889;</div><div class="hi-text">VIP line bypass entry at every venue throughout the night</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#127881;</div><div class="hi-text">All cover charges included &mdash; saving you $40&ndash;$100 per venue</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#127970;</div><div class="hi-text">3 to 4 venues including bars, lounges and a top nightclub</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#127775;</div><div class="hi-text">Professional party host with you all night</div></div>
-      <div class="highlight-item"><div class="hi-icon">&#127926;</div><div class="hi-text">Daytime DJs &amp; world-class pool party atmosphere</div></div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- PERFECT FOR -->
-    <div class="eyebrow">Perfect for</div>
-    <h2 class="block-title">Who's This<br>Built For?</h2>
-    <p class="body-text">This is the right night for solo travellers who want to meet people, groups who want it all sorted, birthday parties, bachelor and bachelorette parties, and honestly anyone who wants a fully hosted Vegas night without paying a fortune or spending three hours on Google figuring out which clubs to go to.</p>
-    <p class="body-text">All cover charges are included in your ticket &mdash; saving you from paying door fees that can range from $40 to $100 per venue. You'll also get VIP line bypass, so the group moves past general admission as quickly as the venue allows.</p>
-
+</section>
+<div class="ticker"><div class="ticker-inner"><span class="ti">Bottle service</span><span class="td">●</span><span class="ti">Daytime DJs</span><span class="td">●</span><span class="ti">Wet Republic</span><span class="td">●</span><span class="ti">Encore Beach Club</span><span class="td">●</span><span class="ti">Marquee Dayclub</span><span class="td">●</span><span class="ti">TAO Beach</span><span class="td">●</span><span class="ti">Omnia Dayclub</span><span class="td">●</span><span class="ti">VIP cabanas</span><span class="td">●</span><span class="ti">Bottle service</span><span class="td">●</span><span class="ti">Daytime DJs</span><span class="td">●</span><span class="ti">Wet Republic</span><span class="td">●</span><span class="ti">Encore Beach Club</span><span class="td">●</span><span class="ti">Marquee Dayclub</span><span class="td">●</span><span class="ti">TAO Beach</span><span class="td">●</span><span class="ti">Omnia Dayclub</span><span class="td">●</span><span class="ti">VIP cabanas</span><span class="td">●</span></div></div>
+<section class="wrap">
+  <div>
+    <div class="sec-eye">The experience</div>
+    <h2 class="sec-h">Vegas by day.<em>Done properly.</em></h2>
+    <div class="prose"><p>Vegas daytime is its own scene — world-class DJs, pool decks the size of football pitches and a crowd that starts at 11am and doesn't stop. Your VIP Pool Crawl gets you into the best of it without queuing in the desert heat.</p><p>Meet your host, get your wristbands, and get straight into the first dayclub with express entry. From there the group moves between the Strip's top pool parties — Encore Beach Club, Marquee Dayclub, TAO Beach, Wet Republic — with entry sorted at every door.</p><p>Want to go big? VIP cabanas and daybeds with bottle service can be arranged for your group in advance. Just tell us when you book.</p></div>
+    <div class="callout"><div><div class="t">▲ Cabanas & bottle service</div><div class="d">Reserve a cabana or daybed for the group ahead of time. Prices vary by venue and day — ask us and we'll sort it.</div></div><div class="p">Ask us</div></div>
   </div>
-
-  <!-- BOOKING SIDEBAR -->
-  <div class="side-col">
-    <div class="booking-card">
-      <div class="booking-price">From $120</div>
-      <div class="booking-price-note">Per person &mdash; group discounts available</div>
-      <div class="booking-divider"></div>
-      <div class="booking-row"><span class="bkey">VIP cabana</span><span class="bval green">Included</span></div>
-      <div class="booking-row"><span class="bkey">Bottle service</span><span class="bval green">Available</span></div>
-      <div class="booking-row"><span class="bkey">Cover charges</span><span class="bval green">All included</span></div>
-      <div class="booking-row"><span class="bkey">VIP entry</span><span class="bval green">Included</span></div>
-      <div class="booking-row"><span class="bkey">Pool venues</span><span class="bval">2&ndash;3 stops</span></div>
-      <div class="booking-row"><span class="bkey">Host</span><span class="bval">Professional, all day</span></div>
-      <div class="booking-row"><span class="bkey">Age</span><span class="bval">21+ (Vegas law)</span></div>
-      <div class="booking-divider"></div>
-      <a href="contact.html?package=vegas-pool-crawl" class="btn-book">Book This Now</a>
-      <a href="contact.html" class="btn-ask">Got a question?</a>
+  <aside class="card">
+    <a href="vegas-planner.html" class="planner-banner"><div class="a">★ Build your Vegas nights</div><div class="b">Pick your clubs · choose your open bar night · one payment →</div></a>
+    <div class="card-in">
+      <div class="price">From $120</div>
+      <div class="price-s">Per person — cabanas & bottle service extra</div>
+      <div class="inc"><div class="inc-r ok"><span>Dayclub entry</span><span>3–4 pool parties</span></div><div class="inc-r ok"><span>Express entry</span><span>Included</span></div><div class="inc-r ok"><span>Host</span><span>Daytime, all day</span></div><div class="inc-r"><span>Daybeds & cabanas</span><span>Available on request</span></div><div class="inc-r"><span>Bottle service</span><span>Available on request</span></div><div class="inc-r"><span>Runs</span><span>Thu–Sun</span></div><div class="inc-r"><span>Age</span><span>21+ (Vegas law)</span></div></div>
+      <a href="contact.html" class="btn">Book this now</a>
+      <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
     </div>
-
-    <!-- NIGHTS / AVAILABILITY -->
-    <div style="margin-top:24px">
-      <div class="eyebrow">Availability</div>
-      <ul class="days-list">
-        <li><span class="day-name">Thursday</span><span class="day-status full">Running</span></li>
-        <li><span class="day-name">Friday</span><span class="day-status full">Running</span></li>
-        <li><span class="day-name">Saturday</span><span class="day-status full">Running</span></li>
-        <li><span class="day-name">Sunday</span><span class="day-status full">Running</span></li>
-      </ul>
-    </div>
-
-    <!-- UPGRADE -->
-    <div style="margin-top:24px;background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);padding:20px">
-      <div class="eyebrow" style="margin-bottom:8px">Evening extension</div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;font-weight:300">Want to keep going into the night? Ask us about priority club access to finish the day off properly.</p>
-    </div>
-  </div>
+  </aside>
+</section>
+<section class="steps">
+  <div class="sec-eye">How it runs</div>
+  <h2 class="sec-h">Your night,<em>step by step.</em></h2>
+  <div class="steps-grid"><div class="step"><div class="step-n">01</div><div class="step-t">11:00am</div><div class="step-h">Check in & wristbands</div><div class="step-d">Meet your host at the first venue, grab your wristbands and get straight in with express entry.</div></div><div class="step"><div class="step-n">02</div><div class="step-t">Early afternoon</div><div class="step-h">First pool party</div><div class="step-d">Straight into the Strip's best daytime scene. DJs on, drinks flowing, pool open.</div></div><div class="step"><div class="step-n">03</div><div class="step-t">Afternoon</div><div class="step-h">Second & third venue</div><div class="step-d">Move with the group between pool parties. Entry sorted, no queues, no promoters.</div></div><div class="step"><div class="step-n">04</div><div class="step-t">6:00pm</div><div class="step-h">Wrap up</div><div class="step-d">Pool parties wind down. Your host points you to the best pre-drinks spots if you're going out tonight.</div></div></div>
+</section>
+<section class="venues">
+  <div class="sec-eye">Pool parties</div>
+  <h2 class="sec-h">The Strip's best<em>dayclubs.</em></h2>
+  <div class="venues-grid"><div class="venue"><span class="venue-tag">Wynn</span><div class="venue-n">Encore Beach Club</div><div class="venue-d">The original Vegas pool party. Unmatched DJ lineups.</div></div><div class="venue"><span class="venue-tag">The Cosmopolitan</span><div class="venue-n">Marquee Dayclub</div><div class="venue-d">Skyline views and house music all afternoon.</div></div><div class="venue"><span class="venue-tag">The Venetian</span><div class="venue-n">TAO Beach</div><div class="venue-d">Hip hop and open format on the rooftop.</div></div><div class="venue"><span class="venue-tag">MGM Grand</span><div class="venue-n">Wet Republic</div><div class="venue-d">Huge saltwater pools, big room EDM.</div></div></div>
+</section>
+<div class="cta-strip">
+  <h2>Ready to make some <em>poor decisions?</em></h2>
+  <a href="contact.html" class="btn">Book your night</a>
 </div>
-
-<!-- OTHER DESTINATIONS -->
-<div class="other-dest">
-  <div class="eyebrow">Also available</div>
-  <h2>Other Destinations</h2>
-  <div class="dest-row">
-    <a href="las-vegas.html" class="dest-link">
-      <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=800&q=80" alt="Las Vegas Club Crawl">
-      <div class="dest-link-content">
-        <div class="dest-link-name">VIP Club Crawl</div>
-        <div class="dest-link-arrow">View destination &rarr;</div>
-      </div>
-    </a>
-    <a href="ayia-napa.html" class="dest-link">
-      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80" alt="Ayia Napa">
-      <div class="dest-link-content">
-        <div class="dest-link-name">Ayia Napa</div>
-        <div class="dest-link-arrow">View destination &rarr;</div>
-      </div>
-    </a>
-  </div>
-</div>
-
 <footer>
-  <a href="index.html" class="footer-logo">POOR<span>DECISIONS</span></a>
-  <div class="footer-copy">&copy; 2026 Poor Decisions. Bad decisions. Great nights.</div>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="contact.html">Book Now</a>
-    <a href="https://instagram.com/poordecisions">@poordecisions</a>
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas, Ayia Napa and Albufeira. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
+    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a><a href="ayia-napa.html">Ayia Napa Party Passport</a><a href="albufeira.html">Albufeira Club Crawl</a></div>
+    <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a><a href="ayia-napa.html">Ayia Napa</a><a href="albufeira.html">Albufeira</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:official.poordecisions@gmail.com">official.poordecisions@gmail.com</a><a href="https://wa.me/447849871895">WhatsApp +44 7849 871895</a><a href="https://instagram.com/poordecisions">@poordecisions</a></div>
   </div>
-</footer>
-
-</body>
-</html>
+  <div class="footer-bottom"><span>&copy; 2026 Poor Decisions. Bad decisions. Great nights.</span><a href="contact.html">Book Now</a></div>
+</footer></body></html>
