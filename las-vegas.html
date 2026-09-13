@@ -3,10 +3,11 @@
 :root{--pink:#FF2D78;--black:#111;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--gold:#c47900;--green:#0a8f4a}
 body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);overflow-x:hidden}
 a{color:inherit}
-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:24px}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}
 .logo em{color:var(--pink);font-style:normal}
-.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;align-items:center;gap:24px;white-space:nowrap}
+@media(max-width:1180px){.nav-links{gap:16px}.nav-links a{font-size:11px;letter-spacing:.5px}}
 .nav-links a{color:var(--black);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:.7}
 .nav-links a:hover{opacity:1;color:var(--pink)}
 .nav-plan{color:var(--pink)!important;opacity:1!important;font-weight:700!important}
@@ -17,15 +18,15 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 h1{font-family:'Inter',sans-serif;font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1.15;color:var(--black);margin-bottom:12px}
 .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:#333;margin-bottom:22px}
 .pill{background:var(--black);color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:4px}
+.pill.hot{background:#c62828}
 .stars{color:var(--pink);font-size:15px;letter-spacing:1px}
 .meta .rev{text-decoration:underline;font-weight:600}
 .meta .dot{color:#bbb}
-.meta .share{margin-left:auto;display:flex;gap:18px}
-.meta .share button{background:none;border:none;font:600 14px 'Inter';text-decoration:underline;cursor:pointer;color:var(--black)}
 .cols{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start}
 .gallery{display:grid;grid-template-columns:1.55fr 1fr 1fr;grid-template-rows:200px 200px;gap:8px;border-radius:14px;overflow:hidden;position:relative}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;background:#ddd}
 .gallery .big{grid-row:1/3}
+.gallery .sharebtn{position:absolute;left:12px;bottom:12px;background:#fff;border:none;border-radius:999px;padding:10px 16px;font:700 12px 'Inter';cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .gallery .viewall{position:absolute;right:12px;bottom:12px;background:#fff;border:none;border-radius:999px;padding:10px 16px;font:700 12px 'Inter';cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .allpics{display:none;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
 .allpics.on{display:grid}
@@ -36,10 +37,10 @@ h1{font-family:'Inter',sans-serif;font-size:clamp(26px,3vw,36px);font-weight:800
 .feat .ic{width:36px;height:36px;border-radius:9px;background:var(--grey);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 .feat b{display:block;font-size:13px;margin-bottom:2px}
 .feat span{font-size:12px;color:#555;line-height:1.45}
-.sec{padding:32px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:170px 1fr;gap:24px}
+.sec{padding:30px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:190px 1fr;gap:28px}
 .sec>div,.sec>ul{min-width:0}
 .sec>ul.bul{margin-left:0}
-.sec h2{font-family:'Inter',sans-serif;font-size:19px;font-weight:700;line-height:1.3;color:var(--black);padding-top:2px}
+.sec h2{font-family:'Inter',sans-serif;font-size:19px;font-weight:700;line-height:25px;color:var(--black);padding-top:0;margin:0}
 .sec.full{display:block}
 .sec.full h2{margin-bottom:16px;font-size:22px}
 .loved{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -51,14 +52,15 @@ h1{font-family:'Inter',sans-serif;font-size:clamp(26px,3vw,36px);font-weight:800
 .rtxt{font-size:15px;line-height:1.6;color:#333}
 ul.bul{list-style:none}
 ul.bul{margin-left:0}
-ul.bul li{position:relative;padding-left:0;font-size:15px;line-height:1.7;color:#333}
-ul.bul li:before{content:'•';position:absolute;left:-16px;color:var(--black)}
+ul.bul li{position:relative;padding-left:0;font-size:15px;line-height:25px;color:#333;margin:0}
+ul.bul li:before{content:'•';position:absolute;left:-15px;color:var(--black)}
 ul.chk li:before{content:'✓';color:var(--green);font-weight:800;left:-20px}
 ul.opt li:before{content:'+';color:var(--gold);font-weight:800;left:-18px}
 ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13px}
-.desc p{font-size:15px;line-height:1.7;color:#333;margin-bottom:14px}
+.desc p{font-size:15px;line-height:25px;color:#333;margin:0 0 14px}
+.desc p:last-child{margin-bottom:0}
 .desc p.blk{margin-bottom:4px}
-.desc h3{font-size:16px;font-weight:700;margin:24px 0 8px}
+.desc h3{font-size:15px;font-weight:700;margin:22px 0 8px;line-height:25px}
 .itin{margin:8px 0 6px}
 .it{display:flex;gap:14px;margin-bottom:16px}
 .it .n{width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;font:700 13px 'Inter';display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -74,8 +76,9 @@ ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13
 .venue-tag{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;display:block}
 .venue-n{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;line-height:1.2;margin-bottom:5px}
 .venue-d{font-size:13px;line-height:1.5;color:var(--mid)}
-.imp h3{font-size:15px;font-weight:700;margin:0 0 8px}
-.imp ul{margin-bottom:22px;margin-left:0}
+.imp h3{font-size:15px;font-weight:700;margin:0 0 6px;line-height:25px}
+.imp ul{margin-bottom:20px;margin-left:0}
+.imp ul:last-child{margin-bottom:0}
 .reviews-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .reviews-hd h2{font-family:'Inter',sans-serif;font-size:22px;font-weight:700}
 .rev-wrap{display:grid;grid-template-columns:260px 1fr;gap:40px}
@@ -90,7 +93,7 @@ ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13
 .rl .stars{font-size:14px;margin-bottom:10px}
 .meet-map{display:inline-block;margin-top:10px;font-weight:700;text-decoration:underline;font-size:14px}
 .card{position:sticky;top:90px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 24px rgba(0,0,0,.06)}
-.planner-banner{background:var(--pink);padding:16px 18px;text-align:center;text-decoration:none;display:block}
+.planner-banner{background:var(--pink);padding:14px 18px;text-align:center;text-decoration:none;display:block;white-space:nowrap;overflow:hidden}
 .planner-banner .a{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;color:#fff;line-height:1.2}
 .planner-banner .b{font-size:11px;font-weight:500;color:rgba(255,255,255,.85);margin-top:4px}
 .card-in{padding:22px 22px 18px}
@@ -124,6 +127,24 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
 .footer-col a:hover{color:var(--pink)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mid)}
 .footer-bottom a{color:var(--mid);text-decoration:none}
+.avail{font-size:13px;line-height:1.5;margin:-2px 0 10px;min-height:0}
+.avail.ok{color:var(--green);font-weight:600}.avail.no{color:#c62828;font-weight:600}
+.bk{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:210;align-items:flex-end;justify-content:center}
+.bk.on{display:flex}
+.bk-card{background:#fff;width:100%;max-width:480px;border-radius:18px 18px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+@media(min-width:700px){.bk{align-items:center}.bk-card{border-radius:18px}}
+.bk-h{font-size:20px;font-weight:800;margin-bottom:4px}
+.bk-s{font-size:13px;color:var(--mid);margin-bottom:14px}
+.bk-sum{background:var(--grey);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.bk-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0}
+.bk-row b{font-weight:700}
+.bk-row.tot{border-top:1px solid var(--border);margin-top:4px;padding-top:9px;font-size:16px;font-weight:800}
+.bk-f{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.bk-f label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mid)}
+.bk-f input{border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font:400 15px 'Inter';outline:none;width:100%}
+.bk-f input:focus{border-color:var(--pink)}
+.bk-x{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--mid)}
+.bk-note{font-size:12px;color:var(--mid);text-align:center;margin-top:10px;line-height:1.5}
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;align-items:center;justify-content:center}
 .lb.on{display:flex}.lb img{max-width:92vw;max-height:88vh;object-fit:contain}
 .lb button{position:absolute;top:18px;right:18px;background:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer}
@@ -139,7 +160,6 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
   .feats{grid-template-columns:1fr 1fr}.loved,.vgrid{grid-template-columns:1fr}
   .sec{grid-template-columns:1fr;gap:12px}
   .rev-wrap{grid-template-columns:1fr;gap:24px}
-  .meta .share{margin-left:0}
   .mbar{display:flex}
   .cta-strip{flex-direction:column;padding:56px 20px;text-align:center}
   footer{padding:48px 20px}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -156,7 +176,8 @@ fbq('init','3589603211187590');fbq('track','PageView');
   <div class="nav-links">
     <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
     <a href="las-vegas.html">Vegas Club Crawl</a>
-    <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas</a>
+    <a href="open-bar.html">Open Bar</a>
+    <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas ★</a>
     <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
@@ -164,10 +185,10 @@ fbq('init','3589603211187590');fbq('track','PageView');
 <div class="page">
   <div class="crumb"><a href="index.html">Home</a> › <a href="index.html#destinations">Las Vegas</a> › Las Vegas VIP Club Crawl</div>
   <h1>Las Vegas VIP Club Crawl</h1>
-  <div class="meta"><span class="pill">Top rated</span><span class="stars">★★★★★</span><span style="font-weight:700">5.0</span><span class="share"><button id="sharebtn">Share</button></span></div>
+  <div class="meta"><span class="pill">Top rated</span><span class="stars">★★★★★</span><span style="font-weight:700">5.0</span></div>
   <div class="cols">
     <div>
-      <div class="gallery"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg" alt="" class="big" data-i="0"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-hakkasan.jpg" alt="" class="" data-i="1"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-xs.jpg" alt="" class="" data-i="2"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-zouk.jpg" alt="" class="" data-i="3"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg" alt="" class="" data-i="4"><button class="viewall" id="viewall">View all</button></div>
+      <div class="gallery"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg" alt="" class="big" data-i="0"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-hakkasan.jpg" alt="" class="" data-i="1"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-xs.jpg" alt="" class="" data-i="2"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-zouk.jpg" alt="" class="" data-i="3"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg" alt="" class="" data-i="4"><button class="viewall" id="viewall">View all</button><button class="sharebtn" id="sharebtn">Share</button></div>
       <div class="allpics" id="allpics"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg" alt="" data-i="0"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-hakkasan.jpg" alt="" data-i="1"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-xs.jpg" alt="" data-i="2"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-zouk.jpg" alt="" data-i="3"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg" alt="" data-i="4"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-13.jpg" alt="" data-i="5"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-tao.jpg" alt="" data-i="6"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-marquee.jpg" alt="" data-i="7"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-3.jpg" alt="" data-i="8"></div>
       <p class="lead">Open bar, party bus and the Strip's top nightclubs — Omnia, Hakkasan, Zouk, XS. Cover charges included. Zero stress.</p>
       <div class="feats"><div class="feat"><div class="ic">🗓️</div><div><b>Free cancellation</b><span>Cancel up to 24 hours in advance</span></div></div><div class="feat"><div class="ic">🍹</div><div><b>Open bar</b><span>Included every night</span></div></div><div class="feat"><div class="ic">🚌</div><div><b>Party bus</b><span>Included every night</span></div></div><div class="feat"><div class="ic">🎟️</div><div><b>Cover charges</b><span>All included</span></div></div><div class="feat"><div class="ic">⭐</div><div><b>VIP entry</b><span>Included</span></div></div><div class="feat"><div class="ic">🏙️</div><div><b>Venues</b><span>3–4 per night</span></div></div><div class="feat"><div class="ic">🧑‍✈️</div><div><b>Host</b><span>Professional, all night</span></div></div><div class="feat"><div class="ic">📅</div><div><b>Runs</b><span>Wed–Sun</span></div></div><div class="feat"><div class="ic">🔞</div><div><b>Age</b><span>21+ (Vegas law)</span></div></div></div>
@@ -193,14 +214,15 @@ fbq('init','3589603211187590');fbq('track','PageView');
       </div>
     </div>
     <aside class="card">
-      <a href="vegas-planner.html" class="planner-banner"><div class="a">★ Build your Vegas nights</div><div class="b">Pick your clubs · choose your open bar night · one payment →</div></a>
+      <a href="vegas-planner.html" class="planner-banner"><div class="a">★ Build your Vegas nights ★</div><div class="b">Pick your clubs, add an open bar night, pay once</div></a>
       <div class="card-in">
         <div class="from">From</div>
         <div class="price">$120 <small>per person</small></div>
         <div class="price-s">Per person — group discounts available</div>
         <div class="sel"><span class="ic">👥</span><select id="gs"><option value="1">Adult x 1</option><option value="2" selected>Adult x 2</option><option value="3">Adult x 3</option><option value="4">Adult x 4</option><option value="5">Adult x 5</option><option value="6">Adult x 6</option><option value="7">Adult x 7</option><option value="8">Adult x 8</option><option value="9">Adult x 9</option><option value="10">Adult x 10</option><option value="11">Adult x 11</option><option value="12">Adult x 12</option><option value="13">Adult x 13</option><option value="14">Adult x 14</option><option value="15">Adult x 15</option><option value="16">Adult x 16</option><option value="17">Adult x 17</option><option value="18">Adult x 18</option><option value="19">Adult x 19</option><option value="20">Adult x 20</option></select></div>
         <div class="sel"><span class="ic">📅</span><input type="date" id="dt" min="2026-01-01"></div>
-        <a href="contact.html" class="btn" id="check">Check availability</a>
+        <div class="avail" id="avail"></div>
+        <button class="btn" id="check">Check availability</button>
         <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
         <div class="pol">
           <div><div><b>Free cancellation</b>Cancel up to 24 hours in advance for a full refund</div></div>
@@ -210,8 +232,19 @@ fbq('init','3589603211187590');fbq('track','PageView');
     </aside>
   </div>
 </div>
-<div class="mbar"><div class="p">From $120<small>per person</small></div><a href="contact.html" id="mcheck">Check availability</a></div>
+<div class="mbar"><div class="p">From $120<small>per person</small></div><a href="#" id="mcheck">Check availability</a></div>
 <div class="lb" id="lb"><button id="lbx">✕</button><img id="lbimg" src="" alt=""></div>
+<div class="bk" id="bk"><div class="bk-card">
+  <button class="bk-x" id="bkx">✕</button>
+  <div class="bk-h">Almost there</div>
+  <div class="bk-s">Your details, then straight to secure payment.</div>
+  <div class="bk-sum" id="bksum"></div>
+  <div class="bk-f"><label>Your name</label><input id="bkname" type="text" autocomplete="name"></div>
+  <div class="bk-f"><label>Email</label><input id="bkemail" type="email" autocomplete="email"></div>
+  <div class="bk-f"><label>WhatsApp / phone</label><input id="bkphone" type="tel" autocomplete="tel"></div>
+  <button class="btn" id="bkpay">Pay now</button>
+  <div class="bk-note">Secure card payment by Stripe. Confirmation by email within minutes.</div>
+</div></div>
 <div class="cta-strip">
   <h2>Ready to make some <em>poor decisions?</em></h2>
   <a href="contact.html" class="btn">Book your night</a>
@@ -219,18 +252,36 @@ fbq('init','3589603211187590');fbq('track','PageView');
 <footer>
   <div class="footer-grid">
     <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
-    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
+    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="open-bar.html">Las Vegas 2-Hour Open Bar</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
     <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:official.poordecisions@gmail.com">official.poordecisions@gmail.com</a><a href="https://wa.me/447849871895">WhatsApp +44 7849 871895</a><a href="https://instagram.com/poordecisions">@poordecisions</a></div>
   </div>
   <div class="footer-bottom"><span>&copy; 2026 Poor Decisions. Bad decisions. Great nights.</span><a href="contact.html">Book Now</a></div>
 </footer>
 <script>
-const PK="Las Vegas VIP Club Crawl";
-const gs=document.getElementById('gs'),dt=document.getElementById('dt');
-function link(){const p=new URLSearchParams({pk:PK,gs:gs.value});if(dt.value)p.set('dt',dt.value);const h='contact.html?'+p.toString();document.getElementById('check').href=h;document.getElementById('mcheck').href=h;}
-gs.onchange=link;dt.onchange=link;link();
-document.getElementById('check').addEventListener('click',()=>{window.fbq&&fbq('track','InitiateCheckout',{content_name:PK});});
+const PK="Las Vegas VIP Club Crawl",PRICE=120,RUNDAYS=[3, 4, 5, 6, 0],RUNTXT="Wed to Sun";
+const STRIPE_LINK=""; // Stripe Payment Link for this product (leave empty to send enquiries to the contact form)
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
+const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const gs=document.getElementById('gs'),dt=document.getElementById('dt'),av=document.getElementById('avail');
+const today=new Date();today.setHours(0,0,0,0);dt.min=today.toISOString().slice(0,10);
+function fmt(v){const x=new Date(v+'T12:00:00');return WD[x.getDay()]+' '+x.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+function checkDate(){av.className='avail';av.textContent='';if(!dt.value)return null;const x=new Date(dt.value+'T12:00:00');if(x<today){av.className='avail no';av.textContent='That date has passed.';return false;}
+  if(!RUNDAYS.includes(x.getDay())){av.className='avail no';av.textContent='Not running on '+WD[x.getDay()]+'s. Runs '+RUNTXT+'.';return false;}
+  av.className='avail ok';av.textContent='Available '+fmt(dt.value)+' · '+gs.value+' '+(gs.value==1?'person':'people')+' · $'+(PRICE*gs.value);return true;}
+dt.onchange=checkDate;gs.onchange=checkDate;
+function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';dt.focus();return;}if(checkDate()!==true)return;
+  const n=+gs.value;document.getElementById('bksum').innerHTML=`<div class="bk-row"><span>Experience</span><b>${PK}</b></div><div class="bk-row"><span>Date</span><b>${fmt(dt.value)}</b></div><div class="bk-row"><span>Guests</span><b>${n}</b></div><div class="bk-row"><span>Per person</span><b>$${PRICE}</b></div><div class="bk-row tot"><span>Total</span><span>$${PRICE*n}</span></div>`;
+  document.getElementById('bkpay').textContent=STRIPE_LINK?('Pay $'+(PRICE*n)+' now →'):'Send booking request →';
+  document.getElementById('bk').classList.add('on');window.fbq&&fbq('track','InitiateCheckout',{content_name:PK,value:PRICE*n,currency:'USD',num_items:n});window.gtag&&gtag('event','begin_checkout',{value:PRICE*n,currency:'USD',items:[{item_name:PK,quantity:n,price:PRICE}]});}
+document.getElementById('check').onclick=openBook;document.getElementById('mcheck').onclick=e=>{e.preventDefault();document.getElementById('dt').scrollIntoView({behavior:'smooth',block:'center'});if(dt.value)openBook();else{av.className='avail no';av.textContent='Pick a date first.';}};
+document.getElementById('bkx').onclick=()=>document.getElementById('bk').classList.remove('on');
+document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim();
+  if(!name||!email){alert('Please fill in your name and email.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,total:'$'+(PRICE*n),openBarNight:'',itinerary:PK,status:STRIPE_LINK?'Pending payment':'Booking request',ref})}).catch(()=>{});
+  if(STRIPE_LINK){window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+n+'&client_reference_id='+encodeURIComponent(ref);}
+  else{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();}
+};
 document.getElementById('viewall').onclick=()=>{document.getElementById('allpics').classList.toggle('on');};
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbimg');
 document.querySelectorAll('.gallery img,.allpics img').forEach(i=>i.onclick=()=>{lbi.src=i.src;lb.classList.add('on');});

@@ -13,10 +13,10 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
 
 /* NAV */
 nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:24px}
-@media(max-width:1100px){.nav-links{gap:18px}.nav-links a{font-size:11px;letter-spacing:.5px}}
+@media(max-width:1180px){.nav-links{gap:14px}.nav-links a{font-size:11px;letter-spacing:.5px}}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}
 .logo em{color:var(--pink);font-style:normal}
-.nav-links{display:flex;align-items:center;gap:26px;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:22px;white-space:nowrap}
 .nav-links a{color:var(--black);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.7}
 .nav-links a:hover{opacity:1;color:var(--pink)}
 .nav-cta{background:var(--pink);color:#fff !important;opacity:1 !important;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
@@ -59,8 +59,9 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .dest-header{padding:32px 40px 24px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px}
 .dest-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--black);letter-spacing:1px;line-height:1}
 .dest-season{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
-.dest-cards{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.dest-card{padding:32px 40px;border-right:1px solid var(--border);text-decoration:none;display:block;transition:background 0.15s}
+.dest-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.dest-card-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;margin-bottom:22px;border-radius:12px}
+.dest-card{padding:28px 28px 32px;border-right:1px solid var(--border);text-decoration:none;display:block;transition:background 0.15s}
 .dest-card:last-child{border-right:none}
 .dest-card:hover{background:var(--grey)}
 .dest-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
@@ -70,7 +71,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .dest-card-cta{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
 
 /* PLANNER BANNER */
-.planner-sec{margin-top:64px;border-top:3px solid var(--black);padding-top:56px}
+.planner-sec{margin-bottom:64px;border-bottom:3px solid var(--black);padding-bottom:56px}
 .planner-banner{background:var(--pink);padding:0;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;overflow:hidden;margin-bottom:3px}
 .planner-banner-text{padding:56px 48px}
 .planner-banner-text .pl-eye{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;opacity:.85;margin-bottom:14px}
@@ -124,7 +125,7 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
   .dest-cards{grid-template-columns:1fr}
   .dest-header{padding:24px 20px}
   .dest-card{padding:24px 20px}
-  .planner-sec{margin-top:40px;padding-top:36px}.planner-banner{grid-template-columns:1fr}.planner-banner-text{padding:36px 20px 8px}.planner-shot{padding:20px 20px 0}
+  .planner-sec{margin-bottom:40px;padding-bottom:36px}.planner-banner{grid-template-columns:1fr}.planner-banner-text{padding:36px 20px 8px}.planner-shot{padding:20px 20px 0}
   .reviews{padding:48px 20px}
   .reviews-grid{grid-template-columns:1fr}
   .cta-strip{padding:48px 20px;flex-direction:column}
@@ -157,7 +158,8 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
   <div class="nav-links">
     <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
     <a href="las-vegas.html">Vegas Club Crawl</a>
-    <a href="vegas-planner.html" style="color:#FF2D78 !important;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:1 !important;text-decoration:none">&#9733; Plan Vegas</a>
+    <a href="open-bar.html">Open Bar</a>
+    <a href="vegas-planner.html" style="color:#FF2D78 !important;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:1 !important;text-decoration:none">&#9733; Plan Vegas &#9733;</a>
     <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
@@ -202,7 +204,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
   </div>
   <div class="stat">
     <div class="stat-num">3</div>
-    <div class="stat-label">Party destinations</div>
+    <div class="stat-label">Vegas experiences</div>
   </div>
   <div class="stat">
     <div class="stat-num">4.<em>9</em></div>
@@ -215,36 +217,9 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
 </div>
 
 <div class="destinations" id="destinations">
-  <div class="section-eyebrow">Where we party</div>
-  <div class="section-title">Pick your destination.</div>
-
-  <!-- LAS VEGAS -->
-  <div class="dest-block">
-    <div class="dest-header">
-      <div class="dest-name">Las Vegas</div>
-      <div class="dest-season">Year Round</div>
-    </div>
-    <div class="dest-cards">
-      <a href="las-vegas.html" class="dest-card">
-        <div class="dest-card-tag">VIP Club Crawl</div>
-        <div class="dest-card-name">VIP Club Crawl</div>
-        <div class="dest-card-desc">Open bar, party bus &amp; VIP entry to Vegas' top clubs — Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
-        <div class="dest-card-price">From $120</div>
-        <div class="dest-card-cta">View Package &rarr;</div>
-      </a>
-      <a href="vip-pool-crawl.html" class="dest-card">
-        <div class="dest-card-tag">Pool Crawl</div>
-        <div class="dest-card-name">VIP Pool Crawl</div>
-        <div class="dest-card-desc">Vegas' best pool parties in style — VIP cabanas, bottle service, daytime DJs and access to the Strip's most iconic scenes.</div>
-        <div class="dest-card-price">From $120</div>
-        <div class="dest-card-cta">View Package &rarr;</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- PLANNER SECTION -->
+    <!-- PLANNER SECTION -->
   <div class="planner-sec">
-    <div class="section-eyebrow">Or do it yourself</div>
+    <div class="section-eyebrow">Your whole trip, your way</div>
     <div class="section-title">Build your own Vegas week.</div>
     <div class="planner-banner">
       <div class="planner-banner-text">
@@ -261,6 +236,46 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
       <div class="planner-shot"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/planner-preview.jpg" alt="Your Vegas week, built in the planner"></div>
     </div>
   </div>
+
+
+
+<div class="section-eyebrow">Where we party</div>
+  <div class="section-title">Pick your destination.</div>
+
+  <!-- LAS VEGAS -->
+  <div class="dest-block">
+    <div class="dest-header">
+      <div class="dest-name">Las Vegas</div>
+      <div class="dest-season">Year Round</div>
+    </div>
+    <div class="dest-cards">
+      <a href="las-vegas.html" class="dest-card">
+        <img class="dest-card-img" src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-0.jpg" alt="Las Vegas VIP Club Crawl">
+        <div class="dest-card-tag">VIP Club Crawl</div>
+        <div class="dest-card-name">VIP Club Crawl</div>
+        <div class="dest-card-desc">Open bar, party bus &amp; VIP entry to Vegas' top clubs — Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
+        <div class="dest-card-price">From $120</div>
+        <div class="dest-card-cta">View Package &rarr;</div>
+      </a>
+      <a href="vip-pool-crawl.html" class="dest-card">
+        <img class="dest-card-img" src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/day-encore-bc.jpg" alt="Las Vegas VIP Pool Crawl">
+        <div class="dest-card-tag">Pool Crawl</div>
+        <div class="dest-card-name">VIP Pool Crawl</div>
+        <div class="dest-card-desc">Vegas' best pool parties in style — VIP cabanas, bottle service, daytime DJs and access to the Strip's most iconic scenes.</div>
+        <div class="dest-card-price">From $62</div>
+        <div class="dest-card-cta">View Package &rarr;</div>
+      </a>
+      <a href="open-bar.html" class="dest-card">
+        <img class="dest-card-img" src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-13.jpg" alt="Las Vegas 2-Hour Open Bar">
+        <div class="dest-card-tag">Open Bar</div>
+        <div class="dest-card-name">2-Hour Open Bar</div>
+        <div class="dest-card-desc">Start your Vegas night with a two-hour open bar and energetic party games including beer pong and flip cup.</div>
+        <div class="dest-card-price">From $60</div>
+        <div class="dest-card-cta">View Package &rarr;</div>
+      </a>
+    </div>
+  </div>
+
 
 </div>
 
@@ -322,6 +337,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
       <h4>Packages</h4>
       <a href="las-vegas.html">Las Vegas VIP Club Crawl</a>
       <a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a>
+      <a href="open-bar.html">Las Vegas 2-Hour Open Bar</a>
       <a href="vegas-planner.html">Build Your Vegas Nights</a>
     </div>
     <div class="footer-col">

@@ -6,7 +6,8 @@ a{color:inherit}
 nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}
 .logo em{color:var(--pink);font-style:normal}
-.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;align-items:center;gap:22px;white-space:nowrap}
+@media(max-width:1180px){.nav-links{gap:14px}.nav-links a{font-size:11px;letter-spacing:.5px}}
 .nav-links a{color:var(--black);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:.7}
 .nav-links a:hover{opacity:1;color:var(--pink)}
 .nav-plan{color:var(--pink)!important;opacity:1!important;font-weight:700!important}
@@ -122,7 +123,8 @@ fbq('init','3589603211187590');fbq('track','PageView');
   <div class="nav-links">
     <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
     <a href="las-vegas.html">Vegas Club Crawl</a>
-    <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas</a>
+    <a href="open-bar.html">Open Bar</a>
+    <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas ★</a>
     <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
@@ -145,7 +147,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
       <div class="f"><label>Last name</label><input id="ln" type="text"></div>
       <div class="f"><label>Email</label><input id="em" type="email"></div>
       <div class="f"><label>WhatsApp / phone</label><input id="ph" type="tel"></div>
-      <div class="f full"><label>Package</label><select id="pk"><option>Not sure yet</option><option>Las Vegas VIP Club Crawl</option><option>Las Vegas VIP Pool Crawl</option><option>Las Vegas — Build Your Vegas Nights</option></select></div>
+      <div class="f full"><label>Package</label><select id="pk"><option>Not sure yet</option><option>Las Vegas VIP Club Crawl</option><option>Las Vegas VIP Pool Crawl</option><option>Las Vegas 2-Hour Open Bar</option><option>Las Vegas — Build Your Vegas Nights</option></select></div>
       <div class="f"><label>Group size</label><input id="gs" type="number" min="1"></div>
       <div class="f"><label>Date (approx.)</label><input id="dt" type="text" placeholder="e.g. 14–17 Oct"></div>
       <div class="f full"><label>Anything else?</label><textarea id="msg"></textarea></div>
@@ -178,7 +180,7 @@ document.getElementById('send').onclick=()=>{
 <footer>
   <div class="footer-grid">
     <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
-    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
+    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="open-bar.html">Las Vegas 2-Hour Open Bar</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
     <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:official.poordecisions@gmail.com">official.poordecisions@gmail.com</a><a href="https://wa.me/447849871895">WhatsApp +44 7849 871895</a><a href="https://instagram.com/poordecisions">@poordecisions</a></div>
   </div>
@@ -187,6 +189,8 @@ document.getElementById('send').onclick=()=>{
 (function(){var p=new URLSearchParams(location.search);if(!p.get('pk')&&!p.get('gs')&&!p.get('dt'))return;
 var pk=document.getElementById('pk');if(p.get('pk')){for(var i=0;i<pk.options.length;i++)if(pk.options[i].text===p.get('pk'))pk.selectedIndex=i;}
 if(p.get('gs'))document.getElementById('gs').value=p.get('gs');
+if(p.get('fn')){var nm=p.get('fn').split(' ');document.getElementById('fn').value=nm.shift();document.getElementById('ln').value=nm.join(' ');}
+if(p.get('em'))document.getElementById('em').value=p.get('em');if(p.get('ph'))document.getElementById('ph').value=p.get('ph');
 if(p.get('dt')){var d=new Date(p.get('dt')+'T12:00:00');document.getElementById('dt').value=isNaN(d)?p.get('dt'):d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
 })();
 </script></body></html>
