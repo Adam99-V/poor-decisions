@@ -55,20 +55,21 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .destinations{padding:80px 48px;background:var(--grey)}
 .section-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);color:var(--black);margin-bottom:48px;line-height:0.9}
-.dest-block{background:var(--white);border:1px solid var(--border);margin-bottom:3px}
-.dest-header{padding:32px 40px 24px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px}
+.dest-block{background:transparent;margin-bottom:3px}
+.dest-header{padding:0 0 24px;display:flex;align-items:baseline;gap:16px}
 .dest-name{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--black);letter-spacing:1px;line-height:1}
 .dest-season{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
-.dest-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
-.dest-card-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;margin-bottom:22px;border-radius:12px}
-.dest-card{padding:28px 28px 32px;border-right:1px solid var(--border);text-decoration:none;display:block;transition:background 0.15s}
-.dest-card:last-child{border-right:none}
-.dest-card:hover{background:var(--grey)}
-.dest-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
-.dest-card-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);letter-spacing:1px;margin-bottom:10px}
-.dest-card-desc{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:20px}
-.dest-card-price{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);margin-bottom:16px}
-.dest-card-cta{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
+.dest-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.dest-card-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;margin-bottom:22px;border-radius:10px}
+.dest-card{position:relative;background:var(--white);border:1px solid var(--border);border-top:5px solid var(--pink);border-radius:14px;padding:24px 24px 28px;text-decoration:none;display:flex;flex-direction:column;transition:transform 0.15s,box-shadow 0.15s}
+.dest-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,0.10)}
+.dest-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
+.dest-card-name{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--pink);letter-spacing:1px;line-height:1;margin-bottom:12px}
+.dest-card-desc{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:22px;flex:1}
+.dest-card-price{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--black);line-height:1;margin-bottom:14px}
+.dest-card-price small{font-family:inherit;font-size:16px;color:var(--mid);letter-spacing:1px;margin-right:4px}
+.dest-card-cta{display:inline-block;align-self:flex-start;background:var(--black);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 18px;border-radius:6px;transition:background 0.15s}
+.dest-card:hover .dest-card-cta{background:var(--pink)}
 
 /* PLANNER BANNER */
 .planner-sec{margin-bottom:64px;border-bottom:3px solid var(--black);padding-bottom:56px}
@@ -122,9 +123,11 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
   .stats{grid-template-columns:1fr 1fr}
   .stat{padding:32px 20px}
   .destinations{padding:48px 20px}
-  .dest-cards{grid-template-columns:1fr}
-  .dest-header{padding:24px 20px}
-  .dest-card{padding:24px 20px}
+  .dest-cards{grid-template-columns:1fr;gap:18px}
+  .dest-header{padding:0 0 18px}
+  .dest-card{padding:20px 18px 22px}
+  .dest-card-name{font-size:34px}
+  .dest-card-img{margin-bottom:16px}
   .planner-sec{margin-bottom:40px;padding-bottom:36px}.planner-banner{grid-template-columns:1fr}.planner-banner-text{padding:36px 20px 8px}.planner-shot{padding:20px 20px 0}
   .reviews{padding:48px 20px}
   .reviews-grid{grid-template-columns:1fr}
@@ -254,7 +257,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
         <div class="dest-card-tag">VIP Club Crawl</div>
         <div class="dest-card-name">VIP Club Crawl</div>
         <div class="dest-card-desc">Open bar, party bus &amp; VIP entry to Vegas' top clubs — Omnia, Hakkasan, Zouk and XS. Cover charges included.</div>
-        <div class="dest-card-price">From $120</div>
+        <div class="dest-card-price"><small>From</small>$120</div>
         <div class="dest-card-cta">View Package &rarr;</div>
       </a>
       <a href="vip-pool-crawl.html" class="dest-card">
@@ -262,7 +265,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
         <div class="dest-card-tag">Pool Crawl</div>
         <div class="dest-card-name">VIP Pool Crawl</div>
         <div class="dest-card-desc">Vegas' best pool parties in style — VIP cabanas, bottle service, daytime DJs and access to the Strip's most iconic scenes.</div>
-        <div class="dest-card-price">From $62</div>
+        <div class="dest-card-price"><small>From</small>$62</div>
         <div class="dest-card-cta">View Package &rarr;</div>
       </a>
       <a href="open-bar.html" class="dest-card">
@@ -270,7 +273,7 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
         <div class="dest-card-tag">Open Bar</div>
         <div class="dest-card-name">2-Hour Open Bar</div>
         <div class="dest-card-desc">Start your Vegas night with a two-hour open bar and energetic party games including beer pong and flip cup.</div>
-        <div class="dest-card-price">From $60</div>
+        <div class="dest-card-price"><small>From</small>$60</div>
         <div class="dest-card-cta">View Package &rarr;</div>
       </a>
     </div>
