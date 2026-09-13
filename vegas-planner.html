@@ -61,13 +61,14 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow{text-align:center;font:600 9.5px/1 'Inter';letter-spacing:.1em;color:var(--mid);padding:4px 0}
 .cal-day{height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:600 14px/1 'Inter';cursor:pointer;color:var(--mid);background:transparent;border:none;transition:all .15s}
-.cal-day:hover:not(.past):not(.pad){background:rgba(255,45,120,.08)}
+.cal-day:hover:not(.past):not(.pad):not(.start):not(.end):not(.inrange){background:rgba(255,45,120,.08)}
 .cal-day.pad{visibility:hidden}
 .cal-day.past{color:#ccc;cursor:default}
 .cal-day.start{background:var(--pk);color:#fff;border-radius:10px 0 0 10px}
 .cal-day.end{background:var(--pk);color:#fff;border-radius:0 10px 10px 0}
 .cal-day.start.end{border-radius:10px}
-.cal-day.inrange{background:rgba(255,45,120,.12);color:var(--black);border-radius:0}
+.cal-day.inrange{background:rgba(255,45,120,.14);color:var(--black);border-radius:0}
+.cal-day.start,.cal-day.end{background:var(--pk)!important;color:#fff!important}
 .cal-hint{font:400 11.5px/1.5 'Inter';color:var(--mid)}
 .guests-card{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:space-between}
 .guests-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
@@ -92,7 +93,11 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .tile-kind-pill{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:3px 8px;font:700 9px/1 'Inter';letter-spacing:.12em;color:var(--black)}
 .tile-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:#fff}
 .tile-check.n{background:var(--pk)}.tile-check.d{background:#2D9BFF}.tile-check.b{background:var(--goldline)}
-.tile-bar-tag{position:absolute;top:34px;left:8px;background:var(--goldline);border-radius:999px;padding:3px 7px;font:800 8px/1 'Inter';letter-spacing:.1em;color:#191400}
+.ob-row{grid-column:1/-1;border:2px solid var(--goldline);background:var(--goldbg);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.ob-row .ic{font-size:18px;flex-shrink:0}
+.ob-row .t{font-family:'Bebas Neue',sans-serif;font-size:17px;line-height:1;color:var(--gold)}
+.ob-row .s{font:600 10px/1.4 'Inter';color:var(--black);margin-top:2px}
+.ob-na{border:1.5px dashed var(--border);border-radius:14px;padding:14px;font:500 12px/1.5 'Inter';color:var(--mid);margin-bottom:10px;background:var(--grey)}
 .tile-info{position:absolute;left:0;right:0;bottom:0;padding:10px}
 .tile-name{font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;line-height:1}
 .tile-venue{font:400 9px/1.3 'Inter';color:rgba(255,255,255,.75)}
@@ -163,8 +168,9 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .lineup-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--black)}
 .lineup-div{flex:1;height:1px;background:var(--border)}
 .lineup-dates{font:700 9.5px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--pk)}
-.lineup-days{display:flex;flex-direction:column;gap:12px}
-.lineup-day{display:flex;align-items:flex-start;gap:10px}
+.lineup-days{display:flex;flex-direction:column;gap:14px}
+.lineup-day{display:flex;align-items:flex-start;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.lineup-day:last-child{border-bottom:none;padding-bottom:0}
 .lineup-day-lbl{width:52px;flex-shrink:0;padding-top:4px}
 .lineup-day-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--black)}
 .lineup-day-date{font:600 9px/1.3 'Inter';letter-spacing:.1em;color:var(--mid)}
@@ -194,12 +200,19 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .share-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .share-btn{border:1.5px solid var(--border);border-radius:10px;padding:12px;font:700 11px/1 'Inter';letter-spacing:.5px;color:var(--black);background:#fff;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
 .share-btn.wa{background:#25D366;border-color:#25D366;color:#fff}
+.share-btn.sms{background:#0A84FF;border-color:#0A84FF;color:#fff}
+.share-btns{grid-template-columns:1fr 1fr 1fr}
 .toast{font:700 11px/1 'Inter';color:var(--pk);text-align:center;min-height:12px}
 
 /* payment */
 .pay-summary{background:var(--grey);border-radius:14px;padding:16px}
 .pay-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font:400 12px/1.4 'Inter';color:var(--black);gap:10px}
-.pay-row:last-child{border-bottom:none;font-weight:800;font-size:15px;padding-top:12px}
+.pay-row.pay-day{border-bottom:none;padding:14px 0 2px;font:800 10px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--mid);border-top:2px solid var(--border);margin-top:6px}
+.pay-row.pay-day:first-of-type{border-top:none;margin-top:0}
+.pay-row.pay-day span:last-child{color:var(--mid);font-weight:600;letter-spacing:0;text-transform:none;font-size:10px}
+.pay-row.pay-pp{border-top:2px solid var(--black);border-bottom:none;margin-top:10px;padding-top:12px;font-weight:600}
+.pay-row.pay-grp{border-bottom:none;font-weight:800;font-size:15px}
+.pay-row.pay-ob span:last-child{color:var(--gold)}
 .pay-row span:last-child{color:var(--pk);font-weight:700;text-align:right}
 .field{display:flex;flex-direction:column;gap:6px}
 .field label{font:700 9.5px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
@@ -299,15 +312,15 @@ h2.stitle em{color:var(--pk);font-style:normal}
   <div class="body">
     <div>
       <h2 class="stitle">One <em style="color:var(--gold)">open bar</em> night is on us.</h2>
-      <p class="ssub">Every package includes a hosted 2-hour open bar with party games. Pick which night you want it.</p>
+      <p class="ssub">Every package includes a hosted 2-hour open bar with party games on Fremont Street. Runs Wednesday to Sunday. Pick which night you want it.</p>
     </div>
     <div class="bar-card">
       <div class="bar-top">
         <div class="bar-icon">🍹</div>
-        <div><div class="bar-title">Open bar · 8–10pm</div><div class="bar-sub">Unlimited drinks · party games · hosted</div></div>
+        <div><div class="bar-title">Open bar · Fremont Street · 8–10pm</div><div class="bar-sub">Unlimited drinks · party games · hosted · Wed to Sun only</div></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in at the venue, grab your wristband and meet your host and the group. Unlimited mixed drinks, beer, wine and shots start pouring.</span></div>
+        <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in at our Fremont Street bar, grab your wristband and meet your host and the group. Unlimited mixed drinks, beer, wine and shots start pouring.</span></div>
         <div class="bar-time-row"><span class="bar-time">8–10PM</span><span class="bar-time-text">Beer pong, flip cup and group games running the whole time. Join in or just drink — your call.</span></div>
         <div class="bar-time-row"><span class="bar-time">10:00PM</span><span class="bar-time-text">Bar wraps. Head to your nightclub by cab or Uber — your entry is already sorted from check-in.</span></div>
       </div>
@@ -350,7 +363,8 @@ h2.stitle em{color:var(--pk);font-style:normal}
       <div><div class="share-t">Share with your friends</div><div class="share-s">Send the lineup to the group chat so everyone's in.</div></div>
       <div class="share-btns">
         <a class="share-btn wa" id="share-wa" href="#" target="_blank">WhatsApp</a>
-        <button class="share-btn" id="share-copy">Copy lineup</button>
+        <a class="share-btn sms" id="share-sms" href="#">iMessage</a>
+        <button class="share-btn" id="share-copy">Copy</button>
       </div>
       <div class="toast" id="share-toast"></div>
     </div>
@@ -383,7 +397,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
   <p class="conf-p">Check your email for confirmation. Show it at each door — your open bar check-in is 8pm sharp.</p>
   <div class="share" style="text-align:left;margin-bottom:16px">
     <div><div class="share-t">Tell the group</div><div class="share-s">Send everyone the lineup.</div></div>
-    <div class="share-btns"><a class="share-btn wa" id="share-wa2" href="#" target="_blank">WhatsApp</a><button class="share-btn" id="share-copy2">Copy lineup</button></div>
+    <div class="share-btns"><a class="share-btn wa" id="share-wa2" href="#" target="_blank">WhatsApp</a><a class="share-btn sms" id="share-sms2" href="#">iMessage</a><button class="share-btn" id="share-copy2">Copy</button></div>
   </div>
   <a href="index.html" class="btn-ghost">Back to poordecisions.co</a>
 </div>
@@ -418,24 +432,26 @@ const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6
 const PLANNER_URL='https://poordecisions.co/vegas-planner.html';
 const PRICE=49;
 const EST={night:60,day:50,bar:49}; // "booked separately" estimates per person
+const OB_HRS='8–10pm',OB_LOC='Fremont Street',OB_DAYS=[0,3,4,5,6]; // open bar Wed–Sun
+const NH='10:30pm–4am',DH='11am–6pm';
 
 const P=n=>BASE+'vp-'+n+'.jpg';
 // photo = new organised image (upload these), fb = fallback photo currently in repo
 const NC=[
-  {id:'omnia',   name:'Omnia',        hotel:'Caesars Palace',  genre:'EDM · House',    days:[0,2,4,5,6], logo:'omnia',    photo:BASE+'night-omnia.jpg',    fb:P(7)},
-  {id:'hakkasan',name:'Hakkasan',     hotel:'MGM Grand',       genre:'House · Hip Hop',days:[3,4,5,6],   logo:'hakkasan', photo:BASE+'night-hakkasan.jpg', fb:P(1)},
-  {id:'xs',      name:'XS',           hotel:'Encore',          genre:'EDM · House',    days:[0,1,3,4,5,6],logo:'xs',      photo:BASE+'night-xs.jpg',       fb:P(0)},
-  {id:'tao',     name:'TAO Nightclub',hotel:'The Venetian',    genre:'Open Format',    days:[0,4,5,6],   logo:'tao',      photo:BASE+'night-tao.jpg',      fb:P(2)},
-  {id:'marquee', name:'Marquee',      hotel:'The Cosmopolitan',genre:'Open + House',   days:[1,3,5,6],   logo:'marquee',  photo:BASE+'night-marquee.jpg',  fb:P(14)},
-  {id:'jewel',   name:'Jewel',        hotel:'Aria',            genre:'Hip Hop · R&B',  days:[5,6],       logo:'jewel',    photo:BASE+'night-jewel.jpg',    fb:P(8)},
-  {id:'zouk',    name:'Zouk',         hotel:'Resorts World',   genre:'EDM · House',    days:[4,5,6],     logo:'zouk',     photo:BASE+'night-zouk.jpg',     fb:P(11)}
+  {id:'omnia',   name:'Omnia',        hotel:'Caesars Palace',  genre:'EDM · House',    days:[0,2,4,5,6], logo:'omnia',    photo:BASE+'night-omnia.jpg',    hrs:NH,fb:P(7)},
+  {id:'hakkasan',name:'Hakkasan',     hotel:'MGM Grand',       genre:'House · Hip Hop',days:[3,4,5,6],   logo:'hakkasan', photo:BASE+'night-hakkasan.jpg', hrs:NH,fb:P(1)},
+  {id:'xs',      name:'XS',           hotel:'Encore',          genre:'EDM · House',    days:[0,1,3,4,5,6],logo:'xs',      photo:BASE+'night-xs.jpg',       hrs:NH,fb:P(0)},
+  {id:'tao',     name:'TAO Nightclub',hotel:'The Venetian',    genre:'Open Format',    days:[0,4,5,6],   logo:'tao',      photo:BASE+'night-tao.jpg',      hrs:NH,fb:P(2)},
+  {id:'marquee', name:'Marquee',      hotel:'The Cosmopolitan',genre:'Open + House',   days:[1,3,5,6],   logo:'marquee',  photo:BASE+'night-marquee.jpg',  hrs:NH,fb:P(14)},
+  {id:'jewel',   name:'Jewel',        hotel:'Aria',            genre:'Hip Hop · R&B',  days:[5,6],       logo:'jewel',    photo:BASE+'night-jewel.jpg',    hrs:NH,fb:P(8)},
+  {id:'zouk',    name:'Zouk',         hotel:'Resorts World',   genre:'EDM · House',    days:[4,5,6],     logo:'zouk',     photo:BASE+'night-zouk.jpg',     hrs:NH,fb:P(11)}
 ];
 const DC=[
-  {id:'mq-day',   name:'Marquee Dayclub',  hotel:'The Cosmopolitan',genre:'House · Tech House',days:[0,1,4,5,6],logo:'mq-day',   photo:BASE+'day-mq-day.jpg',   fb:P(4)},
-  {id:'tao-beach',name:'TAO Beach',        hotel:'The Venetian',    genre:'Hip Hop · Open',    days:[0,4,5,6],  logo:'tao-beach',photo:BASE+'day-tao-beach.jpg',fb:P(5)},
-  {id:'omnia-day',name:'Omnia Dayclub',    hotel:'Caesars Palace',  genre:'EDM · House',       days:[0,4,5,6],  logo:'omnia-day',photo:BASE+'day-omnia-day.jpg',fb:P(3)},
-  {id:'encore-bc',name:'Encore Beach Club',hotel:'Encore at Wynn',  genre:'EDM · House',       days:[0,4,5,6],  logo:'encore-bc',photo:BASE+'day-encore-bc.jpg',fb:P(9)},
-  {id:'wet-rep',  name:'Palm Tree Beach Club',hotel:'MGM Grand',    genre:'House · Tropical',        days:[0,1,4,5,6],logo:'wet-rep',  photo:BASE+'day-wet-rep.jpg',  fb:P(12)}
+  {id:'mq-day',   name:'Marquee Dayclub',  hotel:'The Cosmopolitan',genre:'House · Tech House',days:[0,1,4,5,6],logo:'mq-day',   photo:BASE+'day-mq-day.jpg',   hrs:DH,fb:BASE+'day-tao-beach.jpg'},
+  {id:'tao-beach',name:'TAO Beach',        hotel:'The Venetian',    genre:'Hip Hop · Open',    days:[0,4,5,6],  logo:'tao-beach',photo:BASE+'day-tao-beach.jpg',hrs:DH,fb:BASE+'day-mq-day.jpg'},
+  {id:'omnia-day',name:'Omnia Dayclub',    hotel:'Caesars Palace',  genre:'EDM · House',       days:[0,4,5,6],  logo:'omnia-day',photo:BASE+'day-omnia-day.jpg',hrs:DH,fb:BASE+'day-wet-rep.jpg'},
+  {id:'encore-bc',name:'Encore Beach Club',hotel:'Encore at Wynn',  genre:'EDM · House',       days:[0,4,5,6],  logo:'encore-bc',photo:BASE+'day-encore-bc.jpg',hrs:DH,fb:BASE+'day-omnia-day.jpg'},
+  {id:'wet-rep',  name:'Palm Tree Beach Club',hotel:'MGM Grand',    genre:'House · Tropical',        days:[0,1,4,5,6],logo:'wet-rep',  photo:BASE+'day-wet-rep.jpg',  hrs:DH,fb:BASE+'day-encore-bc.jpg'}
 ];
 const LOGO=id=>BASE+'logo-'+id+'.png';
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -504,13 +520,14 @@ document.getElementById('btn-s4').onclick=()=>show('s5');
 /* ---------- S2 ---------- */
 function tileDay(d,dow,dv,has){
   if(!has)return`<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
-  if(dv){const x=dj(d,dv.id);return`<div class="tile day-filled" data-i="${d}" data-slot="day">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre d">${dv.genre}</div>`}</div></div>`;}
+  if(dv){const x=dj(d,dv.id);return`<div class="tile day-filled" data-i="${d}" data-slot="day">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel} · ${dv.hrs}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre d">${dv.genre}</div>`}</div></div>`;}
   return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 11am–6pm</div></div></div>`;
 }
 function tileNight(d,dow,nv,bar){
-  if(nv){const x=dj(d,nv.id);return`<div class="tile night-filled" data-i="${d}" data-slot="night">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div>${bar?'<div class="tile-bar-tag">OPEN BAR 8–10PM FIRST</div>':''}<div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre">${nv.genre}</div>`}</div></div>`;}
-  return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10:30pm · tap to add</div></div></div>`;
+  if(nv){const x=dj(d,nv.id);return`<div class="tile night-filled" data-i="${d}" data-slot="night">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel} · ${nv.hrs}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre">${nv.genre}</div>`}</div></div>`;}
+  return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10:30pm · until 4am</div></div></div>`;
 }
+const obRow=nv=>`<div class="ob-row"><div class="ic">🍹</div><div><div class="t">Open bar · ${OB_LOC} · ${OB_HRS}</div><div class="s">Unlimited drinks + games${nv?', then into '+nv.name+' at 10:30pm':''}</div></div></div>`;
 function renderItinerary(){
   const el=document.getElementById('itinerary');el.innerHTML='';
   nights().forEach(d=>{
@@ -518,7 +535,7 @@ function renderItinerary(){
     const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
     const has=DC.some(v=>v.days.includes(dow));const set=(dv?1:0)+(nv?1:0);
     const b=document.createElement('div');b.className='day-block';
-    b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,S.openBarNight===d)}</div>`;
+    b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,false)}${S.openBarNight===d?obRow(nv):''}</div>`;
     b.querySelectorAll('[data-slot]').forEach(t=>t.onclick=()=>openSheet(+t.dataset.i,t.dataset.slot));
     el.appendChild(b);
   });
@@ -535,7 +552,7 @@ function openSheet(d,slot){
   (isDay?DC:NC).filter(v=>v.days.includes(dow)).forEach(v=>{
     const sel=isDay?s.day===v.id:s.night===v.id;const x=dj(d,v.id);
     const r=document.createElement('div');r.className='sheet-row'+(sel?' sel':'');
-    r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGO(v.logo)}" onerror="this.style.display='none'"/></div><div style="flex:1;min-width:0"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel}</div>${x?`<div class="sheet-dj">🎧 ${x}</div>`:''}</div><span class="sheet-genre">${v.genre}</span>`;
+    r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGO(v.logo)}" onerror="this.style.display='none'"/></div><div style="flex:1;min-width:0"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel} · ${v.hrs}</div>${x?`<div class="sheet-dj">🎧 ${x}</div>`:''}</div><span class="sheet-genre">${v.genre}</span>`;
     r.onclick=()=>{if(!S.slots[d])S.slots[d]={};if(isDay)S.slots[d].day=v.id;else S.slots[d].night=v.id;closeSheet();renderItinerary();};
     o.appendChild(r);
   });
@@ -550,25 +567,33 @@ document.getElementById('sheet-ov').onclick=e=>{if(e.target.id==='sheet-ov')clos
 /* ---------- S3 ---------- */
 function renderBar(){
   const el=document.getElementById('bar-nights');el.innerHTML='';
+  const okNights=nights().filter(d=>OB_DAYS.includes(getDOW(d)));
+  if(!okNights.length){S.openBarNight=null;el.innerHTML='<div class="ob-na">The open bar runs Wednesday to Sunday and none of your nights fall on those days. Your package still includes everything else. Add a night Wed to Sun on step 1 if you want the open bar.</div>';}
   nights().forEach(d=>{
-    const dow=getDOW(d),s=S.slots[d]||{},nv=s.night?byId('night',s.night):null,sel=S.openBarNight===d;
+    const dow=getDOW(d),s=S.slots[d]||{},nv=s.night?byId('night',s.night):null,sel=S.openBarNight===d,ok=OB_DAYS.includes(dow);
     const r=document.createElement('div');r.className='bar-night'+(sel?' sel':'');
-    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${nv?'8–10pm open bar, then into '+nv.name:'8–10pm open bar · no nightclub picked'}</div></div>${sel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${sel?'f':'e'}">${sel?'✓':'+'}</div>`;
+    if(!ok){r.style.opacity='.5';r.style.cursor='default';r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">Open bar not available Mon or Tue</div></div>`;el.appendChild(r);return;}
+    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${OB_HRS} open bar on ${OB_LOC}${nv?', then into '+nv.name+' at 10:30pm':' · no nightclub picked yet'}</div></div>${sel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${sel?'f':'e'}">${sel?'✓':'+'}</div>`;
     r.onclick=()=>{S.openBarNight=sel?null:d;renderBar();};
     el.appendChild(r);
   });
-  const b=document.getElementById('btn-s3');b.disabled=!S.openBarNight;b.textContent=S.openBarNight?'See my package →':'Pick a night to continue';
+  const b=document.getElementById('btn-s3');const need=okNights.length>0;b.disabled=need&&!S.openBarNight;b.textContent=(!need||S.openBarNight)?'See my package →':'Pick a night to continue';
 }
 
 /* ---------- S4 ---------- */
 function lineupText(){
-  let t='';nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=S.openBarNight===d;
-    if(dv||nv||bar){t+=WD[dow]+' '+d+': ';const parts=[];if(dv)parts.push('☀️ '+dv.name+(dj(d,dv.id)?' ('+dj(d,dv.id)+')':''));if(bar)parts.push('🍹 Open bar 8–10pm');if(nv)parts.push('🌙 '+nv.name+(dj(d,nv.id)?' ('+dj(d,nv.id)+')':''));t+=parts.join(' → ')+'\n';}});
-  return t.trim();
+  const blocks=[];nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=S.openBarNight===d;
+    if(!dv&&!nv&&!bar)return;const L=[WD[dow].toUpperCase()+' OCT '+d];
+    if(dv)L.push('- '+dv.name+', '+dv.hrs+(dj(d,dv.id)?' 🎧 '+dj(d,dv.id):''));
+    if(bar)L.push('- Open bar on '+OB_LOC+', '+OB_HRS+' (drinks + games)');
+    if(nv)L.push('- '+nv.name+', '+nv.hrs+(dj(d,nv.id)?' 🎧 '+dj(d,nv.id):''));
+    blocks.push(L.join('\n'));});
+  return blocks.join('\n\n');
 }
-function shareText(){return 'Our Vegas week 🎰 Oct '+S.start+'–'+S.end+'\n\n'+lineupText()+'\n\n'+S.guests+' of us. Build yours: '+PLANNER_URL;}
-function wireShare(waId,copyId,toastId){
+function shareText(){return 'OUR VEGAS WEEK, OCT '+S.start+'-'+S.end+'\n'+S.guests+' of us\n\n'+lineupText()+'\n\nBuild yours: '+PLANNER_URL;}
+function wireShare(waId,copyId,toastId,smsId){
   document.getElementById(waId).href='https://wa.me/?text='+encodeURIComponent(shareText());
+  if(smsId)document.getElementById(smsId).href='sms:?&body='+encodeURIComponent(shareText());
   document.getElementById(copyId).onclick=async()=>{
     if(navigator.share){try{await navigator.share({title:'Our Vegas week',text:shareText()});return;}catch(e){}}
     try{await navigator.clipboard.writeText(shareText());if(toastId)document.getElementById(toastId).textContent='Copied — paste it in the group chat';}catch(e){}
@@ -579,51 +604,55 @@ function renderCheckout(){
   document.getElementById('lineup-dates').textContent='Vegas · Oct '+S.start+'–'+S.end;
   // open bar banner
   const ob=S.openBarNight,obs=S.slots[ob]||{},obv=obs.night?byId('night',obs.night):null;
-  document.getElementById('ob-banner').innerHTML=`<div class="ic">🍹</div><div><div class="t">Your open bar night: ${WD[getDOW(ob)].toUpperCase()} OCT ${ob}</div><div class="s">Check in 8:00pm · unlimited drinks + games until 10:00pm${obv?' · then into '+obv.name:''}</div></div>`;
+  document.getElementById('ob-banner').innerHTML=ob?`<div class="ic">🍹</div><div><div class="t">Your open bar night: ${WD[getDOW(ob)].toUpperCase()} OCT ${ob}</div><div class="s">${OB_LOC} · check in 8:00pm · unlimited drinks + games until 10:00pm${obv?' · then into '+obv.name+' at 10:30pm':''}</div></div>`:`<div class="ic">🍹</div><div><div class="t">No open bar night on these dates</div><div class="s">The open bar runs Wed to Sun on ${OB_LOC}. Everything else in your package is unchanged.</div></div>`;
   // lineup
   const el=document.getElementById('lineup-days');el.innerHTML='';
   ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
     if(!nv&&!dv&&!bar)return;
     const r=document.createElement('div');r.className='lineup-day';
-    const dt=dv?`<div class="tile day-filled" style="height:118px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div>${dj(d,dv.id)?`<div class="tile-dj">🎧 ${dj(d,dv.id)}</div>`:''}</div></div>`:'<div></div>';
+    const dt=dv?`<div class="tile day-filled" style="height:118px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hrs}</div>${dj(d,dv.id)?`<div class="tile-dj">🎧 ${dj(d,dv.id)}</div>`:''}</div></div>`:'<div></div>';
     let nt='<div></div>';
-    if(nv)nt=`<div class="tile night-filled" style="height:118px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div>${bar?'<div class="tile-bar-tag">OPEN BAR 8–10PM FIRST</div>':''}<div class="tile-info"><div class="tile-name">${nv.name}</div>${dj(d,nv.id)?`<div class="tile-dj">🎧 ${dj(d,nv.id)}</div>`:''}</div></div>`;
-    else if(bar)nt=`<div class="tile bar-filled" style="height:118px;cursor:default"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px">🍹</div><div class="tile-grad" style="background:rgba(20,14,0,.85)"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name" style="color:#f0a500">Open bar 8–10pm</div></div></div>`;
-    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div>${bar?'<div class="lineup-day-ob">🍹 OPEN BAR<br>8–10PM</div>':''}</div><div class="lineup-slots">${dt}${nt}</div>`;
+    if(nv)nt=`<div class="tile night-filled" style="height:118px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hrs}</div>${dj(d,nv.id)?`<div class="tile-dj">🎧 ${dj(d,nv.id)}</div>`:''}</div></div>`;
+    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dt}${nt}${bar?obRow(nv):''}</div>`;
     el.appendChild(r);
   });
   // reveal: individual vs package
   let rows='',sep=0;
   ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
-    if(dv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${dv.name} dayclub</span><span>~$${EST.day}</span></div>`;sep+=EST.day;}
-    if(ob===d){rows+=`<div class="rv-row"><span>${WD[dow]} · 2-hour hosted open bar</span><span>~$${EST.bar}</span></div>`;sep+=EST.bar;}
-    if(nv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${nv.name} nightclub</span><span>~$${EST.night}</span></div>`;sep+=EST.night;}
+    if(dv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${dv.name} · ${dv.hrs}</span><span>$${EST.day}</span></div>`;sep+=EST.day;}
+    if(ob===d){rows+=`<div class="rv-row"><span>${WD[dow]} · Open bar, ${OB_LOC} · ${OB_HRS}</span><span>$${EST.bar}</span></div>`;sep+=EST.bar;}
+    if(nv){rows+=`<div class="rv-row"><span>${WD[dow]} · ${nv.name} · ${nv.hrs}</span><span>$${EST.night}</span></div>`;sep+=EST.night;}
   });
   const save=Math.max(sep-PRICE,0),pct=sep?Math.round(save/sep*100):0;
   document.getElementById('reveal-body').innerHTML=rows+
     `<div class="rv-sep"><span>Booked separately, per person</span><span>$${sep}</span></div>`+
     `<div class="rv-pkg"><div class="rv-pkg-l"><div class="a">Your package</div><div class="b">${S.guests} × $${PRICE} = $${total()} for the group</div></div><div class="rv-price">$${PRICE}<span>/person</span></div></div>`+
     `<div class="rv-save"><span class="l">You save</span><span class="v">$${save} · ${pct}%</span></div>`;
-  wireShare('share-wa','share-copy','share-toast');
+  wireShare('share-wa','share-copy','share-toast','share-sms');
 }
 
 /* ---------- S5 ---------- */
 function renderPay(){
-  let r=`<div class="pay-row"><span>Dates</span><span>Oct ${S.start} – ${S.end}</span></div><div class="pay-row"><span>Group</span><span>${S.guests} people</span></div><div class="pay-row"><span>Open bar night</span><span>${WD[getDOW(S.openBarNight)]} Oct ${S.openBarNight} · 8–10pm</span></div>`;
-  nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
-    if(dv)r+=`<div class="pay-row"><span>${WD[dow]} day</span><span>${dv.name}</span></div>`;if(nv)r+=`<div class="pay-row"><span>${WD[dow]} night</span><span>${nv.name}</span></div>`;});
-  r+=`<div class="pay-row"><span>Total</span><span>$${total()}</span></div>`;
+  const ob=S.openBarNight;
+  let r=`<div class="pay-row"><span>Dates</span><span>Oct ${S.start} – ${S.end} · ${nights().length} nights</span></div><div class="pay-row"><span>Group</span><span>${S.guests} ${S.guests===1?'person':'people'}</span></div><div class="pay-row pay-ob"><span>Open bar night</span><span>${ob?WD[getDOW(ob)]+' Oct '+ob+' · '+OB_LOC+' · '+OB_HRS:'None (runs Wed to Sun)'}</span></div>`;
+  nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
+    if(!dv&&!nv&&!bar)return;
+    r+=`<div class="pay-row pay-day"><span>${WD[dow]} Oct ${d}</span><span></span></div>`;
+    if(dv)r+=`<div class="pay-row"><span>Day · ${dv.hrs}</span><span>${dv.name}${dj(d,dv.id)?' 🎧 '+dj(d,dv.id):''}</span></div>`;
+    if(bar)r+=`<div class="pay-row pay-ob"><span>Open bar · ${OB_HRS}</span><span>${OB_LOC}</span></div>`;
+    if(nv)r+=`<div class="pay-row"><span>Night · ${nv.hrs}</span><span>${nv.name}${dj(d,nv.id)?' 🎧 '+dj(d,nv.id):''}</span></div>`;});
+  r+=`<div class="pay-row pay-pp"><span>Per person</span><span>$${PRICE}</span></div><div class="pay-row pay-grp"><span>Group total (${S.guests} × $${PRICE})</span><span>$${total()}</span></div>`;
   document.getElementById('pay-summary').innerHTML=r;document.getElementById('pay-total').textContent=total();
 }
 document.getElementById('btn-pay').onclick=()=>{
   const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}
-  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:'Oct '+S.start+' - Oct '+S.end+' 2026',nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:'Oct '+S.openBarNight+' (8-10pm)',itinerary:lineupText(),status:'Pending payment'};
+  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:'Oct '+S.start+' - Oct '+S.end+' 2026',nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?'Oct '+S.openBarNight+' (Fremont St, 8-10pm)':'None',itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
   window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
 };
-wireShare('share-wa2','share-copy2',null);
+wireShare('share-wa2','share-copy2',null,'share-sms2');
 renderCal();show('s1');
 </script>
 </body>
