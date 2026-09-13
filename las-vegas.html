@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Las Vegas VIP Club Crawl — Poor Decisions</title><link rel="icon" href="poor-decisions-favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Las Vegas VIP Club Crawl — Poor Decisions</title><meta name="description" content="Open bar, party bus and the Strip&#x27;s top nightclubs — Omnia, Hakkasan, Zouk, XS. Cover charges included. Zero stress."><link rel="icon" href="poor-decisions-favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--pink:#FF2D78;--black:#111;--white:#fff;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--gold:#c47900}
+:root{--pink:#FF2D78;--black:#111;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--gold:#c47900;--green:#0a8f4a}
 body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);overflow-x:hidden}
 a{color:inherit}
 nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
@@ -11,70 +11,111 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .nav-links a:hover{opacity:1;color:var(--pink)}
 .nav-plan{color:var(--pink)!important;opacity:1!important;font-weight:700!important}
 .nav-cta{background:var(--pink);color:#fff!important;opacity:1!important;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
-.hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;border-bottom:3px solid var(--black);background:#fff}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.16;display:block}
-.hero-in{position:relative;z-index:2;padding:80px 48px;max-width:820px}
-.crumb{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--mid);margin-bottom:22px}
-.crumb a{text-decoration:none;color:var(--pink)}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,128px);line-height:.9;color:var(--black);margin-bottom:24px}
-.hero h1 em{color:var(--pink);font-style:normal;display:block}
-.hero-sub{font-size:18px;line-height:1.6;color:var(--mid);max-width:600px;margin-bottom:36px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
-.btn{display:inline-block;padding:18px 36px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;cursor:pointer;border:2px solid var(--pink);background:var(--pink);color:#fff}
-.btn.outline{background:transparent;color:var(--black);border-color:var(--black)}
-.btn.outline:hover{background:var(--black);color:#fff}
-.stats{display:inline-grid;grid-template-columns:repeat(4,auto);border:1px solid var(--border);background:#fff}
-.stat{padding:18px 26px;border-right:1px solid var(--border)}
-.stat:last-child{border-right:none}
-.stat-l{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
-.stat-v{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
-.stat-v.pk{color:var(--pink)}
-.ticker{background:var(--pink);padding:14px 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:tick 30s linear infinite}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ti{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#fff;margin:0 22px}
-.td{color:rgba(255,255,255,.5)}
-.wrap{padding:96px 48px;display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:start;max-width:1400px;margin:0 auto}
-.sec-eye{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:16px}
-.sec-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);line-height:.92;color:var(--black);margin-bottom:28px}
-.sec-h em{color:var(--pink);font-style:normal;display:block}
-.prose p{font-size:16px;line-height:1.75;color:#444;margin-bottom:18px}
-.callout{border:2px solid var(--pink);background:rgba(255,45,120,.05);padding:24px 28px;margin-top:28px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
-.callout .t{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
-.callout .d{font-size:14px;line-height:1.6;color:#444}
-.callout .p{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--pink)}
-.card{position:sticky;top:96px;border:1px solid var(--border);background:#fff}
-.planner-banner{background:var(--pink);padding:22px 24px;text-align:center;text-decoration:none;display:block}
-.planner-banner .a{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;color:#fff;line-height:1}
-.planner-banner .b{font-size:11px;font-weight:600;color:rgba(255,255,255,.85);margin-top:6px;letter-spacing:.5px}
-.card-in{padding:32px 28px}
-.price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--pink);line-height:.9}
-.price-s{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin:8px 0 24px}
-.inc{border-top:1px solid var(--border);padding-top:20px;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
-.inc-r{display:flex;justify-content:space-between;gap:12px;font-size:12px}
-.inc-r span:first-child{font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);font-size:10px;padding-top:2px}
-.inc-r span:last-child{font-weight:700;color:var(--black);text-align:right}
-.inc-r.ok span:last-child{color:#0a8f4a}
-.card .btn{width:100%;text-align:center}
-.card .wa{display:block;text-align:center;margin-top:10px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mid);text-decoration:none}
-.steps{padding:96px 48px;background:var(--grey)}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:40px}
-.step{background:#fff;padding:32px 28px;border:1px solid var(--border)}
-.step-n{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--pink);line-height:1;margin-bottom:14px}
-.step-t{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
-.step-h{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);line-height:1;margin-bottom:12px}
-.step-d{font-size:13.5px;line-height:1.65;color:#555}
-.venues{padding:96px 48px}
-.venues-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:40px}
-.venue{border:1px solid var(--border);padding:26px 24px;background:#fff}
-.venue-n{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);line-height:1;margin-bottom:6px}
-.venue-d{font-size:12.5px;line-height:1.5;color:var(--mid)}
-.venue-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
-.cta-strip{background:var(--black);padding:80px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px}
+.page{max-width:1240px;margin:0 auto;padding:28px 48px 80px}
+.crumb{font-size:12px;color:var(--mid);margin-bottom:18px}
+.crumb a{text-decoration:none;color:var(--mid)}.crumb a:hover{color:var(--pink)}
+h1{font-family:'Inter',sans-serif;font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1.15;color:var(--black);margin-bottom:12px}
+.meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:#333;margin-bottom:22px}
+.pill{background:var(--black);color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:4px}
+.stars{color:var(--pink);font-size:15px;letter-spacing:1px}
+.meta .rev{text-decoration:underline;font-weight:600}
+.meta .dot{color:#bbb}
+.meta .share{margin-left:auto;display:flex;gap:18px}
+.meta .share button{background:none;border:none;font:600 14px 'Inter';text-decoration:underline;cursor:pointer;color:var(--black)}
+.cols{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start}
+.gallery{display:grid;grid-template-columns:1.55fr 1fr 1fr;grid-template-rows:200px 200px;gap:8px;border-radius:14px;overflow:hidden;position:relative}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;background:#ddd}
+.gallery .big{grid-row:1/3}
+.gallery .viewall{position:absolute;right:12px;bottom:12px;background:#fff;border:none;border-radius:999px;padding:10px 16px;font:700 12px 'Inter';cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.allpics{display:none;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.allpics.on{display:grid}
+.allpics img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block}
+.lead{font-size:17px;line-height:1.6;color:#333;margin:24px 0 28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.feats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;padding-bottom:26px;border-bottom:1px solid var(--border)}
+.feat{display:flex;gap:10px;align-items:flex-start}
+.feat .ic{width:36px;height:36px;border-radius:9px;background:var(--grey);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.feat b{display:block;font-size:13px;margin-bottom:2px}
+.feat span{font-size:12px;color:#555;line-height:1.45}
+.sec{padding:32px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:170px 1fr;gap:24px}
+.sec>div,.sec>ul{min-width:0}
+.sec>ul.bul{margin-left:0}
+.sec h2{font-family:'Inter',sans-serif;font-size:19px;font-weight:700;line-height:1.3;color:var(--black);padding-top:2px}
+.sec.full{display:block}
+.sec.full h2{margin-bottom:16px;font-size:22px}
+.loved{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rcard{border:1px solid var(--border);border-radius:12px;padding:20px}
+.rcard .stars{margin-bottom:12px;font-size:14px}
+.rwho{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.rav{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 18px 'Inter';color:#fff}
+.rname{font-weight:700;font-size:14px}.rsub{font-size:12.5px;color:var(--mid)}
+.rtxt{font-size:15px;line-height:1.6;color:#333}
+ul.bul{list-style:none}
+ul.bul{margin-left:0}
+ul.bul li{position:relative;padding-left:0;font-size:15px;line-height:1.7;color:#333}
+ul.bul li:before{content:'•';position:absolute;left:-16px;color:var(--black)}
+ul.chk li:before{content:'✓';color:var(--green);font-weight:800;left:-20px}
+ul.opt li:before{content:'+';color:var(--gold);font-weight:800;left:-18px}
+ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13px}
+.desc p{font-size:15px;line-height:1.7;color:#333;margin-bottom:14px}
+.desc p.blk{margin-bottom:4px}
+.desc h3{font-size:16px;font-weight:700;margin:24px 0 8px}
+.itin{margin:8px 0 6px}
+.it{display:flex;gap:14px;margin-bottom:16px}
+.it .n{width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;font:700 13px 'Inter';display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.it .t{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--pink);margin-bottom:2px}
+.it b{display:block;font-size:15.5px;margin-bottom:4px}
+.it p{font-size:14.5px;line-height:1.6;color:#444;margin:0}
+.upg{border:2px solid var(--pink);background:rgba(255,45,120,.05);padding:18px 20px;margin-top:20px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;border-radius:10px}
+.upg .t{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
+.upg .d{font-size:14px;line-height:1.55;color:#444}
+.upg .p{font-family:'Inter',sans-serif;font-size:22px;font-weight:800;color:var(--pink);white-space:nowrap}
+.vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.venue{border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.venue-tag{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;display:block}
+.venue-n{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;line-height:1.2;margin-bottom:5px}
+.venue-d{font-size:13px;line-height:1.5;color:var(--mid)}
+.imp h3{font-size:15px;font-weight:700;margin:0 0 8px}
+.imp ul{margin-bottom:22px;margin-left:0}
+.reviews-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.reviews-hd h2{font-family:'Inter',sans-serif;font-size:22px;font-weight:700}
+.rev-wrap{display:grid;grid-template-columns:260px 1fr;gap:40px}
+.big-rating{font-size:44px;font-weight:800;line-height:1}
+.big-rating small{font-size:20px;color:var(--mid);font-weight:600}
+.big-stars{color:var(--pink);font-size:28px;letter-spacing:3px;margin:8px 0 6px}
+.based{font-size:13px;color:var(--mid);margin-bottom:26px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 44px;gap:10px;align-items:center;font-size:13.5px;margin-bottom:10px}
+.bar{height:6px;background:var(--grey);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--black)}
+.rl{border-bottom:1px solid var(--border);padding:20px 0}
+.rl:first-child{padding-top:0}
+.rl .stars{font-size:14px;margin-bottom:10px}
+.meet-map{display:inline-block;margin-top:10px;font-weight:700;text-decoration:underline;font-size:14px}
+.card{position:sticky;top:90px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.planner-banner{background:var(--pink);padding:16px 18px;text-align:center;text-decoration:none;display:block}
+.planner-banner .a{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;color:#fff;line-height:1.2}
+.planner-banner .b{font-size:11px;font-weight:500;color:rgba(255,255,255,.85);margin-top:4px}
+.card-in{padding:22px 22px 18px}
+.from{font-size:14px;color:var(--mid)}
+.price{font-size:32px;font-weight:800;line-height:1.1;margin:2px 0 2px}
+.price small{font-size:15px;font-weight:500;color:#333}
+.price-s{font-size:12px;color:var(--mid);margin-bottom:16px}
+.sel{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#fff}
+.sel .ic{font-size:17px}
+.sel select,.sel input{flex:1;border:none;background:none;font:600 15px 'Inter';color:var(--black);outline:none;min-width:0}
+.sel input[type=date]{font-weight:600}
+.btn{display:block;width:100%;background:var(--pink);color:#fff;border:none;border-radius:999px;padding:16px;font:800 14px 'Inter';text-align:center;text-decoration:none;cursor:pointer;margin-top:4px}
+.btn:hover{background:#e6206a}
+.wa{display:block;text-align:center;margin-top:12px;font-size:12px;font-weight:700;color:var(--mid);text-decoration:none}
+.pol{border-top:1px solid var(--border);margin-top:18px;padding-top:16px;display:flex;flex-direction:column;gap:12px}
+.pol>div{display:flex;gap:10px;font-size:13px;line-height:1.5;color:#444}
+.pol>div:before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}
+.pol b{display:block;color:var(--black);font-size:14px}
+.mbar{display:none;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--border);padding:12px 16px calc(12px + env(safe-area-inset-bottom));z-index:90;align-items:center;justify-content:space-between;gap:12px}
+.mbar .p{font-size:18px;font-weight:800}.mbar .p small{font-size:12px;font-weight:500;color:var(--mid);display:block}
+.mbar a{background:var(--pink);color:#fff;text-decoration:none;font:800 13px 'Inter';padding:14px 22px;border-radius:999px;white-space:nowrap}
+.cta-strip{background:var(--black);padding:72px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px}
 .cta-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);color:#fff;line-height:.9}
 .cta-strip h2 em{color:var(--pink);font-style:normal}
+.cta-strip .btn{width:auto;display:inline-block;padding:18px 36px;border-radius:0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
 footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--border)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
 .footer-brand p{font-size:13px;color:var(--mid);line-height:1.7;margin-top:16px;max-width:280px}
@@ -83,33 +124,25 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
 .footer-col a:hover{color:var(--pink)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mid)}
 .footer-bottom a{color:var(--mid);text-decoration:none}
-/* contact */
-.form-wrap{padding:96px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:64px;max-width:1400px;margin:0 auto}
-.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.f{display:flex;flex-direction:column;gap:8px}
-.f.full{grid-column:1/-1}
-.f label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
-.f input,.f select,.f textarea{border:1.5px solid var(--border);background:#fff;padding:14px 16px;font:400 15px/1.3 'Inter';color:var(--black);outline:none;border-radius:0;width:100%}
-.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--pink)}
-.f textarea{min-height:120px;resize:vertical}
-.other{border:1px solid var(--border);padding:32px 28px;background:#fff}
-.other h3{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:.95;color:var(--black);margin-bottom:24px}
-.o{padding:18px 0;border-top:1px solid var(--border)}
-.o .l{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
-.o .v{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);text-decoration:none;display:block;margin-bottom:6px}
-.o .d{font-size:12.5px;line-height:1.5;color:var(--mid)}
-.success{display:none;border:2px solid var(--pink);padding:40px;text-align:center}
-.success h3{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--pink);margin-bottom:12px}
-@media(max-width:900px){
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;align-items:center;justify-content:center}
+.lb.on{display:flex}.lb img{max-width:92vw;max-height:88vh;object-fit:contain}
+.lb button{position:absolute;top:18px;right:18px;background:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer}
+@media(max-width:960px){
   nav{padding:0 20px}.nav-links a:not(.nav-cta){display:none}
-  .hero{min-height:auto}.hero-in{padding:56px 20px}
-  .stats{grid-template-columns:1fr 1fr;display:grid;width:100%}
-  .wrap,.form-wrap{grid-template-columns:1fr;padding:56px 20px;gap:40px}
-  .card{position:static}
-  .steps,.venues{padding:56px 20px}.steps-grid,.venues-grid{grid-template-columns:1fr}
+  .page{padding:18px 20px 110px}
+  .cols{grid-template-columns:1fr}
+  .card{position:static;box-shadow:none}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:180px 110px}
+  .gallery .big{grid-row:1;grid-column:1/3}
+  .gallery img:nth-child(n+4){display:none}
+  .meta .dot{display:none}
+  .feats{grid-template-columns:1fr 1fr}.loved,.vgrid{grid-template-columns:1fr}
+  .sec{grid-template-columns:1fr;gap:12px}
+  .rev-wrap{grid-template-columns:1fr;gap:24px}
+  .meta .share{margin-left:0}
+  .mbar{display:flex}
   .cta-strip{flex-direction:column;padding:56px 20px;text-align:center}
   footer{padding:48px 20px}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .f-grid{grid-template-columns:1fr}
 }
 </style><!-- Meta Pixel Code -->
 <script>
@@ -117,66 +150,91 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
 fbq('init','3589603211187590');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code --></head><body><nav>
+<!-- End Meta Pixel Code --></head><body>
+<nav>
   <a href="index.html" class="logo">POOR<em>DECISIONS</em></a>
   <div class="nav-links">
-    <a href="index.html#destinations">Packages</a>
-    <a href="index.html#destinations">Destinations</a>
-    <a href="contact.html">Contact</a>
+    <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
+    <a href="las-vegas.html">Vegas Club Crawl</a>
     <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas</a>
+    <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
 </nav>
-<section class="hero">
-  <div class="hero-bg"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-7.jpg" alt=""></div>
-  <div class="hero-in">
-    <div class="crumb"><a href="index.html">Home</a> › <a href="index.html#destinations">Destinations</a> › Las Vegas</div>
-    <div class="eyebrow">Las Vegas, Nevada — Year round</div>
-    <h1>Las Vegas <em>VIP Club Crawl</em></h1>
-    <p class="hero-sub">Open bar, party bus and the Strip's top nightclubs — Omnia, Hakkasan, Zouk, XS. Cover charges included. Zero stress.</p>
-    <div class="hero-btns"><a href="contact.html" class="btn">Book this now</a><a href="https://wa.me/447849871895" class="btn outline">WhatsApp us</a></div>
-    <div class="stats"><div class="stat"><div class="stat-l">From</div><div class="stat-v pk">$120</div></div><div class="stat"><div class="stat-l">Venues</div><div class="stat-v">3–4 per night</div></div><div class="stat"><div class="stat-l">Open bar</div><div class="stat-v">Every night</div></div><div class="stat"><div class="stat-l">Runs</div><div class="stat-v">Wed–Sun</div></div></div>
-  </div>
-</section>
-<div class="ticker"><div class="ticker-inner"><span class="ti">Open bar</span><span class="td">●</span><span class="ti">Party bus</span><span class="td">●</span><span class="ti">VIP entry</span><span class="td">●</span><span class="ti">Cover charges included</span><span class="td">●</span><span class="ti">Omnia</span><span class="td">●</span><span class="ti">Hakkasan</span><span class="td">●</span><span class="ti">Zouk</span><span class="td">●</span><span class="ti">XS</span><span class="td">●</span><span class="ti">Open bar</span><span class="td">●</span><span class="ti">Party bus</span><span class="td">●</span><span class="ti">VIP entry</span><span class="td">●</span><span class="ti">Cover charges included</span><span class="td">●</span><span class="ti">Omnia</span><span class="td">●</span><span class="ti">Hakkasan</span><span class="td">●</span><span class="ti">Zouk</span><span class="td">●</span><span class="ti">XS</span><span class="td">●</span></div></div>
-<section class="wrap">
-  <div>
-    <div class="sec-eye">The experience</div>
-    <h2 class="sec-h">A full Vegas night out.<em>Without the stress.</em></h2>
-    <div class="prose"><p>Get ready for a full Las Vegas nightlife experience without the hassle of planning the night yourself. Your evening starts at a buzzing bar on the Strip, where you'll check in with your professional party host and meet the rest of the group.</p><p>This is where the night kicks off properly — your party host gets the group going with high-energy drinking games and a 1-hour open bar with bottomless vodka drinks included every night. After the first venue, the group boards the party bus. Music, lights, drinks and games as you cruise through the city between stops.</p><p>Throughout the night your host guides the group through 3 to 4 venues: bars, lounges, rooftop-style spots, and one of Vegas' leading nightclubs to finish. VIP line bypass at every door.</p></div>
-    <div class="callout"><div><div class="t">▲ Upgrade available on the night</div><div class="d">Upgrade your open bar to include whiskey, tequila and rum. Grab it on the night from your host.</div></div><div class="p">+$15</div></div>
-  </div>
-  <aside class="card">
-    <a href="vegas-planner.html" class="planner-banner"><div class="a">★ Build your Vegas nights</div><div class="b">Pick your clubs · choose your open bar night · one payment →</div></a>
-    <div class="card-in">
-      <div class="price">From $120</div>
-      <div class="price-s">Per person — group discounts available</div>
-      <div class="inc"><div class="inc-r ok"><span>Open bar</span><span>Included every night</span></div><div class="inc-r ok"><span>Party bus</span><span>Included every night</span></div><div class="inc-r ok"><span>Cover charges</span><span>All included</span></div><div class="inc-r ok"><span>VIP entry</span><span>Included</span></div><div class="inc-r"><span>Venues</span><span>3–4 per night</span></div><div class="inc-r"><span>Host</span><span>Professional, all night</span></div><div class="inc-r"><span>Age</span><span>21+ (Vegas law)</span></div></div>
-      <a href="contact.html" class="btn">Book this now</a>
-      <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
+<div class="page">
+  <div class="crumb"><a href="index.html">Home</a> › <a href="index.html#destinations">Las Vegas</a> › Las Vegas VIP Club Crawl</div>
+  <h1>Las Vegas VIP Club Crawl</h1>
+  <div class="meta"><span class="pill">Top rated</span><span class="stars">★★★★★</span><span style="font-weight:700">5.0</span><span class="share"><button id="sharebtn">Share</button></span></div>
+  <div class="cols">
+    <div>
+      <div class="gallery"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg" alt="" class="big" data-i="0"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-hakkasan.jpg" alt="" class="" data-i="1"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-xs.jpg" alt="" class="" data-i="2"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-zouk.jpg" alt="" class="" data-i="3"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg" alt="" class="" data-i="4"><button class="viewall" id="viewall">View all</button></div>
+      <div class="allpics" id="allpics"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg" alt="" data-i="0"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-hakkasan.jpg" alt="" data-i="1"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-xs.jpg" alt="" data-i="2"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-zouk.jpg" alt="" data-i="3"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-12.jpg" alt="" data-i="4"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-13.jpg" alt="" data-i="5"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-tao.jpg" alt="" data-i="6"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-marquee.jpg" alt="" data-i="7"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-3.jpg" alt="" data-i="8"></div>
+      <p class="lead">Open bar, party bus and the Strip's top nightclubs — Omnia, Hakkasan, Zouk, XS. Cover charges included. Zero stress.</p>
+      <div class="feats"><div class="feat"><div class="ic">🗓️</div><div><b>Free cancellation</b><span>Cancel up to 24 hours in advance</span></div></div><div class="feat"><div class="ic">🍹</div><div><b>Open bar</b><span>Included every night</span></div></div><div class="feat"><div class="ic">🚌</div><div><b>Party bus</b><span>Included every night</span></div></div><div class="feat"><div class="ic">🎟️</div><div><b>Cover charges</b><span>All included</span></div></div><div class="feat"><div class="ic">⭐</div><div><b>VIP entry</b><span>Included</span></div></div><div class="feat"><div class="ic">🏙️</div><div><b>Venues</b><span>3–4 per night</span></div></div><div class="feat"><div class="ic">🧑‍✈️</div><div><b>Host</b><span>Professional, all night</span></div></div><div class="feat"><div class="ic">📅</div><div><b>Runs</b><span>Wed–Sun</span></div></div><div class="feat"><div class="ic">🔞</div><div><b>Age</b><span>21+ (Vegas law)</span></div></div></div>
+
+      <div class="sec full"><h2>What travelers loved</h2><div class="loved"><div class="rcard"><div class="stars">★★★★★ <span style="color:#333;font-weight:600">5</span></div><div class="rwho"><div class="rav" style="background:#FF2D78">S</div><div><div class="rname">Sophie K.</div><div class="rsub">Verified booking</div></div></div><div class="rtxt">Did the Vegas VIP crawl for my birthday and it was insane. Omnia, XS and Hakkasan all in one night. The open bar to start was a game changer.</div></div><div class="rcard"><div class="stars">★★★★★ <span style="color:#333;font-weight:600">5</span></div><div class="rwho"><div class="rav" style="background:#4a90d9">K</div><div><div class="rname">Kim – Germany</div><div class="rsub">July 15, 2026 - Verified booking</div></div></div><div class="rtxt">We had an incredible time! Everything was well organized, the hosts were super friendly, and the clubs were amazing. Definitely one of the highlights of our trip. Highly recommend!</div></div></div></div>
+
+      <div class="sec"><h2>Highlights</h2><ul class="bul bul"><li>Open bar, party bus and the Strip's top nightclubs — Omnia, Hakkasan, Zouk, XS</li><li>1-hour open bar with bottomless vodka drinks included every night</li><li>Party bus between stops — music, lights, drinks and games as you cruise through the city</li><li>3 to 4 venues: bars, lounges, rooftop-style spots, and one of Vegas' leading nightclubs to finish</li><li>VIP line bypass at every door. Cover charges included. Zero stress.</li></ul></div>
+
+      <div class="sec"><h2>Full description</h2><div class="desc"><p>Get ready for a full Las Vegas nightlife experience without the hassle of planning the night yourself. Your evening starts at a buzzing bar on the Strip, where you'll check in with your professional party host and meet the rest of the group.</p><p>This is where the night kicks off properly — your party host gets the group going with high-energy drinking games and a 1-hour open bar with bottomless vodka drinks included every night. After the first venue, the group boards the party bus. Music, lights, drinks and games as you cruise through the city between stops.</p><p>Throughout the night your host guides the group through 3 to 4 venues: bars, lounges, rooftop-style spots, and one of Vegas' leading nightclubs to finish. VIP line bypass at every door.</p><h3>Your night, step by step</h3><div class="itin"><div class="it"><div class="n">01</div><div><div class="t">Stop 1 — First venue</div><b>Open bar & party host</b><p>Check in with your host, meet the group and get straight into the 1-hour open bar. Drinking games from the first minute.</p></div></div><div class="it"><div class="n">02</div><div><div class="t">Between venues</div><b>Party bus through the Strip</b><p>Everyone boards the party bus. Music, lights, drinks and games as you cruise Las Vegas between stops.</p></div></div><div class="it"><div class="n">03</div><div><div class="t">Stops 2 & 3</div><b>Bars, lounges & rooftops</b><p>Two more handpicked venues. VIP line bypass at each — no waiting, straight in. Cover charges included.</p></div></div><div class="it"><div class="n">04</div><div><div class="t">Final stop</div><b>One of Vegas' top nightclubs</b><p>The night finishes at one of the Strip's leading nightclubs with VIP line bypass. The venue changes by night, the calibre doesn't.</p></div></div></div><div class="upg"><div><div class="t">▲ Upgrade available on the night</div><div class="d">Upgrade your open bar to include whiskey, tequila and rum. Grab it on the night from your host.</div></div><div class="p">+$15</div></div></div></div>
+
+      <div class="sec"><h2>Includes</h2><div><ul class="bul chk"><li>Open bar — included every night</li><li>Party bus — included every night</li><li>Cover charges — all included</li><li>VIP entry — included</li><li>Venues — 3–4 per night</li><li>Host — professional, all night</li></ul><div style="height:10px"></div><ul class="bul opt"><li>Open bar upgrade to include whiskey, tequila and rum — +$15 on the night from your host</li></ul></div></div>
+
+      <div class="sec"><h2>Top Vegas clubs on the rotation</h2><div class="vgrid"><div class="venue"><span class="venue-tag">Caesars Palace</span><div class="venue-n">Omnia</div><div class="venue-d">Multi-room megaclub with the famous kinetic chandelier.</div></div><div class="venue"><span class="venue-tag">MGM Grand</span><div class="venue-n">Hakkasan</div><div class="venue-d">Five levels, world-class DJs, huge main room.</div></div><div class="venue"><span class="venue-tag">Resorts World</span><div class="venue-n">Zouk</div><div class="venue-d">Newest superclub on the Strip. Massive production.</div></div><div class="venue"><span class="venue-tag">Encore</span><div class="venue-n">XS</div><div class="venue-d">Poolside nightclub. The most awarded club in Vegas.</div></div></div></div>
+
+      <div class="sec"><h2>Not suitable for</h2><ul class="bul bul"><li>People under 21 years</li></ul></div>
+
+      <div class="sec"><h2>Meeting point</h2><div class="desc"><p>Your evening starts at a buzzing bar on the Strip, where you'll check in with your professional party host and meet the rest of the group.</p></div></div>
+
+      <div class="sec"><h2>Important information</h2><div class="imp"><h3>What to bring</h3><ul class="bul bul"><li>Passport or ID card</li></ul><h3>Know before you go</h3><ul class="bul bul"><li>21+ (Vegas law)</li><li>Runs Wed–Sun</li><li>The final venue changes by night, the calibre doesn't</li><li>Upgrade available on the night: whiskey, tequila and rum, +$15 from your host</li></ul></div></div>
+
+      <div class="sec full" id="reviews"><div class="reviews-hd"><h2>Customer reviews</h2></div>
+        <div class="rev-wrap"><div><div class="big-rating">5.0<small>/5</small></div><div class="big-stars">★★★★★</div><div class="based">Verified bookings</div></div><div><div class="rl"><div class="stars">★★★★★ <span style="color:#333;font-weight:600">5</span></div><div class="rwho"><div class="rav" style="background:#FF2D78">S</div><div><div class="rname">Sophie K.</div><div class="rsub">Verified booking</div></div></div><div class="rtxt">Did the Vegas VIP crawl for my birthday and it was insane. Omnia, XS and Hakkasan all in one night. The open bar to start was a game changer.</div></div><div class="rl"><div class="stars">★★★★★ <span style="color:#333;font-weight:600">5</span></div><div class="rwho"><div class="rav" style="background:#4a90d9">K</div><div><div class="rname">Kim – Germany</div><div class="rsub">July 15, 2026 - Verified booking</div></div></div><div class="rtxt">We had an incredible time! Everything was well organized, the hosts were super friendly, and the clubs were amazing. Definitely one of the highlights of our trip. Highly recommend!</div></div></div></div>
+      </div>
     </div>
-  </aside>
-</section>
-<section class="steps">
-  <div class="sec-eye">How it runs</div>
-  <h2 class="sec-h">Your night,<em>step by step.</em></h2>
-  <div class="steps-grid"><div class="step"><div class="step-n">01</div><div class="step-t">Stop 1 — First venue</div><div class="step-h">Open bar & party host</div><div class="step-d">Check in with your host, meet the group and get straight into the 1-hour open bar. Drinking games from the first minute.</div></div><div class="step"><div class="step-n">02</div><div class="step-t">Between venues</div><div class="step-h">Party bus through the Strip</div><div class="step-d">Everyone boards the party bus. Music, lights, drinks and games as you cruise Las Vegas between stops.</div></div><div class="step"><div class="step-n">03</div><div class="step-t">Stops 2 & 3</div><div class="step-h">Bars, lounges & rooftops</div><div class="step-d">Two more handpicked venues. VIP line bypass at each — no waiting, straight in. Cover charges included.</div></div><div class="step"><div class="step-n">04</div><div class="step-t">Final stop</div><div class="step-h">One of Vegas' top nightclubs</div><div class="step-d">The night finishes at one of the Strip's leading nightclubs with VIP line bypass. The venue changes by night, the calibre doesn't.</div></div></div>
-</section>
-<section class="venues">
-  <div class="sec-eye">The final stop</div>
-  <h2 class="sec-h">Top Vegas clubs<em>on the rotation.</em></h2>
-  <div class="venues-grid"><div class="venue"><span class="venue-tag">Caesars Palace</span><div class="venue-n">Omnia</div><div class="venue-d">Multi-room megaclub with the famous kinetic chandelier.</div></div><div class="venue"><span class="venue-tag">MGM Grand</span><div class="venue-n">Hakkasan</div><div class="venue-d">Five levels, world-class DJs, huge main room.</div></div><div class="venue"><span class="venue-tag">Resorts World</span><div class="venue-n">Zouk</div><div class="venue-d">Newest superclub on the Strip. Massive production.</div></div><div class="venue"><span class="venue-tag">Encore</span><div class="venue-n">XS</div><div class="venue-d">Poolside nightclub. The most awarded club in Vegas.</div></div></div>
-</section>
+    <aside class="card">
+      <a href="vegas-planner.html" class="planner-banner"><div class="a">★ Build your Vegas nights</div><div class="b">Pick your clubs · choose your open bar night · one payment →</div></a>
+      <div class="card-in">
+        <div class="from">From</div>
+        <div class="price">$120 <small>per person</small></div>
+        <div class="price-s">Per person — group discounts available</div>
+        <div class="sel"><span class="ic">👥</span><select id="gs"><option value="1">Adult x 1</option><option value="2" selected>Adult x 2</option><option value="3">Adult x 3</option><option value="4">Adult x 4</option><option value="5">Adult x 5</option><option value="6">Adult x 6</option><option value="7">Adult x 7</option><option value="8">Adult x 8</option><option value="9">Adult x 9</option><option value="10">Adult x 10</option><option value="11">Adult x 11</option><option value="12">Adult x 12</option><option value="13">Adult x 13</option><option value="14">Adult x 14</option><option value="15">Adult x 15</option><option value="16">Adult x 16</option><option value="17">Adult x 17</option><option value="18">Adult x 18</option><option value="19">Adult x 19</option><option value="20">Adult x 20</option></select></div>
+        <div class="sel"><span class="ic">📅</span><input type="date" id="dt" min="2026-01-01"></div>
+        <a href="contact.html" class="btn" id="check">Check availability</a>
+        <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
+        <div class="pol">
+          <div><div><b>Free cancellation</b>Cancel up to 24 hours in advance for a full refund</div></div>
+          <div><div><b>Reserve now &amp; pay later</b>Book your spot and pay nothing today</div></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+<div class="mbar"><div class="p">From $120<small>per person</small></div><a href="contact.html" id="mcheck">Check availability</a></div>
+<div class="lb" id="lb"><button id="lbx">✕</button><img id="lbimg" src="" alt=""></div>
 <div class="cta-strip">
   <h2>Ready to make some <em>poor decisions?</em></h2>
   <a href="contact.html" class="btn">Book your night</a>
 </div>
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas, Ayia Napa and Albufeira. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
-    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a><a href="ayia-napa.html">Ayia Napa Party Passport</a><a href="albufeira.html">Albufeira Club Crawl</a></div>
-    <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a><a href="ayia-napa.html">Ayia Napa</a><a href="albufeira.html">Albufeira</a></div>
+    <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
+    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
+    <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:official.poordecisions@gmail.com">official.poordecisions@gmail.com</a><a href="https://wa.me/447849871895">WhatsApp +44 7849 871895</a><a href="https://instagram.com/poordecisions">@poordecisions</a></div>
   </div>
   <div class="footer-bottom"><span>&copy; 2026 Poor Decisions. Bad decisions. Great nights.</span><a href="contact.html">Book Now</a></div>
-</footer></body></html>
+</footer>
+<script>
+const PK="Las Vegas VIP Club Crawl";
+const gs=document.getElementById('gs'),dt=document.getElementById('dt');
+function link(){const p=new URLSearchParams({pk:PK,gs:gs.value});if(dt.value)p.set('dt',dt.value);const h='contact.html?'+p.toString();document.getElementById('check').href=h;document.getElementById('mcheck').href=h;}
+gs.onchange=link;dt.onchange=link;link();
+document.getElementById('check').addEventListener('click',()=>{window.fbq&&fbq('track','InitiateCheckout',{content_name:PK});});
+document.getElementById('viewall').onclick=()=>{document.getElementById('allpics').classList.toggle('on');};
+const lb=document.getElementById('lb'),lbi=document.getElementById('lbimg');
+document.querySelectorAll('.gallery img,.allpics img').forEach(i=>i.onclick=()=>{lbi.src=i.src;lb.classList.add('on');});
+document.getElementById('lbx').onclick=()=>lb.classList.remove('on');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('on');};
+document.getElementById('sharebtn').onclick=async()=>{const u=location.href;if(navigator.share){try{await navigator.share({title:document.title,url:u});return;}catch(e){}}try{await navigator.clipboard.writeText(u);document.getElementById('sharebtn').textContent='Link copied';}catch(e){}};
+</script>
+</body></html>

@@ -12,10 +12,11 @@
 body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
 
 /* NAV */
-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:24px}
+@media(max-width:1100px){.nav-links{gap:18px}.nav-links a{font-size:11px;letter-spacing:.5px}}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}
 .logo em{color:var(--pink);font-style:normal}
-.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links{display:flex;align-items:center;gap:26px;white-space:nowrap}
 .nav-links a{color:var(--black);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.7}
 .nav-links a:hover{opacity:1;color:var(--pink)}
 .nav-cta{background:var(--pink);color:#fff !important;opacity:1 !important;padding:10px 24px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
@@ -69,9 +70,17 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:
 .dest-card-cta{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink)}
 
 /* PLANNER BANNER */
-.planner-banner{background:var(--pink);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:3px}
-.planner-banner-text h3{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;letter-spacing:1px;line-height:1}
-.planner-banner-text p{font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px;font-weight:500}
+.planner-sec{margin-top:64px;border-top:3px solid var(--black);padding-top:56px}
+.planner-banner{background:var(--pink);padding:0;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;overflow:hidden;margin-bottom:3px}
+.planner-banner-text{padding:56px 48px}
+.planner-banner-text .pl-eye{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;opacity:.85;margin-bottom:14px}
+.planner-banner-text h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,4.5vw,64px);color:#fff;letter-spacing:1px;line-height:.92;margin-bottom:16px}
+.planner-banner-text p{font-size:15px;color:rgba(255,255,255,.9);line-height:1.6;margin-bottom:10px;font-weight:500;max-width:480px}
+.planner-banner-text ul{list-style:none;margin:18px 0 28px;display:flex;flex-direction:column;gap:8px}
+.planner-banner-text li{font-size:14px;color:#fff;font-weight:600;padding-left:22px;position:relative}
+.planner-banner-text li:before{content:'✓';position:absolute;left:0;font-weight:800}
+.planner-shot{align-self:stretch;max-height:460px;overflow:hidden;padding:44px 40px 0;display:flex;justify-content:center;align-items:flex-start}
+.planner-shot img{width:100%;max-width:380px;display:block;border-radius:22px 22px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.25);border:6px solid #111;border-bottom:none}
 .btn-white{background:#fff;color:var(--pink);padding:14px 32px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;display:inline-block;white-space:nowrap}
 
 /* REVIEWS */
@@ -115,7 +124,7 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
   .dest-cards{grid-template-columns:1fr}
   .dest-header{padding:24px 20px}
   .dest-card{padding:24px 20px}
-  .planner-banner{padding:24px 20px;flex-direction:column;align-items:flex-start}
+  .planner-sec{margin-top:40px;padding-top:36px}.planner-banner{grid-template-columns:1fr}.planner-banner-text{padding:36px 20px 8px}.planner-shot{padding:20px 20px 0}
   .reviews{padding:48px 20px}
   .reviews-grid{grid-template-columns:1fr}
   .cta-strip{padding:48px 20px;flex-direction:column}
@@ -146,10 +155,10 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
 <nav>
   <a href="index.html" class="logo">POOR<em>DECISIONS</em></a>
   <div class="nav-links">
-    <a href="#destinations">Packages</a>
-    <a href="#destinations">Destinations</a>
-    <a href="contact.html">Contact</a>
+    <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
+    <a href="las-vegas.html">Vegas Club Crawl</a>
     <a href="vegas-planner.html" style="color:#FF2D78 !important;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:1 !important;text-decoration:none">&#9733; Plan Vegas</a>
+    <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
 </nav>
@@ -158,8 +167,6 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
   <div class="hero-content">
   <div class="hero-eyebrow">
     <span class="hero-pill">&#127922; Las Vegas</span>
-    <span class="hero-pill">&#127796; Albufeira</span>
-    <span class="hero-pill">&#127796; Ayia Napa</span>
   </div>
   <h1>Bad Decisions.<em>Great Nights.</em></h1>
   <p class="hero-sub">Bar crawls, club nights and VIP experiences for people who want the night everyone talks about tomorrow.</p>
@@ -178,15 +185,11 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
     <span class="ti">VIP Entry</span><span class="td">&#9679;</span>
     <span class="ti">Open Bar</span><span class="td">&#9679;</span>
     <span class="ti">Las Vegas</span><span class="td">&#9679;</span>
-    <span class="ti">Ayia Napa</span><span class="td">&#9679;</span>
-    <span class="ti">Albufeira</span><span class="td">&#9679;</span>
     <span class="ti">Party Bus</span><span class="td">&#9679;</span>
     <span class="ti">No Bad Nights</span><span class="td">&#9679;</span>
     <span class="ti">VIP Entry</span><span class="td">&#9679;</span>
     <span class="ti">Open Bar</span><span class="td">&#9679;</span>
     <span class="ti">Las Vegas</span><span class="td">&#9679;</span>
-    <span class="ti">Ayia Napa</span><span class="td">&#9679;</span>
-    <span class="ti">Albufeira</span><span class="td">&#9679;</span>
     <span class="ti">Party Bus</span><span class="td">&#9679;</span>
     <span class="ti">No Bad Nights</span><span class="td">&#9679;</span>
   </div>
@@ -239,48 +242,26 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- PLANNER BANNER -->
-  <div class="planner-banner">
-    <div class="planner-banner-text">
-      <h3>Build your Vegas nights.</h3>
-      <p>Pick your clubs, add your open bar, sort your whole trip &mdash; $49 per person</p>
-    </div>
-    <a href="vegas-planner.html" class="btn-white">Plan my trip &rarr;</a>
-  </div>
-
-  <!-- AYIA NAPA -->
-  <div class="dest-block" style="margin-top:3px">
-    <div class="dest-header">
-      <div class="dest-name">Ayia Napa</div>
-      <div class="dest-season">May to October</div>
-    </div>
-    <div class="dest-cards">
-      <a href="ayia-napa.html" class="dest-card" style="border-right:none">
-        <div class="dest-card-tag">Best Value</div>
-        <div class="dest-card-name">Party Passport</div>
-        <div class="dest-card-desc">Choose any 3 clubs or pool parties from Ayia Napa's top venues. Castle Club, Pambos Pool Party, Carwash Disco and more. Valid 7 days.</div>
-        <div class="dest-card-price">From &euro;49</div>
-        <div class="dest-card-cta">View Package &rarr;</div>
-      </a>
+  <!-- PLANNER SECTION -->
+  <div class="planner-sec">
+    <div class="section-eyebrow">Or do it yourself</div>
+    <div class="section-title">Build your own Vegas week.</div>
+    <div class="planner-banner">
+      <div class="planner-banner-text">
+        <div class="pl-eye">Vegas trip planner &middot; $49 per person</div>
+        <h3>Build your Vegas nights.</h3>
+        <p>Not a crawl. This is your whole trip, built night by night, with guest list entry sorted at every club you pick.</p>
+        <ul>
+          <li>Pick a dayclub and nightclub for every night, with who's playing</li>
+          <li>Add your hosted open bar night on Fremont Street</li>
+          <li>See your full lineup, share it with the group, pay once</li>
+        </ul>
+        <a href="vegas-planner.html" class="btn-white">Plan my trip &rarr;</a>
+      </div>
+      <div class="planner-shot"><img src="https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/planner-preview.jpg" alt="Your Vegas week, built in the planner"></div>
     </div>
   </div>
 
-  <!-- ALBUFEIRA -->
-  <div class="dest-block" style="margin-top:3px">
-    <div class="dest-header">
-      <div class="dest-name">Albufeira</div>
-      <div class="dest-season">May to October</div>
-    </div>
-    <div class="dest-cards">
-      <a href="albufeira.html" class="dest-card" style="border-right:none">
-        <div class="dest-card-tag">Club Crawl</div>
-        <div class="dest-card-name">Club Crawl</div>
-        <div class="dest-card-desc">Hit Albufeira's legendary Strip from top to bottom. Bars, clubs and a rep who knows exactly where the night goes next.</div>
-        <div class="dest-card-price">From &euro;35</div>
-        <div class="dest-card-cta">View Package &rarr;</div>
-      </a>
-    </div>
-  </div>
 </div>
 
 <!-- REVIEWS -->
@@ -290,12 +271,12 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-text">"Absolutely incredible night. The host kept the energy up all night and the VIP entry meant zero queuing. Best night of the whole trip by far."</p>
+      <p class="review-text">"We had an incredible time! Everything was well organized, the hosts were super friendly, and the clubs were amazing. Definitely one of the highlights of our trip. Highly recommend!"</p>
       <div class="review-author">
-        <div class="review-initials">JB</div>
+        <div class="review-initials">K</div>
         <div>
-          <div class="review-name">Jamie B.</div>
-          <div class="review-trip">Club Crawl &mdash; Ayia Napa</div>
+          <div class="review-name">Kim, Germany</div>
+          <div class="review-trip">VIP Pool Crawl &mdash; Las Vegas &middot; Verified booking</div>
         </div>
       </div>
     </div>
@@ -312,12 +293,12 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
     </div>
     <div class="review-card">
       <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="review-text">"Party Passport was unreal value. Got into 3 clubs across the week, all sorted before we landed. No stress, no queues. Will 100% book again."</p>
+      <p class="review-text">"Such a fun experience! Great atmosphere, awesome people, and VIP access made everything so easy. If you're visiting, you shouldn't miss this tour!"</p>
       <div class="review-author">
-        <div class="review-initials">MR</div>
+        <div class="review-initials">K</div>
         <div>
-          <div class="review-name">Marcus R.</div>
-          <div class="review-trip">Party Pass &mdash; Albufeira</div>
+          <div class="review-name">Kim, Germany</div>
+          <div class="review-trip">VIP Pool Crawl &mdash; Las Vegas &middot; Verified booking</div>
         </div>
       </div>
     </div>
@@ -335,21 +316,17 @@ src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="logo" style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;text-decoration:none;color:#111">POOR<em style="color:#FF2D78;font-style:normal">DECISIONS</em></a>
-      <p>Nightlife experiences in Las Vegas, Ayia Napa and Albufeira. VIP entry, open bar, party bus &mdash; everything sorted before you land.</p>
+      <p>Nightlife experiences in Las Vegas. VIP entry, open bar, party bus &mdash; everything sorted before you land.</p>
     </div>
     <div class="footer-col">
       <h4>Packages</h4>
       <a href="las-vegas.html">Las Vegas VIP Club Crawl</a>
       <a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a>
       <a href="vegas-planner.html">Build Your Vegas Nights</a>
-      <a href="ayia-napa.html">Ayia Napa Party Passport</a>
-      <a href="albufeira.html">Albufeira Club Crawl</a>
     </div>
     <div class="footer-col">
       <h4>Destinations</h4>
       <a href="las-vegas.html">Las Vegas</a>
-      <a href="ayia-napa.html">Ayia Napa</a>
-      <a href="albufeira.html">Albufeira</a>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>

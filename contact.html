@@ -120,10 +120,10 @@ fbq('init','3589603211187590');fbq('track','PageView');
 <!-- End Meta Pixel Code --></head><body><nav>
   <a href="index.html" class="logo">POOR<em>DECISIONS</em></a>
   <div class="nav-links">
-    <a href="index.html#destinations">Packages</a>
-    <a href="index.html#destinations">Destinations</a>
-    <a href="contact.html">Contact</a>
+    <a href="vip-pool-crawl.html">Vegas Pool Crawl</a>
+    <a href="las-vegas.html">Vegas Club Crawl</a>
     <a href="vegas-planner.html" class="nav-plan">★ Plan Vegas</a>
+    <a href="contact.html">Contact us</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
 </nav>
@@ -145,7 +145,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
       <div class="f"><label>Last name</label><input id="ln" type="text"></div>
       <div class="f"><label>Email</label><input id="em" type="email"></div>
       <div class="f"><label>WhatsApp / phone</label><input id="ph" type="tel"></div>
-      <div class="f full"><label>Package</label><select id="pk"><option>Not sure yet</option><option>Las Vegas VIP Club Crawl</option><option>Las Vegas VIP Pool Crawl</option><option>Las Vegas — Build Your Vegas Nights</option><option>Ayia Napa Party Passport</option><option>Albufeira Club Crawl</option></select></div>
+      <div class="f full"><label>Package</label><select id="pk"><option>Not sure yet</option><option>Las Vegas VIP Club Crawl</option><option>Las Vegas VIP Pool Crawl</option><option>Las Vegas — Build Your Vegas Nights</option></select></div>
       <div class="f"><label>Group size</label><input id="gs" type="number" min="1"></div>
       <div class="f"><label>Date (approx.)</label><input id="dt" type="text" placeholder="e.g. 14–17 Oct"></div>
       <div class="f full"><label>Anything else?</label><textarea id="msg"></textarea></div>
@@ -177,10 +177,16 @@ document.getElementById('send').onclick=()=>{
 </div>
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas, Ayia Napa and Albufeira. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
-    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a><a href="ayia-napa.html">Ayia Napa Party Passport</a><a href="albufeira.html">Albufeira Club Crawl</a></div>
-    <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a><a href="ayia-napa.html">Ayia Napa</a><a href="albufeira.html">Albufeira</a></div>
+    <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
+    <div class="footer-col"><h4>Packages</h4><a href="las-vegas.html">Las Vegas VIP Club Crawl</a><a href="vip-pool-crawl.html">Las Vegas VIP Pool Crawl</a><a href="vegas-planner.html">Build Your Vegas Nights</a></div>
+    <div class="footer-col"><h4>Destinations</h4><a href="las-vegas.html">Las Vegas</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:official.poordecisions@gmail.com">official.poordecisions@gmail.com</a><a href="https://wa.me/447849871895">WhatsApp +44 7849 871895</a><a href="https://instagram.com/poordecisions">@poordecisions</a></div>
   </div>
   <div class="footer-bottom"><span>&copy; 2026 Poor Decisions. Bad decisions. Great nights.</span><a href="contact.html">Book Now</a></div>
-</footer></body></html>
+</footer><script>
+(function(){var p=new URLSearchParams(location.search);if(!p.get('pk')&&!p.get('gs')&&!p.get('dt'))return;
+var pk=document.getElementById('pk');if(p.get('pk')){for(var i=0;i<pk.options.length;i++)if(pk.options[i].text===p.get('pk'))pk.selectedIndex=i;}
+if(p.get('gs'))document.getElementById('gs').value=p.get('gs');
+if(p.get('dt')){var d=new Date(p.get('dt')+'T12:00:00');document.getElementById('dt').value=isNaN(d)?p.get('dt'):d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+})();
+</script></body></html>
