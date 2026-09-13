@@ -85,11 +85,16 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .day-date{font:600 9.5px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
 .day-line{flex:1;height:1px;background:var(--border)}
 .day-count{font:600 9.5px/1 'Inter';color:var(--mid)}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{height:150px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid var(--border);background:#111}
+.slots{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:700px){.slots{grid-template-columns:1fr 1fr}}
+.tile{height:168px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid var(--border);background:#111}
 .tile.night-filled{border-color:var(--pk)}.tile.day-filled{border-color:#2D9BFF}.tile.bar-filled{border-color:var(--goldline)}
 .tile-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tile-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 45%,rgba(0,0,0,.1))}
+.tile-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,12,.96) 0%,rgba(10,10,12,.88) 34%,rgba(10,10,12,.35) 58%,rgba(10,10,12,0) 78%)}
+.tile-row{display:flex;align-items:center;gap:6px;font:500 10.5px/1.25 'Inter';color:#fff;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile-row svg{width:13px;height:13px;flex-shrink:0;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tile-row.dj{font-weight:800}
+.tile-rule{width:26px;height:1px;background:rgba(255,255,255,.5);margin:5px 0 3px}
 .tile-kind-pill{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:3px 8px;font:700 9px/1 'Inter';letter-spacing:.12em;color:var(--black)}
 .tile-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:#fff}
 .tile-check.n{background:var(--pk)}.tile-check.d{background:#2D9BFF}.tile-check.b{background:var(--goldline)}
@@ -98,13 +103,13 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .ob-row .t{font-family:'Bebas Neue',sans-serif;font-size:17px;line-height:1;color:var(--gold)}
 .ob-row .s{font:600 10px/1.4 'Inter';color:var(--black);margin-top:2px}
 .ob-na{border:1.5px dashed var(--border);border-radius:14px;padding:14px;font:500 12px/1.5 'Inter';color:var(--mid);margin-bottom:10px;background:var(--grey)}
-.tile-info{position:absolute;left:0;right:0;bottom:0;padding:10px}
-.tile-name{font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;line-height:1}
-.tile-venue{font:400 9px/1.3 'Inter';color:rgba(255,255,255,.75)}
+.tile-info{position:absolute;left:0;right:30%;top:0;bottom:0;padding:34px 10px 11px;display:flex;flex-direction:column;justify-content:flex-end}
+.tile-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;line-height:.92;letter-spacing:.5px}
+.tile-venue{font:600 9px/1.3 'Inter';letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:3px}
 .tile-dj{font:700 9px/1.3 'Inter';color:#fff;margin-top:2px}
 .tile-genre{font:700 8px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:#FF7FAC;margin-top:3px}
 .tile-genre.d{color:#7FC4FF}
-.tile-empty{height:150px;border-radius:14px;border:1.5px dashed var(--border);background:var(--grey);padding:12px;display:flex;flex-direction:column;cursor:pointer}
+.tile-empty{height:168px;border-radius:14px;border:1.5px dashed var(--border);background:var(--grey);padding:12px;display:flex;flex-direction:column;cursor:pointer}
 .tile-empty:hover{border-color:var(--pk);background:rgba(255,45,120,.03)}
 .tile-empty-top{display:flex;align-items:center;justify-content:space-between}
 .tile-empty-plus{width:28px;height:28px;border-radius:8px;border:1.5px solid rgba(255,45,120,.4);display:flex;align-items:center;justify-content:center;font:300 18px/1 'Inter';color:var(--pk)}
@@ -175,7 +180,8 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .lineup-day-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--black)}
 .lineup-day-date{font:600 9px/1.3 'Inter';letter-spacing:.1em;color:var(--mid)}
 .lineup-day-ob{font:800 8.5px/1.3 'Inter';color:var(--gold);margin-top:4px;letter-spacing:.05em}
-.lineup-slots{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lineup-slots{flex:1;display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:700px){.lineup-slots{grid-template-columns:1fr 1fr}}
 .reveal{border:2px solid var(--pk);border-radius:16px;overflow:hidden}
 .reveal-hd{background:var(--pk);padding:12px 16px;font:800 10px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff}
 .reveal-body{padding:16px}
@@ -472,6 +478,8 @@ const byId=(k,id)=>(k==='day'?DC:NC).find(v=>v.id===id)||null;
 const nights=()=>{const n=[];if(S.start&&S.end)for(let d=S.start;d<S.end;d++)n.push(d);return n;};
 const total=()=>S.guests*PRICE;
 const img=v=>`<img class="tile-photo" src="${v.photo}" onerror="this.onerror=null;this.src='${v.fb}'"/>`;
+const I={pin:'<svg viewBox="0 0 24 24"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',clk:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',hp:'<svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4" height="7" rx="1.5"/><rect x="17" y="13" width="4" height="7" rx="1.5"/></svg>',mu:'<svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>'};
+const info=(v,x)=>`<div class="tile-info"><div class="tile-name">${v.name}</div><div class="tile-rule"></div><div class="tile-row">${I.pin}${v.hotel}</div><div class="tile-row">${I.clk}${v.hrs}</div>${x?`<div class="tile-row dj">${I.hp}${x}</div>`:`<div class="tile-row">${I.mu}${v.genre}</div>`}</div>`;
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
@@ -520,11 +528,11 @@ document.getElementById('btn-s4').onclick=()=>show('s5');
 /* ---------- S2 ---------- */
 function tileDay(d,dow,dv,has){
   if(!has)return`<div class="tile-na"><span class="tile-na-kind">DAY</span><div class="tile-na-title">No dayclubs today</div></div>`;
-  if(dv){const x=dj(d,dv.id);return`<div class="tile day-filled" data-i="${d}" data-slot="day">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hotel} · ${dv.hrs}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre d">${dv.genre}</div>`}</div></div>`;}
+  if(dv){const x=dj(d,dv.id);return`<div class="tile day-filled" data-i="${d}" data-slot="day">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-check d">✓</div>${info(dv,x)}</div>`;}
   return`<div class="tile-empty" data-i="${d}" data-slot="day"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">DAY</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a dayclub</div><div class="tile-empty-hint">Pool parties · 11am–6pm</div></div></div>`;
 }
 function tileNight(d,dow,nv,bar){
-  if(nv){const x=dj(d,nv.id);return`<div class="tile night-filled" data-i="${d}" data-slot="night">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hotel} · ${nv.hrs}</div>${x?`<div class="tile-dj">🎧 ${x}</div>`:`<div class="tile-genre">${nv.genre}</div>`}</div></div>`;}
+  if(nv){const x=dj(d,nv.id);return`<div class="tile night-filled" data-i="${d}" data-slot="night">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-check n">✓</div>${info(nv,x)}</div>`;}
   return`<div class="tile-empty" data-i="${d}" data-slot="night"><div class="tile-empty-top"><div class="tile-empty-plus">+</div><span class="tile-empty-kind">NIGHT</span></div><div class="tile-empty-bot"><div class="tile-empty-title">Add a nightclub</div><div class="tile-empty-hint">Doors 10:30pm · until 4am</div></div></div>`;
 }
 const obRow=nv=>`<div class="ob-row"><div class="ic">🍹</div><div><div class="t">Open bar · ${OB_LOC} · ${OB_HRS}</div><div class="s">Unlimited drinks + games${nv?', then into '+nv.name+' at 10:30pm':''}</div></div></div>`;
@@ -610,9 +618,9 @@ function renderCheckout(){
   ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
     if(!nv&&!dv&&!bar)return;
     const r=document.createElement('div');r.className='lineup-day';
-    const dt=dv?`<div class="tile day-filled" style="height:118px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div><div class="tile-info"><div class="tile-name">${dv.name}</div><div class="tile-venue">${dv.hrs}</div>${dj(d,dv.id)?`<div class="tile-dj">🎧 ${dj(d,dv.id)}</div>`:''}</div></div>`:'<div></div>';
+    const dt=dv?`<div class="tile day-filled" style="height:150px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div>${info(dv,dj(d,dv.id))}</div>`:'<div></div>';
     let nt='<div></div>';
-    if(nv)nt=`<div class="tile night-filled" style="height:118px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div><div class="tile-info"><div class="tile-name">${nv.name}</div><div class="tile-venue">${nv.hrs}</div>${dj(d,nv.id)?`<div class="tile-dj">🎧 ${dj(d,nv.id)}</div>`:''}</div></div>`;
+    if(nv)nt=`<div class="tile night-filled" style="height:150px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div>${info(nv,dj(d,nv.id))}</div>`;
     r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dt}${nt}${bar?obRow(nv):''}</div>`;
     el.appendChild(r);
   });
