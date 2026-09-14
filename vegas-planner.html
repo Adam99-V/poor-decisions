@@ -57,6 +57,9 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .cal-hd{display:flex;align-items:baseline;gap:10px}
 .cal-month{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black)}
 .cal-line{flex:1;height:1px;background:var(--border)}
+.cal-nav{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:#fff;font:400 20px/1 'Inter';color:var(--black);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 0 2px}
+.cal-nav:disabled{opacity:.25;cursor:default}
+.cal-day.today:not(.start):not(.end):not(.inrange){box-shadow:inset 0 0 0 1.5px var(--pk)}
 .cal-label{font:700 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--pk)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow{text-align:center;font:600 9.5px/1 'Inter';letter-spacing:.1em;color:var(--mid);padding:4px 0}
@@ -264,7 +267,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
     </div>
     <div class="cal">
       <div class="cal-hd">
-        <span class="cal-month">OCTOBER 2026</span>
+        <button class="cal-nav" id="cal-prev" aria-label="Previous month">‹</button><span class="cal-month" id="cal-month">OCTOBER 2026</span><button class="cal-nav" id="cal-next" aria-label="Next month">›</button>
         <div class="cal-line"></div>
         <span class="cal-label" id="cal-label">Select dates</span>
       </div>
@@ -470,8 +473,19 @@ fetch(BASE+'schedule.json',{cache:'no-store'}).then(r=>r.json()).then(sch=>{
   if(sch.events)EVENTS=sch.events;
 }).catch(()=>{});
 
-const getDOW=d=>(4+d-1)%7;                        // Oct 2026 starts Thursday
-const iso=d=>'2026-10-'+String(d).padStart(2,'0');
+// Dates are 'day numbers' = whole days since 1 Jan 1970 (UTC), so ranges can cross months
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const D=d=>new Date(d*864e5);
+const dayNum=(y,m,day)=>Math.round(Date.UTC(y,m,day)/864e5);
+const TODAY=(()=>{const t=new Date();return dayNum(t.getFullYear(),t.getMonth(),t.getDate());})();
+const getDOW=d=>D(d).getUTCDay();
+const iso=d=>D(d).toISOString().slice(0,10);
+const mon=d=>MN[D(d).getUTCMonth()];
+const dom=d=>D(d).getUTCDate();
+const lbl=d=>mon(d).toUpperCase()+' '+dom(d);             // OCT 22
+const lblS=d=>mon(d)+' '+dom(d);                          // Oct 22
+const rng=(a,b)=>mon(a)===mon(b)?mon(a)+' '+dom(a)+' – '+dom(b):lblS(a)+' – '+lblS(b);
+let VIEW={y:D(TODAY).getUTCFullYear(),m:D(TODAY).getUTCMonth()};
 const dj=(d,id)=>(EVENTS[iso(d)]||{})[id]||'';
 const byId=(k,id)=>(k==='day'?DC:NC).find(v=>v.id===id)||null;
 const nights=()=>{const n=[];if(S.start&&S.end)for(let d=S.start;d<S.end;d++)n.push(d);return n;};
@@ -494,19 +508,26 @@ function show(id){
 /* ---------- S1 ---------- */
 function renderCal(){
   const g=document.getElementById('cal-days');g.innerHTML='';
-  for(let p=0;p<4;p++){const e=document.createElement('button');e.className='cal-day pad';g.appendChild(e);}
-  for(let d=1;d<=31;d++){
-    const e=document.createElement('button');let c='cal-day';
+  const first=dayNum(VIEW.y,VIEW.m,1),dim=new Date(Date.UTC(VIEW.y,VIEW.m+1,0)).getUTCDate();
+  document.getElementById('cal-month').textContent=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'][VIEW.m]+' '+VIEW.y;
+  document.getElementById('cal-prev').disabled=(VIEW.y===D(TODAY).getUTCFullYear()&&VIEW.m===D(TODAY).getUTCMonth());
+  for(let p=0;p<getDOW(first);p++){const e=document.createElement('button');e.className='cal-day pad';g.appendChild(e);}
+  for(let i=1;i<=dim;i++){
+    const d=first+i-1,e=document.createElement('button');let c='cal-day';
+    if(d<TODAY)c+=' past';
+    if(d===TODAY)c+=' today';
     if(S.start&&S.end&&d>S.start&&d<S.end)c+=' inrange';
     if(d===S.start)c+=(S.end?' start':' start end');
     if(d===S.end)c+=' end';
-    e.className=c;e.textContent=d;e.addEventListener('click',()=>pickDate(d));g.appendChild(e);
+    e.className=c;e.textContent=i;if(d>=TODAY)e.addEventListener('click',()=>pickDate(d));g.appendChild(e);
   }
   const l=document.getElementById('cal-label');
-  l.textContent=!S.start?'Select arrival date':(!S.end?'Oct '+S.start+' → select departure':'Oct '+S.start+' – '+S.end+' · '+nights().length+' nights');
+  l.textContent=!S.start?'Select arrival date':(!S.end?lblS(S.start)+' → select departure':rng(S.start,S.end)+' · '+nights().length+' nights');
   const b=document.getElementById('btn-s1');const ok=S.start&&S.end&&nights().length>0;
   b.disabled=!ok;b.textContent=ok?'Plan my nights →':(!S.start?'Select your arrival date':'Select your departure date');
 }
+document.getElementById('cal-prev').onclick=()=>{VIEW.m--;if(VIEW.m<0){VIEW.m=11;VIEW.y--;}renderCal();};
+document.getElementById('cal-next').onclick=()=>{VIEW.m++;if(VIEW.m>11){VIEW.m=0;VIEW.y++;}renderCal();};
 function pickDate(d){
   if(!S.start||(S.start&&S.end)){S.start=d;S.end=null;}
   else if(d>S.start)S.end=d;else{S.start=d;S.end=null;}
@@ -542,7 +563,7 @@ function renderItinerary(){
     const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
     const has=DC.some(v=>v.days.includes(dow));const set=(dv?1:0)+(nv?1:0);
     const b=document.createElement('div');b.className='day-block';
-    b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">OCT ${d}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,false)}${S.openBarNight===d?obRow(nv):''}</div>`;
+    b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">${lbl(d)}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,false)}${S.openBarNight===d?obRow(nv):''}</div>`;
     b.querySelectorAll('[data-slot]').forEach(t=>t.onclick=()=>openSheet(+t.dataset.i,t.dataset.slot));
     el.appendChild(b);
   });
@@ -554,7 +575,7 @@ function renderItinerary(){
 function openSheet(d,slot){
   const dow=getDOW(d),s=S.slots[d]||{},isDay=slot==='day';
   document.getElementById('sheet-title').textContent=isDay?'Pick your dayclub':'Pick your nightclub';
-  document.getElementById('sheet-sub').textContent=WD[dow]+' Oct '+d+' · guest list available at these venues';
+  document.getElementById('sheet-sub').textContent=WD[dow]+' '+lblS(d)+' · guest list available at these venues';
   const o=document.getElementById('sheet-opts');o.innerHTML='';
   (isDay?DC:NC).filter(v=>v.days.includes(dow)).forEach(v=>{
     const sel=isDay?s.day===v.id:s.night===v.id;const x=dj(d,v.id);
@@ -579,8 +600,8 @@ function renderBar(){
   nights().forEach(d=>{
     const dow=getDOW(d),s=S.slots[d]||{},nv=s.night?byId('night',s.night):null,sel=S.openBarNight===d,ok=OB_DAYS.includes(dow);
     const r=document.createElement('div');r.className='bar-night'+(sel?' sel':'');
-    if(!ok){r.style.opacity='.5';r.style.cursor='default';r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">Open bar not available Mon or Tue</div></div>`;el.appendChild(r);return;}
-    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · OCT ${d}</div><div class="bar-night-venue">${OB_HRS} open bar on ${OB_LOC}${nv?', then into '+nv.name+' at 10:30pm':' · no nightclub picked yet'}</div></div>${sel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${sel?'f':'e'}">${sel?'✓':'+'}</div>`;
+    if(!ok){r.style.opacity='.5';r.style.cursor='default';r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · ${lbl(d)}</div><div class="bar-night-venue">Open bar not available Mon or Tue</div></div>`;el.appendChild(r);return;}
+    r.innerHTML=`<div style="flex:1"><div class="bar-night-name">${WD[dow].toUpperCase()} · ${lbl(d)}</div><div class="bar-night-venue">${OB_HRS} open bar on ${OB_LOC}${nv?', then into '+nv.name+' at 10:30pm':' · no nightclub picked yet'}</div></div>${sel?'<span class="bar-incl">INCLUDED</span>':''}<div class="bar-check ${sel?'f':'e'}">${sel?'✓':'+'}</div>`;
     r.onclick=()=>{S.openBarNight=sel?null:d;renderBar();};
     el.appendChild(r);
   });
@@ -590,14 +611,14 @@ function renderBar(){
 /* ---------- S4 ---------- */
 function lineupText(){
   const blocks=[];nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=S.openBarNight===d;
-    if(!dv&&!nv&&!bar)return;const L=[WD[dow].toUpperCase()+' OCT '+d];
+    if(!dv&&!nv&&!bar)return;const L=[WD[dow].toUpperCase()+' '+lbl(d)];
     if(dv)L.push('- '+dv.name+', '+dv.hrs+(dj(d,dv.id)?' 🎧 '+dj(d,dv.id):''));
     if(bar)L.push('- Open bar on '+OB_LOC+', '+OB_HRS+' (drinks + games)');
     if(nv)L.push('- '+nv.name+', '+nv.hrs+(dj(d,nv.id)?' 🎧 '+dj(d,nv.id):''));
     blocks.push(L.join('\n'));});
   return blocks.join('\n\n');
 }
-function shareText(){return 'OUR VEGAS WEEK, OCT '+S.start+'-'+S.end+'\n'+S.guests+' of us\n\n'+lineupText()+'\n\nBuild yours: '+PLANNER_URL;}
+function shareText(){return 'OUR VEGAS WEEK, '+rng(S.start,S.end).toUpperCase()+'\n'+S.guests+' of us\n\n'+lineupText()+'\n\nBuild yours: '+PLANNER_URL;}
 function wireShare(waId,copyId,toastId,smsId){
   document.getElementById(waId).href='https://wa.me/?text='+encodeURIComponent(shareText());
   if(smsId)document.getElementById(smsId).href='sms:?&body='+encodeURIComponent(shareText());
@@ -608,10 +629,10 @@ function wireShare(waId,copyId,toastId,smsId){
 }
 function renderCheckout(){
   const ns=nights();
-  document.getElementById('lineup-dates').textContent='Vegas · Oct '+S.start+'–'+S.end;
+  document.getElementById('lineup-dates').textContent='Vegas · '+rng(S.start,S.end);
   // open bar banner
   const ob=S.openBarNight,obs=S.slots[ob]||{},obv=obs.night?byId('night',obs.night):null;
-  document.getElementById('ob-banner').innerHTML=ob?`<div class="ic">🍹</div><div><div class="t">Your open bar night: ${WD[getDOW(ob)].toUpperCase()} OCT ${ob}</div><div class="s">${OB_LOC} · check in 8:00pm · unlimited drinks + games until 10:00pm${obv?' · then into '+obv.name+' at 10:30pm':''}</div></div>`:`<div class="ic">🍹</div><div><div class="t">No open bar night on these dates</div><div class="s">The open bar runs Wed to Sun on ${OB_LOC}. Everything else in your package is unchanged.</div></div>`;
+  document.getElementById('ob-banner').innerHTML=ob?`<div class="ic">🍹</div><div><div class="t">Your open bar night: ${WD[getDOW(ob)].toUpperCase()} ${lbl(ob)}</div><div class="s">${OB_LOC} · check in 8:00pm · unlimited drinks + games until 10:00pm${obv?' · then into '+obv.name+' at 10:30pm':''}</div></div>`:`<div class="ic">🍹</div><div><div class="t">No open bar night on these dates</div><div class="s">The open bar runs Wed to Sun on ${OB_LOC}. Everything else in your package is unchanged.</div></div>`;
   // lineup
   const el=document.getElementById('lineup-days');el.innerHTML='';
   ns.forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
@@ -620,7 +641,7 @@ function renderCheckout(){
     const dt=dv?`<div class="tile day-filled" style="height:150px;cursor:default">${img(dv)}<div class="tile-grad"></div><div class="tile-kind-pill">DAY</div>${info(dv,dj(d,dv.id))}</div>`:'<div></div>';
     let nt='<div></div>';
     if(nv)nt=`<div class="tile night-filled" style="height:150px;cursor:default">${img(nv)}<div class="tile-grad"></div><div class="tile-kind-pill">NIGHT</div>${info(nv,dj(d,nv.id))}</div>`;
-    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">OCT ${d}</div></div><div class="lineup-slots">${dt}${nt}${bar?obRow(nv):''}</div>`;
+    r.innerHTML=`<div class="lineup-day-lbl"><div class="lineup-day-name">${WD[dow].toUpperCase()}</div><div class="lineup-day-date">${lbl(d)}</div></div><div class="lineup-slots">${dt}${nt}${bar?obRow(nv):''}</div>`;
     el.appendChild(r);
   });
   // reveal: individual vs package
@@ -641,7 +662,7 @@ function renderCheckout(){
 /* ---------- S5 ---------- */
 function renderPay(){
   const ob=S.openBarNight;
-  let r=`<div class="pay-row"><span>Dates</span><span>Oct ${S.start} – ${S.end} · ${nights().length} nights</span></div><div class="pay-row"><span>Group</span><span>${S.guests} ${S.guests===1?'person':'people'}</span></div><div class="pay-row pay-ob"><span>Open bar night</span><span>${ob?WD[getDOW(ob)]+' Oct '+ob+' · '+OB_LOC+' · '+OB_HRS:'None (runs Wed to Sun)'}</span></div>`;
+  let r=`<div class="pay-row"><span>Dates</span><span>${rng(S.start,S.end)} · ${nights().length} nights</span></div><div class="pay-row"><span>Group</span><span>${S.guests} ${S.guests===1?'person':'people'}</span></div><div class="pay-row pay-ob"><span>Open bar night</span><span>${ob?WD[getDOW(ob)]+' '+lblS(ob)+' · '+OB_LOC+' · '+OB_HRS:'None (runs Wed to Sun)'}</span></div>`;
   nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
     if(!dv&&!nv&&!bar)return;
     r+=`<div class="pay-row pay-day"><span>${WD[dow]} Oct ${d}</span><span></span></div>`;
@@ -654,10 +675,10 @@ function renderPay(){
 document.getElementById('btn-pay').onclick=()=>{
   const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}
-  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:'Oct '+S.start+' - Oct '+S.end+' 2026',nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?'Oct '+S.openBarNight+' (Fremont St, 8-10pm)':'None',itinerary:lineupText(),status:'Pending payment'};
+  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?lblS(S.openBarNight)+' (Fremont St, 8-10pm)':'None',itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
-  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent('PD-Oct'+S.start+'-'+S.end+'-'+S.guests+'pax');
+  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent('PD-'+iso(S.start)+'-'+iso(S.end)+'-'+S.guests+'pax');
 };
 wireShare('share-wa2','share-copy2',null,'share-sms2');
 renderCal();show('s1');
