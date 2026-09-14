@@ -260,7 +260,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
 </footer>
 <script>
 const PK="Las Vegas 2-Hour Open Bar",PRICE=60,RUNDAYS=[3, 4, 5, 6, 0],RUNTXT="Wed to Sun";
-const STRIPE_LINK=""; // Stripe Payment Link for this product (leave empty to send enquiries to the contact form)
+const STRIPE_LINK="";const EV_SLOT="open bar",EV_TIME="8:00 PM"; // Stripe Payment Link for this product (leave empty to send enquiries to the contact form)
 const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const gs=document.getElementById('gs'),dt=document.getElementById('dt'),av=document.getElementById('avail');
@@ -278,7 +278,7 @@ document.getElementById('check').onclick=openBook;document.getElementById('mchec
 document.getElementById('bkx').onclick=()=>document.getElementById('bk').classList.remove('on');
 document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,total:'$'+(PRICE*n),openBarNight:'',itinerary:PK,status:STRIPE_LINK?'Pending payment':'Booking request',ref})}).catch(()=>{});
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:PK,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,total:'$'+(PRICE*n),openBarNight:EV_SLOT==='open bar'?dt.value:'',events:[{date:dt.value,slot:EV_SLOT,venue:PK,dj:'',time:EV_TIME,done:false}],itinerary:PK+' · '+fmt(dt.value),status:STRIPE_LINK?'Pending payment':'Booking request'})}).catch(()=>{});
   if(STRIPE_LINK){window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+n+'&client_reference_id='+encodeURIComponent(ref);}
   else{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();}
 };

@@ -467,10 +467,13 @@ let S={start:null,end:null,guests:4,slots:{},openBarNight:null};
 let EVENTS={}; // {"2026-10-14":{"omnia":"DJ Name"}}
 
 // Live schedule + DJs (refreshed daily by GitHub Action)
+const SCRAPED=new Set();let MAXDATE='';
+// Scraped (TAO Group) venues: available on a date only if a Guest List event exists that exact date. Manual venues: by weekday.
+const avail=(v,d)=>{if(SCRAPED.has(v.id)&&MAXDATE){const k=iso(d);if(k<=MAXDATE)return !!(EVENTS[k]||{})[v.id];}return v.days.includes(getDOW(d));};
 fetch(BASE+'schedule.json',{cache:'no-store'}).then(r=>r.json()).then(sch=>{
-  NC.forEach(v=>{if(Array.isArray(sch[v.id]))v.days=sch[v.id];});
-  DC.forEach(v=>{if(Array.isArray(sch[v.id]))v.days=sch[v.id];});
-  if(sch.events)EVENTS=sch.events;
+  NC.forEach(v=>{if(Array.isArray(sch[v.id])){v.days=sch[v.id];SCRAPED.add(v.id);}});
+  DC.forEach(v=>{if(Array.isArray(sch[v.id])){v.days=sch[v.id];SCRAPED.add(v.id);}});
+  if(sch.events){EVENTS=sch.events;const ks=Object.keys(EVENTS).sort();MAXDATE=ks[ks.length-1]||'';}
 }).catch(()=>{});
 
 // Dates are 'day numbers' = whole days since 1 Jan 1970 (UTC), so ranges can cross months
@@ -561,7 +564,7 @@ function renderItinerary(){
   nights().forEach(d=>{
     const dow=getDOW(d),s=S.slots[d]||{};
     const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null;
-    const has=DC.some(v=>v.days.includes(dow));const set=(dv?1:0)+(nv?1:0);
+    const has=DC.some(v=>avail(v,d));const set=(dv?1:0)+(nv?1:0);
     const b=document.createElement('div');b.className='day-block';
     b.innerHTML=`<div class="day-hd"><span class="day-name">${WD[dow].toUpperCase()}</span><span class="day-date">${lbl(d)}</span><div class="day-line"></div><span class="day-count">${set}/2 set</span></div><div class="slots">${tileDay(d,dow,dv,has)}${tileNight(d,dow,nv,false)}${S.openBarNight===d?obRow(nv):''}</div>`;
     b.querySelectorAll('[data-slot]').forEach(t=>t.onclick=()=>openSheet(+t.dataset.i,t.dataset.slot));
@@ -577,7 +580,7 @@ function openSheet(d,slot){
   document.getElementById('sheet-title').textContent=isDay?'Pick your dayclub':'Pick your nightclub';
   document.getElementById('sheet-sub').textContent=WD[dow]+' '+lblS(d)+' · guest list available at these venues';
   const o=document.getElementById('sheet-opts');o.innerHTML='';
-  (isDay?DC:NC).filter(v=>v.days.includes(dow)).forEach(v=>{
+  (isDay?DC:NC).filter(v=>avail(v,d)).forEach(v=>{
     const sel=isDay?s.day===v.id:s.night===v.id;const x=dj(d,v.id);
     const r=document.createElement('div');r.className='sheet-row'+(sel?' sel':'');
     r.innerHTML=`<div class="sheet-logo-box"><img src="${LOGO(v.logo)}" onerror="this.style.display='none'"/></div><div style="flex:1;min-width:0"><div class="sheet-name">${v.name}</div><div class="sheet-venue">${v.hotel} · ${v.hrs}</div>${x?`<div class="sheet-dj">🎧 ${x}</div>`:''}</div><span class="sheet-genre">${v.genre}</span>`;
@@ -675,10 +678,15 @@ function renderPay(){
 document.getElementById('btn-pay').onclick=()=>{
   const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}
-  const payload={timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?lblS(S.openBarNight)+' (Fremont St, 8-10pm)':'None',itinerary:lineupText(),status:'Pending payment'};
+  const ref='PD-'+iso(S.start)+'-'+iso(S.end)+'-'+S.guests+'pax-'+Date.now().toString(36).slice(-4).toUpperCase();
+  const events=[];nights().forEach(d=>{const s=S.slots[d]||{};const dv=s.day?byId('day',s.day):null,nv=s.night?byId('night',s.night):null;
+    if(dv)events.push({date:iso(d),slot:'day',venue:dv.name,dj:dj(d,dv.id),time:dv.hrs,done:false});
+    if(S.openBarNight===d)events.push({date:iso(d),slot:'open bar',venue:'Open bar, '+OB_LOC,dj:'',time:OB_HRS,done:false});
+    if(nv)events.push({date:iso(d),slot:'night',venue:nv.name,dj:dj(d,nv.id),time:nv.hrs,done:false});});
+  const payload={ref,product:'Vegas Planner',timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?iso(S.openBarNight):'',events,itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
-  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent('PD-'+iso(S.start)+'-'+iso(S.end)+'-'+S.guests+'pax');
+  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent(ref);
 };
 wireShare('share-wa2','share-copy2',null,'share-sms2');
 renderCal();show('s1');
