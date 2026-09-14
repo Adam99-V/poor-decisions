@@ -196,9 +196,10 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .rv-pkg-l .b{font:500 11px/1.3 'Inter';color:var(--mid);margin-top:4px}
 .rv-price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--black);line-height:.85}
 .rv-price span{font:700 11px/1 'Inter';color:var(--mid);vertical-align:top;display:inline-block;margin-top:6px}
-.rv-save{margin-top:12px;background:#111;color:#fff;border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
-.rv-save .l{font:800 10px/1 'Inter';letter-spacing:.15em;text-transform:uppercase;color:#FF7FAC}
-.rv-save .v{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1}
+.rv-save{margin-top:12px;background:rgba(255,45,120,.07);border:1.5px dashed var(--pk);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rv-save .l{font:800 13px/1.3 'Inter';color:var(--pk)}
+.rv-save .l small{display:block;font:500 11px/1.3 'Inter';color:var(--mid)}
+.rv-save .v{font:800 12px/1.2 'Inter';color:var(--pk);text-align:right;white-space:nowrap}
 .perks{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
 .perk{display:flex;gap:10px;align-items:flex-start;font:400 12.5px/1.45 'Inter';color:var(--black)}
 .perk i{width:20px;height:20px;border-radius:50%;background:rgba(255,45,120,.1);display:flex;align-items:center;justify-content:center;font:700 10px/1 'Inter';color:var(--pk);font-style:normal;flex-shrink:0}
@@ -213,7 +214,19 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .toast{font:700 11px/1 'Inter';color:var(--pk);text-align:center;min-height:12px}
 
 /* payment */
-.pay-summary{background:var(--grey);border-radius:14px;padding:16px}
+.pay-summary{display:flex;flex-direction:column;gap:10px}
+.pay-blk{background:var(--grey);border-radius:14px;padding:12px 14px}
+.pay-blk.day{background:#fff;border:1.5px solid var(--border)}
+.pay-hd{display:flex;justify-content:space-between;align-items:baseline;font:800 11px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--black);padding:2px 0 8px;border-bottom:2px solid var(--black);margin-bottom:4px}
+.pay-hd small{font:600 10px/1 'Inter';letter-spacing:.08em;color:var(--mid)}
+.pay-blk.tot{background:#fff;border:2px solid var(--black)}
+.pay-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font:400 12.5px/1.4 'Inter'}
+.pay-line:last-child{border-bottom:none}
+.pay-line .k{color:var(--mid);flex:0 0 auto}.pay-line .v{text-align:right;font-weight:700;color:var(--black)}
+.pay-line .v em{font-style:normal;font-weight:500;color:var(--mid);display:block;font-size:11px}
+.pay-line.ob .v{color:var(--gold)}.pay-line.ob .k{color:var(--gold);font-weight:700}
+.pay-line.pp .v,.pay-line.pp .k{color:var(--black)}
+.pay-line.grp{font-size:15px}.pay-line.grp .k{color:var(--black);font-weight:800}.pay-line.grp .v{color:var(--pk);font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1}
 .pay-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font:400 12px/1.4 'Inter';color:var(--black);gap:10px}
 .pay-row.pay-day{border-bottom:none;padding:14px 0 2px;font:800 10px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--mid);border-top:2px solid var(--border);margin-top:6px}
 .pay-row.pay-day:first-of-type{border-top:none;margin-top:0}
@@ -658,21 +671,22 @@ function renderCheckout(){
   document.getElementById('reveal-body').innerHTML=rows+
     `<div class="rv-sep"><span>Booked separately, per person</span><span>$${sep}</span></div>`+
     `<div class="rv-pkg"><div class="rv-pkg-l"><div class="a">Your package</div><div class="b">${S.guests} × $${PRICE} = $${total()} for the group</div></div><div class="rv-price">$${PRICE}<span>/person</span></div></div>`+
-    `<div class="rv-save"><span class="l">You save</span><span class="v">$${save} · ${pct}%</span></div>`;
+    `<div class="rv-save"><span class="l">You save $${save} per person<small>vs $${sep} booking each ticket separately</small></span><span class="v">${pct}% off</span></div>`;
   wireShare('share-wa','share-copy','share-toast','share-sms');
 }
 
 /* ---------- S5 ---------- */
 function renderPay(){
-  const ob=S.openBarNight;
-  let r=`<div class="pay-row"><span>Dates</span><span>${rng(S.start,S.end)} · ${nights().length} nights</span></div><div class="pay-row"><span>Group</span><span>${S.guests} ${S.guests===1?'person':'people'}</span></div><div class="pay-row pay-ob"><span>Open bar night</span><span>${ob?WD[getDOW(ob)]+' '+lblS(ob)+' · '+OB_LOC+' · '+OB_HRS:'None (runs Wed to Sun)'}</span></div>`;
+  const ob=S.openBarNight;const line=(k,v,cls)=>`<div class="pay-line ${cls||''}"><span class="k">${k}</span><span class="v">${v}</span></div>`;
+  let r=`<div class="pay-blk"><div class="pay-hd">Your trip</div>`+line('Dates',rng(S.start,S.end)+'<em>'+nights().length+(nights().length===1?' night':' nights')+'</em>')+line('Group',S.guests+(S.guests===1?' person':' people'))+line('Open bar night',ob?WD[getDOW(ob)]+' '+lblS(ob)+'<em>'+OB_LOC+' · '+OB_HRS+'</em>':'None (runs Wed to Sun)','ob')+`</div>`;
   nights().forEach(d=>{const dow=getDOW(d),s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=ob===d;
     if(!dv&&!nv&&!bar)return;
-    r+=`<div class="pay-row pay-day"><span>${WD[dow]} Oct ${d}</span><span></span></div>`;
-    if(dv)r+=`<div class="pay-row"><span>Day · ${dv.hrs}</span><span>${dv.name}${dj(d,dv.id)?' 🎧 '+dj(d,dv.id):''}</span></div>`;
-    if(bar)r+=`<div class="pay-row pay-ob"><span>Open bar · ${OB_HRS}</span><span>${OB_LOC}</span></div>`;
-    if(nv)r+=`<div class="pay-row"><span>Night · ${nv.hrs}</span><span>${nv.name}${dj(d,nv.id)?' 🎧 '+dj(d,nv.id):''}</span></div>`;});
-  r+=`<div class="pay-row pay-pp"><span>Per person</span><span>$${PRICE}</span></div><div class="pay-row pay-grp"><span>Group total (${S.guests} × $${PRICE})</span><span>$${total()}</span></div>`;
+    r+=`<div class="pay-blk day"><div class="pay-hd">${WD[dow]} ${lblS(d)}${bar?'<small>🍹 open bar night</small>':''}</div>`;
+    if(dv)r+=line('Day · '+dv.hrs,dv.name+(dj(d,dv.id)?'<em>🎧 '+dj(d,dv.id)+'</em>':''));
+    if(bar)r+=line('Open bar · '+OB_HRS,OB_LOC+'<em>check in 8:00pm · drinks + games</em>','ob');
+    if(nv)r+=line('Night · '+nv.hrs,nv.name+(dj(d,nv.id)?'<em>🎧 '+dj(d,nv.id)+'</em>':''));
+    r+=`</div>`;});
+  r+=`<div class="pay-blk tot"><div class="pay-hd">Payment</div>`+line('Per person','$'+PRICE,'pp')+line('Group total · '+S.guests+' × $'+PRICE,'$'+total(),'grp')+`</div>`;
   document.getElementById('pay-summary').innerHTML=r;document.getElementById('pay-total').textContent=total();
 }
 document.getElementById('btn-pay').onclick=()=>{
