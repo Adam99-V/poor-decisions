@@ -700,7 +700,8 @@ document.getElementById('btn-pay').onclick=()=>{
   const payload={ref,product:'Vegas Planner',timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?iso(S.openBarNight):'',events,itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
-  window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+S.guests+'&client_reference_id='+encodeURIComponent(ref);
+  const fallback=()=>{window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&client_reference_id='+encodeURIComponent(ref);};
+  fetch(SHEET_URL+'?action=checkout&product=Vegas%20Planner&qty='+S.guests+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(lineupText().replace(/\n+/g,' · ').slice(0,280))+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else fallback();}).catch(fallback);
 };
 wireShare('share-wa2','share-copy2',null,'share-sms2');
 renderCal();show('s1');
