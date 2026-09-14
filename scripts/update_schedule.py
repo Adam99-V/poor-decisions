@@ -31,7 +31,9 @@ def main():
     days={v:set() for v in VENUE_MAP.values()}; events={}; n=0
     for m in pat.finditer(text):
         title,_,mon,day,year,venue=m.groups()
-        if "CLOSED" in title.upper(): continue
+        if re.search(r"closed|password|private|sold out|invite only|unavailable", title, re.I): continue
+        tail=text[m.end():m.end()+200]
+        if re.search(r"password|private|sold out|invite only|unavailable", tail, re.I): continue
         try: dt=datetime.strptime(f"{mon} {day} {year}","%b %d %Y")
         except ValueError: continue
         if not(today-timedelta(days=1)<=dt<=horizon): continue
