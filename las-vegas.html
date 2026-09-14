@@ -260,7 +260,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
 </footer>
 <script>
 const PK="Las Vegas VIP Club Crawl",PRICE=120,RUNDAYS=[3, 4, 5, 6, 0],RUNTXT="Wed to Sun";
-const STRIPE_LINK="";const EV_SLOT="night",EV_TIME="Evening"; // Stripe Payment Link for this product (leave empty to send enquiries to the contact form)
+const STRIPE_LINK="checkout",CHECKOUT_PRODUCT="Club Crawl";const EV_SLOT="night",EV_TIME="Evening"; // Stripe Payment Link for this product (leave empty to send enquiries to the contact form)
 const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const gs=document.getElementById('gs'),dt=document.getElementById('dt'),av=document.getElementById('avail');
@@ -279,8 +279,11 @@ document.getElementById('bkx').onclick=()=>document.getElementById('bk').classLi
 document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim();
   if(!name||!email){alert('Please fill in your name and email.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:PK,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,total:'$'+(PRICE*n),openBarNight:EV_SLOT==='open bar'?dt.value:'',events:[{date:dt.value,slot:EV_SLOT,venue:PK,dj:'',time:EV_TIME,done:false}],itinerary:PK+' · '+fmt(dt.value),status:STRIPE_LINK?'Pending payment':'Booking request'})}).catch(()=>{});
-  if(STRIPE_LINK){window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&quantity='+n+'&client_reference_id='+encodeURIComponent(ref);}
-  else{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();}
+  const toContact=()=>{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();};
+  window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});
+  const btn=document.getElementById('bkpay');btn.textContent='Taking you to secure payment…';btn.disabled=true;
+  const desc=fmt(dt.value)+', '+n+(n==1?' guest. ':' guests. ')+'VIP entry to 3–4 top Las Vegas nightclubs, open bar and party bus every stop, cover charges included, professional host all night.'+' Details emailed after payment.';
+  fetch(SHEET_URL+'?action=checkout&product='+encodeURIComponent(CHECKOUT_PRODUCT)+'&qty='+n+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(desc)+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else toContact();}).catch(toContact);
 };
 document.getElementById('viewall').onclick=()=>{document.getElementById('allpics').classList.toggle('on');};
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbimg');

@@ -634,6 +634,12 @@ function lineupText(){
     blocks.push(L.join('\n'));});
   return blocks.join('\n\n');
 }
+function stripeDesc(){
+  const parts=[];nights().forEach(d=>{const s=S.slots[d]||{};const nv=s.night?byId('night',s.night):null,dv=s.day?byId('day',s.day):null,bar=S.openBarNight===d;
+    if(!dv&&!nv&&!bar)return;const L=[];if(dv)L.push(dv.name);if(bar)L.push('Open bar on '+OB_LOC);if(nv)L.push(nv.name);
+    parts.push(WD[getDOW(d)]+' '+dom(d)+': '+L.join(' + '));});
+  return ('Las Vegas nightlife package, '+rng(S.start,S.end)+', '+S.guests+(S.guests==1?' guest':' guests')+'. Includes guest list entry at every club on your lineup, a hosted open bar night on Fremont Street and WhatsApp support from your host throughout your trip. Full itinerary emailed after payment.').slice(0,280);
+}
 function shareText(){return 'OUR VEGAS WEEK, '+rng(S.start,S.end).toUpperCase()+'\n'+S.guests+' of us\n\n'+lineupText()+'\n\nBuild yours: '+PLANNER_URL;}
 function wireShare(waId,copyId,toastId,smsId){
   document.getElementById(waId).href='https://wa.me/?text='+encodeURIComponent(shareText());
@@ -701,7 +707,7 @@ document.getElementById('btn-pay').onclick=()=>{
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
   const fallback=()=>{window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&client_reference_id='+encodeURIComponent(ref);};
-  fetch(SHEET_URL+'?action=checkout&product=Vegas%20Planner&qty='+S.guests+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(lineupText().replace(/\n+/g,' · ').slice(0,280))+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else fallback();}).catch(fallback);
+  fetch(SHEET_URL+'?action=checkout&product=Vegas%20Planner&qty='+S.guests+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(stripeDesc())+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else fallback();}).catch(fallback);
 };
 wireShare('share-wa2','share-copy2',null,'share-sms2');
 renderCal();show('s1');
