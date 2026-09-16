@@ -33,23 +33,23 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML
 def log(*a): print(*a, flush=True)
 
 def find_links():
-    """Scrape the promoter page -> {(tao_venue_name, 'YYYY-MM-DD'): tickets_url}"""
+    """Scrape the promoter page -> {(tao_venue_name, 'YYYY-MM-DD'): tickets_url}. Guest List events only."""
     raw = urlopen(Request(PROMOTER_URL, headers={"User-Agent": UA}), timeout=60).read().decode("utf-8", "ignore")
-    # keep hrefs as text tokens, drop every other tag
     t = re.sub(r'<a\s[^>]*href="([^"]+)"[^>]*>', r' HREF:\1 ', raw, flags=re.I)
     t = re.sub(r"<[^>]+>", " ", t); t = html.unescape(re.sub(r"\s+", " ", t))
     venues = "|".join(re.escape(v) for v in TAO.values())
-    pat = re.compile(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), "
+    pat = re.compile(r"Guest List\s*[-–]\s*(.{0,160}?)"
+                     r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), "
                      r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}), (\d{4})"
-                     r".{0,200}?(" + venues + r"), Las Vegas, NV.{0,400}?HREF:(https?://\S+?/e/\S+?/tickets)\b")
+                     r".{0,200}?(" + venues + r"), Las Vegas, NV.{0,300}?HREF:(https?://[^\s]+?/e/[^\s/]+)")
     out = {}
     for m in pat.finditer(t):
-        _, mon, day, year, venue, url = m.groups()
+        title, _, mon, day, year, venue, url = m.groups()
+        if re.search(r"password|private|sold out|invite only|unavailable|closed", title, re.I): continue
         try: d = datetime.strptime(f"{mon} {day} {year}", "%b %d %Y").strftime("%Y-%m-%d")
         except ValueError: continue
-        # skip closed / password / sold out events (text just before the link)
-        window = t[max(0, m.start() - 300):m.end()]
-        if re.search(r"password|private|sold out|invite only|unavailable|closed", window, re.I): continue
+        url = url.rstrip("/")
+        if not url.endswith("/tickets"): url += "/tickets"
         out.setdefault((venue, d), url)
     log(f"promoter page: {len(out)} guest list events found")
     return out
@@ -69,7 +69,15 @@ def pick_select(page, label_word):
         .sort((a, b) => (a.r.top - h.top) - (b.r.top - h.top));
       return cands.length ? cands[0].c : null;
     }""", label_word)
-    return handle.as_element()
+    el = handle.as_element()
+    if el is None:
+        qty = page.locator('select[name*="[quantity]"]')
+        body = page.inner_text("body")
+        fi, mi = body.find("Guest List - Female"), body.find("Guest List - Male")
+        if qty.count() >= 2 and fi >= 0 and mi >= 0:
+            order = ["Female", "Male"] if fi < mi else ["Male", "Female"]
+            el = qty.nth(order.index(label_word)).element_handle()
+    return el
 
 def dump_form(page):
     """Diagnostic: list visible form controls and all dropdowns (no customer data is on the page at this point)."""
@@ -110,9 +118,9 @@ def set_qty(page, word, n):
     return True
 
 def fill(page, label_regex, fallback_css, value):
-    loc = page.get_by_label(re.compile(label_regex, re.I))
+    loc = page.locator(fallback_css)
     if loc.count() == 0:
-        loc = page.locator(fallback_css)
+        loc = page.get_by_label(re.compile(label_regex, re.I))
     loc.first.fill(value)
 
 def click_checkbox(page, must_contain, want_checked):
@@ -137,16 +145,18 @@ def register(page, url, p):
         raise RuntimeError("event closed or sold out")
     set_qty(page, "Female", int(p.get("females") or 0))
     set_qty(page, "Male", int(p.get("males") or 0))
-    fill(page, r"email", 'input[type="email"], input[name*="email" i]', p["email"])
-    fill(page, r"first\s*name", 'input[name*="first" i], input[id*="first" i]', first)
-    fill(page, r"last\s*name", 'input[name*="last" i], input[id*="last" i]', last)
-    fill(page, r"postal|zip|post\s*code", 'input[name*="zip" i], input[name*="postal" i], input[id*="zip" i]', p.get("zip") or "00000")
+    fill(page, r"email", 'input[name="data[Order][email]"], input[type="email"]', p["email"])
+    fill(page, r"first\s*name", 'input[name="data[Order][first_name]"], input[name*="first" i]', first)
+    fill(page, r"last\s*name", 'input[name="data[Order][last_name]"], input[name*="last" i]', last)
+    fill(page, r"postal|zip|post\s*code", 'input[name="data[Order][postal_code]"], input[name*="postal" i], input[name*="zip" i]', p.get("zip") or "00000")
     click_checkbox(page, r"sign up|offers|news", False)          # no marketing on the customer's behalf
     if not click_checkbox(page, r"accept|agree|terms", True):
         dump_form(page)
         raise RuntimeError("terms checkbox not found")
     page.wait_for_timeout(400 + random.randint(0, 800))
-    btn = page.get_by_role("button", name=re.compile(r"submit order|submit|complete", re.I)).first
+    btn = page.locator("#orderFormSubmitButton")
+    if btn.count() == 0: btn = page.get_by_role("button", name=re.compile(r"submit order|submit|complete", re.I))
+    btn = btn.first
     btn.click()
     page.wait_for_load_state("networkidle", timeout=60000)
     page.wait_for_timeout(1500)
