@@ -1,0 +1,39 @@
+name: Register TAO guest lists
+
+on:
+  repository_dispatch:
+    types: [guestlist]
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'Booking JSON: {"ref":"TEST-1","name":"Adam Test","email":"you@example.com","zip":"BH24 1AA","males":1,"females":0,"events":[{"date":"2026-09-22","venueId":"omnia","venue":"Omnia","slot":"night"}]}'
+        required: true
+        type: string
+
+concurrency:
+  group: guestlist
+  cancel-in-progress: false
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install browser
+        run: |
+          pip install -q playwright==1.47.0
+          python -m playwright install --with-deps chromium
+
+      - name: Register guest lists
+        env:
+          PAYLOAD: ${{ github.event_name == 'workflow_dispatch' && inputs.payload || toJSON(github.event.client_payload) }}
+          WEBAPP_URL: ${{ secrets.PD_WEBAPP_URL }}
+          ADMIN_KEY: ${{ secrets.PD_ADMIN_KEY }}
+          DELAY_MAX_SEC: ${{ github.event_name == 'workflow_dispatch' && '0' || '420' }}
+        run: python scripts/register_guestlist.py
