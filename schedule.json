@@ -48,16 +48,13 @@
     6
   ],
   "events": {
-    "2026-09-15": {
-      "omnia": "Justin Credible"
-    },
     "2026-09-16": {
       "marquee": "Close Friends Only",
       "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-09-17": {
-      "mq-day": "DJ Lucky Lou",
-      "tao-beach": "DJ Shr3d",
+      "mq-day": "DJ Shr3d",
+      "tao-beach": "TAO Beach Daybreak Thursdays",
       "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
       "hakkasan": "Chase B",
@@ -67,21 +64,21 @@
       "mq-day": "DJ E-Rock",
       "omnia-day": "Cedric Gervais",
       "tao-beach": "nimino",
-      "tao": "DJ EU",
       "marquee": "Kyle Cooke",
       "jewel": "DJ Paradice",
       "hakkasan": "TYGA",
+      "tao": "DJ EU",
       "omnia": "Alesso"
     },
     "2026-09-19": {
-      "tao-beach": "Kid Conrad",
+      "omnia-day": "BLOND:ISH",
       "mq-day": "Lavern",
-      "omnia-day": "Steve Aoki",
-      "jewel": "DJ Shift",
+      "tao-beach": "Don Diablo",
       "omnia": "Louis the Child",
-      "tao": "DJ Spider",
+      "jewel": "DJ Shift",
+      "marquee": "DJ Pauly D",
       "hakkasan": "Snoop Dogg",
-      "marquee": "DJ Pauly D"
+      "tao": "DJ Spider"
     },
     "2026-09-20": {
       "omnia-day": "DAYBREAKER: The Sober Morning Dance Part",
@@ -110,7 +107,7 @@
     },
     "2026-09-25": {
       "mq-day": "DJ Shift",
-      "omnia-day": "Justin Credible",
+      "omnia-day": "Lavern",
       "tao": "DJ CLA",
       "hakkasan": "DJ Boof",
       "jewel": "Murphi Kennedy",
@@ -525,8 +522,12 @@
     },
     "2026-12-08": {
       "omnia": "OMNIA Nightclub Tuesday"
+    },
+    "2026-12-09": {
+      "marquee": "Lowkey in the Library",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     }
   },
-  "_updated": "2026-09-15 13:03",
+  "_updated": "2026-09-16 13:01",
   "_source": "taogroup promoter page - Guest List (Passes) events only"
 }
