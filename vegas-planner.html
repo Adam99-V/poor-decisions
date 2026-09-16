@@ -338,12 +338,12 @@ h2.stitle em{color:var(--pk);font-style:normal}
     <div class="bar-card">
       <div class="bar-top">
         <div class="bar-icon">🍹</div>
-        <div><div class="bar-title">Open bar · Fremont Street · 8–10pm</div><div class="bar-sub">Unlimited drinks · party games · hosted · Wed to Sun only</div></div>
+        <div><div class="bar-title">Open bar · Fremont Street · 9–11pm</div><div class="bar-sub">Unlimited drinks · party games · hosted · Wed to Sun only</div></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="bar-time-row"><span class="bar-time">8:00PM</span><span class="bar-time-text">Check in at our Fremont Street bar, grab your wristband and meet your host and the group. Unlimited mixed drinks, beer, wine and shots start pouring.</span></div>
-        <div class="bar-time-row"><span class="bar-time">8–10PM</span><span class="bar-time-text">Beer pong, flip cup and group games running the whole time. Join in or just drink — your call.</span></div>
-        <div class="bar-time-row"><span class="bar-time">10:00PM</span><span class="bar-time-text">Bar wraps. Head to your nightclub by cab or Uber — your entry is already sorted from check-in.</span></div>
+        <div class="bar-time-row"><span class="bar-time">9:00PM</span><span class="bar-time-text">Check in at our Fremont Street bar, grab your wristband and meet your host and the group. Unlimited mixed drinks, beer, wine and shots start pouring.</span></div>
+        <div class="bar-time-row"><span class="bar-time">9–11PM</span><span class="bar-time-text">Beer pong, flip cup and group games running the whole time. Join in or just drink — your call.</span></div>
+        <div class="bar-time-row"><span class="bar-time">11:00PM</span><span class="bar-time-text">Bar wraps. Head to your nightclub by cab or Uber — your entry is already sorted from check-in.</span></div>
       </div>
       <div class="bar-rules">21+ only with valid photo ID. Smart nightlife dress code strictly enforced at the clubs.</div>
     </div>
@@ -416,7 +416,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
 <div class="screen" id="s6">
   <div class="conf-icon">✓</div>
   <h2 class="conf-h">You're on the <em>list.</em></h2>
-  <p class="conf-p">Check your email for confirmation. Show it at each door — your open bar check-in is 8pm sharp.</p>
+  <p class="conf-p">Check your email for confirmation. Show it at each door — your open bar check-in is 9pm sharp.</p>
   <div class="share" style="text-align:left;margin-bottom:16px">
     <div><div class="share-t">Tell the group</div><div class="share-s">Send everyone the lineup.</div></div>
     <div class="share-btns"><a class="share-btn wa" id="share-wa2" href="#" target="_blank">WhatsApp</a><a class="share-btn sms" id="share-sms2" href="#">iMessage</a><button class="share-btn" id="share-copy2">Copy</button></div>
@@ -454,7 +454,7 @@ const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6
 const PLANNER_URL='https://poordecisions.co/vegas-planner.html';
 const PRICE=49;
 const EST={night:60,day:50,bar:49}; // "booked separately" estimates per person
-const OB_HRS='8–10pm',OB_LOC='Fremont Street',OB_DAYS=[0,3,4,5,6]; // open bar Wed–Sun
+const OB_HRS='9–11pm',OB_LOC='Fremont Street',OB_DAYS=[0,3,4,5,6]; // open bar Wed–Sun
 const NH='10:30pm–4am',DH='11am–6pm';
 
 const P=n=>BASE+'vp-'+n+'.jpg';
@@ -692,7 +692,7 @@ function renderPay(){
     if(!dv&&!nv&&!bar)return;
     r+=`<div class="pay-blk day"><div class="pay-hd">${WD[dow]} ${lblS(d)}${bar?'<small>🍹 open bar night</small>':''}</div>`;
     if(dv)r+=line('Day · '+dv.hrs,dv.name+(dj(d,dv.id)?'<em>🎧 '+dj(d,dv.id)+'</em>':''));
-    if(bar)r+=line('Open bar · '+OB_HRS,OB_LOC+'<em>check in 8:00pm · drinks + games</em>','ob');
+    if(bar)r+=line('Open bar · '+OB_HRS,OB_LOC+'<em>check in 9:00pm · drinks + games</em>','ob');
     if(nv)r+=line('Night · '+nv.hrs,nv.name+(dj(d,nv.id)?'<em>🎧 '+dj(d,nv.id)+'</em>':''));
     r+=`</div>`;});
   r+=`<div class="pay-blk tot"><div class="pay-hd">Payment</div>`+line('Per person','$'+PRICE,'pp')+line('Group total · '+S.guests+' × $'+PRICE,'$'+total(),'grp')+`</div>`;
