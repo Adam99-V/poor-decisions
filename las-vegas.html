@@ -140,6 +140,7 @@ footer{background:var(--grey);padding:64px 48px;border-top:1px solid var(--borde
 .bk-row b{font-weight:700}
 .bk-row.tot{border-top:1px solid var(--border);margin-top:4px;padding-top:9px;font-size:16px;font-weight:800}
 .bk-f{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.bk-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bk-f select{border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font:400 15px 'Inter';background:#fff;width:100%}
 .bk-f label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mid)}
 .bk-f input{border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font:400 15px 'Inter';outline:none;width:100%}
 .bk-f input:focus{border-color:var(--pink)}
@@ -242,6 +243,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
   <div class="bk-f"><label>Your name</label><input id="bkname" type="text" autocomplete="name"></div>
   <div class="bk-f"><label>Email</label><input id="bkemail" type="email" autocomplete="email"></div>
   <div class="bk-f"><label>WhatsApp / phone</label><input id="bkphone" type="tel" autocomplete="tel"></div>
+  <div class="bk-2"><div class="bk-f"><label>Girls in the group</label><select id="bkgirls"></select></div><div class="bk-f"><label>Home postcode / ZIP</label><input id="bkzip" type="text" autocomplete="postal-code"></div></div>
   <button class="btn" id="bkpay">Pay now</button>
   <div class="bk-note">Secure card payment by Stripe. Confirmation by email within minutes.</div>
 </div></div>
@@ -272,13 +274,14 @@ function checkDate(){av.className='avail';av.textContent='';if(!dt.value)return 
 dt.onchange=checkDate;gs.onchange=checkDate;
 function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';dt.focus();return;}if(checkDate()!==true)return;
   const n=+gs.value;document.getElementById('bksum').innerHTML=`<div class="bk-row"><span>Experience</span><b>${PK}</b></div><div class="bk-row"><span>Date</span><b>${fmt(dt.value)}</b></div><div class="bk-row"><span>Guests</span><b>${n}</b></div><div class="bk-row"><span>Per person</span><b>$${PRICE}</b></div><div class="bk-row tot"><span>Total</span><span>$${PRICE*n}</span></div>`;
+  const gsel=document.getElementById('bkgirls');gsel.innerHTML='';for(let i=0;i<=n;i++){gsel.innerHTML+=`<option value="${i}">${i} girl${i===1?'':'s'} · ${n-i} guy${n-i===1?'':'s'}</option>`;}gsel.value=Math.floor(n/2);
   document.getElementById('bkpay').textContent=STRIPE_LINK?('Pay $'+(PRICE*n)+' now →'):'Send booking request →';
   document.getElementById('bk').classList.add('on');window.fbq&&fbq('track','InitiateCheckout',{content_name:PK,value:PRICE*n,currency:'USD',num_items:n});window.gtag&&gtag('event','begin_checkout',{value:PRICE*n,currency:'USD',items:[{item_name:PK,quantity:n,price:PRICE}]});}
 document.getElementById('check').onclick=openBook;document.getElementById('mcheck').onclick=e=>{e.preventDefault();document.getElementById('dt').scrollIntoView({behavior:'smooth',block:'center'});if(dt.value)openBook();else{av.className='avail no';av.textContent='Pick a date first.';}};
 document.getElementById('bkx').onclick=()=>document.getElementById('bk').classList.remove('on');
-document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim();
-  if(!name||!email){alert('Please fill in your name and email.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:PK,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,total:'$'+(PRICE*n),openBarNight:EV_SLOT==='open bar'?dt.value:'',events:[{date:dt.value,slot:EV_SLOT,venue:PK,dj:'',time:EV_TIME,done:false}],itinerary:PK+' · '+fmt(dt.value),status:STRIPE_LINK?'Pending payment':'Booking request'})}).catch(()=>{});
+document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim(),zip=document.getElementById('bkzip').value.trim(),females=+document.getElementById('bkgirls').value;
+  if(!name||!email||!zip){alert('Please fill in your name, email and postcode.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:PK,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,males:n-females,females,zip,total:'$'+(PRICE*n),openBarNight:EV_SLOT==='open bar'?dt.value:'',events:[{date:dt.value,slot:EV_SLOT,venue:PK,dj:'',time:EV_TIME,done:false}],itinerary:PK+' · '+fmt(dt.value),status:STRIPE_LINK?'Pending payment':'Booking request'})}).catch(()=>{});
   const toContact=()=>{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();};
   window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});
   const btn=document.getElementById('bkpay');btn.textContent='Taking you to secure payment…';btn.disabled=true;

@@ -77,6 +77,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
 .guests-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--black)}
 .guests-sub{font:400 11px/1 'Inter';color:var(--mid);margin-top:4px}
 .g-ctrl{display:flex;align-items:center;gap:12px}
+.g-split{display:flex;flex-direction:column;gap:8px}.g-row{display:flex;align-items:center;justify-content:flex-end;gap:12px}.g-lbl{font:700 11px/1 'Inter';letter-spacing:1px;text-transform:uppercase;color:var(--mid)}
 .g-btn{width:36px;height:36px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font:400 20px/1 'Inter';cursor:pointer}
 .g-btn.m{background:var(--grey);color:var(--black)}.g-btn.p{background:var(--pk);color:#fff}
 .g-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);min-width:28px;text-align:center}
@@ -295,10 +296,9 @@ h2.stitle em{color:var(--pk);font-style:normal}
         <div class="guests-title">How many of you?</div>
         <div class="guests-sub" id="g-sub">4 people in your group</div>
       </div>
-      <div class="g-ctrl">
-        <button class="g-btn m" id="g-minus">−</button>
-        <span class="g-num" id="g-num">4</span>
-        <button class="g-btn p" id="g-plus">+</button>
+      <div class="g-split">
+        <div class="g-row"><span class="g-lbl">Guys</span><div class="g-ctrl"><button class="g-btn m" id="gm-minus">−</button><span class="g-num" id="gm-num">2</span><button class="g-btn p" id="gm-plus">+</button></div></div>
+        <div class="g-row"><span class="g-lbl">Girls</span><div class="g-ctrl"><button class="g-btn m" id="gf-minus">−</button><span class="g-num" id="gf-num">2</span><button class="g-btn p" id="gf-plus">+</button></div></div>
       </div>
     </div>
   </div>
@@ -406,6 +406,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
     <div class="field"><label>Your name</label><input type="text" id="pay-name" placeholder="Jamie Smith" autocomplete="name"></div>
     <div class="field"><label>Email address</label><input type="email" id="pay-email" placeholder="jamie@example.com" autocomplete="email"></div>
     <div class="field"><label>WhatsApp number</label><input type="tel" id="pay-phone" placeholder="+44 7700 000000" autocomplete="tel"></div>
+    <div class="field"><label>Home postcode / ZIP</label><input type="text" id="pay-zip" placeholder="SW1A 1AA" autocomplete="postal-code"></div>
     <p class="pay-note">🔒 You'll be redirected to Stripe's secure checkout to pay.</p>
   </div>
   <div class="footer"><button class="btn-main" id="btn-pay">Pay $<span id="pay-total">196</span> now →</button></div>
@@ -476,7 +477,7 @@ const DC=[
 ];
 const LOGO=id=>BASE+'logo-'+id+'.png';
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-let S={start:null,end:null,guests:4,slots:{},openBarNight:null};
+let S={start:null,end:null,guests:4,males:2,females:2,slots:{},openBarNight:null};
 let EVENTS={}; // {"2026-10-14":{"omnia":"DJ Name"}}
 
 // Live schedule + DJs (refreshed daily by GitHub Action)
@@ -549,9 +550,11 @@ function pickDate(d){
   else if(d>S.start)S.end=d;else{S.start=d;S.end=null;}
   S.slots={};S.openBarNight=null;renderCal();
 }
-const gsub=()=>document.getElementById('g-sub').textContent=S.guests+(S.guests===1?' person':' people')+' in your group';
-document.getElementById('g-minus').onclick=()=>{if(S.guests>1){S.guests--;document.getElementById('g-num').textContent=S.guests;gsub();}};
-document.getElementById('g-plus').onclick=()=>{if(S.guests<20){S.guests++;document.getElementById('g-num').textContent=S.guests;gsub();}};
+const gsub=()=>{S.guests=S.males+S.females;document.getElementById('gm-num').textContent=S.males;document.getElementById('gf-num').textContent=S.females;document.getElementById('g-sub').textContent=S.guests+(S.guests===1?' person':' people')+' in your group';};
+document.getElementById('gm-minus').onclick=()=>{if(S.males>0&&S.guests>1){S.males--;gsub();}};
+document.getElementById('gm-plus').onclick=()=>{if(S.guests<20){S.males++;gsub();}};
+document.getElementById('gf-minus').onclick=()=>{if(S.females>0&&S.guests>1){S.females--;gsub();}};
+document.getElementById('gf-plus').onclick=()=>{if(S.guests<20){S.females++;gsub();}};
 document.getElementById('btn-s1').onclick=()=>show('s2');
 document.getElementById('back-s2').onclick=()=>show('s1');
 document.getElementById('back-s3').onclick=()=>show('s2');
@@ -696,14 +699,14 @@ function renderPay(){
   document.getElementById('pay-summary').innerHTML=r;document.getElementById('pay-total').textContent=total();
 }
 document.getElementById('btn-pay').onclick=()=>{
-  const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim();
-  if(!name||!email){alert('Please fill in your name and email.');return;}
+  const name=document.getElementById('pay-name').value.trim(),email=document.getElementById('pay-email').value.trim(),phone=document.getElementById('pay-phone').value.trim(),zip=document.getElementById('pay-zip').value.trim();
+  if(!name||!email||!zip){alert('Please fill in your name, email and postcode (the clubs need it for the guest list).');return;}
   const ref='PD-'+iso(S.start)+'-'+iso(S.end)+'-'+S.guests+'pax-'+Date.now().toString(36).slice(-4).toUpperCase();
   const events=[];nights().forEach(d=>{const s=S.slots[d]||{};const dv=s.day?byId('day',s.day):null,nv=s.night?byId('night',s.night):null;
-    if(dv)events.push({date:iso(d),slot:'day',venue:dv.name,dj:dj(d,dv.id),time:dv.hrs,done:false});
+    if(dv)events.push({date:iso(d),slot:'day',venue:dv.name,venueId:dv.id,dj:dj(d,dv.id),time:dv.hrs,done:false});
     if(S.openBarNight===d)events.push({date:iso(d),slot:'open bar',venue:'Open bar, '+OB_LOC,dj:'',time:OB_HRS,done:false});
-    if(nv)events.push({date:iso(d),slot:'night',venue:nv.name,dj:dj(d,nv.id),time:nv.hrs,done:false});});
-  const payload={ref,product:'Vegas Planner',timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,total:'$'+total(),openBarNight:S.openBarNight?iso(S.openBarNight):'',events,itinerary:lineupText(),status:'Pending payment'};
+    if(nv)events.push({date:iso(d),slot:'night',venue:nv.name,venueId:nv.id,dj:dj(d,nv.id),time:nv.hrs,done:false});});
+  const payload={ref,product:'Vegas Planner',timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,males:S.males,females:S.females,zip,total:'$'+total(),openBarNight:S.openBarNight?iso(S.openBarNight):'',events,itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
   const fallback=()=>{window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&client_reference_id='+encodeURIComponent(ref);};
