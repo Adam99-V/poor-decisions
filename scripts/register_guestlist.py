@@ -55,36 +55,40 @@ def find_links():
     return out
 
 def pick_select(page, label_word):
-    """Return the quantity control inside the 'Guest List - Female' / 'Guest List - Male' card.
-    Handles native <select>, inputs, and custom dropdowns (role=combobox / listbox buttons)."""
+    """Return the quantity control for the 'Guest List - Female' / 'Guest List - Male' card.
+    Matches by position on the page: the nearest dropdown at or below the card heading."""
     handle = page.evaluate_handle(r"""(word) => {
-      const re = new RegExp('Guest\\s*List\\s*[-–]\\s*' + word, 'i');
-      const cands = [...document.querySelectorAll('select, input[type=number], [role=combobox], [role=listbox], button[aria-haspopup]')];
-      for (const c of cands) {
-        let el = c;
-        for (let i = 0; i < 10 && el; i++) {
-          el = el.parentElement; if (!el || el === document.body) break;
-          const txt = (el.innerText || el.textContent || '').replace(/\\s+/g, ' ');
-          if (txt.length > 900) break;
-          if (re.test(txt)) return c;
-        }
-      }
-      return null;
+      const re = new RegExp('Guest\\s*List\\s*[-–]\\s*' + word + '\\b', 'i');
+      const heads = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6,div,span,p,label,strong,b,td')]
+        .filter(e => e.children.length === 0 && re.test((e.textContent || '').replace(/\s+/g, ' ')));
+      if (!heads.length) return null;
+      const h = heads[0].getBoundingClientRect();
+      const cands = [...document.querySelectorAll('select, input[type=number], [role=combobox], [role=listbox], button[aria-haspopup]')]
+        .map(c => ({ c, r: c.getBoundingClientRect() }))
+        .filter(x => x.r.width > 0 && x.r.height > 0 && x.r.top >= h.top - 4 && x.r.top <= h.top + 400)
+        .sort((a, b) => (a.r.top - h.top) - (b.r.top - h.top));
+      return cands.length ? cands[0].c : null;
     }""", label_word)
     return handle.as_element()
 
 def dump_form(page):
-    """Diagnostic: list form controls (no customer data is on the page yet at this point)."""
+    """Diagnostic: list visible form controls and all dropdowns (no customer data is on the page at this point)."""
     info = page.evaluate(r"""() => {
       const out = [];
-      for (const el of document.querySelectorAll('select, input, button, [role=combobox], [role=listbox]')) {
+      for (const el of document.querySelectorAll('select, input, button, [role=combobox], [role=listbox], iframe')) {
+        if (el.tagName === 'INPUT' && el.type === 'hidden') continue;
+        const r = el.getBoundingClientRect();
         const near = (el.closest('div,li,tr,section') || el).innerText || '';
-        out.push([el.tagName, el.type || '', el.name || '', el.id || '', (el.className || '').toString().slice(0, 60),
-                  el.tagName === 'SELECT' ? el.options.length + ' opts' : '', near.replace(/\\s+/g, ' ').slice(0, 70)].join(' | '));
+        out.push([el.tagName, el.type || '', el.name || '', el.id || '', (el.className || '').toString().slice(0, 50),
+                  el.tagName === 'SELECT' ? el.options.length + ' opts' : '', el.tagName === 'IFRAME' ? (el.src || '').slice(0, 60) : '',
+                  'y=' + Math.round(r.top), near.replace(/\s+/g, ' ').slice(0, 60)].join(' | '));
       }
-      return { n: out.length, iframes: document.querySelectorAll('iframe').length, url: location.href, els: out.slice(0, 60) };
+      const heads = [...document.querySelectorAll('*')].filter(e => e.children.length === 0 && /Guest\s*List\s*[-–]\s*(Fe)?male/i.test(e.textContent || ''))
+        .map(e => e.tagName + ' y=' + Math.round(e.getBoundingClientRect().top) + ' ' + e.textContent.trim().slice(0, 40));
+      return { n: out.length, url: location.href, els: out.slice(0, 80), heads };
     }""")
-    log("DEBUG url:", info["url"], "| controls:", info["n"], "| iframes:", info["iframes"])
+    log("DEBUG url:", info["url"], "| visible controls:", info["n"])
+    log("DEBUG headings:", info["heads"])
     for line in info["els"]: log("   ", line)
 
 def set_qty(page, word, n):
