@@ -55,30 +55,54 @@ def find_links():
     return out
 
 def pick_select(page, label_word):
-    """Return the <select> inside the 'Guest List - Female' / 'Guest List - Male' card."""
-    handle = page.evaluate_handle("""(word) => {
-      const sels = [...document.querySelectorAll('select')];
-      for (const s of sels) {
-        let el = s;
-        for (let i = 0; i < 8 && el; i++) {
-          el = el.parentElement; if (!el) break;
-          const txt = (el.innerText || '').replace(/\\s+/g, ' ');
-          if (txt.length > 600) break;
-          if (new RegExp('Guest List\\\\s*-\\\\s*' + word, 'i').test(txt)) return s;
+    """Return the quantity control inside the 'Guest List - Female' / 'Guest List - Male' card.
+    Handles native <select>, inputs, and custom dropdowns (role=combobox / listbox buttons)."""
+    handle = page.evaluate_handle(r"""(word) => {
+      const re = new RegExp('Guest\\s*List\\s*[-–]\\s*' + word, 'i');
+      const cands = [...document.querySelectorAll('select, input[type=number], [role=combobox], [role=listbox], button[aria-haspopup]')];
+      for (const c of cands) {
+        let el = c;
+        for (let i = 0; i < 10 && el; i++) {
+          el = el.parentElement; if (!el || el === document.body) break;
+          const txt = (el.innerText || el.textContent || '').replace(/\\s+/g, ' ');
+          if (txt.length > 900) break;
+          if (re.test(txt)) return c;
         }
       }
       return null;
     }""", label_word)
     return handle.as_element()
 
+def dump_form(page):
+    """Diagnostic: list form controls (no customer data is on the page yet at this point)."""
+    info = page.evaluate(r"""() => {
+      const out = [];
+      for (const el of document.querySelectorAll('select, input, button, [role=combobox], [role=listbox]')) {
+        const near = (el.closest('div,li,tr,section') || el).innerText || '';
+        out.push([el.tagName, el.type || '', el.name || '', el.id || '', (el.className || '').toString().slice(0, 60),
+                  el.tagName === 'SELECT' ? el.options.length + ' opts' : '', near.replace(/\\s+/g, ' ').slice(0, 70)].join(' | '));
+      }
+      return { n: out.length, iframes: document.querySelectorAll('iframe').length, url: location.href, els: out.slice(0, 60) };
+    }""")
+    log("DEBUG url:", info["url"], "| controls:", info["n"], "| iframes:", info["iframes"])
+    for line in info["els"]: log("   ", line)
+
 def set_qty(page, word, n):
     sel = pick_select(page, word)
     if sel is None:
         if n == 0: return True
+        dump_form(page)
         raise RuntimeError(f"no {word} quantity selector on page")
-    try: sel.select_option(label=str(n))
-    except Exception: sel.select_option(value=str(n))
-    page.wait_for_timeout(600)
+    tag = sel.evaluate("el => el.tagName")
+    if tag == "SELECT":
+        try: sel.select_option(label=str(n))
+        except Exception: sel.select_option(value=str(n))
+    elif tag == "INPUT":
+        sel.fill(str(n))
+    else:                                   # custom dropdown: open it, click the option with the number
+        sel.click(); page.wait_for_timeout(400)
+        page.get_by_role("option", name=re.compile(r"^\s*" + str(n) + r"\s*$")).first.click()
+    page.wait_for_timeout(700)
     return True
 
 def fill(page, label_regex, fallback_css, value):
@@ -91,7 +115,7 @@ def click_checkbox(page, must_contain, want_checked):
     boxes = page.locator('input[type="checkbox"]')
     for i in range(boxes.count()):
         b = boxes.nth(i)
-        txt = b.evaluate("""el => { let e = el; for (let i=0;i<6&&e;i++){ e=e.parentElement; if(!e) break;
+        txt = b.evaluate(r"""el => { let e = el; for (let i=0;i<6&&e;i++){ e=e.parentElement; if(!e) break;
                  const t=(e.innerText||'').replace(/\\s+/g,' '); if(t.length>300) break; if(t.length>15) return t; } return ''; }""")
         if re.search(must_contain, txt or "", re.I):
             if b.is_checked() != want_checked: b.click()
@@ -115,6 +139,7 @@ def register(page, url, p):
     fill(page, r"postal|zip|post\s*code", 'input[name*="zip" i], input[name*="postal" i], input[id*="zip" i]', p.get("zip") or "00000")
     click_checkbox(page, r"sign up|offers|news", False)          # no marketing on the customer's behalf
     if not click_checkbox(page, r"accept|agree|terms", True):
+        dump_form(page)
         raise RuntimeError("terms checkbox not found")
     page.wait_for_timeout(400 + random.randint(0, 800))
     btn = page.get_by_role("button", name=re.compile(r"submit order|submit|complete", re.I)).first
