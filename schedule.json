@@ -48,15 +48,12 @@
     6
   ],
   "events": {
-    "2026-09-22": {
-      "omnia": "Mikey Francis"
-    },
     "2026-09-23": {
       "marquee": "Chris Garcia",
       "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-09-24": {
-      "mq-day": "Stephi K",
+      "tao-beach": "TAO Beach Daybreak Thursdays",
       "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
       "hakkasan": "DJ Bonics",
@@ -64,7 +61,7 @@
     },
     "2026-09-25": {
       "mq-day": "DJ Shift",
-      "omnia-day": "Lavern",
+      "omnia-day": "Justin Credible",
       "jewel": "Murphi Kennedy",
       "tao": "DJ CLA",
       "hakkasan": "DJ Boof",
@@ -74,9 +71,9 @@
     "2026-09-26": {
       "tao-beach": "Zedd",
       "mq-day": "Timmy Trumpet",
-      "jewel": "Phoreyz",
       "marquee": "ILLENIUM",
       "hakkasan": "Rick Ross",
+      "jewel": "Phoreyz",
       "tao": "Four Color Zack",
       "omnia": "Martin Garrix w/ Justin Mylo"
     },
@@ -188,18 +185,18 @@
     "2026-10-15": {
       "omnia-day": "Daycation Thursdays",
       "mq-day": "Marquee Dayclub Thursday",
-      "tao": "J-Nice",
+      "omnia": "Thursdays on the Terrace",
       "hakkasan": "DJ Tay James",
-      "omnia": "Thursdays on the Terrace"
+      "tao": "J-Nice"
     },
     "2026-10-16": {
       "mq-day": "DJ E-Rock",
       "omnia-day": "TWINSICK",
+      "hakkasan": "DJ Five",
+      "tao": "DJ CLA",
       "marquee": "Deorro",
       "jewel": "DJ Lucky Lou",
-      "tao": "DJ CLA",
-      "omnia": "Steve Aoki",
-      "hakkasan": "DJ Five"
+      "omnia": "Steve Aoki"
     },
     "2026-10-17": {
       "omnia-day": "Alesso",
@@ -512,8 +509,12 @@
     },
     "2026-12-15": {
       "omnia": "OMNIA Nightclub Tuesday"
+    },
+    "2026-12-16": {
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
+      "marquee": "Lowkey in the Library"
     }
   },
-  "_updated": "2026-09-22 13:00",
+  "_updated": "2026-09-23 13:14",
   "_source": "taogroup promoter page - Guest List (Passes) events only"
 }
