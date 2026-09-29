@@ -48,10 +48,6 @@
     6
   ],
   "events": {
-    "2026-09-28": {
-      "mq-day": "D-Miles",
-      "marquee": "Eric D-Lux"
-    },
     "2026-09-29": {
       "omnia": "Steve Aoki"
     },
@@ -63,36 +59,36 @@
       "mq-day": "Stephi K",
       "tao-beach": "TAO Beach Daybreak Thursdays",
       "omnia-day": "Daycation Thursdays",
+      "omnia": "Thursdays on the Terrace",
       "hakkasan": "Murda Beatz",
-      "tao": "Joe Maz",
-      "omnia": "Thursdays on the Terrace"
+      "tao": "Joe Maz"
     },
     "2026-10-02": {
-      "omnia-day": "Vandelux (DJ Set)",
       "mq-day": "SpydaT.E.K",
-      "tao-beach": "DJ Five",
-      "tao": "DJ Que",
-      "hakkasan": "Eric D-Lux",
+      "tao-beach": "DJ Que",
+      "omnia-day": "DJ Five",
       "jewel": "Eric Remy",
+      "tao": "DJ Two4our",
+      "hakkasan": "Eric D-Lux",
       "marquee": "Timmy Trumpet",
       "omnia": "Ti\u00ebsto"
     },
     "2026-10-03": {
-      "omnia-day": "Alesso",
-      "tao-beach": "Louis The Child",
-      "mq-day": "TWINSICK",
+      "mq-day": "Kid Conrad",
+      "omnia-day": "Chris Lake",
+      "tao-beach": "Alesso",
+      "omnia": "Steve Aoki",
+      "marquee": "Cedric Gervais",
       "hakkasan": "Wiz Khalifa",
       "tao": "DJ M.O.S",
-      "jewel": "DJ CLA",
-      "omnia": "Steve Aoki",
-      "marquee": "Cedric Gervais"
+      "jewel": "DJ CLA"
     },
     "2026-10-04": {
-      "omnia-day": "LEMA",
+      "tao-beach": "Eric Remy",
       "mq-day": "Brooke Evers",
-      "tao-beach": "DJ E-Rock",
-      "tao": "Ritual Sundays",
-      "omnia": "DESEO: Latin Sundays"
+      "omnia-day": "LEMA",
+      "omnia": "DESEO: Latin Sundays",
+      "tao": "Ritual Sundays"
     },
     "2026-10-05": {
       "marquee": "Crespo"
@@ -105,17 +101,17 @@
       "marquee": "LEMA"
     },
     "2026-10-08": {
-      "mq-day": "Marquee Dayclub Thursday",
       "tao-beach": "TAO Beach Daybreak Thursdays",
+      "mq-day": "Marquee Dayclub Thursday",
       "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
       "hakkasan": "DJ Bonics",
       "tao": "DJ Shift"
     },
     "2026-10-09": {
+      "mq-day": "Escobar",
       "tao-beach": "DJ Que",
-      "mq-day": "DJ Sourmilk",
-      "omnia-day": "Francis Mercier",
+      "omnia-day": "DJ Sourmilk",
       "hakkasan": "Chase B",
       "jewel": "DJ Buza",
       "tao": "Greg Lopez",
@@ -123,19 +119,19 @@
       "omnia": "Steve Aoki"
     },
     "2026-10-10": {
+      "mq-day": "Kid Conrad",
       "tao-beach": "Louis the Child",
-      "mq-day": "TYGA",
-      "omnia-day": "Kygo",
+      "omnia-day": "DJ Snake",
       "omnia": "DJ Pauly D",
       "jewel": "Yo Yolie",
-      "tao": "DJ Konflikt",
+      "tao": "Tacos &amp; Tequila Official Afterparty",
       "hakkasan": "Moneybagg Yo",
       "marquee": "TWINSICK"
     },
     "2026-10-11": {
-      "omnia-day": "OMNOM",
+      "tao-beach": "Eric Remy",
       "mq-day": "Party Pupils",
-      "tao-beach": "Justin Credible",
+      "omnia-day": "OMNOM",
       "omnia": "DESEO: Latin Sundays",
       "tao": "Ritual Sundays"
     },
@@ -150,33 +146,33 @@
       "marquee": "Lincoln Jesser"
     },
     "2026-10-15": {
-      "omnia-day": "Daycation Thursdays",
       "mq-day": "Marquee Dayclub Thursday",
-      "tao": "J-Nice",
+      "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
-      "hakkasan": "DJ Tay James"
+      "hakkasan": "DJ Tay James",
+      "tao": "J-Nice"
     },
     "2026-10-16": {
       "mq-day": "15grams",
       "omnia-day": "TWINSICK",
+      "hakkasan": "DJ Five",
       "jewel": "DJ Lucky Lou",
       "tao": "DJ CLA",
       "marquee": "Deorro",
-      "hakkasan": "DJ Five",
       "omnia": "Steve Aoki"
     },
     "2026-10-17": {
-      "mq-day": "Bijou",
       "omnia-day": "Alesso",
-      "omnia": "Zedd",
-      "hakkasan": "OHGEESY",
+      "mq-day": "Bijou",
       "marquee": "Danny Avila",
+      "jewel": "DJ Shift",
       "tao": "SpydaT.E.K",
-      "jewel": "DJ Shift"
+      "hakkasan": "OHGEESY",
+      "omnia": "Zedd"
     },
     "2026-10-18": {
-      "mq-day": "DJ Spider",
       "omnia-day": "Mikey Francis",
+      "mq-day": "DJ Spider",
       "omnia": "DESEO: Latin Sundays",
       "tao": "Ritual Sundays"
     },
@@ -193,8 +189,8 @@
     },
     "2026-10-22": {
       "mq-day": "Greg Lopez",
-      "tao": "DJ E-Rock",
       "hakkasan": "DJ Vice",
+      "tao": "DJ E-Rock",
       "omnia": "Thursdays on the Terrace"
     },
     "2026-10-23": {
@@ -202,21 +198,21 @@
       "jewel": "D-Miles",
       "tao": "AL TAMAR",
       "hakkasan": "DJ Boof",
-      "omnia": "Steve Aoki",
-      "marquee": "Benny Benassi"
+      "marquee": "Benny Benassi",
+      "omnia": "Steve Aoki"
     },
     "2026-10-24": {
       "mq-day": "Laidback Luke",
-      "tao": "TAO Nightclub Saturday",
-      "jewel": "DJ Lucky Lou",
       "hakkasan": "OHGEESY",
+      "jewel": "DJ Lucky Lou",
+      "tao": "TAO Nightclub Saturday",
       "marquee": "Jonas Blue",
       "omnia": "Zedd"
     },
     "2026-10-25": {
       "mq-day": "DJ Shift",
-      "omnia": "DESEO: Latin Sundays",
-      "tao": "Ritual Sundays"
+      "tao": "Ritual Sundays",
+      "omnia": "DESEO: Latin Sundays"
     },
     "2026-10-26": {
       "mq-day": "Cable",
@@ -226,30 +222,30 @@
       "omnia": "Alesso"
     },
     "2026-10-28": {
-      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
-      "marquee": "Cl\u00fcb De Combat"
+      "marquee": "Cl\u00fcb De Combat",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-10-29": {
       "mq-day": "Stephi K",
+      "hakkasan": "Benny Benassi",
       "omnia": "Thursdays on the Terrace",
-      "tao": "Murda Beatz",
-      "hakkasan": "Benny Benassi"
+      "tao": "Murda Beatz"
     },
     "2026-10-30": {
       "mq-day": "Dawn 2 Dusk",
       "jewel": "DJ Stretch",
-      "tao": "Simp City",
       "hakkasan": "BigXthaPlug",
+      "tao": "Simp City",
       "marquee": "Dawn 2 Dusk",
       "omnia": "Ti\u00ebsto"
     },
     "2026-10-31": {
       "mq-day": "Dawn 2 Dusk",
       "jewel": "Phoreyz",
-      "tao": "Justin Credible",
-      "hakkasan": "Mustard",
       "omnia": "Martin Garrix w/ Justin Mylo",
-      "marquee": "Dawn 2 Dusk"
+      "tao": "Justin Credible",
+      "marquee": "Dawn 2 Dusk",
+      "hakkasan": "Mustard"
     },
     "2026-11-01": {
       "mq-day": "Brooke Evers",
@@ -269,30 +265,30 @@
     },
     "2026-11-05": {
       "mq-day": "Marquee Dome Thursday",
-      "omnia": "OMNIA Nightclub Thursday",
+      "tao": "DJ CLA",
       "hakkasan": "Hakkasan Thursday",
-      "tao": "DJ CLA"
+      "omnia": "OMNIA Nightclub Thursday"
     },
     "2026-11-06": {
       "mq-day": "DJ Precise",
       "jewel": "DJ Shift",
       "tao": "DJ Phenom",
-      "omnia": "Martin Garrix w/ Justin Mylo",
       "marquee": "Timmy Trumpet",
-      "hakkasan": "Dre Sinatra"
+      "hakkasan": "Dre Sinatra",
+      "omnia": "Martin Garrix w/ Justin Mylo"
     },
     "2026-11-07": {
       "mq-day": "Afrojack",
+      "tao": "LAVO Party Brunch",
       "jewel": "Eric Remy",
-      "tao": "TAO Nightclub Saturday",
-      "hakkasan": "TYGA",
       "marquee": "TWINSICK",
+      "hakkasan": "TYGA",
       "omnia": "Chris Lake"
     },
     "2026-11-08": {
       "mq-day": "Party Pupils",
-      "omnia": "DESEO: Latin Sundays",
-      "tao": "Ritual Sundays"
+      "tao": "Ritual Sundays",
+      "omnia": "DESEO: Latin Sundays"
     },
     "2026-11-09": {
       "mq-day": "Eric Forbes",
@@ -313,19 +309,19 @@
     },
     "2026-11-13": {
       "mq-day": "DJ Dynamiq",
-      "omnia": "Steve Aoki",
-      "hakkasan": "DJ E-Rock",
-      "marquee": "Marquee Nightclub Friday",
+      "jewel": "DJ Buza",
       "tao": "Beatbreaker",
-      "jewel": "DJ Buza"
+      "omnia": "Steve Aoki",
+      "marquee": "Marquee Nightclub Friday",
+      "hakkasan": "DJ E-Rock"
     },
     "2026-11-14": {
       "mq-day": "Levi",
-      "marquee": "CID",
-      "jewel": "DJ Paradice",
-      "tao": "P3SO",
+      "omnia": "Alesso",
       "hakkasan": "OHGEESY",
-      "omnia": "Alesso"
+      "marquee": "CID",
+      "tao": "P3SO",
+      "jewel": "DJ Paradice"
     },
     "2026-11-15": {
       "mq-day": "DJ Konflikt",
@@ -339,35 +335,35 @@
       "omnia": "Mikey Francis"
     },
     "2026-11-18": {
-      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
-      "marquee": "LEMA"
+      "marquee": "LEMA",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-11-19": {
       "mq-day": "Marquee Dome Thursday",
-      "tao": "DJ E-Rock",
       "omnia": "Alesso",
-      "hakkasan": "DJ Pauly D"
+      "hakkasan": "DJ Pauly D",
+      "tao": "DJ E-Rock"
     },
     "2026-11-20": {
       "mq-day": "Marquee Dome Friday",
-      "jewel": "Murphi Kennedy",
-      "tao": "Greg Lopez",
-      "marquee": "Chris Lake",
+      "omnia": "Martin Garrix w/ Justin Mylo",
       "hakkasan": "TYGA",
-      "omnia": "Martin Garrix w/ Justin Mylo"
+      "marquee": "Chris Lake",
+      "tao": "Greg Lopez",
+      "jewel": "Murphi Kennedy"
     },
     "2026-11-21": {
       "mq-day": "Martin Garrix w/ Justin Mylo",
+      "marquee": "Fisher",
       "jewel": "Kid Conrad",
       "tao": "DJ CLA",
-      "marquee": "Fisher",
       "hakkasan": "Steve Aoki",
       "omnia": "Ti\u00ebsto"
     },
     "2026-11-22": {
       "mq-day": "Crespo",
-      "tao": "Ritual Sundays",
-      "omnia": "DESEO: Latin Sundays"
+      "omnia": "DESEO: Latin Sundays",
+      "tao": "Ritual Sundays"
     },
     "2026-11-23": {
       "marquee": "P3SO"
@@ -384,22 +380,22 @@
     },
     "2026-11-27": {
       "mq-day": "DJ CLA",
-      "tao": "Cable",
-      "marquee": "Greg Lopez",
+      "omnia": "Rob Guson",
       "hakkasan": "Mike Attack",
-      "omnia": "Rob Guson"
+      "marquee": "Greg Lopez",
+      "tao": "Cable"
     },
     "2026-11-28": {
       "mq-day": "Mike Attack",
       "marquee": "LEMA",
       "tao": "Mike Attack",
-      "omnia": "OMNIA Nightclub Saturday",
-      "hakkasan": "DJ Bonics"
+      "hakkasan": "DJ Bonics",
+      "omnia": "OMNIA Nightclub Saturday"
     },
     "2026-11-29": {
       "mq-day": "Brooke Evers",
-      "tao": "Ritual Sundays",
-      "omnia": "DESEO: Latin Sundays"
+      "omnia": "DESEO: Latin Sundays",
+      "tao": "Ritual Sundays"
     },
     "2026-11-30": {
       "marquee": "Lady T"
@@ -408,8 +404,8 @@
       "omnia": "Steve Aoki"
     },
     "2026-12-02": {
-      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
-      "marquee": "LEMA"
+      "marquee": "LEMA",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-12-03": {
       "mq-day": "Marquee Dome Thursday",
@@ -419,22 +415,22 @@
     },
     "2026-12-04": {
       "mq-day": "Marquee Dome Friday",
-      "tao": "DJ CLA",
+      "omnia": "Alesso",
       "hakkasan": "Hakkasan Friday",
       "marquee": "Marquee Nightclub Friday",
-      "omnia": "Alesso"
+      "tao": "DJ CLA"
     },
     "2026-12-05": {
       "mq-day": "Murda Beatz",
+      "omnia": "Zedd",
       "hakkasan": "Hakkasan Saturday",
       "marquee": "Marquee Nightclub Saturday",
-      "tao": "DJ Spider",
-      "omnia": "Zedd"
+      "tao": "DJ Spider"
     },
     "2026-12-06": {
       "mq-day": "Party Pupils",
-      "tao": "Ritual Sundays",
-      "omnia": "DESEO: Latin Sundays"
+      "omnia": "DESEO: Latin Sundays",
+      "tao": "Ritual Sundays"
     },
     "2026-12-07": {
       "marquee": "Marquee Mondays"
@@ -443,8 +439,8 @@
       "omnia": "OMNIA Nightclub Tuesday"
     },
     "2026-12-09": {
-      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
-      "marquee": "Lowkey in the Library"
+      "marquee": "Lowkey in the Library",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-12-10": {
       "mq-day": "Marquee Dome Thursday",
@@ -454,22 +450,22 @@
     },
     "2026-12-11": {
       "mq-day": "Marquee Dome Friday",
-      "marquee": "Marquee Nightclub Friday",
-      "tao": "Joe Maz",
+      "omnia": "TWINSICK",
       "hakkasan": "Hakkasan Friday",
-      "omnia": "TWINSICK"
+      "marquee": "Marquee Nightclub Friday",
+      "tao": "Joe Maz"
     },
     "2026-12-12": {
       "mq-day": "Marquee Dome Saturday",
+      "omnia": "Alesso",
       "hakkasan": "Hakkasan Saturday",
       "marquee": "Marquee Nightclub Saturday",
-      "tao": "Beatbreaker",
-      "omnia": "Alesso"
+      "tao": "Beatbreaker"
     },
     "2026-12-13": {
       "mq-day": "Marquee Dome Sunday",
-      "tao": "Ritual Sundays",
-      "omnia": "DESEO: Latin Sundays"
+      "omnia": "DESEO: Latin Sundays",
+      "tao": "Ritual Sundays"
     },
     "2026-12-14": {
       "marquee": "Marquee Mondays"
@@ -478,8 +474,8 @@
       "omnia": "Rob Guson"
     },
     "2026-12-16": {
-      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
-      "marquee": "Lowkey in the Library"
+      "marquee": "Lowkey in the Library",
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-12-17": {
       "mq-day": "Marquee Dome Thursday",
@@ -489,17 +485,17 @@
     },
     "2026-12-18": {
       "mq-day": "Marquee Dome Friday",
+      "omnia": "Steve Aoki",
       "hakkasan": "Hakkasan Friday",
       "marquee": "Marquee Nightclub Friday",
-      "tao": "DJ Buza",
-      "omnia": "Steve Aoki"
+      "tao": "DJ Buza"
     },
     "2026-12-19": {
       "mq-day": "Marquee Dome Saturday",
+      "marquee": "LAVO Party Brunch",
       "tao": "DJ Shift",
-      "marquee": "Marquee Nightclub Saturday",
-      "omnia": "ILLENIUM",
-      "hakkasan": "Hakkasan Saturday"
+      "hakkasan": "Hakkasan Saturday",
+      "omnia": "ILLENIUM"
     },
     "2026-12-20": {
       "mq-day": "Marquee Dome Sunday",
@@ -508,8 +504,11 @@
     },
     "2026-12-21": {
       "marquee": "Marquee Mondays"
+    },
+    "2026-12-22": {
+      "omnia": "Mikey Francis"
     }
   },
-  "_updated": "2026-09-28 16:21",
+  "_updated": "2026-09-29 14:32",
   "_source": "taogroup promoter page - Guest List (Passes) events only"
 }
