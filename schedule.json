@@ -48,17 +48,14 @@
     6
   ],
   "events": {
-    "2026-09-29": {
-      "omnia": "Steve Aoki"
-    },
     "2026-09-30": {
       "marquee": "L&#039;CORE",
       "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen"
     },
     "2026-10-01": {
+      "omnia-day": "Daycation Thursdays",
       "mq-day": "Stephi K",
       "tao-beach": "TAO Beach Daybreak Thursdays",
-      "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
       "hakkasan": "Murda Beatz",
       "tao": "Joe Maz"
@@ -66,7 +63,7 @@
     "2026-10-02": {
       "mq-day": "SpydaT.E.K",
       "tao-beach": "DJ Que",
-      "omnia-day": "DJ Five",
+      "omnia-day": "Vandelux (DJ Set)",
       "jewel": "Eric Remy",
       "tao": "DJ Two4our",
       "hakkasan": "Eric D-Lux",
@@ -101,8 +98,8 @@
       "marquee": "LEMA"
     },
     "2026-10-08": {
-      "tao-beach": "TAO Beach Daybreak Thursdays",
       "mq-day": "Marquee Dayclub Thursday",
+      "tao-beach": "TAO Beach Daybreak Thursdays",
       "omnia-day": "Daycation Thursdays",
       "omnia": "Thursdays on the Terrace",
       "hakkasan": "DJ Bonics",
@@ -122,10 +119,10 @@
       "mq-day": "Kid Conrad",
       "tao-beach": "Louis the Child",
       "omnia-day": "DJ Snake",
-      "omnia": "DJ Pauly D",
       "jewel": "Yo Yolie",
       "tao": "Tacos &amp; Tequila Official Afterparty",
       "hakkasan": "Moneybagg Yo",
+      "omnia": "DJ Pauly D",
       "marquee": "TWINSICK"
     },
     "2026-10-11": {
@@ -153,17 +150,17 @@
       "tao": "J-Nice"
     },
     "2026-10-16": {
-      "mq-day": "15grams",
+      "mq-day": "DJ E-Rock",
       "omnia-day": "TWINSICK",
+      "omnia": "Steve Aoki",
       "hakkasan": "DJ Five",
-      "jewel": "DJ Lucky Lou",
-      "tao": "DJ CLA",
       "marquee": "Deorro",
-      "omnia": "Steve Aoki"
+      "tao": "DJ CLA",
+      "jewel": "DJ Lucky Lou"
     },
     "2026-10-17": {
-      "omnia-day": "Alesso",
       "mq-day": "Bijou",
+      "omnia-day": "Alesso",
       "marquee": "Danny Avila",
       "jewel": "DJ Shift",
       "tao": "SpydaT.E.K",
@@ -241,9 +238,9 @@
     },
     "2026-10-31": {
       "mq-day": "Dawn 2 Dusk",
-      "jewel": "Phoreyz",
       "omnia": "Martin Garrix w/ Justin Mylo",
       "tao": "Justin Credible",
+      "jewel": "Phoreyz",
       "marquee": "Dawn 2 Dusk",
       "hakkasan": "Mustard"
     },
@@ -271,19 +268,19 @@
     },
     "2026-11-06": {
       "mq-day": "DJ Precise",
+      "marquee": "Timmy Trumpet",
       "jewel": "DJ Shift",
       "tao": "DJ Phenom",
-      "marquee": "Timmy Trumpet",
       "hakkasan": "Dre Sinatra",
       "omnia": "Martin Garrix w/ Justin Mylo"
     },
     "2026-11-07": {
       "mq-day": "Afrojack",
-      "tao": "LAVO Party Brunch",
       "jewel": "Eric Remy",
-      "marquee": "TWINSICK",
+      "tao": "TAO Nightclub Saturday",
       "hakkasan": "TYGA",
-      "omnia": "Chris Lake"
+      "omnia": "Chris Lake",
+      "marquee": "TWINSICK"
     },
     "2026-11-08": {
       "mq-day": "Party Pupils",
@@ -416,14 +413,14 @@
     "2026-12-04": {
       "mq-day": "Marquee Dome Friday",
       "omnia": "Alesso",
-      "hakkasan": "Hakkasan Friday",
+      "hakkasan": "DJ Bonics",
       "marquee": "Marquee Nightclub Friday",
       "tao": "DJ CLA"
     },
     "2026-12-05": {
       "mq-day": "Murda Beatz",
       "omnia": "Zedd",
-      "hakkasan": "Hakkasan Saturday",
+      "hakkasan": "Chase B",
       "marquee": "Marquee Nightclub Saturday",
       "tao": "DJ Spider"
     },
@@ -458,7 +455,7 @@
     "2026-12-12": {
       "mq-day": "Marquee Dome Saturday",
       "omnia": "Alesso",
-      "hakkasan": "Hakkasan Saturday",
+      "hakkasan": "Justin Credible",
       "marquee": "Marquee Nightclub Saturday",
       "tao": "Beatbreaker"
     },
@@ -486,7 +483,7 @@
     "2026-12-18": {
       "mq-day": "Marquee Dome Friday",
       "omnia": "Steve Aoki",
-      "hakkasan": "Hakkasan Friday",
+      "hakkasan": "DJ E-Rock",
       "marquee": "Marquee Nightclub Friday",
       "tao": "DJ Buza"
     },
@@ -494,7 +491,7 @@
       "mq-day": "Marquee Dome Saturday",
       "marquee": "LAVO Party Brunch",
       "tao": "DJ Shift",
-      "hakkasan": "Hakkasan Saturday",
+      "hakkasan": "Nitrane",
       "omnia": "ILLENIUM"
     },
     "2026-12-20": {
@@ -507,8 +504,12 @@
     },
     "2026-12-22": {
       "omnia": "Mikey Francis"
+    },
+    "2026-12-23": {
+      "hakkasan": "R&amp;Bae Wednesdays w/ DJ Franzen",
+      "marquee": "Lowkey in the Library"
     }
   },
-  "_updated": "2026-09-29 14:32",
+  "_updated": "2026-09-30 14:30",
   "_source": "taogroup promoter page - Guest List (Passes) events only"
 }
