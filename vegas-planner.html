@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-SH4DX6SCGG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SH4DX6SCGG');</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
 <title>Build Your Vegas Nights — Poor Decisions</title>
@@ -709,6 +711,7 @@ document.getElementById('btn-pay').onclick=()=>{
   const payload={ref,product:'Vegas Planner',timestamp:new Date().toISOString(),name,email,phone,dates:lblS(S.start)+' - '+lblS(S.end)+' '+D(S.end).getUTCFullYear(),nights:nights().length,guests:S.guests,males:S.males,females:S.females,zip,total:'$'+total(),openBarNight:S.openBarNight?iso(S.openBarNight):'',events,itinerary:lineupText(),status:'Pending payment'};
   fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)}).catch(()=>{});
   fbq&&fbq('track','Purchase',{value:total(),currency:'USD',num_items:S.guests});
+  window.gtag&&gtag('event','begin_checkout',{value:total(),currency:'USD',items:[{item_name:'Vegas Planner',quantity:S.guests}]});
   const fallback=()=>{window.location.href=STRIPE_LINK+'?prefilled_email='+encodeURIComponent(email)+'&client_reference_id='+encodeURIComponent(ref);};
   fetch(SHEET_URL+'?action=checkout&product=Vegas%20Planner&qty='+S.guests+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(stripeDesc())+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else fallback();}).catch(fallback);
 };

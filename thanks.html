@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>You're in — Poor Decisions</title><meta name="robots" content="noindex"><link rel="icon" href="poor-decisions-favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
+<!DOCTYPE html><html lang="en"><head>
+<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-SH4DX6SCGG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SH4DX6SCGG');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>You're in — Poor Decisions</title><meta name="robots" content="noindex"><link rel="icon" href="poor-decisions-favicon.ico"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--pink:#FF2D78;--black:#111;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--gold:#c47900;--green:#0a8f4a}
 body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);overflow-x:hidden}
@@ -214,6 +216,7 @@ fbq('init','3589603211187590');fbq('track','PageView');
 const GADS_SEND_TO=''; // e.g. 'AW-1234567890/AbCdEfGhIjKlMnOp' from Google Ads conversion tag setup
 const q=new URLSearchParams(location.search);const ref=q.get('ref')||'';const val=+(q.get('v')||0);
 window.fbq&&fbq('track','Purchase',{value:val||60,currency:'USD',content_name:'Poor Decisions booking'});
+window.gtag&&gtag('event','purchase',{transaction_id:ref,value:val||60,currency:'USD'});
 if(window.gtag&&GADS_SEND_TO){gtag('event','conversion',{send_to:GADS_SEND_TO,value:val||60,currency:'USD',transaction_id:ref});}
 </script>
 </body></html>
