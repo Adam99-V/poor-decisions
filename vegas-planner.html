@@ -28,6 +28,43 @@ html,body{height:100%;background:#f0f0f0;font-family:'Inter',sans-serif;color:va
 @media(max-width:899px){#side{display:none}}
 .screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;flex-direction:column;background:#fff}
 .screen.on{display:flex}
+/* mode chooser: full-screen split */
+#mode{position:fixed;inset:0;z-index:1000;display:none;background:#fff}
+#mode.on{display:flex}
+@media(max-width:699px){#mode.on{flex-direction:column}}
+.mode-p{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 40px;cursor:pointer;position:relative;overflow:hidden;background:#fff;transition:flex .55s cubic-bezier(.65,0,.35,1),background .3s,color .3s;min-height:0}
+.mode-p+.mode-p{border-left:1px solid var(--border)}
+@media(max-width:699px){.mode-p{padding:36px 28px}.mode-p+.mode-p{border-left:none;border-top:1px solid var(--border)}}
+.mode-k{font:800 11px/1 'Inter';letter-spacing:3px;text-transform:uppercase;color:var(--pk);margin-bottom:14px}
+.mode-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,84px);line-height:.9;color:var(--black);margin-bottom:16px;transition:color .3s}
+.mode-s{font:400 15px/1.6 'Inter';color:var(--mid);max-width:360px;transition:color .3s}
+.mode-cta{margin-top:26px;display:inline-flex;align-items:center;gap:10px;font:800 12px/1 'Inter';letter-spacing:2px;text-transform:uppercase;color:var(--black);transition:color .3s}
+.mode-cta span{display:inline-block;transition:transform .3s}
+.mode-p:hover .mode-cta span{transform:translateX(6px)}
+.mode-p.guide:hover,.mode-p.guide.pick{background:var(--black)}
+.mode-p.pro:hover,.mode-p.pro.pick{background:var(--pk)}
+.mode-p.guide:hover .mode-t,.mode-p.guide:hover .mode-s,.mode-p.guide:hover .mode-cta,.mode-p.guide.pick .mode-t,.mode-p.guide.pick .mode-s,.mode-p.guide.pick .mode-cta{color:#fff}
+.mode-p.pro:hover .mode-t,.mode-p.pro:hover .mode-s,.mode-p.pro:hover .mode-cta,.mode-p.pro:hover .mode-k,.mode-p.pro.pick .mode-t,.mode-p.pro.pick .mode-s,.mode-p.pro.pick .mode-cta,.mode-p.pro.pick .mode-k{color:#fff}
+.mode-p.guide:hover .mode-k,.mode-p.guide.pick .mode-k{color:var(--pk)}
+#mode.choosing .mode-p.pick{flex:40}#mode.choosing .mode-p:not(.pick){flex:0.0001;padding-left:0;padding-right:0;opacity:0}
+#mode.choosing .mode-p{pointer-events:none}
+#mode.fade{opacity:0;transition:opacity .35s}
+.mode-back{position:absolute;top:18px;left:18px;z-index:2;background:rgba(255,255,255,.9);border:1px solid var(--border);border-radius:999px;padding:9px 14px;font:700 11px/1 'Inter';letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--black)}
+.mode-logo{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--black);z-index:2;pointer-events:none}
+.mode-logo em{color:var(--pk);font-style:normal}
+@media(max-width:699px){.mode-logo{display:none}}
+/* quiz */
+.q-dots{display:flex;gap:6px;padding:0 20px 18px}.q-dot{height:4px;flex:1;border-radius:2px;background:var(--border)}.q-dot.on{background:var(--pk)}
+.q-card{display:none;padding:0 20px}.q-card.on{display:block}
+.q-opts{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.q-opt{border:1.5px solid var(--border);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;background:#fff;text-align:left;transition:border-color .15s,background .15s,transform .1s}
+.q-opt:hover{border-color:var(--black)}.q-opt:active{transform:scale(.99)}
+.q-opt.on{border-color:var(--pk);background:rgba(255,45,120,.06)}
+.q-ic{font-size:22px;width:30px;text-align:center;flex-shrink:0}
+.q-opt b{display:block;font:700 15px/1.2 'Inter';color:var(--black)}.q-opt small{display:block;font:400 12px/1.4 'Inter';color:var(--mid);margin-top:3px}
+.q-hint{font:400 12px/1.5 'Inter';color:var(--mid);margin-top:10px}
+.built{margin:0 20px 14px;background:var(--black);color:#fff;border-radius:14px;padding:14px 16px;font:400 13px/1.5 'Inter';display:none;align-items:center;gap:12px}
+.built.on{display:flex}.built b{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--pk);display:block;line-height:1}
 
 nav{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50;gap:10px}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;text-decoration:none;color:var(--black);white-space:nowrap}
@@ -268,6 +305,22 @@ h2.stitle em{color:var(--pk);font-style:normal}
 </head>
 <body>
 
+<div id="mode">
+  <button class="mode-back" id="mode-back">‹ Dates</button>
+  <div class="mode-logo">POOR<em>DECISIONS</em></div>
+  <div class="mode-p guide" id="mode-guide">
+    <div class="mode-k">New to Vegas?</div>
+    <div class="mode-t">Guide<br>me.</div>
+    <div class="mode-s">Answer four quick questions and we'll build your week around what you're into. You can change anything after.</div>
+    <div class="mode-cta">Build it for me <span>→</span></div>
+  </div>
+  <div class="mode-p pro" id="mode-pro">
+    <div class="mode-k">Done this before?</div>
+    <div class="mode-t">I'm a<br>Vegas pro.</div>
+    <div class="mode-s">I know my clubs. Show me what's open on my dates and let me pick every night myself.</div>
+    <div class="mode-cta">Let me choose <span>→</span></div>
+  </div>
+</div>
 <div id="app">
 
 <!-- S1 DATES -->
@@ -308,6 +361,20 @@ h2.stitle em{color:var(--pk);font-style:normal}
 </div>
 
 <!-- S2 ITINERARY -->
+<div class="screen" id="sq">
+  <nav>
+    <button class="nav-back" id="back-sq">‹</button>
+    <span class="nav-mid" id="q-count">Question 1 of 4</span>
+    <a href="index.html" class="site-link">Site</a>
+  </nav>
+  <div style="padding:24px 20px 14px">
+    <h2 class="stitle" id="q-title">What are you <em>into?</em></h2>
+    <p class="ssub" id="q-sub">Pick as many as you like.</p>
+  </div>
+  <div class="q-dots" id="q-dots"></div>
+  <div id="q-cards" style="flex:1;overflow-y:auto;padding-bottom:20px"></div>
+  <div class="footer"><button class="btn-main" id="btn-q" disabled>Next</button></div>
+</div>
 <div class="screen" id="s2">
   <nav>
     <button class="nav-back" id="back-s2">‹</button>
@@ -318,6 +385,7 @@ h2.stitle em{color:var(--pk);font-style:normal}
     <h2 class="stitle">Fill your <em>slots.</em></h2>
     <p class="ssub">Tap each day to pick a dayclub and a nightclub. Only venues with guest list availability that night are shown.</p>
   </div>
+  <div class="built" id="built"><div><b>Built for you</b>From your answers. Tap any slot to swap it, or tap a day to add more.</div></div>
   <div id="itinerary" style="padding-bottom:20px"></div>
   <div id="pbar">
     <div><div class="pb-big" id="pb-big">0 events</div><div class="pb-note" id="pb-note">Add at least one to continue</div></div>
@@ -455,6 +523,11 @@ const STRIPE_LINK='https://book.stripe.com/00weVf67u0useWAgMJcMM00';
 const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
 const PLANNER_URL='https://poordecisions.co/vegas-planner.html';
 const PRICE=49;
+var _t0=Date.now(),_lastStep=0;
+function track(name,params){params=params||{};params.seconds=Math.round((Date.now()-_t0)/1000);
+  try{window.fbq&&fbq('trackCustom',name,params);}catch(e){}
+  try{window.gtag&&gtag('event',name,params);}catch(e){}}
+const STEP_NAMES={s1:'1 dates and guests',sq:'1b guided questions',s2:'2 build nights',s3:'3 open bar night',s4:'4 package reveal',s5:'5 almost there',s6:'6 confirmation'};
 const EST={night:60,day:50,bar:49}; // "booked separately" estimates per person
 const OB_HRS='9–11pm',OB_LOC='Fremont Street',OB_DAYS=[0,3,4,5,6]; // open bar Wed–Sun
 const NH='10:30pm–4am',DH='11am–6pm';
@@ -514,6 +587,7 @@ const I={pin:'<svg viewBox="0 0 24 24"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0
 const info=(v,x)=>`<div class="tile-info"><div class="tile-name">${v.name}</div><div class="tile-rule"></div><div class="tile-row">${I.pin}${v.hotel}</div><div class="tile-row">${I.clk}${v.hrs}</div>${x?`<div class="tile-row dj">${I.hp}${x}</div>`:`<div class="tile-row">${I.mu}${v.genre}</div>`}</div>`;
 
 function show(id){
+  const stepNo={s1:1,sq:1.5,s2:2,s3:3,s4:4,s5:5,s6:6}[id]||0;if(stepNo>_lastStep){_lastStep=stepNo;track('planner_step',{step:stepNo,step_name:STEP_NAMES[id]||id,guests:S.guests,nights:nights().length,mode:S.mode||''});}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
   const el=document.getElementById(id);el.classList.add('on');el.scrollTop=0;
   document.getElementById('pbar').className=id==='s2'?'show':'';
@@ -557,8 +631,97 @@ document.getElementById('gm-minus').onclick=()=>{if(S.males>0&&S.guests>1){S.mal
 document.getElementById('gm-plus').onclick=()=>{if(S.guests<20){S.males++;gsub();}};
 document.getElementById('gf-minus').onclick=()=>{if(S.females>0&&S.guests>1){S.females--;gsub();}};
 document.getElementById('gf-plus').onclick=()=>{if(S.guests<20){S.females++;gsub();}};
-document.getElementById('btn-s1').onclick=()=>show('s2');
-document.getElementById('back-s2').onclick=()=>show('s1');
+document.getElementById('btn-s1').onclick=()=>openMode();
+_lastStep=1;track('planner_step',{step:1,step_name:STEP_NAMES.s1,guests:S.guests,nights:0});
+
+// ===== MODE CHOOSER =====
+const modeEl=document.getElementById('mode');
+function openMode(){modeEl.className='on';document.getElementById('mode-guide').classList.remove('pick');document.getElementById('mode-pro').classList.remove('pick');track('planner_mode_shown',{});}
+function pickMode(which){
+  S.mode=which;track('planner_mode',{mode:which});
+  document.getElementById(which==='guide'?'mode-guide':'mode-pro').classList.add('pick');
+  modeEl.classList.add('choosing');
+  setTimeout(()=>{if(which==='guide'){startQuiz();show('sq');}else{document.getElementById('built').classList.remove('on');show('s2');}},560);
+  setTimeout(()=>{modeEl.classList.add('fade');},620);
+  setTimeout(()=>{modeEl.className='';},1000);
+}
+document.getElementById('mode-guide').onclick=()=>pickMode('guide');
+document.getElementById('mode-pro').onclick=()=>pickMode('pro');
+document.getElementById('mode-back').onclick=()=>{modeEl.className='';show('s1');};
+
+// ===== GUIDED QUIZ =====
+const QUIZ=[
+  {id:'music',title:'What are you <em>into?</em>',sub:'Pick as many as you like.',multi:true,opts:[
+    {v:'edm',ic:'🎛️',b:'EDM & house',s:'Big drops, big rooms, confetti'},
+    {v:'hiphop',ic:'🎤',b:'Hip hop & R&B',s:'Bottles, bangers, sing-alongs'},
+    {v:'latin',ic:'🔥',b:'Latin & reggaeton',s:'Open format nights with a Latin lean'},
+    {v:'mix',ic:'🎲',b:'Surprise me',s:'A bit of everything across the week'}]},
+  {id:'daynight',title:'Days, nights or <em>both?</em>',sub:'Be honest about your stamina.',multi:false,opts:[
+    {v:'pool',ic:'🏖️',b:'Mostly pool parties',s:'Dayclubs every day, nightclubs at the weekend'},
+    {v:'night',ic:'🌙',b:'Mostly nightclubs',s:'Sleep in, go hard after dark'},
+    {v:'both',ic:'⚡',b:'Both, every day',s:'Pool by day, club by night, no mercy'},
+    {v:'rest',ic:'🛌',b:'Both, but give me a lie-in',s:'Full days, with a slower day after the open bar'}]},
+  {id:'vibe',title:'Pick your <em>vibe.</em>',sub:'This decides which rooms we put you in.',multi:false,opts:[
+    {v:'big',ic:'🏟️',b:'Biggest names, biggest rooms',s:'Omnia, XS, Hakkasan, Zouk, Encore Beach'},
+    {v:'intimate',ic:'🍸',b:'Stylish and a bit smaller',s:'Jewel, Marquee, TAO, Marquee Dayclub'},
+    {v:'wild',ic:'🤪',b:'Wild and messy, don\'t care who\'s playing',s:'Just put us where the party is'}]},
+  {id:'group',title:'Who\'s <em>coming?</em>',sub:'Helps us pick the right nights.',multi:false,opts:[
+    {v:'stag',ic:'🍻',b:'Stag / bachelor party',s:''},
+    {v:'hen',ic:'💃',b:'Hen / bachelorette',s:''},
+    {v:'birthday',ic:'🎂',b:'Birthday trip',s:''},
+    {v:'mates',ic:'🫶',b:'Just a group of mates',s:''}]}
+];
+let qi=0,qa={};
+function startQuiz(){qi=0;qa={};renderQuiz();}
+function renderQuiz(){
+  const q=QUIZ[qi];document.getElementById('q-count').textContent='Question '+(qi+1)+' of '+QUIZ.length;
+  document.getElementById('q-title').innerHTML=q.title;document.getElementById('q-sub').textContent=q.sub;
+  document.getElementById('q-dots').innerHTML=QUIZ.map((_,i)=>'<div class="q-dot'+(i<=qi?' on':'')+'"></div>').join('');
+  const sel=qa[q.id]||[];
+  document.getElementById('q-cards').innerHTML='<div class="q-card on"><div class="q-opts">'+q.opts.map(o=>'<button class="q-opt'+(sel.includes(o.v)?' on':'')+'" data-v="'+o.v+'"><span class="q-ic">'+o.ic+'</span><span><b>'+o.b+'</b>'+(o.s?'<small>'+o.s+'</small>':'')+'</span></button>').join('')+'</div>'+(q.multi?'<div class="q-hint">Tap more than one if you want.</div>':'')+'</div>';
+  document.querySelectorAll('.q-opt').forEach(btn=>btn.onclick=()=>{
+    const v=btn.dataset.v;let cur=qa[q.id]||[];
+    if(q.multi){cur=cur.includes(v)?cur.filter(x=>x!==v):cur.concat(v);if(v==='mix'&&cur.includes('mix'))cur=['mix'];else cur=cur.filter(x=>x!=='mix');}
+    else cur=[v];
+    qa[q.id]=cur;renderQuiz();
+    if(!q.multi)setTimeout(nextQ,220);
+  });
+  const b=document.getElementById('btn-q');b.disabled=!(sel.length);b.textContent=qi===QUIZ.length-1?'Build my week':'Next';
+}
+function nextQ(){
+  const q=QUIZ[qi];if(!(qa[q.id]||[]).length)return;
+  track('planner_quiz',{question:q.id,answer:(qa[q.id]||[]).join('+')});
+  if(qi<QUIZ.length-1){qi++;renderQuiz();}else{buildWeek();}
+}
+document.getElementById('btn-q').onclick=nextQ;
+document.getElementById('back-sq').onclick=()=>{if(qi>0){qi--;renderQuiz();}else{show('s1');openMode();}};
+
+// Turn the answers into a lineup. Scores every available venue per night, avoids repeats, then opens S2 for edits.
+const GENRE={edm:['omnia','xs','zouk','omnia-day','mq-day','encore-bc'],hiphop:['jewel','hakkasan','tao-beach','tao','wet-rep'],latin:['tao','marquee','tao-beach','wet-rep']};
+const VIBE={big:['omnia','xs','hakkasan','zouk','omnia-day','encore-bc','wet-rep'],intimate:['jewel','marquee','tao','mq-day','tao-beach']};
+function buildWeek(){
+  const music=qa.music||['mix'],dn=(qa.daynight||['both'])[0],vibe=(qa.vibe||['wild'])[0];
+  S.slots={};S.openBarNight=null;
+  const ns=nights();
+  // open bar: first eligible night (Wed to Sun), prefer the first weekend night
+  const ob=ns.filter(d=>OB_DAYS.includes(getDOW(d)));S.openBarNight=ob.length?(ob.find(d=>[5,6].includes(getDOW(d)))||ob[0]):null;
+  const used={};
+  const score=(v,d)=>{let sc=1;if(!music.includes('mix'))music.forEach(g=>{if((GENRE[g]||[]).includes(v.id))sc+=3;});if(VIBE[vibe]&&VIBE[vibe].includes(v.id))sc+=2;sc-=(used[v.id]||0)*2.5;if(dj(d,v.id))sc+=.5;return sc;};
+  const best=(list,d)=>{const c=list.filter(v=>avail(v,d)).map(v=>({v,sc:score(v,d)})).sort((a,b)=>b.sc-a.sc);return c.length?c[0].v:null;};
+  ns.forEach((d,i)=>{
+    const dow=getDOW(d),wknd=[5,6].includes(dow),s={};
+    const afterBar=S.openBarNight!==null&&d===S.openBarNight+1;
+    const wantDay=dn==='pool'||dn==='both'||(dn==='rest'&&!afterBar);
+    const wantNight=dn==='night'||dn==='both'||dn==='rest'||(dn==='pool'&&wknd);
+    if(wantDay){const v=best(DC,d);if(v){s.day=v.id;used[v.id]=(used[v.id]||0)+1;}}
+    if(wantNight){const v=best(NC,d);if(v){s.night=v.id;used[v.id]=(used[v.id]||0)+1;}}
+    if(s.day||s.night)S.slots[d]=s;
+  });
+  track('planner_built',{nights:ns.length,filled:Object.keys(S.slots).length,music:music.join('+'),daynight:dn,vibe:vibe});
+  document.getElementById('built').classList.add('on');
+  show('s2');
+}
+document.getElementById('back-s2').onclick=()=>{show('s1');openMode();};
 document.getElementById('back-s3').onclick=()=>show('s2');
 document.getElementById('back-s4').onclick=()=>show('s3');
 document.getElementById('back-s5').onclick=()=>show('s4');
