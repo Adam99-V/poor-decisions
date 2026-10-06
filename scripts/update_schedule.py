@@ -5,9 +5,8 @@ and writes schedule.json with:
   - per-venue weekday availability  (e.g. "omnia": [0,2,4,5,6])
   - events: { "YYYY-MM-DD": { "omnia": "DJ Name", ... } }
 """
-import re, json, sys, time, html as htmlmod
+import re, json, sys, html as htmlmod
 from datetime import datetime, timedelta
-from urllib.request import urlopen, Request
 
 URL=("https://tickets.taogroup.com/promoter/6590bba0-bfe4-4f86-b3c0-7d550ad120a1"
      "?utm_source=promoter&utm_id=6590bba0299c4fd084f67d550ad120a1")
@@ -21,27 +20,55 @@ def clean_dj(title):
     t=re.sub(r"\s+(at|@)\s+.*$","",t,flags=re.I)
     return t[:40]
 
+# ===== Cloudflare-aware page fetch (real Chrome, waits for the "Performing security verification" page to clear) =====
 UA=("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/128.0.0.0 Safari/537.36")
-HEADERS={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-         "Accept-Language":"en-US,en;q=0.9","Cache-Control":"no-cache","Pragma":"no-cache"}
 
-def fetch(url):
-    """GET with a real browser fingerprint, 4 attempts with backoff. Prints the HTTP status on failure."""
-    last=None
-    for attempt in range(4):
+def _new_browser(pw):
+    args=["--disable-blink-features=AutomationControlled","--no-first-run","--no-default-browser-check"]
+    for channel in ("chrome","chromium"):
         try:
-            r=urlopen(Request(url,headers=HEADERS),timeout=60)
-            body=r.read().decode("utf-8","ignore")
-            if len(body)>5000: return body
-            last=f"short response ({len(body)} bytes)"
+            if channel=="chrome": return pw.chromium.launch(channel="chrome",headless=True,args=args)
+            return pw.chromium.launch(headless=True,args=args)
         except Exception as e:
-            last=f"{type(e).__name__}: {str(e)[:120]}"
-        print(f"fetch attempt {attempt+1} failed: {last}"); time.sleep(15*(attempt+1))
-    print("Could not fetch the promoter page, keeping yesterday's schedule.json"); sys.exit(1)
+            print(f"launch {channel} failed: {type(e).__name__}")
+    raise RuntimeError("no browser available")
+
+def _new_context(browser):
+    ctx=browser.new_context(user_agent=UA,viewport={"width":1366,"height":850},locale="en-US",
+                            timezone_id="America/Los_Angeles",
+                            extra_http_headers={"Accept-Language":"en-US,en;q=0.9"})
+    ctx.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined});"
+                        "window.chrome={runtime:{}};"
+                        "Object.defineProperty(navigator,'languages',{get:()=>['en-US','en']});"
+                        "Object.defineProperty(navigator,'plugins',{get:()=>[1,2,3,4,5]});")
+    return ctx
+
+def wait_past_cloudflare(page, ok_text, timeout_s=75):
+    """Return True once the page shows real content (ok_text), False if the challenge never clears."""
+    import time as _t
+    t0=_t.time()
+    while _t.time()-t0<timeout_s:
+        try: body=page.inner_text("body")
+        except Exception: body=""
+        if ok_text.lower() in body.lower(): return True
+        _t.sleep(2)
+    return False
+
+def fetch_html(url, ok_text):
+    """Open url in a real browser, get past Cloudflare, return the full HTML."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b=_new_browser(pw); ctx=_new_context(b); page=ctx.new_page()
+        page.goto(url,wait_until="domcontentloaded",timeout=60000)
+        ok=wait_past_cloudflare(page, ok_text)
+        if not ok:
+            snippet=(page.inner_text("body") or "")[:300].replace("\n"," ")
+            b.close(); raise RuntimeError("Cloudflare challenge did not clear. Page said: "+snippet)
+        html=page.content(); b.close(); return html
 
 def main():
-    html=fetch(URL)
+    html=fetch_html(URL,"Guest List")
     text=htmlmod.unescape(re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",html)))
     venues="|".join(re.escape(v) for v in VENUE_MAP)
     pat=re.compile(r"Guest List - (.{0,120}?)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), "

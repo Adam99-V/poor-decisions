@@ -27,14 +27,59 @@ TAO = {"omnia": "OMNIA Nightclub", "hakkasan": "Hakkasan Nightclub", "tao": "TAO
        "marquee": "Marquee Nightclub", "jewel": "JEWEL Nightclub", "omnia-day": "OMNIA Dayclub",
        "mq-day": "Marquee Dayclub", "tao-beach": "TAO Beach Dayclub", "wet-rep": "Palm Tree Beach Club"}
 
-UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
-      "Chrome/128.0.0.0 Safari/537.36")
 
 def log(*a): print(*a, flush=True)
 
+# ===== Cloudflare-aware page fetch (real Chrome, waits for the "Performing security verification" page to clear) =====
+UA=("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/128.0.0.0 Safari/537.36")
+
+def _new_browser(pw):
+    args=["--disable-blink-features=AutomationControlled","--no-first-run","--no-default-browser-check"]
+    for channel in ("chrome","chromium"):
+        try:
+            if channel=="chrome": return pw.chromium.launch(channel="chrome",headless=True,args=args)
+            return pw.chromium.launch(headless=True,args=args)
+        except Exception as e:
+            print(f"launch {channel} failed: {type(e).__name__}")
+    raise RuntimeError("no browser available")
+
+def _new_context(browser):
+    ctx=browser.new_context(user_agent=UA,viewport={"width":1366,"height":850},locale="en-US",
+                            timezone_id="America/Los_Angeles",
+                            extra_http_headers={"Accept-Language":"en-US,en;q=0.9"})
+    ctx.add_init_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined});"
+                        "window.chrome={runtime:{}};"
+                        "Object.defineProperty(navigator,'languages',{get:()=>['en-US','en']});"
+                        "Object.defineProperty(navigator,'plugins',{get:()=>[1,2,3,4,5]});")
+    return ctx
+
+def wait_past_cloudflare(page, ok_text, timeout_s=75):
+    """Return True once the page shows real content (ok_text), False if the challenge never clears."""
+    import time as _t
+    t0=_t.time()
+    while _t.time()-t0<timeout_s:
+        try: body=page.inner_text("body")
+        except Exception: body=""
+        if ok_text.lower() in body.lower(): return True
+        _t.sleep(2)
+    return False
+
+def fetch_html(url, ok_text):
+    """Open url in a real browser, get past Cloudflare, return the full HTML."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b=_new_browser(pw); ctx=_new_context(b); page=ctx.new_page()
+        page.goto(url,wait_until="domcontentloaded",timeout=60000)
+        ok=wait_past_cloudflare(page, ok_text)
+        if not ok:
+            snippet=(page.inner_text("body") or "")[:300].replace("\n"," ")
+            b.close(); raise RuntimeError("Cloudflare challenge did not clear. Page said: "+snippet)
+        html=page.content(); b.close(); return html
+
 def find_links():
     """Scrape the promoter page -> {(tao_venue_name, 'YYYY-MM-DD'): tickets_url}. Guest List events only."""
-    raw = urlopen(Request(PROMOTER_URL, headers={"User-Agent": UA}), timeout=60).read().decode("utf-8", "ignore")
+    raw = fetch_html(PROMOTER_URL, "Guest List")
     t = re.sub(r'<a\s[^>]*href="([^"]+)"[^>]*>', r' HREF:\1 ', raw, flags=re.I)
     t = re.sub(r"<[^>]+>", " ", t); t = html.unescape(re.sub(r"\s+", " ", t))
     venues = "|".join(re.escape(v) for v in TAO.values())
@@ -137,10 +182,10 @@ def click_checkbox(page, must_contain, want_checked):
 def register(page, url, p):
     first, last = (p["name"].strip().split(" ", 1) + ["Guest"])[:2] if " " in p["name"].strip() else (p["name"].strip(), "Guest")
     page.goto(url + ("&" if "?" in url else "?") + UTM, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(1500)
+    if not wait_past_cloudflare(page, "Guest List", 75):
+        raise RuntimeError("cloudflare challenge did not clear on ticket page")
+    page.wait_for_timeout(1200)
     body = page.inner_text("body")
-    if re.search(r"verify you are human|checking your browser|attention required", body, re.I):
-        raise RuntimeError("cloudflare challenge")
     if re.search(r"already passed|sold out|not available", body, re.I):
         raise RuntimeError("event closed or sold out")
     set_qty(page, "Female", int(p.get("females") or 0))
@@ -187,9 +232,8 @@ def main():
     links = find_links(); results = []
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
-        b = pw.chromium.launch(headless=True)
-        ctx = b.new_context(user_agent=UA, viewport={"width": 1280, "height": 900}, locale="en-US",
-                            timezone_id="America/Los_Angeles")
+        b = _new_browser(pw)
+        ctx = _new_context(b)
         page = ctx.new_page()
         for e in events:
             venue = TAO[e["venueId"]]; key = (venue, e["date"])
