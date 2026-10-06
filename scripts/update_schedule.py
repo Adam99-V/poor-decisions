@@ -5,7 +5,7 @@ and writes schedule.json with:
   - per-venue weekday availability  (e.g. "omnia": [0,2,4,5,6])
   - events: { "YYYY-MM-DD": { "omnia": "DJ Name", ... } }
 """
-import re, json, sys
+import re, json, sys, time, html as htmlmod
 from datetime import datetime, timedelta
 from urllib.request import urlopen, Request
 
@@ -21,9 +21,28 @@ def clean_dj(title):
     t=re.sub(r"\s+(at|@)\s+.*$","",t,flags=re.I)
     return t[:40]
 
+UA=("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/128.0.0.0 Safari/537.36")
+HEADERS={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+         "Accept-Language":"en-US,en;q=0.9","Cache-Control":"no-cache","Pragma":"no-cache"}
+
+def fetch(url):
+    """GET with a real browser fingerprint, 4 attempts with backoff. Prints the HTTP status on failure."""
+    last=None
+    for attempt in range(4):
+        try:
+            r=urlopen(Request(url,headers=HEADERS),timeout=60)
+            body=r.read().decode("utf-8","ignore")
+            if len(body)>5000: return body
+            last=f"short response ({len(body)} bytes)"
+        except Exception as e:
+            last=f"{type(e).__name__}: {str(e)[:120]}"
+        print(f"fetch attempt {attempt+1} failed: {last}"); time.sleep(15*(attempt+1))
+    print("Could not fetch the promoter page, keeping yesterday's schedule.json"); sys.exit(1)
+
 def main():
-    html=urlopen(Request(URL,headers={"User-Agent":"Mozilla/5.0"}),timeout=60).read().decode("utf-8","ignore")
-    text=re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",html))
+    html=fetch(URL)
+    text=htmlmod.unescape(re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",html)))
     venues="|".join(re.escape(v) for v in VENUE_MAP)
     pat=re.compile(r"Guest List - (.{0,120}?)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), "
                    r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}), (\d{4}).{0,160}?("+venues+")")
@@ -40,7 +59,8 @@ def main():
         vid=VENUE_MAP[venue]; days[vid].add((dt.weekday()+1)%7); n+=1
         events.setdefault(dt.strftime("%Y-%m-%d"),{}).setdefault(vid,clean_dj(title))
     if n<10:
-        print(f"Only {n} guest list events parsed - layout may have changed. Not overwriting."); sys.exit(1)
+        print(f"Only {n} guest list events parsed - layout may have changed. Not overwriting.")
+        print("Page sample:", text[:600]); sys.exit(1)
     out={v:sorted(d) for v,d in days.items() if d}
     out["events"]=dict(sorted(events.items()))
     out["_updated"]=today.strftime("%Y-%m-%d %H:%M")
