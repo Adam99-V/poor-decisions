@@ -2,7 +2,7 @@ name: Update club schedule
 
 on:
   schedule:
-    - cron: "0 8 * * *"   # every day 08:00 UTC
+    - cron: "0 7 * * *"   # every day 07:00 UTC, then a random wait of up to 100 min so the scrape time varies
   workflow_dispatch:        # lets you run it manually from the Actions tab
 
 permissions:
@@ -11,12 +11,25 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 130
     steps:
       - uses: actions/checkout@v4
+
+      - name: Random wait (scheduled runs only)
+        if: github.event_name == 'schedule'
+        run: |
+          W=$(( RANDOM % 6000 ))
+          echo "waiting $((W/60)) minutes"
+          sleep $W
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install browser
+        run: |
+          pip install -q playwright==1.47.0
+          python -m playwright install --with-deps chromium
 
       - name: Scrape TAO Group guest list schedule
         run: python scripts/update_schedule.py
