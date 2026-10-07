@@ -106,7 +106,8 @@ ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13
 .sel{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#fff}
 .sel .ic{font-size:17px}
 .sel select,.sel input{flex:1;border:none;background:none;font:600 15px 'Inter';color:var(--black);outline:none;min-width:0}
-.sel input[type=date]{font-weight:600}
+.sel input[type=date]{font-weight:600;cursor:pointer}.sel.date{cursor:pointer}.sel input[type=date]::-webkit-calendar-picker-indicator{display:none}.sel .chev{color:var(--mid);font-size:12px}
+.gs-t{flex:1;font:600 15px 'Inter'}.stp{display:flex;align-items:center;gap:8px}.stp button{width:34px;height:34px;border-radius:50%;border:none;background:var(--grey);font:400 20px/1 'Inter';cursor:pointer;color:var(--black)}.stp button.p{background:var(--pink);color:#fff}.stp b{min-width:22px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:24px}
 .btn{display:block;width:100%;background:var(--pink);color:#fff;border:none;border-radius:999px;padding:16px;font:800 14px 'Inter';text-align:center;text-decoration:none;cursor:pointer;margin-top:4px}
 .btn:hover{background:#e6206a}
 .wa{display:block;text-align:center;margin-top:12px;font-size:12px;font-weight:700;color:var(--mid);text-decoration:none}
@@ -221,9 +222,9 @@ fbq('init','3589603211187590');fbq('track','PageView');
       <div class="card-in">
         <div class="from">From</div>
         <div class="price">$62 <small>per person</small></div>
-        <div class="price-s">Per person</div>
-        <div class="sel"><span class="ic">👥</span><select id="gs"><option value="1">Adult x 1</option><option value="2" selected>Adult x 2</option><option value="3">Adult x 3</option><option value="4">Adult x 4</option><option value="5">Adult x 5</option><option value="6">Adult x 6</option><option value="7">Adult x 7</option><option value="8">Adult x 8</option><option value="9">Adult x 9</option><option value="10">Adult x 10</option><option value="11">Adult x 11</option><option value="12">Adult x 12</option><option value="13">Adult x 13</option><option value="14">Adult x 14</option><option value="15">Adult x 15</option><option value="16">Adult x 16</option><option value="17">Adult x 17</option><option value="18">Adult x 18</option><option value="19">Adult x 19</option><option value="20">Adult x 20</option></select></div>
-        <div class="sel"><span class="ic">📅</span><input type="date" id="dt" min="2026-01-01"></div>
+        <div class="price-s">Pick a date to check availability</div>
+        <div class="sel"><span class="ic">👥</span><span class="gs-t" id="gs-t">2 guests</span><div class="stp"><button type="button" id="gs-m" aria-label="fewer">−</button><b id="gs-n">2</b><button type="button" class="p" id="gs-p" aria-label="more">+</button></div><input type="hidden" id="gs" value="2"></div>
+        <div class="sel date" id="dtrow"><span class="ic">📅</span><input type="date" id="dt" min="2026-01-01"><span class="chev">▾</span></div>
         <div class="avail" id="avail"></div>
         <button class="btn" id="check">Check availability</button>
         <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
@@ -237,22 +238,6 @@ fbq('init','3589603211187590');fbq('track','PageView');
 </div>
 <div class="mbar"><div class="p">From $62<small>per person</small></div><a href="#" id="mcheck">Check availability</a></div>
 <div class="lb" id="lb"><button id="lbx">✕</button><img id="lbimg" src="" alt=""></div>
-<div class="bk" id="bk"><div class="bk-card">
-  <button class="bk-x" id="bkx">✕</button>
-  <div class="bk-h">Almost there</div>
-  <div class="bk-s">Your details, then straight to secure payment.</div>
-  <div class="bk-sum" id="bksum"></div>
-  <div class="bk-f"><label>Your name</label><input id="bkname" type="text" autocomplete="name"></div>
-  <div class="bk-f"><label>Email</label><input id="bkemail" type="email" autocomplete="email"></div>
-  <div class="bk-f"><label>WhatsApp / phone</label><input id="bkphone" type="tel" autocomplete="tel"></div>
-  <div class="bk-2"><div class="bk-f"><label>Girls in the group</label><select id="bkgirls"></select></div><div class="bk-f"><label>Home postcode / ZIP</label><input id="bkzip" type="text" autocomplete="postal-code"></div></div>
-  <button class="btn" id="bkpay">Pay now</button>
-  <div class="bk-note">Secure card payment by Stripe. Confirmation by email within minutes.</div>
-</div></div>
-<div class="cta-strip">
-  <h2>Ready to make some <em>poor decisions?</em></h2>
-  <a href="contact.html" class="btn">Book your night</a>
-</div>
 <footer>
   <div class="footer-grid">
     <div class="footer-brand"><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><p>Nightlife experiences in Las Vegas. Guest list entry, open bars, party buses — everything sorted before you land.</p></div>
@@ -273,23 +258,15 @@ function fmt(v){const x=new Date(v+'T12:00:00');return WD[x.getDay()]+' '+x.toLo
 function checkDate(){av.className='avail';av.textContent='';if(!dt.value)return null;const x=new Date(dt.value+'T12:00:00');if(x<today){av.className='avail no';av.textContent='That date has passed.';return false;}
   if(!RUNDAYS.includes(x.getDay())){av.className='avail no';av.textContent='Not running on '+WD[x.getDay()]+'s. Runs '+RUNTXT+'.';return false;}
   av.className='avail ok';av.textContent='Available '+fmt(dt.value)+' · '+gs.value+' '+(gs.value==1?'person':'people')+' · $'+(PRICE*gs.value);return true;}
-dt.onchange=checkDate;gs.onchange=checkDate;
-function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';dt.focus();return;}if(checkDate()!==true)return;
-  const n=+gs.value;document.getElementById('bksum').innerHTML=`<div class="bk-row"><span>Experience</span><b>${PK}</b></div><div class="bk-row"><span>Date</span><b>${fmt(dt.value)}</b></div><div class="bk-row"><span>Guests</span><b>${n}</b></div><div class="bk-row"><span>Per person</span><b>$${PRICE}</b></div><div class="bk-row tot"><span>Total</span><span>$${PRICE*n}</span></div>`;
-  const gsel=document.getElementById('bkgirls');gsel.innerHTML='';for(let i=0;i<=n;i++){gsel.innerHTML+=`<option value="${i}">${i} girl${i===1?'':'s'} · ${n-i} guy${n-i===1?'':'s'}</option>`;}gsel.value=Math.floor(n/2);
-  document.getElementById('bkpay').textContent=STRIPE_LINK?('Pay $'+(PRICE*n)+' now →'):'Send booking request →';
-  document.getElementById('bk').classList.add('on');window.fbq&&fbq('track','InitiateCheckout',{content_name:PK,value:PRICE*n,currency:'USD',num_items:n});window.gtag&&gtag('event','begin_checkout',{value:PRICE*n,currency:'USD',items:[{item_name:PK,quantity:n,price:PRICE}]});}
+dt.onchange=checkDate;
+const gsT=document.getElementById('gs-t'),gsN=document.getElementById('gs-n');function setG(v){v=Math.max(1,Math.min(20,v));gs.value=v;gsN.textContent=v;gsT.textContent=v+(v===1?' guest':' guests');checkDate();}
+document.getElementById('gs-m').onclick=()=>setG(+gs.value-1);document.getElementById('gs-p').onclick=()=>setG(+gs.value+1);
+document.getElementById('dtrow').onclick=()=>{try{dt.showPicker();}catch(e){dt.focus();}};dt.onclick=e=>{e.stopPropagation();try{dt.showPicker();}catch(e2){}};
+const _q=new URLSearchParams(location.search);if(_q.get('dt'))dt.value=_q.get('dt');if(_q.get('gs'))setG(+_q.get('gs'));if(dt.value)checkDate();
+function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';try{dt.showPicker();}catch(e){dt.focus();}return;}if(checkDate()!==true)return;
+  const n=+gs.value;window.fbq&&fbq('track','InitiateCheckout',{content_name:PK,value:PRICE*n,currency:'USD',num_items:n});window.gtag&&gtag('event','begin_checkout',{value:PRICE*n,currency:'USD',items:[{item_name:PK,quantity:n,price:PRICE}]});
+  location.href='checkout.html?'+new URLSearchParams({p:CHECKOUT_PRODUCT,dt:dt.value,gs:n}).toString();}
 document.getElementById('check').onclick=openBook;document.getElementById('mcheck').onclick=e=>{e.preventDefault();document.getElementById('dt').scrollIntoView({behavior:'smooth',block:'center'});if(dt.value)openBook();else{av.className='avail no';av.textContent='Pick a date first.';}};
-document.getElementById('bkx').onclick=()=>document.getElementById('bk').classList.remove('on');
-document.getElementById('bkpay').onclick=()=>{const name=document.getElementById('bkname').value.trim(),email=document.getElementById('bkemail').value.trim(),phone=document.getElementById('bkphone').value.trim(),zip=document.getElementById('bkzip').value.trim(),females=+document.getElementById('bkgirls').value;
-  if(!name||!email||!zip){alert('Please fill in your name, email and postcode.');return;}const n=+gs.value,ref='PD-'+PK.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dt.value.replace(/-/g,'')+'-'+n+'pax';
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:PK,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dt.value),nights:1,guests:n,males:n-females,females,zip,total:'$'+(PRICE*n),openBarNight:EV_SLOT==='open bar'?dt.value:'',events:[{date:dt.value,slot:EV_SLOT,venue:PK,dj:'',time:EV_TIME,done:false}],itinerary:PK+' · '+fmt(dt.value),status:STRIPE_LINK?'Pending payment':'Booking request'})}).catch(()=>{});
-  const toContact=()=>{window.location.href='contact.html?'+new URLSearchParams({pk:PK,gs:n,dt:dt.value,fn:name,em:email,ph:phone}).toString();};
-  window.fbq&&fbq('track','AddPaymentInfo',{value:PRICE*n,currency:'USD'});
-  const btn=document.getElementById('bkpay');btn.textContent='Taking you to secure payment…';btn.disabled=true;
-  const desc=fmt(dt.value)+', '+n+(n==1?' guest. ':' guests. ')+'VIP access to 2 Las Vegas beach clubs, no lines, no cover charges, hosted party games, plus complimentary Omnia Nightclub entry.'+' Details emailed after payment.';
-  fetch(SHEET_URL+'?action=checkout&product='+encodeURIComponent(CHECKOUT_PRODUCT)+'&qty='+n+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(desc)+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)window.location.href=j.url;else toContact();}).catch(toContact);
-};
 document.getElementById('viewall').onclick=()=>{document.getElementById('allpics').classList.toggle('on');};
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbimg');
 document.querySelectorAll('.gallery img,.allpics img').forEach(i=>i.onclick=()=>{lbi.src=i.src;lb.classList.add('on');});

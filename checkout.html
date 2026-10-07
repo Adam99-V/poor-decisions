@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"><head>
+<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-SH4DX6SCGG"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SH4DX6SCGG');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Secure your spot — Poor Decisions</title><meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pink:#FF2D78;--black:#111;--grey:#f5f5f5;--mid:#777;--border:#e8e8e8;--green:#0a8f4a}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--black)}
+a{color:inherit}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;text-decoration:none;color:var(--black)}.logo em{color:var(--pink);font-style:normal}
+.back{font:600 12px/1 'Inter';letter-spacing:1px;text-transform:uppercase;text-decoration:none;color:var(--mid)}.back:hover{color:var(--black)}
+.steps{display:flex;gap:18px;justify-content:center;padding:26px 20px 0;font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:#bbb}
+.steps span{display:flex;align-items:center;gap:8px}.steps i{width:22px;height:22px;border-radius:50%;background:#eee;color:#999;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:11px}
+.steps .on{color:var(--black)}.steps .on i{background:var(--pink);color:#fff}.steps .done i{background:var(--black);color:#fff}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 20px 80px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+@media(max-width:860px){.wrap{grid-template-columns:1fr;gap:22px}nav{padding:0 20px}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,56px);line-height:.95;letter-spacing:1px;margin-bottom:8px}
+h1 em{color:var(--pink);font-style:normal}
+.sub{color:var(--mid);font-size:15px;line-height:1.5;margin-bottom:26px}
+.lbl{font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin:16px 0 7px}
+.in{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:14px 15px;font:500 15px 'Inter';background:#fff;outline:none;color:var(--black)}
+.in:focus{border-color:var(--black)}.in.err{border-color:#d90000}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.two{grid-template-columns:1fr}}
+.split{display:flex;gap:10px;align-items:center}.split .in{text-align:center;font-weight:700}
+.step{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:6px 8px;background:#fff}
+.step button{width:40px;height:40px;border-radius:8px;border:none;background:var(--grey);font:400 22px/1 'Inter';cursor:pointer;color:var(--black)}.step button.p{background:var(--pink);color:#fff}
+.step b{min-width:24px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:26px}
+.step small{flex:1;color:var(--mid);font-size:12px;padding-left:4px}
+.cta{width:100%;margin-top:22px;border:none;border-radius:999px;background:var(--pink);color:#fff;padding:18px;font:800 15px/1 'Inter';letter-spacing:.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.cta:disabled{opacity:.6;cursor:default}
+.fine{text-align:center;color:var(--mid);font-size:12px;margin-top:12px;line-height:1.5}
+.trust{display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:center;margin-top:16px;font-size:12px;color:var(--mid)}
+.trust span::before{content:'✓ ';color:var(--green);font-weight:700}
+.card{border:1.5px solid var(--border);border-radius:18px;overflow:hidden;position:sticky;top:90px}
+.card img{width:100%;height:230px;object-fit:cover;display:block}
+.card .in2{padding:18px 20px 20px}
+.card .k{font:800 11px/1 'Inter';letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
+.card .t{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--border);font-size:14px}.row span{color:var(--mid)}.row b{text-align:right}
+.row.total{border-top:2px solid var(--black);margin-top:4px;padding-top:14px;font-size:16px}.row.total b{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px}
+.inc{margin-top:14px;font-size:13px;line-height:1.6;color:#333}.inc b{display:block;font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.edit{font-size:12px;color:var(--pink);text-decoration:none;font-weight:600}
+.err-box{display:none;background:#fff1f4;border:1px solid #ffb3c9;border-radius:10px;padding:12px 14px;color:#b0003a;font-size:13px;margin-top:14px}.err-box.on{display:block}
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3589603211187590');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3589603211187590&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code --></head><body>
+<nav><a href="index.html" class="logo">POOR<em>DECISIONS</em></a><a href="#" class="back" id="back">‹ Back to the experience</a></nav>
+<div class="steps"><span class="done"><i>✓</i> Pick a date</span><span class="on"><i>2</i> Your details</span><span><i>3</i> Secure payment</span></div>
+<div class="wrap">
+  <div>
+    <h1>Secure your <em>spot.</em></h1>
+    <div class="sub">Your details, then straight to secure card payment with Stripe. Takes about a minute.</div>
+    <div class="lbl">Your name</div><input class="in" id="name" placeholder="Jamie Smith" autocomplete="name">
+    <div class="two">
+      <div><div class="lbl">Email</div><input class="in" id="email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+      <div><div class="lbl">WhatsApp / phone</div><input class="in" id="phone" type="tel" placeholder="+1 702 000 0000" autocomplete="tel"></div>
+    </div>
+    <div class="two">
+      <div><div class="lbl">Guys in the group</div><div class="step"><button id="gm">−</button><b id="gmn">1</b><button class="p" id="gp">+</button><small>guys</small></div></div>
+      <div><div class="lbl">Girls in the group</div><div class="step"><button id="fm">−</button><b id="fmn">1</b><button class="p" id="fp">+</button><small>girls</small></div></div>
+    </div>
+    <div class="two">
+      <div><div class="lbl">Home postcode / ZIP</div><input class="in" id="zip" placeholder="89109 or SW1A 1AA" autocomplete="postal-code"></div>
+      <div><div class="lbl">Anything we should know?</div><input class="in" id="note" placeholder="Birthday, stag do, allergies (optional)"></div>
+    </div>
+    <div class="err-box" id="err"></div>
+    <button class="cta" id="go">Continue to payment <span>→</span></button>
+    <div class="fine">You'll pay <b id="paytxt"></b> on the next screen. Nothing is charged until you confirm there.</div>
+    <div class="trust"><span>Free cancellation up to 24h before</span><span>Secure payment by Stripe</span><span>Confirmation by email within minutes</span></div>
+  </div>
+  <aside class="card">
+    <img id="img" alt="">
+    <div class="in2">
+      <div class="k">Your experience</div>
+      <div class="t" id="title"></div>
+      <div class="row"><span>Date</span><b id="date"></b></div>
+      <div class="row"><span>Time</span><b id="time"></b></div>
+      <div class="row"><span>Guests</span><b><span id="gcount"></span> · <a href="#" class="edit" id="edit">change</a></b></div>
+      <div class="row"><span>Per person</span><b id="pp"></b></div>
+      <div class="row total"><span>Total</span><b id="total"></b></div>
+      <div class="inc"><b>Includes</b><span id="inc"></span></div>
+    </div>
+  </aside>
+</div>
+<script>
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
+const PRODUCTS={
+  'Club Crawl':{name:'Las Vegas VIP Club Crawl',price:120,slot:'night',time:'Evening, host meets you at the first venue',page:'las-vegas.html',img:'https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/night-omnia.jpg',
+    inc:'VIP entry to 3–4 top Las Vegas nightclubs, open bar and party bus every stop, cover charges included, professional host all night.'},
+  'Pool Crawl':{name:'Las Vegas VIP Pool Crawl',price:62,slot:'day',time:'11:00 AM start',page:'vip-pool-crawl.html',img:'https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/day-encore-bc.jpg',
+    inc:'VIP access to 2 Las Vegas beach clubs, no lines, no cover charges, hosted party games, plus complimentary Omnia Nightclub entry.'},
+  'Open Bar':{name:'Las Vegas 2-Hour Open Bar',price:60,slot:'open bar',time:'9:00 PM to 11:00 PM, Fremont Street',page:'open-bar.html',img:'https://raw.githubusercontent.com/Adam99-V/poor-decisions/main/vp-13.jpg',
+    inc:'Two-hour open bar on Fremont Street, 9–11pm: unlimited mixed drinks, hosted party games and check-in assistance.'}
+};
+const EV_TIME={'Club Crawl':'Evening','Pool Crawl':'11:00 AM','Open Bar':'9:00 PM'};
+const q=new URLSearchParams(location.search);
+const key=q.get('p'),P=PRODUCTS[key],dtv=q.get('dt')||'';let n=Math.max(1,Math.min(20,+q.get('gs')||2));
+if(!P||!dtv){location.replace('index.html');}
+const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmt(v){const x=new Date(v+'T12:00:00');return WD[x.getDay()]+' '+x.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+let females=Math.floor(n/2),males=n-females;
+const $=id=>document.getElementById(id);
+function paint(){n=males+females;$('gmn').textContent=males;$('fmn').textContent=females;$('gcount').textContent=n+(n===1?' person':' people');$('total').textContent='$'+(P.price*n);$('paytxt').textContent='$'+(P.price*n);}
+$('title').textContent=P.name;$('img').src=P.img;$('date').textContent=fmt(dtv);$('time').textContent=P.time;$('pp').textContent='$'+P.price;$('inc').textContent=P.inc;
+$('back').href=P.page;$('edit').href=P.page+'?dt='+dtv+'&gs='+n;
+$('gm').onclick=()=>{if(males>0&&n>1){males--;paint();}};$('gp').onclick=()=>{if(n<20){males++;paint();}};
+$('fm').onclick=()=>{if(females>0&&n>1){females--;paint();}};$('fp').onclick=()=>{if(n<20){females++;paint();}};
+paint();
+window.fbq&&fbq('track','InitiateCheckout',{content_name:P.name,value:P.price*n,currency:'USD',num_items:n});
+window.gtag&&gtag('event','begin_checkout',{value:P.price*n,currency:'USD',items:[{item_name:P.name,quantity:n,price:P.price}]});
+$('go').onclick=()=>{
+  const name=$('name').value.trim(),email=$('email').value.trim(),phone=$('phone').value.trim(),zip=$('zip').value.trim(),note=$('note').value.trim();
+  ['name','email','zip'].forEach(id=>$(id).classList.toggle('err',!$(id).value.trim()));
+  const e=$('err');
+  if(!name||!email||!zip){e.textContent='We need your name, email and postcode. The postcode is for the club guest lists.';e.classList.add('on');return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){$('email').classList.add('err');e.textContent='That email doesn\'t look right.';e.classList.add('on');return;}
+  e.classList.remove('on');
+  const ref='PD-'+P.name.replace(/[^A-Za-z]/g,'').slice(0,12)+'-'+dtv.replace(/-/g,'')+'-'+n+'pax';
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({ref,product:P.name,timestamp:new Date().toISOString(),name,email,phone,dates:fmt(dtv),nights:1,guests:n,males,females,zip,total:'$'+(P.price*n),openBarNight:P.slot==='open bar'?dtv:'',events:[{date:dtv,slot:P.slot,venue:P.name,dj:'',time:EV_TIME[key],done:false}],itinerary:P.name+' · '+fmt(dtv),notes:note,status:'Pending payment'})}).catch(()=>{});
+  const toContact=()=>{location.href='contact.html?'+new URLSearchParams({pk:P.name,gs:n,dt:dtv,fn:name,em:email,ph:phone}).toString();};
+  window.fbq&&fbq('track','AddPaymentInfo',{value:P.price*n,currency:'USD'});
+  const b=$('go');b.disabled=true;b.textContent='Taking you to secure payment…';
+  const desc=fmt(dtv)+', '+n+(n===1?' guest. ':' guests. ')+P.inc+' Details emailed after payment.';
+  fetch(SHEET_URL+'?action=checkout&product='+encodeURIComponent(key)+'&qty='+n+'&email='+encodeURIComponent(email)+'&ref='+encodeURIComponent(ref)+'&desc='+encodeURIComponent(desc)+'&back='+encodeURIComponent(location.href)).then(r=>r.json()).then(j=>{if(j&&j.ok&&j.url)location.href=j.url;else toContact();}).catch(toContact);
+};
+</script>
+</body></html>
