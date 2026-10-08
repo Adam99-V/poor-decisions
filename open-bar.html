@@ -106,7 +106,11 @@ ul.no li:before{content:'✕';color:#d33;font-weight:800;left:-19px;font-size:13
 .sel{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#fff}
 .sel .ic{font-size:17px}
 .sel select,.sel input{flex:1;border:none;background:none;font:600 15px 'Inter';color:var(--black);outline:none;min-width:0}
-.sel input[type=date]{font-weight:600;cursor:pointer}.sel.date{cursor:pointer}.sel input[type=date]::-webkit-calendar-picker-indicator{display:none}.sel .chev{color:var(--mid);font-size:12px}
+.sel input[type=date]{font-weight:600;cursor:pointer}.sel.date{cursor:pointer;position:relative}.dt-txt{flex:1;font:600 15px 'Inter'}.dt-txt.ph{color:var(--mid);font-weight:500}
+.cal{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1.5px solid var(--border);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.14);padding:12px;z-index:50;cursor:default}.cal.on{display:block}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.cal-h span{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}.cal-h button{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:#fff;font-size:18px;cursor:pointer}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.cal-g .wd{text-align:center;font:700 10px/1 'Inter';letter-spacing:1px;color:var(--mid);padding:4px 0}.cal-g .d{height:36px;border-radius:8px;border:none;background:none;font:600 14px 'Inter';cursor:pointer;color:var(--black)}.cal-g .d:hover{background:var(--grey)}.cal-g .d.off{color:#ccc;cursor:not-allowed;background:none}.cal-g .d.off:hover{background:none}.cal-g .d.sel{background:var(--pink);color:#fff}.cal-g .d.today{box-shadow:inset 0 0 0 1.5px var(--pink)}
+.cal-f{margin-top:8px;font-size:11px;color:var(--mid);text-align:center}.sel .chev{color:var(--mid);font-size:12px}
 .gs-t{flex:1;font:600 15px 'Inter'}.stp{display:flex;align-items:center;gap:8px}.stp button{width:34px;height:34px;border-radius:50%;border:none;background:var(--grey);font:400 20px/1 'Inter';cursor:pointer;color:var(--black)}.stp button.p{background:var(--pink);color:#fff}.stp b{min-width:22px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:24px}
 .btn{display:block;width:100%;background:var(--pink);color:#fff;border:none;border-radius:999px;padding:16px;font:800 14px 'Inter';text-align:center;text-decoration:none;cursor:pointer;margin-top:4px}
 .btn:hover{background:#e6206a}
@@ -224,7 +228,8 @@ fbq('init','3589603211187590');fbq('track','PageView');
         <div class="price">$60 <small>per person</small></div>
         <div class="price-s">Pick a date to check availability</div>
         <div class="sel"><span class="ic">👥</span><span class="gs-t" id="gs-t">2 guests</span><div class="stp"><button type="button" id="gs-m" aria-label="fewer">−</button><b id="gs-n">2</b><button type="button" class="p" id="gs-p" aria-label="more">+</button></div><input type="hidden" id="gs" value="2"></div>
-        <div class="sel date" id="dtrow"><span class="ic">📅</span><input type="date" id="dt" min="2026-01-01"><span class="chev">▾</span></div>
+        <div class="sel date" id="dtrow"><span class="ic">📅</span><span class="dt-txt" id="dt-txt">Pick a date</span><span class="chev">▾</span><input type="hidden" id="dt">
+          <div class="cal" id="cal"><div class="cal-h"><button type="button" id="cal-prev">‹</button><span id="cal-m"></span><button type="button" id="cal-next">›</button></div><div class="cal-g" id="cal-g"></div><div class="cal-f">Greyed days: not running. <span id="cal-run"></span></div></div></div>
         <div class="avail" id="avail"></div>
         <button class="btn" id="check">Check availability</button>
         <a href="https://wa.me/447849871895" class="wa">or WhatsApp +44 7849 871895</a>
@@ -253,20 +258,30 @@ const STRIPE_LINK="checkout",CHECKOUT_PRODUCT="Open Bar";const EV_SLOT="open bar
 const SHEET_URL='https://script.google.com/macros/s/AKfycbwzywVD_hV5GehZR28oGTE6GLTiK_kBdJNWj81o47bBLFlj7qitjxlM0wJbpeU6YSza/exec';
 const WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const gs=document.getElementById('gs'),dt=document.getElementById('dt'),av=document.getElementById('avail');
-const today=new Date();today.setHours(0,0,0,0);dt.min=today.toISOString().slice(0,10);
+const today=new Date();today.setHours(0,0,0,0);
 function fmt(v){const x=new Date(v+'T12:00:00');return WD[x.getDay()]+' '+x.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
 function checkDate(){av.className='avail';av.textContent='';if(!dt.value)return null;const x=new Date(dt.value+'T12:00:00');if(x<today){av.className='avail no';av.textContent='That date has passed.';return false;}
   if(!RUNDAYS.includes(x.getDay())){av.className='avail no';av.textContent='Not running on '+WD[x.getDay()]+'s. Runs '+RUNTXT+'.';return false;}
   av.className='avail ok';av.textContent='Available '+fmt(dt.value)+' · '+gs.value+' '+(gs.value==1?'person':'people')+' · $'+(PRICE*gs.value);return true;}
-dt.onchange=checkDate;
 const gsT=document.getElementById('gs-t'),gsN=document.getElementById('gs-n');function setG(v){v=Math.max(1,Math.min(20,v));gs.value=v;gsN.textContent=v;gsT.textContent=v+(v===1?' guest':' guests');checkDate();}
 document.getElementById('gs-m').onclick=()=>setG(+gs.value-1);document.getElementById('gs-p').onclick=()=>setG(+gs.value+1);
-document.getElementById('dtrow').onclick=()=>{try{dt.showPicker();}catch(e){dt.focus();}};dt.onclick=e=>{e.stopPropagation();try{dt.showPicker();}catch(e2){}};
-const _q=new URLSearchParams(location.search);if(_q.get('dt'))dt.value=_q.get('dt');if(_q.get('gs'))setG(+_q.get('gs'));if(dt.value)checkDate();
-function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';try{dt.showPicker();}catch(e){dt.focus();}return;}if(checkDate()!==true)return;
+const cal=document.getElementById('cal'),calG=document.getElementById('cal-g'),calM=document.getElementById('cal-m'),dtTxt=document.getElementById('dt-txt');document.getElementById('cal-run').textContent='Runs '+RUNTXT+'.';
+let calY=today.getFullYear(),calMo=today.getMonth();const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function drawCal(){calM.textContent=MN[calMo]+' '+calY;let h=['S','M','T','W','T','F','S'].map(w=>'<div class="wd">'+w+'</div>').join('');const first=new Date(calY,calMo,1),days=new Date(calY,calMo+1,0).getDate();for(let i=0;i<first.getDay();i++)h+='<div></div>';
+  for(let d=1;d<=days;d++){const x=new Date(calY,calMo,d),v=iso(x),off=x<today||!RUNDAYS.includes(x.getDay());h+='<button type="button" class="d'+(off?' off':'')+(v===dt.value?' sel':'')+(v===iso(today)?' today':'')+'" data-v="'+v+'" '+(off?'disabled':'')+'>'+d+'</button>';}
+  calG.innerHTML=h;const pm=new Date(calY,calMo,1);document.getElementById('cal-prev').disabled=pm<=new Date(today.getFullYear(),today.getMonth(),1);
+  calG.querySelectorAll('.d:not(.off)').forEach(b=>b.onclick=e=>{e.stopPropagation();setDate(b.dataset.v);cal.classList.remove('on');});}
+function setDate(v){dt.value=v;dtTxt.textContent=v?fmt(v):'Pick a date';dtTxt.className='dt-txt'+(v?'':' ph');checkDate();}
+document.getElementById('cal-prev').onclick=e=>{e.stopPropagation();calMo--;if(calMo<0){calMo=11;calY--;}drawCal();};document.getElementById('cal-next').onclick=e=>{e.stopPropagation();calMo++;if(calMo>11){calMo=0;calY++;}drawCal();};
+document.getElementById('dtrow').onclick=e=>{if(cal.contains(e.target))return;if(dt.value){const x=new Date(dt.value+'T12:00:00');calY=x.getFullYear();calMo=x.getMonth();}drawCal();cal.classList.toggle('on');};
+document.addEventListener('click',e=>{if(!document.getElementById('dtrow').contains(e.target))cal.classList.remove('on');});
+dtTxt.classList.add('ph');
+const _q=new URLSearchParams(location.search);if(_q.get('dt'))setDate(_q.get('dt'));if(_q.get('gs'))setG(+_q.get('gs'));if(dt.value)checkDate();
+function openBook(){if(!dt.value){av.className='avail no';av.textContent='Pick a date first.';drawCal();cal.classList.add('on');return;}if(checkDate()!==true)return;
   const n=+gs.value;window.fbq&&fbq('track','InitiateCheckout',{content_name:PK,value:PRICE*n,currency:'USD',num_items:n});window.gtag&&gtag('event','begin_checkout',{value:PRICE*n,currency:'USD',items:[{item_name:PK,quantity:n,price:PRICE}]});
   location.href='checkout.html?'+new URLSearchParams({p:CHECKOUT_PRODUCT,dt:dt.value,gs:n}).toString();}
-document.getElementById('check').onclick=openBook;document.getElementById('mcheck').onclick=e=>{e.preventDefault();document.getElementById('dt').scrollIntoView({behavior:'smooth',block:'center'});if(dt.value)openBook();else{av.className='avail no';av.textContent='Pick a date first.';}};
+document.getElementById('check').onclick=openBook;document.getElementById('mcheck').onclick=e=>{e.preventDefault();document.getElementById('dtrow').scrollIntoView({behavior:'smooth',block:'center'});if(dt.value)openBook();else{av.className='avail no';av.textContent='Pick a date first.';}};
 document.getElementById('viewall').onclick=()=>{document.getElementById('allpics').classList.toggle('on');};
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbimg');
 document.querySelectorAll('.gallery img,.allpics img').forEach(i=>i.onclick=()=>{lbi.src=i.src;lb.classList.add('on');});

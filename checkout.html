@@ -21,7 +21,8 @@ h1 em{color:var(--pink);font-style:normal}
 .lbl{font:700 11px/1 'Inter';letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin:16px 0 7px}
 .in{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:14px 15px;font:500 15px 'Inter';background:#fff;outline:none;color:var(--black)}
 .in:focus{border-color:var(--black)}.in.err{border-color:#d90000}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.two{grid-template-columns:1fr}}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}@media(max-width:640px){.three{grid-template-columns:1fr}}
+textarea.in{resize:vertical;min-height:110px;line-height:1.5;font-family:'Inter',sans-serif}
 .split{display:flex;gap:10px;align-items:center}.split .in{text-align:center;font-weight:700}
 .step{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:6px 8px;background:#fff}
 .step button{width:40px;height:40px;border-radius:8px;border:none;background:var(--grey);font:400 22px/1 'Inter';cursor:pointer;color:var(--black)}.step button.p{background:var(--pink);color:#fff}
@@ -57,18 +58,14 @@ fbq('init','3589603211187590');fbq('track','PageView');
     <h1>Secure your <em>spot.</em></h1>
     <div class="sub">Your details, then straight to secure card payment with Stripe. Takes about a minute.</div>
     <div class="lbl">Your name</div><input class="in" id="name" placeholder="Jamie Smith" autocomplete="name">
-    <div class="two">
+    <div class="three">
       <div><div class="lbl">Email</div><input class="in" id="email" type="email" placeholder="you@example.com" autocomplete="email"></div>
-      <div><div class="lbl">WhatsApp / phone</div><input class="in" id="phone" type="tel" placeholder="+1 702 000 0000" autocomplete="tel"></div>
-    </div>
-    <div class="two">
-      <div><div class="lbl">Guys in the group</div><div class="step"><button id="gm">−</button><b id="gmn">1</b><button class="p" id="gp">+</button><small>guys</small></div></div>
-      <div><div class="lbl">Girls in the group</div><div class="step"><button id="fm">−</button><b id="fmn">1</b><button class="p" id="fp">+</button><small>girls</small></div></div>
-    </div>
-    <div class="two">
+      <div><div class="lbl">Phone number</div><input class="in" id="phone" type="tel" placeholder="+1 702 000 0000" autocomplete="tel"></div>
       <div><div class="lbl">Home postcode / ZIP</div><input class="in" id="zip" placeholder="89109 or SW1A 1AA" autocomplete="postal-code"></div>
-      <div><div class="lbl">Anything we should know?</div><input class="in" id="note" placeholder="Birthday, stag do, allergies (optional)"></div>
     </div>
+    <div class="lbl">Guys in the group</div><div class="step"><button id="gm">−</button><b id="gmn">1</b><button class="p" id="gp">+</button><small>guys</small></div>
+    <div class="lbl">Girls in the group</div><div class="step"><button id="fm">−</button><b id="fmn">1</b><button class="p" id="fp">+</button><small>girls</small></div>
+    <div class="lbl">Anything we should know?</div><textarea class="in" id="note" rows="4" placeholder="Birthday, stag do, allergies, anyone under 21, anything that helps us look after you (optional)"></textarea>
     <div class="err-box" id="err"></div>
     <button class="cta" id="go">Continue to payment <span>→</span></button>
     <div class="fine">You'll pay <b id="paytxt"></b> on the next screen. Nothing is charged until you confirm there.</div>
